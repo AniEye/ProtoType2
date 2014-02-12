@@ -1,4 +1,8 @@
-package com.bbv.prototype1;
+package com.bbv.prototype1.Kalkulatorer;
+
+import com.bbv.prototype1.R;
+import com.bbv.prototype1.R.id;
+import com.bbv.prototype1.R.layout;
 
 import android.content.Context;
 import android.view.*;

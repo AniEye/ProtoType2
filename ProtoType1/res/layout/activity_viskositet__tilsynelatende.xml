@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="[cP]"
-        android:inputType="numberDecimal" />
+        android:inputType="numberSigned|numberDecimal" />
 
     <TextView
         android:id="@+id/textView2"
@@ -43,13 +43,14 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="\u03B8rpm"
-        android:inputType="numberDecimal" />
+        android:inputType="numberSigned|numberDecimal"  />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RPM" />
+        android:text="RPM" 
+        />
 
     <EditText
         android:id="@+id/etRPM"
@@ -57,14 +58,26 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="RPM"
-        android:inputType="numberDecimal" >
-
+        android:inputType="numberSigned|numberDecimal"  >
     </EditText>
 
-    <Button
-        android:id="@+id/bClear"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clear" />
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+             android:id="@+id/bViskosUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update" />
+
+        <Button
+            android:id="@+id/bViskosClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -15,7 +15,7 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener{
 	Spinner kapittel,delKapittel,delDKapittel;
 	Button gVidere;
 	ArrayAdapter<CharSequence> AAdelKapittel1,AAdelKapittel2,AAdelKapittel3,AAdelKapittel4;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,19 +23,19 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener{
 		arrayAdapters();
 		initialize();		
 	}
-	
-	
+
+
 
 	private void arrayAdapters() {
 		 AAdelKapittel1 = ArrayAdapter.createFromResource(this, R.array.del_kapittel1, android.R.layout.simple_spinner_item);
 		 AAdelKapittel1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		 
+
 		 AAdelKapittel2 = ArrayAdapter.createFromResource(this, R.array.del_kapittel2, android.R.layout.simple_spinner_item);
 		 AAdelKapittel2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		
+
 		 AAdelKapittel3 = ArrayAdapter.createFromResource(this, R.array.del_kapittel3, android.R.layout.simple_spinner_item);
 		 AAdelKapittel3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		 
+
 		 AAdelKapittel4 = ArrayAdapter.createFromResource(this, R.array.del_kapittel4, android.R.layout.simple_spinner_item);
 		 AAdelKapittel4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	}
@@ -46,7 +46,7 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener{
 		delKapittel = (Spinner) findViewById(R.id.sDelKapittel);
 		delDKapittel = (Spinner) findViewById(R.id.sDDKapittel);
 		gVidere = (Button) findViewById(R.id.bVidere_ProsTeori);
-		
+
 		kapittel.setOnItemSelectedListener(this);
 		delKapittel.setOnItemSelectedListener(this);
 	}
@@ -109,7 +109,7 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener{
 			}
 			break;
 		}
-		
+
 	}
 
 
@@ -117,7 +117,7 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener{
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
