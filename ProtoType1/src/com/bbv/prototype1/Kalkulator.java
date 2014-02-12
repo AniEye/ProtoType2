@@ -3,6 +3,7 @@ package com.bbv.prototype1;
 import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -13,7 +14,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 
 	Spinner valg;
 	LinearLayout lLayout;
-	String[] kalks = { "Til_Viskos"};
+	String[] kalks = { "Til_Viskos" };
 
 	// test
 	Til_Viskos visk;
@@ -23,7 +24,19 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calculator);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		initialize();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	private void initialize() {
