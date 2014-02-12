@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bbv.prototype1"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo_test"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.bbv.prototype1.Main"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.bbv.prototype1.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.bbv.prototype1.Pros_og_Teori"
+            android:label="@string/prosedyrer_og_teori" >
+            <intent-filter>
+                <action android:name="com.bbv.prototype1.PROS_OG_TEORI" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.bbv.prototype1.Calculator"
+            android:label="@string/title_activity_calculator" >
+
+        </activity>
+        <activity
+            android:name="com.bbv.prototype1.Viskositet_Tilsynelatende"
+            android:label="@string/title_activity_viskositet__tilsynelatende" >
+
+        </activity>
+        <activity
+            android:name="com.bbv.prototype1.Kalkulator"
+            android:label="Kalkulator" >
+
+        </activity>
+        <activity
+            android:name=".MainMenu"
+            android:label="The Main Menu" >
+                        <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
