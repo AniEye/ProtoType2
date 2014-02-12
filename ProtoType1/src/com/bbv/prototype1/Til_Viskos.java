@@ -21,6 +21,7 @@ public class Til_Viskos extends LinearLayout {
 		// TODO Auto-generated constructor stub
 		CreateListeners();
 		Initialize();
+		//lol
 	}
 
 	private void Initialize() {
