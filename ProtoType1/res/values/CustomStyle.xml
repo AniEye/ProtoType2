@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="CustomButton">
                 <item name="android:layout_width">match_parent</item>
@@ -9,6 +9,15 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center</item>
         	
+    </style>
+    
+    <style name="CustomColor">
+        <item name = "android:background">@color/grey_dark</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    
+    <style name="AppStyle" parent="@style/AppTheme">
+        <item name="android:background">@color/black</item>
     </style>
 
 </resources>
