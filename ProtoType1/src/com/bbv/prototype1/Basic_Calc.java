@@ -12,7 +12,7 @@ public abstract class Basic_Calc extends LinearLayout {
 
 	LinearLayout _linLay;
 
-	public Basic_Calc(Context context, int numberOfFields) {
+	public Basic_Calc(Context context) {
 		super(context);
 		cont = context;
 	}

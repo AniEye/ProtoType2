@@ -20,7 +20,7 @@ public class Til_Viskos extends Basic_Calc {
 	EditText[] textFields = new EditText[3];
 
 	public Til_Viskos(Context context) {
-		super(context, 3);
+		super(context);
 		CreateListeners();
 		Initialize();
 	}
