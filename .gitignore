@@ -27,3 +27,9 @@ proguard/
 
 
 
+ProtoType1/project.properties
+ProtoType1/gen/com/bbv/prototype1/R.java
+ProtoType1/gen/com/bbv/prototype1/BuildConfig.java
+ProtoType1/bin/classes/com/bbv/prototype1/Vis_Teori.class
+ProtoType1/bin/classes/com/bbv/prototype1/R$style.class
+ProtoType1/bin/classes/com/bbv/prototype1/R$string.class

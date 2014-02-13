@@ -19,5 +19,5 @@
     <style name="AppStyle" parent="@style/AppTheme">
         <item name="android:background">@color/black</item>
     </style>
-
+  
 </resources>
