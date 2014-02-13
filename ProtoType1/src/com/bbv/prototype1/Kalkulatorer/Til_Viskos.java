@@ -1,172 +1,168 @@
 package com.bbv.prototype1.Kalkulatorer;
 
+import com.bbv.prototype1.Basic_Calc;
 import com.bbv.prototype1.R;
-import com.bbv.prototype1.R.id;
-import com.bbv.prototype1.R.layout;
-
 import android.content.Context;
 import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-public class Til_Viskos extends LinearLayout {
+public class Til_Viskos extends Basic_Calc {
 	LinearLayout _linLay;
-	EditText _theta, _RPM, _tilVisk;
-	Button _clear;
+	Button _clear, _update;
 	int[] _textFieldsStatus = { 0, 0, 0 };
-	Context cont;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
+	// indexes: 0=theta, 1=RPM, 2=tilvisk
+	public final static int THETA_INDEX=0, RPM_INDEX=1, TIL_VISK_INDEX=2;
+	EditText[] textFields = new EditText[3];
+
 	public Til_Viskos(Context context) {
-		super(context);
-		cont= context;
-		// TODO Auto-generated constructor stub
+		super(context, 3);
 		CreateListeners();
 		Initialize();
-		//lol
 	}
 
-	private void Initialize() {
-		// TODO Auto-generated method stub
-		_linLay = (LinearLayout) LayoutInflater.from(cont).inflate(
-				R.layout.activity_viskositet__tilsynelatende, this);
-		_theta = (EditText) _linLay.findViewById(R.id.etTheta);
-		_RPM = (EditText) _linLay.findViewById(R.id.etRPM);
-		_tilVisk = (EditText) _linLay.findViewById(R.id.etViskosTil);
-		
-		_theta.setOnFocusChangeListener(focChan);
-		_RPM.setOnFocusChangeListener(focChan);
-		_tilVisk.setOnFocusChangeListener(focChan);		
+	@Override
+	protected void Initialize() {
+		_linLay = setAndGetLinearLayout(R.layout.activity_viskositet__tilsynelatende);
+		textFields[0] = FindAndReturnEditText(R.id.etTheta, focChan);
+		textFields[1] = FindAndReturnEditText(R.id.etRPM, focChan);
+		textFields[2] = FindAndReturnEditText(R.id.etViskosTil, focChan);
+		_clear = FindAndReturnButton(R.id.bViskosClear, cliLis);
+		_update = FindAndReturnButton(R.id.bViskosUpdate, cliLis);
 	}
-	
-	private void CreateListeners(){
-		
+
+	@Override
+	protected void CreateListeners() {
+
 		cliLis = new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				_theta.setText("");
-				_RPM.setText("");
-				_tilVisk.setText("");
-				_textFieldsStatus = new int[] { 0, 0, 0 };
-				_theta.setEnabled(true);
-				_tilVisk.setEnabled(true);
-				_RPM.setEnabled(true);
+				switch (v.getId()) {
+				case R.id.bViskosClear:
+					ResetFields(textFields);
+					_textFieldsStatus = new int[] { 0, 0, 0 };
+					break;
+				case R.id.bViskosUpdate:
+					for (int i = 0; i < textFields.length; i++) {
+						FocusChange(i, false);
+						try {
+							if (Float.parseFloat(textFields[i].getText()
+									.toString()) == 0.0)
+								textFields[i].setText("");
+						} catch (NumberFormatException e) {
+							e.printStackTrace();
+						}
+					}
+					break;
+				}
 			}
 		};
-		
+
 		focChan = new OnFocusChangeListener() {
 
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				switch (v.getId()) {
-				case R.id.etViskosTil:
-					FocusChange(_tilVisk, 0, hasFocus);
-					break;
 				case R.id.etTheta:
-					FocusChange(_theta, 1, hasFocus);
+					FocusChange(0, hasFocus);
 					break;
 				case R.id.etRPM:
-					FocusChange(_RPM, 2, hasFocus);
+					FocusChange(1, hasFocus);
+					break;
+				case R.id.etViskosTil:
+					FocusChange(2, hasFocus);
 					break;
 				}
 			}
 		};
 	}
 
-	private void FocusChange(EditText theCurrentField, int index,
-			boolean focusStatus) {
-		String _fieldsString = theCurrentField.getText().toString();
-		String _thetaString = _theta.getText().toString();
-		String _tilSynViskosString = _tilVisk.getText().toString();
-		String _RPMString = _RPM.getText().toString();
+	protected void FocusChange(int indexOfCurrentField, boolean focusStatus) {
+		String _fieldsString = textFields[indexOfCurrentField].getText()
+				.toString();
 
-		if (theSum() < 2) {
+		if (theSum(_textFieldsStatus) < 2) {
 			if (focusStatus == false && !_fieldsString.contentEquals("")) {
 				try {
-					if (Float.parseFloat(_fieldsString) != 0) {
-						_textFieldsStatus[index] = 1;
+					if (Float.parseFloat(_fieldsString) != 0.0) {
+						_textFieldsStatus[indexOfCurrentField] = 1;
 					}
 				} catch (NumberFormatException e) {
 					// TODO: handle exception
 				}
 			}
 		} else {
-			if (_textFieldsStatus[index] == 1) {
-				if (focusStatus == false && _fieldsString.contentEquals("")) {
+			if (_textFieldsStatus[indexOfCurrentField] == 1) {
+				if (focusStatus == false) {
+					float number = 0;
 					try {
-						if (Float.parseFloat(_fieldsString) == 0) {
-							_textFieldsStatus[index] = 0;
-							Enabeling();
-						}
+						number = Float.parseFloat(_fieldsString);
 					} catch (NumberFormatException e) {
-						_textFieldsStatus[index] = 0;
-						Enabeling();
+						e.printStackTrace();
 					}
 
-				} else if (focusStatus == false
-						&& !_fieldsString.contentEquals("")) {
-					updateRelevantResult(_thetaString, _RPMString,
-							_tilSynViskosString);
+					if (_fieldsString.contentEquals("")) {
+						_textFieldsStatus[indexOfCurrentField] = 0;
+						Enabeling(textFields);
+					} else if (number == 0.0) {
+						_textFieldsStatus[indexOfCurrentField] = 0;
+						textFields[indexOfCurrentField].setText("");
+						Enabeling(textFields);
+					} else if (!_fieldsString.contentEquals("")) {
+						updateRelevantResult();
+					}
 				}
-
 			} else {
-				updateRelevantResult(_thetaString, _RPMString,
-						_tilSynViskosString);
-				theCurrentField.setEnabled(false);
+				updateRelevantResult();
+				textFields[indexOfCurrentField].setEnabled(false);
 			}
 		}
 	}
 
-	private void Enabeling() {
-		if (!_theta.isEnabled()) {
-			_theta.setEnabled(true);
-			_theta.setText("");
-		} else if (!_tilVisk.isEnabled()) {
-			_tilVisk.setEnabled(true);
-			_tilVisk.setText("");
-		} else if (!_RPM.isEnabled()) {
-			_RPM.setEnabled(true);
-			_RPM.setText("");
+	@Override
+	protected void updateRelevantResult() {
+		for (int i = 0; i < _textFieldsStatus.length; i++) {
+			if (_textFieldsStatus[i] == 0) {
+
+				textFields[i].setText(calculation(i,
+						getFloatVariables(textFields)));
+				textFields[i].setEnabled(false);
+				break;
+			}
 		}
 	}
 
-	private String calculation(int type, float number1, float number2) {
+	@Override
+	public String calculation(int variableToCalculate, float... fieldStatuses) {
+		/**
+		 * This method calculates the expression according to which 
+		 * field is left blank.
+		 * @param variableToCalculate The index of the variable to be calculated
+		 * { @value #THETA_INDEX } 
+		 * { @value #RPM_INDEX } 
+		 * { @value #TIL_VISK_INDEX } 
+		 */
+
 		float theAnswer = 0;
-
-		switch (type) {
-		case 0:
-			theAnswer = (float) ((300.0 * number1) / number2);
+		switch (variableToCalculate) {
+		case THETA_INDEX:// theta
+			theAnswer = (fieldStatuses[2] * fieldStatuses[1]) / 300;
 			break;
-		case 1:
-			theAnswer = (float) ((number1 * number2) / 300);
+		case RPM_INDEX:// rpm
+			theAnswer = (float) ((300.0 * fieldStatuses[0]) / fieldStatuses[2]);
+			break;
+		case TIL_VISK_INDEX:// tilvisk
+			theAnswer = (float) ((300.0 * fieldStatuses[0]) / fieldStatuses[1]);
 			break;
 		}
-		return theAnswer + "";
-	}
-
-	private void updateRelevantResult(String _thetaString, String _RPMString,
-			String _tilSynViskosString) {
-		if (_textFieldsStatus[0] == 0) {
-			_tilVisk.setText(calculation(0, Float.parseFloat(_thetaString),
-					Float.parseFloat(_RPMString)));
-			_tilVisk.setEnabled(false);
-		} else if (_textFieldsStatus[1] == 0) {
-			_theta.setText(calculation(1,
-					Float.parseFloat(_tilSynViskosString),
-					Float.parseFloat(_RPMString)));
-			_theta.setEnabled(false);
-		} else if (_textFieldsStatus[2] == 0) {
-			_RPM.setText(calculation(0, Float.parseFloat(_thetaString),
-					Float.parseFloat(_tilSynViskosString)));
-			_RPM.setEnabled(false);
-		}
-	}
-
-	private int theSum() {
-		return _textFieldsStatus[0] + _textFieldsStatus[1]
-				+ _textFieldsStatus[2];
+		if (theAnswer != 0)
+			return theAnswer + "";
+		else
+			return "";
 	}
 }
