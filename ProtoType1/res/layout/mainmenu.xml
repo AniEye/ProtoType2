@@ -7,45 +7,28 @@
     android:orientation="vertical"
     android:padding="25dp" >
 
-
-
     <Button
         android:id="@+id/bTeori"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/custom_button2"
-        android:textColor="@android:color/white"
+        style="@style/CustomButton"
         android:gravity="center"
         android:text="Prosedyrer og Teori" />
 
     <Button
         android:id="@+id/bKalk"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/custom_button2"
-        android:textColor="@android:color/white"
+        style="@style/CustomButton"
         android:gravity="center"
         android:text="Kalk" />
-    
+
     <Button
         android:id="@+id/bOvinger"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/custom_button2"
-        android:textColor="@android:color/white"
+        style="@style/CustomButton"
         android:gravity="center"
-        android:text="Øvinger" />
+        android:text="Øvinger"/>
+
     <Button
         android:id="@+id/bVis_Teori"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/custom_button2"
-        android:textColor="@android:color/white"
+        style="@style/CustomButton"
         android:gravity="center"
-        android:text="Vis Teori" />
+        android:text="Vis Teori"/>
 
 </LinearLayout>
