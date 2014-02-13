@@ -14,11 +14,12 @@
         android:id="@+id/sKalk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/CustomColor"
-        android:entries="@array/calculator" />
+        android:entries="@array/calculator" 
+      	/>
 
     <ScrollView
         android:id="@+id/svKalk"
+        style="@style/CustomColor"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
