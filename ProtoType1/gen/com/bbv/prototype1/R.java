@@ -52,39 +52,38 @@ public final class R {
         public static final int til_viskos_icon=0x7f020007;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0021;
-        public static final int bKalk=0x7f0a001b;
+        public static final int action_settings=0x7f0a0020;
+        public static final int bKalk=0x7f0a001a;
         public static final int bLast=0x7f0a0012;
         public static final int bNext=0x7f0a0013;
-        public static final int bOvinger=0x7f0a001c;
-        public static final int bTeori=0x7f0a001a;
+        public static final int bOvinger=0x7f0a001b;
+        public static final int bTeori=0x7f0a0019;
         public static final int bVidere_Oving=0x7f0a0004;
         public static final int bVidere_ProsTeori=0x7f0a0008;
-        public static final int bVis_Teori=0x7f0a001d;
+        public static final int bVis_Teori=0x7f0a001c;
         public static final int bViskosClear=0x7f0a0011;
         public static final int bViskosUpdate=0x7f0a0010;
-        public static final int button1=0x7f0a0017;
-        public static final int button2=0x7f0a0018;
-        public static final int dlVis_Teori=0x7f0a001e;
+        public static final int button1=0x7f0a0016;
+        public static final int button2=0x7f0a0017;
+        public static final int dlVis_Teori=0x7f0a001d;
         public static final int etRPM=0x7f0a000f;
         public static final int etTheta=0x7f0a000d;
         public static final int etViskosTil=0x7f0a000b;
-        public static final int flText_Content=0x7f0a0016;
-        public static final int flViskos=0x7f0a001f;
+        public static final int flText_Content=0x7f0a0015;
+        public static final int flViskos=0x7f0a001e;
         public static final int imageView1=0x7f0a0009;
         public static final int lInSVKalk=0x7f0a0002;
-        public static final int lvVis_Teori=0x7f0a0020;
+        public static final int lvVis_Teori=0x7f0a001f;
         public static final int sDDKapittel=0x7f0a0007;
         public static final int sDelKapittel=0x7f0a0006;
         public static final int sKalk=0x7f0a0000;
         public static final int sKapittel=0x7f0a0005;
         public static final int sOvinger=0x7f0a0003;
-        public static final int scrollView1=0x7f0a0015;
+        public static final int scrollView1=0x7f0a0014;
         public static final int svKalk=0x7f0a0001;
-        public static final int textView1=0x7f0a0019;
+        public static final int textView1=0x7f0a0018;
         public static final int textView2=0x7f0a000c;
         public static final int textView3=0x7f0a000e;
-        public static final int tvText_Title=0x7f0a0014;
         public static final int tvViskosTil=0x7f0a000a;
     }
     public static final class layout {

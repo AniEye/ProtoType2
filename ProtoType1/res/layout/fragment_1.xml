@@ -26,29 +26,22 @@
             android:text="Neste" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvText_Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:gravity="center_horizontal"
-        android:text="This is page 1"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-        </LinearLayout>
+<!--         <LinearLayout -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="match_parent" -->
+<!--             android:orientation="vertical" > -->
+<!--         </LinearLayout> -->
+
         <FrameLayout
+            android:id="@+id/flText_Content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/flText_Content" ></FrameLayout>
+            android:layout_height="match_parent" >
+        </FrameLayout>
     </ScrollView>
 
 </LinearLayout>
