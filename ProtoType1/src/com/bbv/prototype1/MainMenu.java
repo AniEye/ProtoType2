@@ -13,6 +13,9 @@ public class MainMenu extends Activity implements OnClickListener {
 	int[] buttonIDs = {R.id.bTeori,R.id.bKalk,R.id.bOvinger,R.id.bVis_Teori};
 
 	Button[] buttonList;
+	/**
+	 * HEI ANDRE!
+	 */
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
