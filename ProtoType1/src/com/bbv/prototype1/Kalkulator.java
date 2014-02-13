@@ -24,7 +24,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 	String[] kalks = {"Til_Viskos"};
 
 	// test
-	Til_Viskos visk;
+	Til_Viskos visk;//lol
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
