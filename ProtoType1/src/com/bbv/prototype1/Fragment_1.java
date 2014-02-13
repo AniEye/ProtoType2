@@ -20,7 +20,7 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 
 	public Fragment_1() {
 
-	}//helo
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -27,7 +27,7 @@ public class MainMenu extends Activity implements OnClickListener {
 			buttonList[i] = (Button) findViewById(buttonIDs[i]);
 			buttonList[i].setOnClickListener(this);
 		}
-	}
+	}//hallais
 
 	@Override
 	public void onClick(View v) {

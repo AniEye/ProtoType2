@@ -43,5 +43,8 @@
         <item>1.4.1 </item>
         <item>1.4.1 </item>
     </string-array>
+    
+    <string name="1.1 Introduksjon"></string>
+    <string name="1.2 Oppbygging av leirpartikler"></string>
 
 </resources>
