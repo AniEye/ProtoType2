@@ -6,9 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLPros_Og_Teori {
-	public static final String KEY_ROWID = "_id";
-	public static final String KEY_NAME = "persons_name";
-	public static final String KEY_HOTNESS = "persons_hotness";
+	public static final String KEY_CHAPTERNAME = "_id";
+	public static final String KEY_CHAPERINDEX1NAME = "persons_name";
+	public static final String KEY_CHAPERINDEX2NAME = "persons_hotness";
+	public static final String KEY_FILENAME = "persons_hotness";
+	
+	
 
 	private static final String DATABASE_NAME = "HotOrNotdb";
 	private static final String DATABASE_TABLE = "peopleTable";
@@ -28,9 +31,10 @@ public class SQLPros_Og_Teori {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			// TODO Auto-generated method stub
-			db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (" + KEY_ROWID
-					+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_NAME
-					+ " TEXT NOT NULL, " + KEY_HOTNESS + " TEXT NOT NULL);");
+			db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (" + KEY_CHAPTERNAME
+					+ " TEXT NOT NULL, " + KEY_CHAPERINDEX1NAME
+					+ " TEXT , " + KEY_CHAPERINDEX2NAME + " TEXT"+ KEY_FILENAME
+					+ " TEXT NOT NULL);");
 		}
 
 		@Override
