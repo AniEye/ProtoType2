@@ -10,25 +10,21 @@
     <Button
         android:id="@+id/bTeori"
         style="@style/CustomButton"
-        android:gravity="center"
         android:text="Prosedyrer og Teori" />
 
     <Button
         android:id="@+id/bKalk"
         style="@style/CustomButton"
-        android:gravity="center"
         android:text="Kalk" />
 
     <Button
         android:id="@+id/bOvinger"
         style="@style/CustomButton"
-        android:gravity="center"
         android:text="Øvinger"/>
 
     <Button
         android:id="@+id/bVis_Teori"
         style="@style/CustomButton"
-        android:gravity="center"
         android:text="Vis Teori"/>
 
 </LinearLayout>
