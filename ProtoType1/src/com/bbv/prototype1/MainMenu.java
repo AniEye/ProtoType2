@@ -17,6 +17,9 @@ public class MainMenu extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		
+		//Javel!!
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mainmenu); 
 
