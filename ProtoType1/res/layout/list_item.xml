@@ -6,7 +6,8 @@
     android:textSize="20dp"
     android:typeface="sans"
     
-    android:textColor="@android:color/white" />
+    android:textColor="@android:color/white" 
+    />
 <!--
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     this is commented out

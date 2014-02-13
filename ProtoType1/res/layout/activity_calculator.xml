@@ -13,9 +13,8 @@
     <Spinner
         android:id="@+id/sKalk"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/calculator" 
-      	/>
+        android:layout_height="wrap_content"       
+        android:entries="@array/calculator" />
 
     <ScrollView
         android:id="@+id/svKalk"

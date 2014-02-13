@@ -2,20 +2,26 @@ package com.bbv.prototype1;
 
 import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class Kalkulator extends Activity implements OnItemSelectedListener {
 
 	Spinner valg;
 	LinearLayout lLayout;
-	String[] kalks = { "Til_Viskos" };
+	String[] kalks = {"Til_Viskos"};
 
 	// test
 	Til_Viskos visk;
@@ -43,6 +49,11 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 	private void initialize() {
 
 		valg = (Spinner) findViewById(R.id.sKalk);
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.custom_kalk_spinner, 
+				getResources().getStringArray(R.array.calculator));
+		valg.setAdapter(adapter);
+		
 		lLayout = (LinearLayout) findViewById(R.id.lInSVKalk);
 		valg.setOnItemSelectedListener(this);
 	}
@@ -76,4 +87,5 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 		// TODO Auto-generated method stub
 
 	}
+	
 }

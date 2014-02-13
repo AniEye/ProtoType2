@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/AppStyle"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="25dp" >
@@ -16,15 +16,15 @@
         android:id="@+id/bKalk"
         style="@style/CustomButton"
         android:text="Kalk" />
-<!-- this -->
+
     <Button
         android:id="@+id/bOvinger"
         style="@style/CustomButton"
-        android:text="Øvinger"/>
+        android:text="Øvinger" />
 
     <Button
         android:id="@+id/bVis_Teori"
         style="@style/CustomButton"
-        android:text="Vis Teori"/>
+        android:text="Vis Teori" />
 
 </LinearLayout>
