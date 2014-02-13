@@ -13,10 +13,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class Fragment_1 extends Fragment implements OnClickListener {
-	public CharSequence title = "This is page 1";
+
 	protected FrameLayout flTextContent;
 	protected Button _Next, _Last;
-	protected TextView tvTextTitle;
 	protected View rootView;
 
 	public Fragment_1() {
@@ -29,18 +28,18 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 
 		rootView = inflater.inflate(R.layout.fragment_1, container, false);
 		Initialize();
+
 		return rootView;
 	}
 
 	protected void Initialize() {
-
 		_Next = (Button) rootView.findViewById(R.id.bNext);
 		_Next.setOnClickListener(this);
 		_Last = (Button) rootView.findViewById(R.id.bLast);
 		_Last.setOnClickListener(this);
 		flTextContent = (FrameLayout) rootView
 				.findViewById(R.id.flText_Content);
-		tvTextTitle = (TextView) rootView.findViewById(R.id.tvText_Title);
+
 	}
 
 	@Override
@@ -52,9 +51,6 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 			break;
 		}
 
-	}
-	private void setContentTitle(CharSequence aTitle){
-		tvTextTitle.setText(aTitle);
 	}
 
 }
