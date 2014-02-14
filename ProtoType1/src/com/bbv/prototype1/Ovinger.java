@@ -11,12 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class Ovinger extends Activity implements OnItemSelectedListener,OnClickListener{
+public class Ovinger extends Activity implements OnItemSelectedListener,
+		OnClickListener {
 
 	Spinner oving;
 	Button gVidere;
 	ArrayAdapter<CharSequence> delOving;
-	final int OVING1=0, OVING2=1, OVING3=2, OVING4=3, OVING5=4;
+	int SpinnerLayout = R.layout.custom_spinner;
+	final int OVING1 = 0, OVING2 = 1, OVING3 = 2, OVING4 = 3, OVING5 = 4;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +29,23 @@ public class Ovinger extends Activity implements OnItemSelectedListener,OnClickL
 	}
 
 	private void arrayAdapterSetup() {
+
 		delOving = ArrayAdapter.createFromResource(this, R.array.ovinger,
-				android.R.layout.simple_spinner_item);
-		delOving.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				SpinnerLayout); // Adds the layout to the second spinner here
+		delOving.setDropDownViewResource(SpinnerLayout);
 
 	}
 
 	private void initialize() {
 		oving = (Spinner) findViewById(R.id.sOvinger);
+
+		// Adds the custom look for the spinner
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				R.layout.custom_spinner, getResources().getStringArray(
+						R.array.ovinger));
+		oving.setAdapter(adapter);
+		// Adds the custom look for the spinner
+
 		gVidere = (Button) findViewById(R.id.bVidere_Oving);
 
 		gVidere.setOnClickListener(this);
@@ -54,7 +65,7 @@ public class Ovinger extends Activity implements OnItemSelectedListener,OnClickL
 		switch (parent.getId()) {
 		case R.id.sOvinger:
 			switch (index) {
-			case OVING1: 
+			case OVING1:
 
 				break;
 			case OVING2:

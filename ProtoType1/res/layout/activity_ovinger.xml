@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Ovinger" 
-    android:orientation="vertical"
-    android:background="@color/light_blue"
-    android:gravity="center_horizontal">
-    
-     <Spinner
+    style="@style/ViewWithSpinners"
+    tools:context=".Ovinger" >
+
+    <Spinner
         android:id="@+id/sOvinger"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
+        android:layout_height="wrap_content"
+        android:entries="@array/ovinger"
         android:gravity="center"
-        android:prompt="@string/ovingPromt"
-        android:entries="@array/ovinger"/>
-     
-      <Button
+        android:prompt="@string/ovingPromt" />
+
+    <Button
         android:id="@+id/bVidere_Oving"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="50sp"
         android:paddingRight="50sp"
         android:text="Vis" />
-     
-    
 
 </LinearLayout>

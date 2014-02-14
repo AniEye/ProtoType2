@@ -50,9 +50,11 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 
 		valg = (Spinner) findViewById(R.id.sKalk);
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.custom_kalk_spinner, 
+		//Adds the custom look for the spinner
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.custom_spinner, 
 				getResources().getStringArray(R.array.calculator));
 		valg.setAdapter(adapter);
+		//Adds the custom look for the spinner
 		
 		lLayout = (LinearLayout) findViewById(R.id.lInSVKalk);
 		valg.setOnItemSelectedListener(this);

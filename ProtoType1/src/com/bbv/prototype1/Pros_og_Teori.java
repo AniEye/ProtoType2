@@ -10,39 +10,50 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class Pros_og_Teori extends Activity implements OnItemSelectedListener{
+public class Pros_og_Teori extends Activity implements OnItemSelectedListener {
 
-	Spinner kapittel,delKapittel,delDKapittel;
+	Spinner kapittel, delKapittel, delDKapittel;
 	Button gVidere;
-	ArrayAdapter<CharSequence> AAdelKapittel1,AAdelKapittel2,AAdelKapittel3,AAdelKapittel4;
+	ArrayAdapter<CharSequence> AAdelKapittel1, AAdelKapittel2, AAdelKapittel3,
+			AAdelKapittel4;
+	int spinnerLayout = R.layout.custom_spinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pros_og__teori);
 		arrayAdapters();
-		initialize();		
+		initialize();
 	}
-
-
 
 	private void arrayAdapters() {
-		 AAdelKapittel1 = ArrayAdapter.createFromResource(this, R.array.del_kapittel1, android.R.layout.simple_spinner_item);
-		 AAdelKapittel1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		AAdelKapittel1 = ArrayAdapter.createFromResource(this,
+				R.array.del_kapittel1, spinnerLayout);
+		AAdelKapittel1.setDropDownViewResource(spinnerLayout);
 
-		 AAdelKapittel2 = ArrayAdapter.createFromResource(this, R.array.del_kapittel2, android.R.layout.simple_spinner_item);
-		 AAdelKapittel2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		AAdelKapittel2 = ArrayAdapter.createFromResource(this,
+				R.array.del_kapittel2, spinnerLayout);
+		AAdelKapittel2.setDropDownViewResource(spinnerLayout);
 
-		 AAdelKapittel3 = ArrayAdapter.createFromResource(this, R.array.del_kapittel3, android.R.layout.simple_spinner_item);
-		 AAdelKapittel3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		AAdelKapittel3 = ArrayAdapter.createFromResource(this,
+				R.array.del_kapittel3, spinnerLayout);
+		AAdelKapittel3.setDropDownViewResource(spinnerLayout);
 
-		 AAdelKapittel4 = ArrayAdapter.createFromResource(this, R.array.del_kapittel4, android.R.layout.simple_spinner_item);
-		 AAdelKapittel4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		AAdelKapittel4 = ArrayAdapter.createFromResource(this,
+				R.array.del_kapittel4, spinnerLayout);
+		AAdelKapittel4.setDropDownViewResource(spinnerLayout);
 	}
-
 
 	private void initialize() {
 		kapittel = (Spinner) findViewById(R.id.sKapittel);
+
+		// Adds the custom look for the spinner
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				R.layout.custom_spinner, getResources().getStringArray(
+						R.array.kapittler));
+		kapittel.setAdapter(adapter);
+		// Adds the custom look for the spinner
+
 		delKapittel = (Spinner) findViewById(R.id.sDelKapittel);
 		delDKapittel = (Spinner) findViewById(R.id.sDDKapittel);
 		gVidere = (Button) findViewById(R.id.bVidere_ProsTeori);
@@ -51,8 +62,6 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener{
 		delKapittel.setOnItemSelectedListener(this);
 	}
 
-
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -60,26 +69,24 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener{
 		return true;
 	}
 
-
-
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int index,
 			long arg3) {
-		switch(parent.getId()){
+		switch (parent.getId()) {
 		case R.id.sKapittel:
-			switch(index){
+			switch (index) {
 			case 0:
 				delKapittel.setVisibility(android.view.View.GONE);
 				break;
-			case 1:				
-				delKapittel.setAdapter(AAdelKapittel1);	
+			case 1:
+				delKapittel.setAdapter(AAdelKapittel1);
 				delKapittel.setVisibility(android.view.View.VISIBLE);
 				break;
 			case 2:
 				delKapittel.setAdapter(AAdelKapittel2);
 				delKapittel.setVisibility(android.view.View.VISIBLE);
 				break;
-			case 3://kapitel 3
+			case 3:// kapitel 3
 				delKapittel.setAdapter(AAdelKapittel3);
 				delKapittel.setVisibility(android.view.View.VISIBLE);
 				break;
@@ -90,7 +97,7 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener{
 			}
 			break;
 		case R.id.sDelKapittel:
-			switch(index){
+			switch (index) {
 			case 0:
 				delDKapittel.setVisibility(android.view.View.GONE);
 				break;
@@ -111,8 +118,6 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener{
 		}
 
 	}
-
-
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
