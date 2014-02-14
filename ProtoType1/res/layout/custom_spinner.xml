@@ -6,6 +6,6 @@
     android:gravity="left"
     android:padding="10sp"
     
-    style="@style/CustomColors"
+    style="@style/CustomSpinner"
     
     />

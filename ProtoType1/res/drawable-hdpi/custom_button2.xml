@@ -4,11 +4,6 @@
 
     <corners android:radius="30dp" />
 
-    
     <solid android:color="@color/ButtonAndSpinnerBackgroundColor" />
-
-    <size
-        android:height="100dp"
-        android:width="100dp" />
 
 </shape>
