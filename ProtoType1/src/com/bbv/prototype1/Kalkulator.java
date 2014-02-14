@@ -22,6 +22,8 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 	Spinner valg;
 	LinearLayout lLayout;
 	String[] kalks = {"Til_Viskos"};
+	int SpinnerItemLayout = R.layout.custom_spinner_item;
+
 
 	// test
 	Til_Viskos visk;//lol
@@ -53,6 +55,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 		//Adds the custom look for the spinner
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.custom_spinner, 
 				getResources().getStringArray(R.array.calculator));
+		adapter.setDropDownViewResource(SpinnerItemLayout);
 		valg.setAdapter(adapter);
 		//Adds the custom look for the spinner
 		

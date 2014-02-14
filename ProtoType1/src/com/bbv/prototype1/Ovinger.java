@@ -18,6 +18,7 @@ public class Ovinger extends Activity implements OnItemSelectedListener,
 	Button gVidere;
 	ArrayAdapter<CharSequence> delOving;
 	int SpinnerLayout = R.layout.custom_spinner;
+	int SpinnerItemLayout = R.layout.custom_spinner_item;
 	final int OVING1 = 0, OVING2 = 1, OVING3 = 2, OVING4 = 3, OVING5 = 4;
 
 	@Override
@@ -31,8 +32,8 @@ public class Ovinger extends Activity implements OnItemSelectedListener,
 	private void arrayAdapterSetup() {
 
 		delOving = ArrayAdapter.createFromResource(this, R.array.ovinger,
-				SpinnerLayout); // Adds the layout to the second spinner here
-		delOving.setDropDownViewResource(SpinnerLayout);
+				android.R.layout.simple_dropdown_item_1line); 
+		delOving.setDropDownViewResource(android.R.layout.simple_list_item_1);
 
 	}
 
@@ -43,6 +44,9 @@ public class Ovinger extends Activity implements OnItemSelectedListener,
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				R.layout.custom_spinner, getResources().getStringArray(
 						R.array.ovinger));
+
+		adapter.setDropDownViewResource(SpinnerItemLayout); //Sets the layout for individual items
+		
 		oving.setAdapter(adapter);
 		// Adds the custom look for the spinner
 

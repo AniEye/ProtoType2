@@ -17,6 +17,8 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener {
 	ArrayAdapter<CharSequence> AAdelKapittel1, AAdelKapittel2, AAdelKapittel3,
 			AAdelKapittel4;
 	int spinnerLayout = R.layout.custom_spinner;
+	int SpinnerItemLayout = R.layout.custom_spinner_item;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,19 +31,19 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener {
 	private void arrayAdapters() {
 		AAdelKapittel1 = ArrayAdapter.createFromResource(this,
 				R.array.del_kapittel1, spinnerLayout);
-		AAdelKapittel1.setDropDownViewResource(spinnerLayout);
+		AAdelKapittel1.setDropDownViewResource(SpinnerItemLayout);
 
 		AAdelKapittel2 = ArrayAdapter.createFromResource(this,
 				R.array.del_kapittel2, spinnerLayout);
-		AAdelKapittel2.setDropDownViewResource(spinnerLayout);
+		AAdelKapittel2.setDropDownViewResource(SpinnerItemLayout);
 
 		AAdelKapittel3 = ArrayAdapter.createFromResource(this,
 				R.array.del_kapittel3, spinnerLayout);
-		AAdelKapittel3.setDropDownViewResource(spinnerLayout);
+		AAdelKapittel3.setDropDownViewResource(SpinnerItemLayout);
 
 		AAdelKapittel4 = ArrayAdapter.createFromResource(this,
 				R.array.del_kapittel4, spinnerLayout);
-		AAdelKapittel4.setDropDownViewResource(spinnerLayout);
+		AAdelKapittel4.setDropDownViewResource(SpinnerItemLayout);
 	}
 
 	private void initialize() {
@@ -51,6 +53,7 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				R.layout.custom_spinner, getResources().getStringArray(
 						R.array.kapittler));
+		adapter.setDropDownViewResource(SpinnerItemLayout);
 		kapittel.setAdapter(adapter);
 		// Adds the custom look for the spinner
 
