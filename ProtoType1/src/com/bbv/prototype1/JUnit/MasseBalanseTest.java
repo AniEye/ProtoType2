@@ -1,12 +1,8 @@
 package com.bbv.prototype1.JUnit;
 
-<<<<<<< HEAD
-import com.bbv.prototype1.Basic_Calc;
-=======
+
 import com.bbv.prototype1.Kalkulatorer.Basic_Calc;
->>>>>>> Made major changes to Calculators
 import com.bbv.prototype1.Kalkulatorer.MasseBalanse;
-import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
 
 import android.test.AndroidTestCase;
 

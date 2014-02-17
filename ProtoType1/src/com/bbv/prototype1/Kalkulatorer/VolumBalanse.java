@@ -1,9 +1,5 @@
 package com.bbv.prototype1.Kalkulatorer;
 
-<<<<<<< HEAD
-import com.bbv.prototype1.Basic_Calc;
-=======
->>>>>>> Made major changes to Calculators
 import com.bbv.prototype1.R;
 import android.content.Context;
 import android.view.*;
