@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-public class MasseBalanse extends Basic_Calc {
+public class VolumBalanse extends Basic_Calc {
 	LinearLayout _linLay;
 	Button _clear, _update;
 	int[] _textFieldsStatus = { 0, 0, 0 };
@@ -16,10 +16,10 @@ public class MasseBalanse extends Basic_Calc {
 	OnClickListener cliLis;
 
 	// indexes: 0=theta, 1=RPM, 2=tilvisk
-	public final static int m1_INDEX=0, mv_INDEX=1, m2_INDEX=2;
+	public final static int v1_INDEX=0, vv_INDEX=1, v2_INDEX=2;
 	EditText[] textFields = new EditText[3];
 
-	public MasseBalanse(Context context) {
+	public VolumBalanse(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -27,12 +27,12 @@ public class MasseBalanse extends Basic_Calc {
 
 	@Override
 	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(R.layout.activity_massebalanse);
-		textFields[0] = FindAndReturnEditText(R.id.etMBm1, focChan);
-		textFields[1] = FindAndReturnEditText(R.id.etMBmv, focChan);
-		textFields[2] = FindAndReturnEditText(R.id.etMBm2, focChan);
-		_clear = FindAndReturnButton(R.id.bMBClear, cliLis);
-		_update = FindAndReturnButton(R.id.bMBUpdate, cliLis);
+		_linLay = setAndGetLinearLayout(R.layout.activity_volumbalanse);
+		textFields[0] = FindAndReturnEditText(R.id.etVBm1, focChan);
+		textFields[1] = FindAndReturnEditText(R.id.etVBmv, focChan);
+		textFields[2] = FindAndReturnEditText(R.id.etVBm2, focChan);
+		_clear = FindAndReturnButton(R.id.bVBClear, cliLis);
+		_update = FindAndReturnButton(R.id.bVBUpdate, cliLis);
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class MasseBalanse extends Basic_Calc {
 			@Override
 			public void onClick(View v) {
 				switch (v.getId()) {
-				case R.id.bMBClear:
+				case R.id.bVBClear:
 					ResetFields(textFields);
 					_textFieldsStatus = new int[] { 0, 0, 0 };
 					break;
-				case R.id.bMBUpdate:
+				case R.id.bVBUpdate:
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
 						try {
@@ -68,13 +68,13 @@ public class MasseBalanse extends Basic_Calc {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				switch (v.getId()) {
-				case R.id.etMBm1:
+				case R.id.etVBm1:
 					FocusChange(0, hasFocus);
 					break;
-				case R.id.etMBmv:
+				case R.id.etVBmv:
 					FocusChange(1, hasFocus);
 					break;
-				case R.id.etMBm2:
+				case R.id.etVBm2:
 					FocusChange(2, hasFocus);
 					break;
 				}
@@ -142,13 +142,13 @@ public class MasseBalanse extends Basic_Calc {
 		
 		float theAnswer = 0;
 		switch (variableToCalculate) {
-		case m1_INDEX:// theta
+		case v1_INDEX:// theta
 			theAnswer = fieldStatuses[2] - fieldStatuses[1];
 			break;
-		case mv_INDEX:// rpm
+		case vv_INDEX:// rpm
 			theAnswer = fieldStatuses[2] - fieldStatuses[0];
 			break;
-		case m2_INDEX:// tilvisk
+		case v2_INDEX:// tilvisk
 			theAnswer = fieldStatuses[0] + fieldStatuses[1];
 			break;
 		}

@@ -27,16 +27,16 @@ public class TilViskosTest extends AndroidTestCase {
 
 		
 		//Testing Theta
-//		assertEquals("120.0", test.calculation(0, variables1));
-//		assertEquals("120.0", test.calculation(0, THETA1, RPM1, TV1));
-//		
-//		//Testing RPM
-//		assertEquals("136.5", test.calculation(1, variables2));
-//		assertEquals("136.5", test.calculation(1, THETA2, RPM2, TV2));
-//		
-//		//Testing TV
-//		assertEquals("40.0", test.calculation(2, variables3));
-//		assertEquals("40.0", test.calculation(2, THETA3, RPM3, TV3));
+		assertEquals("120.0", test.calculation(0, variables1));
+		assertEquals("120.0", test.calculation(0, THETA1, RPM1, TV1));
+		
+		//Testing RPM
+		assertEquals("136.5", test.calculation(1, variables2));
+		assertEquals("136.5", test.calculation(1, THETA2, RPM2, TV2));
+		
+		//Testing TV
+		assertEquals("40.0", test.calculation(2, variables3));
+		assertEquals("40.0", test.calculation(2, THETA3, RPM3, TV3));
 
 		
 	}

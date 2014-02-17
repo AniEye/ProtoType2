@@ -11,7 +11,6 @@
     <string name="title_activity_calculator">Kalkulator</string>
     <string name="ovingPromt">Velg Øving</string>
     <string name="title_tests">Øvinger</string>
-    
     <string name="drawer_open">hi opening</string>
     <string name="drawer_close">Godbye clsing</string>
 
@@ -23,14 +22,27 @@
         <item>Øving 4: Modifikasjon av boreslam</item>
         <item>Øving 5: Boreslam</item>
     </string-array>
-    
     <string-array name="calculator">
         <item>Massebalanse</item>
-        <item>Tilsynelatende viskositet</item>
-        <item>Plastisk viskositet</item>
+        <item>Volumbalanse</item>
+        <item>Slamtetthet</item>
+        <item>Skjærhastighet</item>
+        <item>Tilsynelatende viskositet (TV)</item>
+        <item>Plastisk viskositet (PV)</item>
+        <item>Flytegrense (FG)</item>
+        <item>Eksponent modellen (Power law)</item>
+        <item>Herchel Burkley-modellen</item>
+        <item>Darcy"'""s lov for filtertap</item>
+        <item>Statisk filtrering</item>
+        <item>Filtertap - var. med tid</item>
+        <item>Filtertap - var. med trykk</item>
+        <item>Filtertap - var. med temp</item>
+        <item>Spesifikk tetthet</item>
+        <item>Klorinnhold</item>
     </string-array>
 
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>
+
     <string-array name="test_array">
         <item>Shit</item>
         <item>This</item>
