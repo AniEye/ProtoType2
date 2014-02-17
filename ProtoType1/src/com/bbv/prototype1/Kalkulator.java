@@ -1,21 +1,17 @@
 package com.bbv.prototype1;
 
+import com.bbv.prototype1.Kalkulatorer.MasseBalanse;
 import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 public class Kalkulator extends Activity implements OnItemSelectedListener {
 
@@ -24,9 +20,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 	String[] kalks = {"Til_Viskos"};
 	int SpinnerItemLayout = R.layout.custom_spinner_item;
 
-
-	// test
-	Til_Viskos visk;//lol
+	Basic_Calc calc;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +42,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 		}
 	}
 
-	private void initialize() {
-
+	private void initialize() {		
 		valg = (Spinner) findViewById(R.id.sKalk);
 		
 		//Adds the custom look for the spinner
@@ -58,7 +51,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 		adapter.setDropDownViewResource(SpinnerItemLayout);
 		valg.setAdapter(adapter);
 		//Adds the custom look for the spinner
-		
+				
 		lLayout = (LinearLayout) findViewById(R.id.lInSVKalk);
 		valg.setOnItemSelectedListener(this);
 	}
@@ -70,14 +63,18 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 		case 0:
 			if (lLayout.getChildCount() > 0)
 				lLayout.removeAllViews();
-
+			Log.println(Log.DEBUG, "calc", "Adding Calc1!");
+			calc = new MasseBalanse(lLayout.getContext());
+			lLayout.addView(calc);
+			Log.println(Log.DEBUG, "calc", "Added Calc1!");
 			break;
 		case 1:
 			if (lLayout.getChildCount() > 0)
 				lLayout.removeAllViews();
-			visk = new Til_Viskos(lLayout.getContext());
-			lLayout.addView(visk);
-
+			Log.println(Log.DEBUG, "calc", "Adding Calc2!");
+			calc = new Til_Viskos(lLayout.getContext());
+			lLayout.addView(calc);
+			Log.println(Log.DEBUG, "calc", "Added Calc2!");
 			break;
 		case 2:
 			if (lLayout.getChildCount() > 0)

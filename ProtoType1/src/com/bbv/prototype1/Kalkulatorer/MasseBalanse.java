@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-public class Til_Viskos extends Basic_Calc {
+public class MasseBalanse extends Basic_Calc {
 	LinearLayout _linLay;
 	Button _clear, _update;
 	int[] _textFieldsStatus = { 0, 0, 0 };
@@ -16,10 +16,10 @@ public class Til_Viskos extends Basic_Calc {
 	OnClickListener cliLis;
 
 	// indexes: 0=theta, 1=RPM, 2=tilvisk
-	public final static int THETA_INDEX=0, RPM_INDEX=1, TIL_VISK_INDEX=2;
+	public final static int m1_INDEX=0, mv_INDEX=1, m2_INDEX=2;
 	EditText[] textFields = new EditText[3];
 
-	public Til_Viskos(Context context) {
+	public MasseBalanse(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -27,12 +27,12 @@ public class Til_Viskos extends Basic_Calc {
 
 	@Override
 	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(R.layout.activity_viskositet_tilsynelatende);
-		textFields[0] = FindAndReturnEditText(R.id.etTheta, focChan);
-		textFields[1] = FindAndReturnEditText(R.id.etRPM, focChan);
-		textFields[2] = FindAndReturnEditText(R.id.etViskosTil, focChan);
-		_clear = FindAndReturnButton(R.id.bViskosClear, cliLis);
-		_update = FindAndReturnButton(R.id.bViskosUpdate, cliLis);
+		_linLay = setAndGetLinearLayout(R.layout.activity_massebalanse);
+		textFields[0] = FindAndReturnEditText(R.id.etMBm1, focChan);
+		textFields[1] = FindAndReturnEditText(R.id.etMBmv, focChan);
+		textFields[2] = FindAndReturnEditText(R.id.etMBm2, focChan);
+		_clear = FindAndReturnButton(R.id.bMBClear, cliLis);
+		_update = FindAndReturnButton(R.id.bMBUpdate, cliLis);
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class Til_Viskos extends Basic_Calc {
 			@Override
 			public void onClick(View v) {
 				switch (v.getId()) {
-				case R.id.bViskosClear:
+				case R.id.bMBClear:
 					ResetFields(textFields);
 					_textFieldsStatus = new int[] { 0, 0, 0 };
 					break;
-				case R.id.bViskosUpdate:
+				case R.id.bMBUpdate:
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
 						try {
@@ -139,25 +139,17 @@ public class Til_Viskos extends Basic_Calc {
 
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
-		/**
-		 * This method calculates the expression according to which 
-		 * field is left blank.
-		 * @param variableToCalculate The index of the variable to be calculated
-		 * { @value #THETA_INDEX } 
-		 * { @value #RPM_INDEX } 
-		 * { @value #TIL_VISK_INDEX } 
-		 */
-
+		
 		float theAnswer = 0;
 		switch (variableToCalculate) {
-		case THETA_INDEX:// theta
-			theAnswer = (fieldStatuses[2] * fieldStatuses[1]) / 300;
+		case m1_INDEX:// theta
+			theAnswer = fieldStatuses[2] - fieldStatuses[1];
 			break;
-		case RPM_INDEX:// rpm
-			theAnswer = (float) ((300.0 * fieldStatuses[0]) / fieldStatuses[2]);
+		case mv_INDEX:// rpm
+			theAnswer = fieldStatuses[2] - fieldStatuses[0];
 			break;
-		case TIL_VISK_INDEX:// tilvisk
-			theAnswer = (float) ((300.0 * fieldStatuses[0]) / fieldStatuses[1]);
+		case m2_INDEX:// tilvisk
+			theAnswer = fieldStatuses[0] + fieldStatuses[1];
 			break;
 		}
 		if (theAnswer != 0)
