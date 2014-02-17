@@ -1,6 +1,5 @@
 package com.bbv.prototype1.Kalkulatorer;
 
-import com.bbv.prototype1.Basic_Calc;
 import com.bbv.prototype1.R;
 import android.content.Context;
 import android.view.*;

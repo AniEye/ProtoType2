@@ -1,4 +1,4 @@
-package com.bbv.prototype1;
+package com.bbv.prototype1.Kalkulatorer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -88,40 +88,6 @@ public abstract class Basic_Calc extends LinearLayout {
 			editTexts[i].setText("");
 			editTexts[i].setEnabled(true);
 		}
-	}
-
-	{ // unused method at the moment, not working/finished
-
-		/*
-		 * protected void FocusChange(EditText[] theEditTextField, int
-		 * TheCurrentFieldIndex, int[] _textFieldsStatus, boolean focusStatus,
-		 * Basic_Calc trying) { String _fieldsString =
-		 * theEditTextField[TheCurrentFieldIndex].getText() .toString();
-		 * 
-		 * if (theSum(_textFieldsStatus) < theEditTextField.length - 1) {
-		 * Log.println(Log.ERROR, "FocusTry", "Entering and less than 2"); if
-		 * (focusStatus == false && !_fieldsString.contentEquals("")) { try { if
-		 * (Float.parseFloat(_fieldsString) != 0) {
-		 * _textFieldsStatus[TheCurrentFieldIndex] = 1; } } catch
-		 * (NumberFormatException e) { // TODO: handle exception } } } else {
-		 * Log.println(Log.ERROR, "FocusTry", "Entering and more than 2"); if
-		 * (_textFieldsStatus[TheCurrentFieldIndex] == 1) {
-		 * Log.println(Log.ERROR, "FocusTry", "status = 1"); if (focusStatus ==
-		 * false && _fieldsString.contentEquals("")) { try { if
-		 * (Float.parseFloat(_fieldsString) == 0) { Log.println(Log.ERROR,
-		 * "FocusTry", "if float parse = 0");
-		 * _textFieldsStatus[TheCurrentFieldIndex] = 0;
-		 * Enabeling(theEditTextField); } } catch (NumberFormatException e) {
-		 * Log.println(Log.ERROR, "FocusTry", "if text = nothing");
-		 * _textFieldsStatus[TheCurrentFieldIndex] = 0;
-		 * Enabeling(theEditTextField); } } else if (focusStatus == false &&
-		 * !_fieldsString.contentEquals("")) { Log.println(Log.ERROR,
-		 * "FocusTry", "if there is content"); trying.updateRelevantResult(); }
-		 * 
-		 * } else { Log.println(Log.ERROR, "FocusTry",
-		 * "more then 2 and status=0"); trying.updateRelevantResult();
-		 * theEditTextField[TheCurrentFieldIndex].setEnabled(false); } }
-		 * Log.println(Log.ERROR, "FocusTry", "getting out of here"); }
-		 */
-	}
+	} 
+	
 }
