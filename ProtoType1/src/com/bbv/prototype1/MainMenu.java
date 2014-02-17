@@ -9,10 +9,13 @@ import android.widget.Button;
 
 public class MainMenu extends Activity implements OnClickListener {
 
-	String[] menuList = { "Pros_og_Teori", "Kalkulator", "Ovinger","Vis_Teori" };
-	int[] buttonIDs = {R.id.bTeori,R.id.bKalk,R.id.bOvinger,R.id.bVis_Teori};
+	String[] menuList = { "Pros_og_Teori", "Kalkulator", "Ovinger","Vis_Teori" ,"SQLTest","SQLPros_Teori"};
+	int[] buttonIDs = {R.id.bTeori,R.id.bKalk,R.id.bOvinger,R.id.bVis_Teori,R.id.bSQLTest,R.id.bSQLDatabase};
 
 	Button[] buttonList;
+	/**
+	 * HEI ANDRE!
+	 */
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,7 @@ public class MainMenu extends Activity implements OnClickListener {
 			buttonList[i] = (Button) findViewById(buttonIDs[i]);
 			buttonList[i].setOnClickListener(this);
 		}
-	}
+	}//KA SKJER?!?!
 
 	@Override
 	public void onClick(View v) {
