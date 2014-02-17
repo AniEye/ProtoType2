@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="left"
     android:padding="10sp"
-    
+    android:id="@+id/CSIText"
     style="@style/CustomSpinnerItem"
     
     />

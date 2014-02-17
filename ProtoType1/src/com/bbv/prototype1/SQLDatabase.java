@@ -85,7 +85,7 @@ public class SQLDatabase {
 		int iChapterPart2 = c.getColumnIndex(KEY_CHAPTERPART2);
 		int iFilename = c.getColumnIndex(KEY_FILENAME);
 
-		int currentRow=0;
+		int currentRow = 0;
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 			content[currentRow] = new DatabaseContent();
 			content[currentRow].setChapter(c.getString(iChapter));
@@ -101,37 +101,75 @@ public class SQLDatabase {
 
 		return content;
 	}
-	
-	public DatabaseContent[] getChapters(){
-		
-		String[] columns = new String[] { KEY_CHAPTER, KEY_CHAPTERPART1,
-				KEY_CHAPTERPART2, KEY_FILENAME };
-		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null,
-				null, null);
-		
-		String result = "";
-		DatabaseContent[] content = new DatabaseContent[c.getCount()];
-		int iChapter = c.getColumnIndex(KEY_CHAPTER);
-		int iChapterPart1 = c.getColumnIndex(KEY_CHAPTERPART1);
-		int iChapterPart2 = c.getColumnIndex(KEY_CHAPTERPART2);
-		int iFilename = c.getColumnIndex(KEY_FILENAME);
 
-		int currentRow=0;
+	public String[] getChapters() {
+
+		String[] columns = new String[] { KEY_CHAPTER };
+		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null,
+				KEY_CHAPTER, null, null);
+
+		String result = "";
+		String[] content = new String[c.getCount() + 1];
+		content[0] = "Choose chapter";
+		int iChapter = c.getColumnIndex(KEY_CHAPTER);
+
+		int currentRow = 1;
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-			content[currentRow] = new DatabaseContent();
-			content[currentRow].setChapter(c.getString(iChapter));
-			content[currentRow].setChapterPart1(c.getString(iChapterPart1));
-			content[currentRow].setChapterPart2(c.getString(iChapterPart2));
-			content[currentRow].setFileName(c.getString(iFilename));
+			content[currentRow] = c.getString(iChapter);
 			currentRow++;
-			result = result + c.getString(iChapter) + " "
-					+ c.getString(iChapterPart1) + " "
-					+ c.getString(iChapterPart2) + " " + c.getString(iFilename)
-					+ "\n";
+		}
+		return content;
+	}
+
+	public String[] getColumnGrouped(String[] column, String groupedBy,
+			String where) {
+		if (where == null)
+			where = groupedBy + " != '' ";
+		
+		Cursor c = ourDatabase.query(DATABASE_TABLE, column, where, null,
+				groupedBy, null, null);
+
+		String[] content = new String[c.getCount() + 1];
+		if (groupedBy.contentEquals(KEY_CHAPTER))
+			content[0] = "Choose chapter";
+		else if (groupedBy.contentEquals(KEY_CHAPTERPART1))
+			content[0] = "Choose partition";
+		else if (groupedBy.contentEquals(KEY_CHAPTERPART2))
+			content[0] = "Choose partition";
+		else {
+			content[0] = "Choose file";
+		}
+
+		int iChapter = c.getColumnIndex(groupedBy);
+
+		int currentRow = 1;
+		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+
+			content[currentRow] = c.getString(iChapter);
+			currentRow++;
+
+		}
+		return content;
+	}
+
+	public String[] getChapterPart1s() {
+		String[] columns = new String[] { KEY_CHAPTER };
+		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null,
+				KEY_CHAPTER, null, null);
+
+		String result = "";
+		String[] content = new String[c.getCount() + 1];
+		content[0] = "Choose chapter";
+		int iChapter = c.getColumnIndex(KEY_CHAPTER);
+
+		int currentRow = 1;
+		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+			content[currentRow] = c.getString(iChapter);
+
+			currentRow++;
 		}
 
 		return content;
-		
 	}
 
 }
