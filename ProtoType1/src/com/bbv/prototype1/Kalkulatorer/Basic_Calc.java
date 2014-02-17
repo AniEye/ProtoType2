@@ -19,9 +19,10 @@ public abstract class Basic_Calc extends LinearLayout {
 
 	protected abstract void Initialize();
 
-	// the user should use this method for all the listeners that are used in
-	// the class
-	// extending Basic_Calc
+	/**
+	 * the user should use this method for all the listeners that are used in 
+	 * the class extending Basic_Calc
+	 */
 	protected abstract void CreateListeners();
 
 	protected LinearLayout setAndGetLinearLayout(int layoutID) {

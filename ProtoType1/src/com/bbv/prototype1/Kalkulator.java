@@ -1,10 +1,6 @@
 package com.bbv.prototype1;
 
-import com.bbv.prototype1.Kalkulatorer.Basic_Calc;
-import com.bbv.prototype1.Kalkulatorer.MasseBalanse;
-import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
-import com.bbv.prototype1.Kalkulatorer.VolumBalanse;
-
+import com.bbv.prototype1.Kalkulatorer.*;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -75,7 +71,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 			calc = new VolumBalanse(lLayout.getContext());
 			break;
 		case 2:
-//			calc = new Slamtetthet(lLayout.getContext());
+			calc = new Slamtetthet(lLayout.getContext());
 			break;
 		case 3:
 //			calc = new Skjaerhastighet(lLayout.getContext());

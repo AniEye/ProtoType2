@@ -14,7 +14,6 @@ public class MasseBalanse extends Basic_Calc {
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	// indexes: 0=theta, 1=RPM, 2=tilvisk
 	public final static int m1_INDEX=0, mv_INDEX=1, m2_INDEX=2;
 	EditText[] textFields = new EditText[3];
 
@@ -26,7 +25,7 @@ public class MasseBalanse extends Basic_Calc {
 
 	@Override
 	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(R.layout.activity_massebalanse);
+		_linLay = setAndGetLinearLayout(R.layout.calc_massebalanse);
 		textFields[0] = FindAndReturnEditText(R.id.etMBm1, focChan);
 		textFields[1] = FindAndReturnEditText(R.id.etMBmv, focChan);
 		textFields[2] = FindAndReturnEditText(R.id.etMBm2, focChan);

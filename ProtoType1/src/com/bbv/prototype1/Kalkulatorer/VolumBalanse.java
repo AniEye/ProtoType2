@@ -26,7 +26,7 @@ public class VolumBalanse extends Basic_Calc {
 
 	@Override
 	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(R.layout.activity_volumbalanse);
+		_linLay = setAndGetLinearLayout(R.layout.calc_volumbalanse);
 		textFields[0] = FindAndReturnEditText(R.id.etVBm1, focChan);
 		textFields[1] = FindAndReturnEditText(R.id.etVBmv, focChan);
 		textFields[2] = FindAndReturnEditText(R.id.etVBm2, focChan);
