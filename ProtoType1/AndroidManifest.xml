@@ -27,15 +27,6 @@
             android:label="@string/prosedyrer_og_teori" >
         </activity>
         <activity
-            android:name=".SQLTestView"
-            android:label="View" >
-            <intent-filter>
-                <action android:name="com.bbv.prototype1.SQLTESTVIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="com.bbv.prototype1.Ovinger"
             android:label="@string/title_tests" >
         </activity>
@@ -62,10 +53,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.bbv.prototype1.SQLTest"
-            android:label="The database" >
-        </activity>
         <activity
             android:name="com.bbv.prototype1.Kalkulator"
             android:label="Kalkulator" >

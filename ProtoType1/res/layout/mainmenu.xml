@@ -26,14 +26,11 @@
         android:id="@+id/bVis_Teori"
         style="@style/CustomButton"
         android:text="Vis Teori" />
-    <Button
-        android:id="@+id/bSQLTest"
-        style="@style/CustomButton"
-        android:text="Database" />
+
     <Button
         android:id="@+id/bSQLDatabase"
         style="@style/CustomButton"
-        android:text="Database 2" />
+        android:text="Database" />
     
     <Button
         android:id="@+id/bFileViewtest"
