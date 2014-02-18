@@ -1,12 +1,13 @@
 package com.bbv.prototype1;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class SQLDatabase {
 
@@ -79,7 +80,7 @@ public class SQLDatabase {
 				KEY_CHAPTERPART2, KEY_FILENAME };
 		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null,
 				null, null);
-		String result = "";
+
 		DatabaseContent[] content = new DatabaseContent[c.getCount()];
 		int iChapter = c.getColumnIndex(KEY_CHAPTER);
 		int iChapterPart1 = c.getColumnIndex(KEY_CHAPTERPART1);
@@ -94,16 +95,11 @@ public class SQLDatabase {
 			content[currentRow].setChapterPart2(c.getString(iChapterPart2));
 			content[currentRow].setFileName(c.getString(iFilename));
 			currentRow++;
-			result = result + c.getString(iChapter) + " "
-					+ c.getString(iChapterPart1) + " "
-					+ c.getString(iChapterPart2) + " " + c.getString(iFilename)
-					+ "\n";
+
 		}
 
 		return content;
 	}
-
-
 
 	public String[] getColumnGrouped(String[] column, String groupedBy,
 			String where) {
@@ -140,7 +136,6 @@ public class SQLDatabase {
 			String ChapterPart2) {
 
 		String where = KEY_FILENAME + " != '' ";
-
 		if (Chapter != null) {
 			where = where + " and " + KEY_CHAPTER + " = '" + Chapter + "' ";
 
@@ -168,6 +163,46 @@ public class SQLDatabase {
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 
 			content[currentRow] = c.getString(iFilename);
+			currentRow++;
+		}
+		return content;
+	}
+
+	public DatabaseContent[] getFileData(String Chapter, String ChapterPart1,
+			String ChapterPart2) {
+		String where = KEY_FILENAME + " != '' ";
+		if (Chapter != null) {
+			where = where + " and " + KEY_CHAPTER + " = '" + Chapter + "' ";
+
+			if (ChapterPart1 != null) {
+				where = where + " and " + KEY_CHAPTERPART1 + " = '"
+						+ ChapterPart1 + "' ";
+
+				if (ChapterPart2 != null) {
+					where = where + " and " + KEY_CHAPTERPART2 + " = '"
+							+ ChapterPart2 + "' ";
+				}
+			}
+		}
+		String[] columns = new String[] { KEY_CHAPTER, KEY_CHAPTERPART1,
+				KEY_CHAPTERPART2, KEY_FILENAME };
+		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, where, null,
+				null, null, null);
+
+		DatabaseContent[] content = new DatabaseContent[c.getCount()+1];
+		
+		int iChapter = c.getColumnIndex(KEY_CHAPTER);
+		int iChapterPart1 = c.getColumnIndex(KEY_CHAPTERPART1);
+		int iChapterPart2 = c.getColumnIndex(KEY_CHAPTERPART2);
+		int iFilename = c.getColumnIndex(KEY_FILENAME);
+
+		int currentRow = 1;
+		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+			content[currentRow] = new DatabaseContent();
+			content[currentRow].setChapter(c.getString(iChapter));
+			content[currentRow].setChapterPart1(c.getString(iChapterPart1));
+			content[currentRow].setChapterPart2(c.getString(iChapterPart2));
+			content[currentRow].setFileName(c.getString(iFilename));
 			currentRow++;
 		}
 

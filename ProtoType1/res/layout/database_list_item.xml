@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/DLIChapter"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
         android:background="@color/aero_blue" />
@@ -17,14 +17,14 @@
         android:id="@+id/DLIChapterPart1"
         android:layout_width="0dp"
         android:gravity="center"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/light_blue" />
 
     <TextView
         android:id="@+id/DLIChapterPart2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:layout_weight="1"
         android:background="@color/aero_blue" />
@@ -33,7 +33,7 @@
         android:id="@+id/DLIFileName"
         android:layout_width="0dp"
         android:gravity="center"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/light_blue" />
 

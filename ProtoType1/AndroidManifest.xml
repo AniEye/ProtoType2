@@ -46,6 +46,11 @@
         </activity>  <activity
             android:name=".FileView"
             android:label="Viewing file" >
+            <intent-filter>
+                <action android:name="com.bbv.prototype1.FILEVIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".SQLView"
@@ -56,6 +61,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.bbv.prototype1.SQLTest"
             android:label="The database" >

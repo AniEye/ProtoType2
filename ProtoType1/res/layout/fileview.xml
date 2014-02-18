@@ -8,9 +8,9 @@
         android:id="@+id/tvFileOrigin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="File origin"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_marginBottom="2dp"
+        android:background="@color/aero_blue"
+        android:text="File origin" />
 
     <ScrollView
         android:id="@+id/scrollView1"

@@ -12,7 +12,7 @@ public class SQLView extends Activity {
 
 	ListView list;
 	DatabaseCustomAdapter adapter;
-	public SQLView CustomListView = null;
+
 	public ArrayList<DatabaseContent> CustomListViewValuesArr = new ArrayList<DatabaseContent>();
 
 	@Override
@@ -20,21 +20,16 @@ public class SQLView extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sqlview);
-		CustomListView = this;// whyyyyyy
 
-		CustomListView = this;
 
 		/******** Take some data in Arraylist ( CustomListViewValuesArr ) ***********/
 		setListData();
 
-		Resources res = getResources();
-		list = (ListView) findViewById(R.id.SQLListView); // List defined in XML
-															// ( See
-		// Below )
+		list = (ListView) findViewById(R.id.SQLListView); 
 
 		/**************** Create Custom Adapter *********/
-		adapter = new DatabaseCustomAdapter(CustomListView,
-				CustomListViewValuesArr, res);
+		adapter = new DatabaseCustomAdapter(this,
+				CustomListViewValuesArr, getResources());
 		list.setAdapter(adapter);
 	}
 
@@ -71,7 +66,7 @@ public class SQLView extends Activity {
 		// SHOW ALERT
 
 		Toast.makeText(
-				CustomListView,
+				this,
 				"Chapter: " + tempValues.getChapter() + " ChapterPart1: "
 						+ tempValues.getChapterPart1() + " ChapterPart2: "
 						+ tempValues.getChapterPart2() + " FileName: "

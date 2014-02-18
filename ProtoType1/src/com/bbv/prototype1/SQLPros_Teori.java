@@ -1,5 +1,7 @@
 package com.bbv.prototype1;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -14,6 +16,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -32,6 +35,9 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 	String _ContentIndexChapter = null, _ContentIndexChapterPart1 = null,
 			_ContentIndexChapterPart2 = null;
 
+	DatabaseContent[] DBContent;
+	int _FileNameSpinnerCurrentIndex = 0;
+
 	/**
 	 * Sets contentview and does the Initialize() method
 	 */
@@ -43,7 +49,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		Initialize();
 	}
 
-	
 	/**
 	 * creates a reference to all the relevant elements in the xml file and give
 	 * some of them a listener
@@ -106,13 +111,15 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		String[] gotFileNames = getFileName.getFileName(_ContentIndexChapter,
 				_ContentIndexChapterPart1, _ContentIndexChapterPart2);
 
+		DBContent = getFileName.getFileData(_ContentIndexChapter,
+				_ContentIndexChapterPart1, _ContentIndexChapterPart2);
+
 		getFileName.close();
 		_AAFileName = new ArrayAdapter<CharSequence>(this, spinnerLayout,
 				gotFileNames);
 
 		_AAFileName.setDropDownViewResource(SpinnerItemLayout);
 		_sFileName.setAdapter(_AAFileName);
-
 	}
 
 	/**
@@ -136,8 +143,8 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 	}
 
 	/**
-	 * this is run when a button or something that has been given an OnClickListener
-	 * is pressed
+	 * this is run when a button or something that has been given an
+	 * OnClickListener is pressed
 	 */
 	@Override
 	public void onClick(View v) {
@@ -180,19 +187,39 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 			startActivity(i);
 			break;
 		case R.id.bSQLPoTViewFile:
+			if (_FileNameSpinnerCurrentIndex > 0) {
+				Bundle newBundle = new Bundle();
+			
+				String filename = makeFileName(_FileNameSpinnerCurrentIndex);
+				filename = FileView._Folder_pros + "/"+filename;
+			
+				newBundle.putString("Folder", filename);
+			
+				Intent is = new Intent("com.bbv.prototype1.FILEVIEW");
+
+				is.putExtras(newBundle);
+
+				startActivity(is);
+
+			}
 			break;
 		}
 
 	}
-	
 
-	public String[] getStrings(String where) {
-		SQLDatabase getArray = new SQLDatabase(this);
-		getArray.open();
-		String[] getTheArray = new String[] {};
-		// String[] gotTheArray =
-
-		return new String[4];
+	private String makeFileName(int index) {
+		String filename = "";
+		if (!DBContent[index].getChapter().isEmpty()) {
+			filename = DBContent[index].getChapter() + "/";
+			if (!DBContent[index].getChapterPart1().isEmpty()) {
+				filename = filename + DBContent[index].getChapterPart1() + "/";
+				if (!DBContent[index].getChapterPart2().isEmpty())
+					filename = filename + DBContent[index].getChapterPart2()
+							+ "/";
+			}
+		}
+		filename = filename + DBContent[index].getFileName();
+		return filename;
 	}
 
 	/**
@@ -261,7 +288,7 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 			break;
 
 		case R.id.sSQLFileName:
-
+			_FileNameSpinnerCurrentIndex = index;
 			break;
 		}
 	}
