@@ -43,6 +43,9 @@
         <activity
             android:name="com.bbv.prototype1.SQLPros_Teori"
             android:label="Database" >
+        </activity>  <activity
+            android:name=".FileView"
+            android:label="Viewing file" >
         </activity>
         <activity
             android:name=".SQLView"
