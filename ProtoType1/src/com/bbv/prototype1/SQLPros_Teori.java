@@ -179,6 +179,8 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 			Intent i = new Intent("com.bbv.prototype1.SQLVIEW");
 			startActivity(i);
 			break;
+		case R.id.bSQLPoTViewFile:
+			break;
 		}
 
 	}
