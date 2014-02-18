@@ -74,16 +74,16 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 			calc = new Slamtetthet(lLayout.getContext());
 			break;
 		case 3:
-//			calc = new Skjaerhastighet(lLayout.getContext());
+			calc = new Skjaerhastighet(lLayout.getContext());
 			break;
 		case 4:
 			calc = new Til_Viskos(lLayout.getContext());
 			break;
 		case 5:
-//			calc = new Plast_Viskos(lLayout.getContext());
+			calc = new Plast_Viskos(lLayout.getContext());
 			break;
 		case 6:
-//			calc = new Flytegrense(lLayout.getContext());
+			calc = new Flytegrense(lLayout.getContext());
 			break;
 		case 7:
 //			calc = new Ekspo_model(lLayout.getContext());

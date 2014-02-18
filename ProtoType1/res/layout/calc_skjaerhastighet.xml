@@ -8,20 +8,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="20sp"
-        android:src="@drawable/til_viskos_icon" />
+        android:src="@drawable/skjaerhastighet_icon" />
 
     <TextView
-        android:id="@+id/tvViskosTil"
+        android:id="@+id/tvm3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tilsynelatende viskositet(TV)" />
+        android:gravity="center"
+        android:text="@string/skjaerhastighet" />
 
     <EditText
-        android:id="@+id/etViskosTil"
+        android:id="@+id/etSkjaerHastighetTegn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[cP]"
+        android:hint="@string/skjaerhastighetTegn"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <TextView
+        android:id="@+id/tvm1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="N = turtall, omdr./sek" />
+
+    <EditText
+        android:id="@+id/etSkjaerHastighetN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[N]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -29,14 +46,15 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/theta" />
+        android:gravity="center"
+        android:text="r1 = radius, indre sylinder" />
 
     <EditText
-        android:id="@+id/etTheta"
+        android:id="@+id/etSkjaerHastighetR1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/theta"
+        android:hint="[cm]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -44,17 +62,17 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RPM" />
+        android:gravity="center"
+        android:text="r2 = radius, ytre sylinder" />
 
     <EditText
-        android:id="@+id/etRPM"
+        android:id="@+id/etSkjaerHastighetR2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="RPM"
+        android:hint="[cm]"
         android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" >
-    </EditText>
+        android:textColorHint="@color/ButtonTextColor" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,13 +81,13 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/bViskosUpdate"
+            android:id="@+id/bSkjaerHastighetUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update" />
 
         <Button
-            android:id="@+id/bViskosClear"
+            android:id="@+id/bSkjaerHastighetClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Clear" />

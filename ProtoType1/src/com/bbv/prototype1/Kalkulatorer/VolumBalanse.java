@@ -16,7 +16,7 @@ public class VolumBalanse extends Basic_Calc {
 
 	// indexes: 0=theta, 1=RPM, 2=tilvisk
 	public final static int v1_INDEX=0, vv_INDEX=1, v2_INDEX=2;
-	EditText[] textFields = new EditText[3];
+	EditText[] textFields = new EditText[_textFieldsStatus.length];
 
 	public VolumBalanse(Context context) {
 		super(context);
@@ -85,7 +85,7 @@ public class VolumBalanse extends Basic_Calc {
 		String _fieldsString = textFields[indexOfCurrentField].getText()
 				.toString();
 
-		if (theSum(_textFieldsStatus) < 2) {
+		if (theSum(_textFieldsStatus) < _textFieldsStatus.length-1) {
 			if (focusStatus == false && !_fieldsString.contentEquals("")) {
 				try {
 					if (Float.parseFloat(_fieldsString) != 0.0) {
@@ -141,18 +141,18 @@ public class VolumBalanse extends Basic_Calc {
 		
 		float theAnswer = 0;
 		switch (variableToCalculate) {
-		case v1_INDEX:// theta
+		case v1_INDEX:
 			theAnswer = fieldStatuses[2] - fieldStatuses[1];
 			break;
-		case vv_INDEX:// rpm
+		case vv_INDEX:
 			theAnswer = fieldStatuses[2] - fieldStatuses[0];
 			break;
-		case v2_INDEX:// tilvisk
+		case v2_INDEX:
 			theAnswer = fieldStatuses[0] + fieldStatuses[1];
 			break;
 		}
 		if (theAnswer != 0)
-			return theAnswer + "";
+			return String.format("%.3f", theAnswer);
 		else
 			return "";
 	}

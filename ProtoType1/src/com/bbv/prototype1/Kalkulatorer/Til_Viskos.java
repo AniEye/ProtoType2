@@ -16,7 +16,7 @@ public class Til_Viskos extends Basic_Calc {
 
 	// indexes: 0=theta, 1=RPM, 2=tilvisk
 	public final static int THETA_INDEX=0, RPM_INDEX=1, TIL_VISK_INDEX=2;
-	EditText[] textFields = new EditText[3];
+	EditText[] textFields = new EditText[_textFieldsStatus.length];
 
 	public Til_Viskos(Context context) {
 		super(context);
@@ -85,7 +85,7 @@ public class Til_Viskos extends Basic_Calc {
 		String _fieldsString = textFields[indexOfCurrentField].getText()
 				.toString();
 
-		if (theSum(_textFieldsStatus) < 2) {
+		if (theSum(_textFieldsStatus) < _textFieldsStatus.length-1) {
 			if (focusStatus == false && !_fieldsString.contentEquals("")) {
 				try {
 					if (Float.parseFloat(_fieldsString) != 0.0) {
@@ -160,7 +160,7 @@ public class Til_Viskos extends Basic_Calc {
 			break;
 		}
 		if (theAnswer != 0)
-			return theAnswer + "";
+			return String.format("%.3f", theAnswer);
 		else
 			return "";
 	}

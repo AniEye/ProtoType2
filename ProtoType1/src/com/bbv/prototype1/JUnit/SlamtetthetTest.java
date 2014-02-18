@@ -24,12 +24,12 @@ public class SlamtetthetTest extends AndroidTestCase {
 	}
 
 	public void testCalculation() {
-		assertEquals("-10.0", test.calculation(0, variables1));
-		assertEquals("20.0", test.calculation(1, variables2));
-		assertEquals("30.0", test.calculation(2, variables3));
-		assertEquals("20.0", test.calculation(3, variables4));
-		assertEquals("20.0", test.calculation(4, variables5));
-		assertEquals("20.0", test.calculation(5, variables6));
+		assertEquals("-10.000", test.calculation(0, variables1));
+		assertEquals("20.000", test.calculation(1, variables2));
+		assertEquals("30.000", test.calculation(2, variables3));
+		assertEquals("20.000", test.calculation(3, variables4));
+		assertEquals("20.000", test.calculation(4, variables5));
+		assertEquals("20.000", test.calculation(5, variables6));
 
 	}
 

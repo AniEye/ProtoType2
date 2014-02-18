@@ -8,20 +8,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="20sp"
-        android:src="@drawable/til_viskos_icon" />
+        android:src="@drawable/flytegrense_icon" />
 
     <TextView
         android:id="@+id/tvViskosTil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tilsynelatende viskositet(TV)" />
+        android:text="Flytegrense (FG)" />
 
     <EditText
-        android:id="@+id/etViskosTil"
+        android:id="@+id/etFG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[cP]"
+        android:hint="[Pa]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -29,14 +29,14 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/theta" />
+        android:text="@string/theta300" />
 
     <EditText
-        android:id="@+id/etTheta"
+        android:id="@+id/etFGTheta300"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/theta"
+        android:hint="@string/theta300"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -44,17 +44,16 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RPM" />
+        android:text="@string/theta600" />
 
-    <EditText
-        android:id="@+id/etRPM"
+   <EditText
+        android:id="@+id/etFGTheta600"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="RPM"
+        android:hint="@string/theta600"
         android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" >
-    </EditText>
+        android:textColorHint="@color/ButtonTextColor" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,13 +62,13 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/bViskosUpdate"
+            android:id="@+id/bFGUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update" />
 
         <Button
-            android:id="@+id/bViskosClear"
+            android:id="@+id/bFGClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Clear" />

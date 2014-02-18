@@ -17,7 +17,7 @@ public class Slamtetthet extends Basic_Calc {
 	public final static int p1_INDEX = 0, V1_INDEX = 1, pv_INDEX = 2,
 			Vv_INDEX = 3, p2_INDEX = 4, V2_INDEX = 5;
 
-	EditText[] textFields = new EditText[6];
+	EditText[] textFields = new EditText[_textFieldsStatus.length];
 
 	public Slamtetthet(Context context) {
 		super(context);
@@ -98,7 +98,7 @@ public class Slamtetthet extends Basic_Calc {
 		String _fieldsString = textFields[indexOfCurrentField].getText()
 				.toString();
 
-		if (theSum(_textFieldsStatus) < 5) {
+		if (theSum(_textFieldsStatus) < _textFieldsStatus.length-1) {
 			if (focusStatus == false && !_fieldsString.contentEquals("")) {
 				try {
 					if (Float.parseFloat(_fieldsString) != 0.0) {
@@ -182,7 +182,7 @@ public class Slamtetthet extends Basic_Calc {
 
 		}
 		if (theAnswer != 0)
-			return theAnswer + "";
+			return String.format("%.3f", theAnswer);
 		else
 			return "";
 	}
