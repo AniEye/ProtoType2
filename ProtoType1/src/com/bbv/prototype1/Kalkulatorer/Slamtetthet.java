@@ -174,10 +174,10 @@ public class Slamtetthet extends Basic_Calc {
 			theAnswer = ((p2*v2) - (p1*v1))/pv;
 			break;
 		case p2_INDEX:
-			theAnswer = ((p1*v1) + (pv*vv))/p2;
+			theAnswer = ((p1*v1) + (pv*vv))/v2;
 			break;
 		case V2_INDEX:
-			theAnswer = ((p1*v1) + (pv*vv))/v2;
+			theAnswer = ((p1*v1) + (pv*vv))/p2;
 			break;
 
 		}
