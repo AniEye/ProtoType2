@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ViewWithSpinners"
+    android:background="@color/ButtonAndSpinnerBackgroundColor" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20sp"
+        android:src="@drawable/powerlaw_icon" />
+
+    <TextView
+        android:id="@+id/tvm3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="K" />
+
+    <EditText
+        android:id="@+id/etPowerLawTegn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[lbs/100 ft^2 /s]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <TextView
+        android:id="@+id/tvm1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/theta300" />
+
+    <EditText
+        android:id="@+id/etPowerLawT300"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/theta300"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/theta600" />
+
+    <EditText
+        android:id="@+id/etPowerLaw600"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/theta600"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="n" />
+
+    <EditText
+        android:id="@+id/etPowerLawN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="n"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bPLUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update" />
+
+        <Button
+            android:id="@+id/bPLClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear" />
+    </LinearLayout>
+
+</LinearLayout>

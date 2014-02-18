@@ -16,7 +16,6 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 
 	Spinner valg;
 	LinearLayout lLayout;
-	String[] kalks = { "Til_Viskos" };
 	int SpinnerItemLayout = R.layout.custom_spinner_item;
 
 	Basic_Calc calc;
@@ -86,7 +85,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 			calc = new Flytegrense(lLayout.getContext());
 			break;
 		case 7:
-//			calc = new Ekspo_model(lLayout.getContext());
+			calc = new PowerLaw(lLayout.getContext());
 			break;
 		case 8:
 //			calc = new Hersch_model(lLayout.getContext());

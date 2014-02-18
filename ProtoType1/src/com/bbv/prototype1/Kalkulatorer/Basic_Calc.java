@@ -8,8 +8,9 @@ import android.widget.LinearLayout;
 
 public abstract class Basic_Calc extends LinearLayout {
 
+	EditText[] textFields;
+	Button _clear, _update;
 	Context cont;
-
 	LinearLayout _linLay;
 
 	public Basic_Calc(Context context) {

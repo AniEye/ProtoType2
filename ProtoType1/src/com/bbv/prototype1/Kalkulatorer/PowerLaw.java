@@ -7,21 +7,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-public class Flytegrense extends Basic_Calc {
+public class PowerLaw extends Basic_Calc {
 
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	final int clearButtonID = R.id.bFGClear;
-	final int updateButtonID = R.id.bFGUpdate;
-	final int layout = R.layout.calc_flytegrense;
+	final int clearButtonID = R.id.bPLClear;
+	final int updateButtonID = R.id.bPLUpdate;
+	final int layout = R.layout.calc_powerlaw;
 	
-	final int[] IDs = {R.id.etFG,  R.id.etFGTheta300, R.id.etFGTheta600};
+	final int[] IDs = {R.id.etPowerLawTegn,  R.id.etPowerLawT300, R.id.etPowerLaw600, R.id.etPowerLawN};
 	
-	public final static int FG_INDEX = 0, T3_INDEX = 1, T6_INDEX = 2;
+	public final static int K_INDEX = 0, T3_INDEX = 1, T6_INDEX = 2, N_INDEX = 3;
 
-	public Flytegrense(Context context) {
+	public PowerLaw(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -30,20 +30,24 @@ public class Flytegrense extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		float FG = fieldStatuses[0];
+		float K = fieldStatuses[0];
 		float T3 = fieldStatuses[1];
 		float T6 = fieldStatuses[2];
+		float N = fieldStatuses[3];
 
 		float theAnswer = 0;
 		switch (variableToCalculate) {
-		case FG_INDEX:
-			theAnswer = (2*T3) - T6;
+		case K_INDEX:
+			theAnswer = 1;
 			break;
 		case T3_INDEX:
-			theAnswer = (FG+T6)/2;
+			theAnswer = 1;
 			break;
 		case T6_INDEX:
-			theAnswer = (2*T3) - FG;
+			theAnswer = 1;
+			break;
+		case N_INDEX:
+			theAnswer = 111;
 			break;
 		}
 		if (theAnswer != 0)

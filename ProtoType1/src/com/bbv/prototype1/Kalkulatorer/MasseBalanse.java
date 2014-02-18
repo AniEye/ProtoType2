@@ -8,8 +8,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 public class MasseBalanse extends Basic_Calc {
-	LinearLayout _linLay;
-	Button _clear, _update;
+	
 	int[] _textFieldsStatus = { 0, 0, 0 };
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
