@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class SQLDatabase {
 
@@ -102,30 +103,13 @@ public class SQLDatabase {
 		return content;
 	}
 
-	public String[] getChapters() {
 
-		String[] columns = new String[] { KEY_CHAPTER };
-		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null,
-				KEY_CHAPTER, null, null);
-
-		String result = "";
-		String[] content = new String[c.getCount() + 1];
-		content[0] = "Choose chapter";
-		int iChapter = c.getColumnIndex(KEY_CHAPTER);
-
-		int currentRow = 1;
-		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-			content[currentRow] = c.getString(iChapter);
-			currentRow++;
-		}
-		return content;
-	}
 
 	public String[] getColumnGrouped(String[] column, String groupedBy,
 			String where) {
 		if (where == null)
 			where = groupedBy + " != '' ";
-		
+
 		Cursor c = ourDatabase.query(DATABASE_TABLE, column, where, null,
 				groupedBy, null, null);
 
@@ -152,24 +136,41 @@ public class SQLDatabase {
 		return content;
 	}
 
-	public String[] getChapterPart1s() {
-		String[] columns = new String[] { KEY_CHAPTER };
-		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null,
-				KEY_CHAPTER, null, null);
+	public String[] getFileName(String Chapter, String ChapterPart1,
+			String ChapterPart2) {
 
-		String result = "";
+		String where = KEY_FILENAME + " != '' ";
+
+		if (Chapter != null) {
+			where = where + " and " + KEY_CHAPTER + " = '" + Chapter + "' ";
+
+			if (ChapterPart1 != null) {
+				where = where + " and " + KEY_CHAPTERPART1 + " = '"
+						+ ChapterPart1 + "' ";
+
+				if (ChapterPart2 != null) {
+					where = where + " and " + KEY_CHAPTERPART2 + " = '"
+							+ ChapterPart2 + "' ";
+
+				}
+			}
+		}
+		String[] column = new String[] { KEY_FILENAME };
+
+		Cursor c = ourDatabase.query(DATABASE_TABLE, column, where, null, null,
+				null, null);
+
 		String[] content = new String[c.getCount() + 1];
-		content[0] = "Choose chapter";
-		int iChapter = c.getColumnIndex(KEY_CHAPTER);
+		content[0] = "Choose file";
+		int iFilename = c.getColumnIndex(KEY_FILENAME);
 
 		int currentRow = 1;
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-			content[currentRow] = c.getString(iChapter);
 
+			content[currentRow] = c.getString(iFilename);
 			currentRow++;
 		}
 
 		return content;
 	}
-
 }

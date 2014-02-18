@@ -29,6 +29,12 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 	int spinnerLayout = R.layout.custom_spinner;
 	int SpinnerItemLayout = R.layout.custom_spinner_item;
 
+	String _ContentIndexChapter = null, _ContentIndexChapterPart1 = null,
+			_ContentIndexChapterPart2 = null;
+
+	/**
+	 * Sets contentview and does the Initialize() method
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -37,6 +43,11 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		Initialize();
 	}
 
+	
+	/**
+	 * creates a reference to all the relevant elements in the xml file and give
+	 * some of them a listener
+	 */
 	private void Initialize() {
 		// TODO Auto-generated method stub
 		_add = (Button) findViewById(R.id.bSQLPoTAdd);
@@ -61,23 +72,20 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		_sChapterPart1.setOnItemSelectedListener(this);
 		_sChapterPart2.setOnItemSelectedListener(this);
 		_sFileName.setOnItemSelectedListener(this);
-		// InitializeArrayAdapters();
+
+		/**
+		 * this method will set up the chapter spinner based on the relevant
+		 * database
+		 */
 		InitializeChapterSpinner();
 	}
 
-	private void InitializeArrayAdapters() {
-		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(
-				this, spinnerLayout, getResources().getStringArray(
-						R.array.kapittler));
-		adapter.setDropDownViewResource(SpinnerItemLayout);
-
-		_AAChapter = ArrayAdapter.createFromResource(this,
-				R.array.del_kapittel4, spinnerLayout);
-		_AAChapter.setDropDownViewResource(SpinnerItemLayout);
-	}
-
+	/**
+	 * this 3 methods is to reset the other spinners based on the new arrays
+	 * passed in, these arrays have been retrieved from the relevant database
+	 * based on the changes made to the different spinners * @param array
+	 */
 	private void ChangeChapterPart1Spinner(String[] array) {
-
 		_AAChapterPart1 = new ArrayAdapter<CharSequence>(this, spinnerLayout,
 				array);
 		_AAChapterPart1.setDropDownViewResource(SpinnerItemLayout);
@@ -91,17 +99,31 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		_sChapterPart2.setAdapter(_AAChapterPart2);
 	}
 
-	private void ChangeFileNameSpinner(String[] array) {
-		_AAFileName = new ArrayAdapter<CharSequence>(this, spinnerLayout, array);
+	private void ChangeFileNameSpinner() {
+		SQLDatabase getFileName = new SQLDatabase(this);
+		getFileName.open();
+
+		String[] gotFileNames = getFileName.getFileName(_ContentIndexChapter,
+				_ContentIndexChapterPart1, _ContentIndexChapterPart2);
+
+		getFileName.close();
+		_AAFileName = new ArrayAdapter<CharSequence>(this, spinnerLayout,
+				gotFileNames);
+
 		_AAFileName.setDropDownViewResource(SpinnerItemLayout);
 		_sFileName.setAdapter(_AAFileName);
+
 	}
 
+	/**
+	 * this is used to set up the chapter spinner in the beginning this spinner
+	 * does not need to be changed after first being created
+	 */
 	private void InitializeChapterSpinner() {
-		// TODO Auto-generated method stub
+
 		SQLDatabase entry = new SQLDatabase(SQLPros_Teori.this);
 		entry.open();
-		// String[] chapters = entry.getChapters();
+
 		String[] chapters = entry.getColumnGrouped(
 				new String[] { SQLDatabase.KEY_CHAPTER },
 				SQLDatabase.KEY_CHAPTER, null);
@@ -113,15 +135,10 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		_sChapter.setAdapter(adapter);
 	}
 
-	private String[] ModifyArray(String[] array) {
-		String[] returnArray = new String[array.length + 1];
-		returnArray[0] = "Choose chapter";
-		for (int i = 1; i < returnArray.length; i++) {
-			returnArray[i] = array[i - 1];
-		}
-		return returnArray;
-	}
-
+	/**
+	 * this is run when a button or something that has been given an OnClickListener
+	 * is pressed
+	 */
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -165,49 +182,91 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		}
 
 	}
+	
 
+	public String[] getStrings(String where) {
+		SQLDatabase getArray = new SQLDatabase(this);
+		getArray.open();
+		String[] getTheArray = new String[] {};
+		// String[] gotTheArray =
+
+		return new String[4];
+	}
+
+	/**
+	 * this itemSelected is used for the spinners and runs when one of the
+	 * spinner has changed the selected item
+	 */
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View v, int index,
 			long arg3) {
 		switch (parent.getId()) {
 		case R.id.sSQLChapter:
-			if (index == 0)
+			if (index == 0) {
 				_sChapterPart1.setVisibility(android.view.View.GONE);
-			else {
+				_ContentIndexChapter = null;
+			} else {
 				String where = ((TextView) _sChapter.getSelectedView())
 						.getText().toString();
-				
-				where = SQLDatabase.KEY_CHAPTER + " = '" + where + "' ";				
+				_ContentIndexChapter = where;
+				where = SQLDatabase.KEY_CHAPTER + " = '" + where + "' ";
 				where = SQLDatabase.KEY_CHAPTERPART1 + " != '' and " + where;
-				
+
 				SQLDatabase getPartition1 = new SQLDatabase(this);
 				getPartition1.open();
 				String[] getPartition1s = getPartition1.getColumnGrouped(
 						new String[] { SQLDatabase.KEY_CHAPTERPART1 },
 						SQLDatabase.KEY_CHAPTERPART1, where);
+				getPartition1.close();
 				ChangeChapterPart1Spinner(getPartition1s);
 				_sChapterPart1.setVisibility(android.view.View.VISIBLE);
 			}
+			ChangeFileNameSpinner();
 			break;
 
 		case R.id.sSQLChapterPart1:
-			if (index == 0)
+			if (index == 0) {
 				_sChapterPart2.setVisibility(android.view.View.GONE);
-			else {
+				_ContentIndexChapterPart1 = null;
+			} else {
+				String where = ((TextView) _sChapterPart1.getSelectedView())
+						.getText().toString();
+				_ContentIndexChapterPart1 = where;
+				where = SQLDatabase.KEY_CHAPTERPART1 + " = '" + where + "' ";
+				where = SQLDatabase.KEY_CHAPTERPART2 + " != '' and " + where;
+
+				SQLDatabase getPartition1 = new SQLDatabase(this);
+				getPartition1.open();
+				String[] getPartition1s = getPartition1.getColumnGrouped(
+						new String[] { SQLDatabase.KEY_CHAPTERPART2 },
+						SQLDatabase.KEY_CHAPTERPART2, where);
+				getPartition1.close();
+				ChangeChapterPart2Spinner(getPartition1s);
 				_sChapterPart2.setVisibility(android.view.View.VISIBLE);
 			}
+			ChangeFileNameSpinner();
 			break;
 
 		case R.id.sSQLChapterPart2:
+			if (index == 0) {
+				_ContentIndexChapterPart2 = null;
+			} else {
+				String where = ((TextView) _sChapterPart2.getSelectedView())
+						.getText().toString();
+				_ContentIndexChapterPart2 = where;
+			}
+			ChangeFileNameSpinner();
 			break;
 
 		case R.id.sSQLFileName:
 
 			break;
 		}
-
 	}
 
+	/**
+	 * never used in this class
+	 */
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
