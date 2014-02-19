@@ -1,0 +1,22 @@
+#this is the database at start
+#the sign # is used to comment out lines
+#the format to use for inputs is:
+
+#INSERT INTO `database`.`table` (`column1`, `column2`, `column3`) VALUES ('value1', 'value2', 'value3');
+
+#DATABASE_NAME = "ProsTeoriDB"
+#DATABASE_TABLE = "TeoriTable"
+
+#KEY_CHAPTER = "chapter"
+#KEY_CHAPTERPART1 = "chapter_part1"
+#KEY_CHAPTERPART2 = "chapter_part2"
+#KEY_FILENAME = "filename"
+#####################Chapter 1######################
+INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES ('Chapter1','','','introduksjon.txt');
+INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES ('Chapter1','','','oppbygging_av_leirpartikler.txt');
+INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES ('1. Leire og vektmaterialer','1.1 Introduksjon','','introduksjon.txt');	
+INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES ('1. Leire og vektmaterialer','1.2 Oppbygging av leirpartikler','','oppbygging_av_leirpartikler.txt');
+
+#####################Chapter 2######################
+#INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES ('2. Reologi og filtertap','','','oppbygging_av_leirpartikler.txt');
+#####################Chapter 3######################	

@@ -23,7 +23,7 @@ import android.widget.TextView;
 public class SQLPros_Teori extends Activity implements OnClickListener,
 		OnItemSelectedListener {
 
-	Button _add, _view, _fileView;
+	Button _add, _view, _fileView,_delAll,_delEnt,_dbrecreate;
 	EditText _filename, _chapter, _chapterpart1, _chapterpart2;
 	Spinner _sChapter, _sChapterPart1, _sChapterPart2, _sFileName;
 	ArrayAdapter<CharSequence> _AAChapter, _AAChapterPart1, _AAChapterPart2,
@@ -58,6 +58,9 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		_add = (Button) findViewById(R.id.bSQLPoTAdd);
 		_view = (Button) findViewById(R.id.bSQLPoTViewDatabase);
 		_fileView = (Button) findViewById(R.id.bSQLPoTViewFile);
+		_delAll = (Button)findViewById(R.id.bSQLPoTDelAll);
+		_delEnt = (Button)findViewById(R.id.bSQLPoTDelEnt);
+		_dbrecreate = (Button)findViewById(R.id.bSQLPoTRecreate);
 
 		_filename = (EditText) findViewById(R.id.etSQLPoTFileNameAdd);
 		_chapter = (EditText) findViewById(R.id.etSQLPoTChapter);
@@ -72,11 +75,15 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		_add.setOnClickListener(this);
 		_view.setOnClickListener(this);
 		_fileView.setOnClickListener(this);
+		_delAll.setOnClickListener(this);
+		_delEnt.setOnClickListener(this);
+		_dbrecreate.setOnClickListener(this);
 
 		_sChapter.setOnItemSelectedListener(this);
 		_sChapterPart1.setOnItemSelectedListener(this);
 		_sChapterPart2.setOnItemSelectedListener(this);
 		_sFileName.setOnItemSelectedListener(this);
+		
 
 		/**
 		 * this method will set up the chapter spinner based on the relevant
@@ -202,6 +209,22 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 				startActivity(is);
 
 			}
+			break;
+		case R.id.bSQLPoTDelAll:
+			SQLDatabase dbs = new SQLDatabase(SQLPros_Teori.this);
+			dbs.open();
+			dbs.deleteTableContent(null);
+			InitializeChapterSpinner();
+			dbs.close();
+			break;
+		case R.id.bSQLPoTDelEnt:
+			break;
+		case R.id.bSQLPoTRecreate:
+			SQLDatabase DBrec = new SQLDatabase(SQLPros_Teori.this);
+			DBrec.open();
+			DBrec.createFromExisting();
+			DBrec.close();
+			InitializeChapterSpinner();
 			break;
 		}
 

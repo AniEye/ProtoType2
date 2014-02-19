@@ -1,6 +1,7 @@
 package com.bbv.prototype1;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,13 +40,20 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 		_Last.setOnClickListener(this);
 		flTextContent = (FrameLayout) rootView
 				.findViewById(R.id.flText_Content);
-
+		
+		
+		Fragment newFragment = new Fragment_2();		
+		FragmentManager fm = getFragmentManager();
+		
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bNext:
+			Fragment newFragment = new Fragment_2();		
+			FragmentManager fm = getFragmentManager();
+			fm.beginTransaction().replace(R.id.flText_Content, newFragment).commit();
 			break;
 		case R.id.bLast:
 			break;

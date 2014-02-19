@@ -1,13 +1,19 @@
 package com.bbv.prototype1;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class SQLDatabase {
 
@@ -26,10 +32,11 @@ public class SQLDatabase {
 	private SQLiteDatabase ourDatabase;
 
 	private static class DBHelper extends SQLiteOpenHelper {
+		Context c;
 
 		public DBHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
-			// TODO Auto-generated constructor stub
+			c = context;
 		}
 
 		@Override
@@ -39,6 +46,32 @@ public class SQLDatabase {
 					+ " TEXT NOT NULL, " + KEY_CHAPTERPART1 + " TEXT, "
 					+ KEY_CHAPTERPART2 + " TEXT, " + KEY_FILENAME
 					+ " TEXT NOT NULL);");
+			
+			//might need to create a new thread to take care of this
+			//in case the existing database is to big
+			String str = "";
+			try {
+				AssetManager as = c.getAssets();
+				InputStream is = as.open("database.txt");
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(is));
+				if (is != null) {
+					int lineNumber = 0;
+					while ((str = reader.readLine()) != null) {
+						lineNumber++;
+						if (!str.contains("#") || str.isEmpty()) {
+							try {
+								db.execSQL(str);
+							} catch (Exception e) {
+								Log.println(Log.ERROR, "SQLStat", "LineNumber "
+										+ lineNumber + " is : " + str);
+							}
+						}
+					}
+				}
+				is.close();
+			} catch (IOException e) {
+			}
 		}
 
 		@Override
@@ -47,6 +80,9 @@ public class SQLDatabase {
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
 			onCreate(db);
 		}
+
+		
+		
 	}
 
 	public SQLDatabase(Context c) {
@@ -59,8 +95,41 @@ public class SQLDatabase {
 		return this;
 	}
 
+	public void createFromExisting() {
+		ourDatabase.delete(DATABASE_TABLE, null, null);
+
+		String str = "";
+		try {
+			AssetManager as = ourContext.getAssets();
+			InputStream is = as.open("database.txt");
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(is));
+			if (is != null) {
+				int lineNumber = 0;
+				while ((str = reader.readLine()) != null) {
+					lineNumber++;
+					if (!str.contains("#") || str.isEmpty()) {
+						try {
+							ourDatabase.execSQL(str);
+						} catch (Exception e) {
+							Log.println(Log.ERROR, "SQLStat", "LineNumber "
+									+ lineNumber + " is : " + str);
+						}
+					}
+				}
+			}
+			is.close();
+		} catch (IOException e) {
+
+		}
+	}
+
 	public void close() {
 		ourHelper.close();
+	}
+
+	public void deleteTableContent(String where) {
+		ourDatabase.delete(DATABASE_TABLE, where, null);
 	}
 
 	public long createEntry(String chapter, String chapterPart1,
@@ -189,8 +258,8 @@ public class SQLDatabase {
 		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, where, null,
 				null, null, null);
 
-		DatabaseContent[] content = new DatabaseContent[c.getCount()+1];
-		
+		DatabaseContent[] content = new DatabaseContent[c.getCount() + 1];
+
 		int iChapter = c.getColumnIndex(KEY_CHAPTER);
 		int iChapterPart1 = c.getColumnIndex(KEY_CHAPTERPART1);
 		int iChapterPart2 = c.getColumnIndex(KEY_CHAPTERPART2);
@@ -208,4 +277,5 @@ public class SQLDatabase {
 
 		return content;
 	}
+
 }

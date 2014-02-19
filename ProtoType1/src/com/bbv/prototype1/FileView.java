@@ -38,6 +38,7 @@ public class FileView extends Activity {
 		// TODO Auto-generated method stub
 		_head = (TextView) findViewById(R.id.tvFileOrigin);
 		_content = (TextView) findViewById(R.id.tvFileView);
+		setTextViews();
 		if (_FileName != null)
 			setTextViews();
 		else {
@@ -50,16 +51,18 @@ public class FileView extends Activity {
 	public void setTextViews() {
 
 		_head.setText(_FileName);
-		
+
 		String str = "";
 		StringBuffer buf = new StringBuffer();
 		try {
 			AssetManager as = getAssets();
 			InputStream is = as.open(_FileName);
+
 			BufferedReader reader = new BufferedReader(
 					new InputStreamReader(is));
 			if (is != null) {
 				while ((str = reader.readLine()) != null) {
+
 					buf.append(str + "\n");
 				}
 			}
