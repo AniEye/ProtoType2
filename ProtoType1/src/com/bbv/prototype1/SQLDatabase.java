@@ -61,7 +61,7 @@ public class SQLDatabase {
 						lineNumber++;
 						if (!str.contains("#") || str.isEmpty()) {
 							try {
-								db.execSQL(str);
+								db.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES "+str);
 							} catch (Exception e) {
 								Log.println(Log.ERROR, "SQLStat", "LineNumber "
 										+ lineNumber + " is : " + str);
@@ -110,7 +110,7 @@ public class SQLDatabase {
 					lineNumber++;
 					if (!str.contains("#") || str.isEmpty()) {
 						try {
-							ourDatabase.execSQL(str);
+							ourDatabase.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES "+str);
 						} catch (Exception e) {
 							Log.println(Log.ERROR, "SQLStat", "LineNumber "
 									+ lineNumber + " is : " + str);

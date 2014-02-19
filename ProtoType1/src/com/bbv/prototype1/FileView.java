@@ -26,10 +26,11 @@ public class FileView extends Activity {
 		try {
 			Bundle theBundle = this.getIntent().getExtras();
 
-			_FileName = theBundle.getString("Folder");
+			if((_FileName = theBundle.getString("Folder")).isEmpty())
+				_FileName=null;
 
 		} catch (Exception e) {
-			_FileName = null;
+			
 		}
 		Initializa();
 	}

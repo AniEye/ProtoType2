@@ -1,4 +1,0 @@
-hi
-
-hows it going,
-if this shows then we're one step closer to getting a file system working
