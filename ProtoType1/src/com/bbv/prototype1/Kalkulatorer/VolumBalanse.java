@@ -138,7 +138,11 @@ public class VolumBalanse extends Basic_Calc {
 
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
-		
+		/**
+		 * Takes in a float array of variables to calculate. The parameter variableToCalculate detirmines which
+		 * variable will be calculated.
+		 * $params variableToCalculate Determines which variable will be calculated
+		 */
 		float theAnswer = 0;
 		switch (variableToCalculate) {
 		case v1_INDEX:
