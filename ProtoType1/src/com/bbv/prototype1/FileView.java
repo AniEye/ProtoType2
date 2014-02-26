@@ -15,6 +15,7 @@ public class FileView extends Activity {
 	// public static final String _KEY_FOLDER = "Folder";
 	public static final String _Folder_pros = "pros_og_teori_text";
 
+	Boolean _bTeori = false;
 	TextView _head, _content;
 	String _FileName = null;
 
@@ -26,11 +27,15 @@ public class FileView extends Activity {
 		try {
 			Bundle theBundle = this.getIntent().getExtras();
 
-			if((_FileName = theBundle.getString("Folder")).isEmpty())
-				_FileName=null;
-
+			if (!(_FileName = theBundle.getString("Folder")).isEmpty())
+				_bTeori = false;
+			else if (!(_FileName = theBundle.getString("Teori")).isEmpty()) {
+				_bTeori = true;
+			}
+			if (_FileName.isEmpty())
+				_FileName = null;
 		} catch (Exception e) {
-			
+			_FileName = null;
 		}
 		Initializa();
 	}
@@ -39,40 +44,41 @@ public class FileView extends Activity {
 		// TODO Auto-generated method stub
 		_head = (TextView) findViewById(R.id.tvFileOrigin);
 		_content = (TextView) findViewById(R.id.tvFileView);
+
 		setTextViews();
-		if (_FileName != null)
-			setTextViews();
-		else {
+
+	}
+	
+
+
+	public void setTextViews() {
+		if (_FileName != null) {
+			_head.setText(_FileName);
+
+			String str = "";
+			StringBuffer buf = new StringBuffer();
+			try {
+				AssetManager as = getAssets();
+				InputStream is = as.open(_FileName);
+
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(is));
+				if (is != null) {
+					while ((str = reader.readLine()) != null) {
+
+						buf.append(str + "\n");
+					}
+				}
+				is.close();
+				_content.setText(buf.toString());
+			} catch (IOException e) {
+
+			}
+
+		} else {
 			_head.setText("error");
 			_content.setText("file not opening");
 		}
-
-	}
-
-	public void setTextViews() {
-
-		_head.setText(_FileName);
-
-		String str = "";
-		StringBuffer buf = new StringBuffer();
-		try {
-			AssetManager as = getAssets();
-			InputStream is = as.open(_FileName);
-
-			BufferedReader reader = new BufferedReader(
-					new InputStreamReader(is));
-			if (is != null) {
-				while ((str = reader.readLine()) != null) {
-
-					buf.append(str + "\n");
-				}
-			}
-			is.close();
-		} catch (IOException e) {
-
-		}
-		_content.setText(buf.toString());
-
 	}
 
 }

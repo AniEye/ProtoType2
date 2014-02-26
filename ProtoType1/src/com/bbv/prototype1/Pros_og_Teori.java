@@ -1,68 +1,77 @@
 package com.bbv.prototype1;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-public class Pros_og_Teori extends Activity implements OnItemSelectedListener {
+public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
+		OnClickListener {
 
-	Spinner kapittel, delKapittel, delDKapittel;
+	Spinner _sChapter, _sChapterPart1, _sChapterPart2;
 	Button gVidere;
-	ArrayAdapter<CharSequence> AAdelKapittel1, AAdelKapittel2, AAdelKapittel3,
-			AAdelKapittel4;
+	ArrayAdapter<CharSequence> _AAChapter, _AAChapterPart1, _AAChapterPart2;
 	int spinnerLayout = R.layout.custom_spinner;
 	int SpinnerItemLayout = R.layout.custom_spinner_item;
-
+	String _WhereFile;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pros_og__teori);
-		arrayAdapters();
-		initialize();
+		Initialize();
 	}
 
-	private void arrayAdapters() {
-		AAdelKapittel1 = ArrayAdapter.createFromResource(this,
-				R.array.del_kapittel1, spinnerLayout);
-		AAdelKapittel1.setDropDownViewResource(SpinnerItemLayout);
-
-		AAdelKapittel2 = ArrayAdapter.createFromResource(this,
-				R.array.del_kapittel2, spinnerLayout);
-		AAdelKapittel2.setDropDownViewResource(SpinnerItemLayout);
-
-		AAdelKapittel3 = ArrayAdapter.createFromResource(this,
-				R.array.del_kapittel3, spinnerLayout);
-		AAdelKapittel3.setDropDownViewResource(SpinnerItemLayout);
-
-		AAdelKapittel4 = ArrayAdapter.createFromResource(this,
-				R.array.del_kapittel4, spinnerLayout);
-		AAdelKapittel4.setDropDownViewResource(SpinnerItemLayout);
+	private void ChapterAdapter(String[] array) {
+		_AAChapter = new ArrayAdapter<CharSequence>(this, spinnerLayout, array);
+		_AAChapter.setDropDownViewResource(SpinnerItemLayout);
+		_sChapter.setAdapter(_AAChapter);
 	}
 
-	private void initialize() {
-		kapittel = (Spinner) findViewById(R.id.sKapittel);
+	private void ChapterPart1Adapter(String[] array) {
+		_AAChapterPart1 = new ArrayAdapter<CharSequence>(this, spinnerLayout,
+				array);
+		_AAChapterPart1.setDropDownViewResource(SpinnerItemLayout);
+		_sChapterPart1.setAdapter(_AAChapterPart1);
+	}
 
-		// Adds the custom look for the spinner
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.custom_spinner, getResources().getStringArray(
-						R.array.kapittler));
-		adapter.setDropDownViewResource(SpinnerItemLayout);
-		kapittel.setAdapter(adapter);
-		// Adds the custom look for the spinner
+	private void ChapterPart2Adapter(String[] array) {
+		_AAChapterPart2 = new ArrayAdapter<CharSequence>(this, spinnerLayout,
+				array);
+		_AAChapterPart2.setDropDownViewResource(SpinnerItemLayout);
+		_sChapterPart2.setAdapter(_AAChapterPart2);
+	}
 
-		delKapittel = (Spinner) findViewById(R.id.sDelKapittel);
-		delDKapittel = (Spinner) findViewById(R.id.sDDKapittel);
+	private void Initialize() {
+		_sChapter = (Spinner) findViewById(R.id.sKapittel);
+		_sChapterPart1 = (Spinner) findViewById(R.id.sDelKapittel);
+		_sChapterPart2 = (Spinner) findViewById(R.id.sDDKapittel);
 		gVidere = (Button) findViewById(R.id.bVidere_ProsTeori);
 
-		kapittel.setOnItemSelectedListener(this);
-		delKapittel.setOnItemSelectedListener(this);
+		_sChapter.setOnItemSelectedListener(this);
+		_sChapterPart1.setOnItemSelectedListener(this);
+
+		gVidere.setOnClickListener(this);
+
+		InitializingChapterSpinner();
+	}
+
+	private void InitializingChapterSpinner() {
+		SQLDatabase chapter = new SQLDatabase(Pros_og_Teori.this);
+		chapter.open();
+		String[] chapters = chapter.getColumnGrouped(
+				new String[] { SQLDatabase.KEY_CHAPTER },
+				SQLDatabase.KEY_CHAPTER, null);
+		chapter.close();
+		ChapterAdapter(chapters);
 	}
 
 	@Override
@@ -77,49 +86,55 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener {
 			long arg3) {
 		switch (parent.getId()) {
 		case R.id.sKapittel:
-			switch (index) {
-			case 0:
-				delKapittel.setVisibility(android.view.View.GONE);
-				break;
-			case 1:
-				delKapittel.setAdapter(AAdelKapittel1);
-				delKapittel.setVisibility(android.view.View.VISIBLE);
-				break;
-			case 2:
-				delKapittel.setAdapter(AAdelKapittel2);
-				delKapittel.setVisibility(android.view.View.VISIBLE);
-				break;
-			case 3:// kapitel 3
-				delKapittel.setAdapter(AAdelKapittel3);
-				delKapittel.setVisibility(android.view.View.VISIBLE);
-				break;
-			case 4:
-				delKapittel.setAdapter(AAdelKapittel4);
-				delKapittel.setVisibility(android.view.View.VISIBLE);
-				break;
+			if (index == 0) {
+				_sChapterPart1.setVisibility(android.view.View.GONE);
+			} else {
+				String where = SQLDatabase.KEY_CHAPTERPART1 + " != ''";
+				where = SQLDatabase.KEY_CHAPTER + " = '"
+						+ getStringOfSelected(_sChapter) + "' and " + where;
+
+				SQLDatabase getPartition1 = new SQLDatabase(this);
+				getPartition1.open();
+				String[] getPartition1s = getPartition1.getColumnGrouped(
+						new String[] { SQLDatabase.KEY_CHAPTERPART1 },
+						SQLDatabase.KEY_CHAPTERPART1, where);
+				getPartition1.close();
+				if (getPartition1s.length > 1) {
+					ChapterPart1Adapter(getPartition1s);
+					_sChapterPart1.setVisibility(android.view.View.VISIBLE);
+				}
 			}
 			break;
 		case R.id.sDelKapittel:
-			switch (index) {
-			case 0:
-				delDKapittel.setVisibility(android.view.View.GONE);
-				break;
-			case 1:
-				delDKapittel.setVisibility(android.view.View.VISIBLE);
-				break;
-			case 2:
-				delDKapittel.setVisibility(android.view.View.GONE);
-				break;
-			case 3:
-				delDKapittel.setVisibility(android.view.View.GONE);
-				break;
-			case 4:
-				delDKapittel.setVisibility(android.view.View.GONE);
-				break;
+			if (index == 0) {
+				_sChapterPart2.setVisibility(android.view.View.GONE);
+			} else {
+				String where = SQLDatabase.KEY_CHAPTERPART2 + " != '' ";
+				where = SQLDatabase.KEY_CHAPTERPART1 + " = '"
+						+ getStringOfSelected(_sChapterPart1) + "' and "
+						+ where;
+				where = SQLDatabase.KEY_CHAPTER + " = '"
+						+ getStringOfSelected(_sChapter) + "' and " + where;
+
+				SQLDatabase getPartition2 = new SQLDatabase(this);
+				getPartition2.open();
+				String[] getPartition2s = getPartition2.getColumnGrouped(
+						new String[] { SQLDatabase.KEY_CHAPTERPART2 },
+						SQLDatabase.KEY_CHAPTERPART2, where);
+				getPartition2.close();
+				if (getPartition2s.length > 1) {
+					ChapterPart2Adapter(getPartition2s);
+					_sChapterPart2.setVisibility(android.view.View.VISIBLE);
+				}
 			}
 			break;
+
 		}
 
+	}
+
+	private String getStringOfSelected(Spinner s) {
+		return ((TextView) s.getSelectedView()).getText().toString();
 	}
 
 	@Override
@@ -128,4 +143,22 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener {
 
 	}
 
+	@Override
+	public void onClick(View v) {
+		if(_sChapter.getSelectedItemPosition()>0){
+			_WhereFile = getStringOfSelected(_sChapter);
+			if(_sChapterPart1.getSelectedItemPosition()>0){
+				_WhereFile =getStringOfSelected(_sChapterPart1);
+				if(_sChapterPart2.getSelectedItemPosition()>0){
+					_WhereFile =getStringOfSelected(_sChapterPart2);
+				}
+			}
+		}
+		Bundle newBundle = new Bundle();				
+		newBundle.putString("Teori", _WhereFile);
+		Intent is = new Intent("com.bbv.prototype1.FILEVIEW");
+		is.putExtras(newBundle);		
+		startActivity(is);
+		
+	}
 }

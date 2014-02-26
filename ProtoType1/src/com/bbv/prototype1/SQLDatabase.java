@@ -46,27 +46,22 @@ public class SQLDatabase {
 					+ " TEXT NOT NULL, " + KEY_CHAPTERPART1 + " TEXT, "
 					+ KEY_CHAPTERPART2 + " TEXT, " + KEY_FILENAME
 					+ " TEXT NOT NULL);");
-			
-			//might need to create a new thread to take care of this
-			//in case the existing database is to big
+
+			// might need to create a new thread to take care of this
+			// in case the existing database is to big
 			String str = "";
 			try {
 				AssetManager as = c.getAssets();
-				InputStream is = as.open("database.txt");
+				InputStream is = as.open("Database/TeoriTable.txt");
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(is));
 				if (is != null) {
-					int lineNumber = 0;
 					while ((str = reader.readLine()) != null) {
-						lineNumber++;
-						if (!str.contains("#") || str.isEmpty()) {
-							try {
-								db.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES "+str);
-							} catch (Exception e) {
-								Log.println(Log.ERROR, "SQLStat", "LineNumber "
-										+ lineNumber + " is : " + str);
+						if (!str.contains("#"))
+							if (!str.isEmpty()) {
+								db.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES "
+										+ str);
 							}
-						}
 					}
 				}
 				is.close();
@@ -81,8 +76,6 @@ public class SQLDatabase {
 			onCreate(db);
 		}
 
-		
-		
 	}
 
 	public SQLDatabase(Context c) {
@@ -101,21 +94,18 @@ public class SQLDatabase {
 		String str = "";
 		try {
 			AssetManager as = ourContext.getAssets();
-			InputStream is = as.open("database.txt");
+			InputStream is = as.open("Database/TeoriTable.txt");
 			BufferedReader reader = new BufferedReader(
 					new InputStreamReader(is));
 			if (is != null) {
-				int lineNumber = 0;
 				while ((str = reader.readLine()) != null) {
-					lineNumber++;
-					if (!str.contains("#") || str.isEmpty()) {
-						try {
-							ourDatabase.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES "+str);
-						} catch (Exception e) {
-							Log.println(Log.ERROR, "SQLStat", "LineNumber "
-									+ lineNumber + " is : " + str);
+					if (!str.contains("#"))
+						if (!str.isEmpty()) {
+							ourDatabase
+									.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES "
+											+ str);
 						}
-					}
+
 				}
 			}
 			is.close();
