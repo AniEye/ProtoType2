@@ -9,6 +9,15 @@
         <item name="android:background">@drawable/custom_button2</item>
         <item name="android:textAppearance">@style/CustomText</item>
     </style>
+    
+    <style name="CustomButton_Horizontal">
+        <item name="android:layout_width">230dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/custom_button2</item>
+        <item name="android:textAppearance">@style/CustomText</item>
+    </style>
 
     <style name="CustomSpinner">
         <item name="android:background">@drawable/custom_button2</item>
