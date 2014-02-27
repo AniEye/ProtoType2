@@ -3,3 +3,6 @@ This is a file used to record all the web pages that we used as resources during
 Code was used as reference and some copied from this page during the work of making 
 a custom ArrayAdapter:
 http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/index.php?view=article_discription&aid=67&aaid=92
+
+android swipe option
+http://developer.android.com/design/patterns/swipe-views.html

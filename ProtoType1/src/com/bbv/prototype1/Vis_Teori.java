@@ -32,6 +32,16 @@ public class Vis_Teori extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.vis_teori);
 		
+		Initialize(savedInstanceState);
+		
+	}
+	
+	//this is not fixed up yet
+	private void checkForBundle(){
+		
+	}
+	
+	private void Initialize(Bundle savedInstanceState){
 		_activity_title = getTitle();
 		_drawerLayout = (DrawerLayout) findViewById(R.id.dlVis_Teori);
 		_listView = (ListView) findViewById(R.id.lvVis_Teori);

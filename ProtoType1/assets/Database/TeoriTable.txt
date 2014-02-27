@@ -14,8 +14,8 @@
 
 
 #####################  1. Leire og vektmaterialer  ######################
-('1. Leire og vektmaterialer','1.1 Introduksjon','','introduksjon.txt');	
-('1. Leire og vektmaterialer','1.2 Oppbygging av leirpartikler','','oppbygging_av_leirpartikler.txt');
+('1. Leire og vektmaterialer','1.1 Introduksjon','','_.txt');
+('1. Leire og vektmaterialer','1.2 Oppbygging av leirpartikler','','_.txt');
 ('1. Leire og vektmaterialer','1.3 Strukturer til leirmineraler','','_.txt');
 ('1. Leire og vektmaterialer','1.4 Leirmineraler','','_.txt');
 ('1. Leire og vektmaterialer','1.5 Leire i boreslam','','_.txt');
@@ -36,4 +36,4 @@
 ('4. Boreslam','4.1 Vannbaserte boreslam','','_.txt');
 ('4. Boreslam','4.2 Oljebaserte boreslam','','_.txt');
 ('4. Boreslam','4.3 Valg av slamsystem','','_.txt');
-('4. Boreslam','4.4 Piller/Plugger','','_.txt');
+('4. Boreslam','4.4 Piller og plugger','','_.txt');
