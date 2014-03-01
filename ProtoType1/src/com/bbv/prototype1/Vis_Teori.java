@@ -31,17 +31,21 @@ public class Vis_Teori extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.vis_teori);
-		
+
 		Initialize(savedInstanceState);
-		
+		try {
+
+		} catch (Exception e) {
+
+		}
 	}
-	
-	//this is not fixed up yet
-	private void checkForBundle(){
-		
+
+	// this is not fixed up yet
+	private void checkForBundle() {
+
 	}
-	
-	private void Initialize(Bundle savedInstanceState){
+
+	private void Initialize(Bundle savedInstanceState) {
 		_activity_title = getTitle();
 		_drawerLayout = (DrawerLayout) findViewById(R.id.dlVis_Teori);
 		_listView = (ListView) findViewById(R.id.lvVis_Teori);
@@ -50,7 +54,7 @@ public class Vis_Teori extends Activity {
 		_listView.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
 				_testArray));
 		_listView.setOnItemClickListener(new DrawerItemClickListener());
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 		// helo
@@ -91,7 +95,7 @@ public class Vis_Teori extends Activity {
 		// If the nav drawer is open, hide action items related to the content
 		// view
 		boolean drawerOpen = _drawerLayout.isDrawerOpen(_listView);
-		//menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+		// menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
