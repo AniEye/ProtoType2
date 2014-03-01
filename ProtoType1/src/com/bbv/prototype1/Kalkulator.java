@@ -5,17 +5,17 @@ import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-public class Kalkulator extends Activity implements OnItemSelectedListener {
+public class Kalkulator extends Activity implements OnItemSelectedListener, OnItemClickListener{
 
 	ListView valg_horizontal;
 	Spinner valg_vertical;
@@ -75,7 +75,8 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 			// Adds the custom look for the listview
 
 			lLayout = (LinearLayout) findViewById(R.id.lInSVKalkHorizontal);
-			valg_horizontal.setOnItemSelectedListener(this);
+			valg_horizontal.setOnItemClickListener(this);
+			showCalc(0);
 		}
 	}
 
@@ -84,6 +85,17 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int index,
 			long arg3) {
 
+		showCalc(index);
+		
+	}
+	
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int index, long arg3) {
+		// TODO Auto-generated method stub
+		showCalc(index);
+	}
+	
+	public void showCalc(int index){
 		if (lLayout.getChildCount() > 0)
 			lLayout.removeAllViews();
 
@@ -150,7 +162,6 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
-
 	}
 
 }
