@@ -1,28 +1,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ViewWithSpinners"
+    android:baselineAligned="false"
     android:orientation="horizontal"
-    tools:context=".Calculator" 
     android:weightSum="2"
-    >
+    tools:context=".Calculator" >
 
-    <Spinner
-        android:layout_weight="0.8"
-        android:id="@+id/sKalk"
+    <ListView
+        android:id="@+id/listKalkHorizontal"
+        android:padding="15dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:entries="@array/calculator" 
-      	/>
-    
+        android:layout_weight="0.8"
+        android:entries="@array/calculator" />
+
     <ScrollView
-        android:layout_weight="1.2"
-        android:id="@+id/svKalk"
-        android:background="@color/ButtonAndSpinnerBackgroundColor"
+        android:id="@+id/svKalkHorizontal"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:background="@color/ButtonAndSpinnerBackgroundColor" >
 
         <LinearLayout
-            android:id="@+id/lInSVKalk"
+            android:id="@+id/lInSVKalkHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" >

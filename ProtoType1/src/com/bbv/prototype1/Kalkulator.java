@@ -2,19 +2,23 @@ package com.bbv.prototype1;
 
 import com.bbv.prototype1.Kalkulatorer.*;
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 public class Kalkulator extends Activity implements OnItemSelectedListener {
 
-	Spinner valg;
+	ListView valg_horizontal;
+	Spinner valg_vertical;
 	LinearLayout lLayout;
 	int SpinnerItemLayout = R.layout.custom_spinner_item;
 
@@ -41,19 +45,40 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 	}
 
 	private void initialize() {
-		valg = (Spinner) findViewById(R.id.sKalk);
+		/**
+		 * Creates a spinner object if the device is in a vertical position, or
+		 * a listview if the device is in a horizontal position
+		 */
 
-		// Adds the custom look for the spinner
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.custom_spinner, getResources().getStringArray(
-						R.array.calculator));
-		adapter.setDropDownViewResource(SpinnerItemLayout);
-		valg.setAdapter(adapter);
-		// Adds the custom look for the spinner
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+			valg_vertical = (Spinner) findViewById(R.id.sKalkVertical);
 
-		lLayout = (LinearLayout) findViewById(R.id.lInSVKalk);
-		valg.setOnItemSelectedListener(this);
+			// Adds the custom look for the spinner
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+					R.layout.custom_spinner, getResources().getStringArray(
+							R.array.calculator));
+			adapter.setDropDownViewResource(SpinnerItemLayout);
+			valg_vertical.setAdapter(adapter);
+			// Adds the custom look for the spinner
+
+			lLayout = (LinearLayout) findViewById(R.id.lInSVKalkVertical);
+			valg_vertical.setOnItemSelectedListener(this);
+		} else {
+			valg_horizontal = (ListView) findViewById(R.id.listKalkHorizontal);
+
+			// Adds the custom look for the listview
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+					R.layout.custom_spinner, getResources().getStringArray(
+							R.array.calculator));
+			adapter.setDropDownViewResource(SpinnerItemLayout);
+			valg_horizontal.setAdapter(adapter);
+			// Adds the custom look for the listview
+
+			lLayout = (LinearLayout) findViewById(R.id.lInSVKalkHorizontal);
+			valg_horizontal.setOnItemSelectedListener(this);
+		}
 	}
+
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int index,
@@ -88,28 +113,28 @@ public class Kalkulator extends Activity implements OnItemSelectedListener {
 			calc = new PowerLaw(lLayout.getContext());
 			break;
 		case 8:
-//			calc = new Hersch_model(lLayout.getContext());
+			// calc = new Hersch_model(lLayout.getContext());
 			break;
 		case 9:
-//			calc = new Darcy_filtertap(lLayout.getContext());
+			// calc = new Darcy_filtertap(lLayout.getContext());
 			break;
 		case 10:
-//			calc = new Stat_filtrering(lLayout.getContext());
+			// calc = new Stat_filtrering(lLayout.getContext());
 			break;
 		case 11:
-//			calc = new Filtertap_Tid(lLayout.getContext());
+			// calc = new Filtertap_Tid(lLayout.getContext());
 			break;
 		case 12:
-//			calc = new Filtertap_Trykk(lLayout.getContext());
+			// calc = new Filtertap_Trykk(lLayout.getContext());
 			break;
 		case 13:
-//			calc = new Filtertap_Temp(lLayout.getContext());
+			// calc = new Filtertap_Temp(lLayout.getContext());
 			break;
 		case 14:
-//			calc = new Spess_tetthet(lLayout.getContext());
+			// calc = new Spess_tetthet(lLayout.getContext());
 			break;
 		case 15:
-//			calc = new Klorinnhold(lLayout.getContext());
+			// calc = new Klorinnhold(lLayout.getContext());
 			break;
 		}
 

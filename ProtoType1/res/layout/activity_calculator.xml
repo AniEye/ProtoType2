@@ -1,23 +1,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ViewWithSpinners"
+    android:orientation="vertical"
     tools:context=".Calculator" >
 
     <Spinner
-        android:id="@+id/sKalk"
+        android:id="@+id/sKalkVertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/calculator" 
       	/>
     
     <ScrollView
-        android:id="@+id/svKalk"
+        android:id="@+id/svKalkVertical"
         android:background="@color/ButtonAndSpinnerBackgroundColor"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
         <LinearLayout
-            android:id="@+id/lInSVKalk"
+            android:id="@+id/lInSVKalkVertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
