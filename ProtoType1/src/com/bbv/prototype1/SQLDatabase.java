@@ -105,7 +105,6 @@ public class SQLDatabase {
 									.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES "
 											+ str);
 						}
-
 				}
 			}
 			is.close();

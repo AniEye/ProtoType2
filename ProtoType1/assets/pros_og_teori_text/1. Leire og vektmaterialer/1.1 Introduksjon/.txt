@@ -1,2 +1,0 @@
-#empty lines and comments should include #
-so this is a test to see if this sql stuff works, if this page shows we're half way there

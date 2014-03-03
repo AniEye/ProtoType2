@@ -145,20 +145,30 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 
 	@Override
 	public void onClick(View v) {
-		if(_sChapter.getSelectedItemPosition()>0){
-			_WhereFile = getStringOfSelected(_sChapter);
-			if(_sChapterPart1.getSelectedItemPosition()>0){
-				_WhereFile =getStringOfSelected(_sChapterPart1);
-				if(_sChapterPart2.getSelectedItemPosition()>0){
-					_WhereFile =getStringOfSelected(_sChapterPart2);
-				}
-			}
+		Bundle newBundle = new Bundle();
+		if (_sChapter.getSelectedItemPosition() > 0) {
+			newBundle
+					.putString("Teori_Chapter", getStringOfSelected(_sChapter));
+		} else {
+			newBundle.putString("Teori_Chapter", null);
 		}
-		Bundle newBundle = new Bundle();				
-		newBundle.putString("Teori", _WhereFile);
-		Intent is = new Intent("com.bbv.prototype1.FILEVIEW");
-		is.putExtras(newBundle);		
+		if (_sChapterPart1.getSelectedItemPosition() > 0) {
+			newBundle.putString("Teori_ChapterPart1",
+					getStringOfSelected(_sChapterPart1));
+
+		} else {
+			newBundle.putString("Teori_ChapterPart1", null);
+		}
+		if (_sChapterPart2.getSelectedItemPosition() > 0) {
+			newBundle.putString("Teori_ChapterPart2",
+					getStringOfSelected(_sChapterPart2));
+		} else {
+			newBundle.putString("Teori_ChapterPart2", null);
+		}
+
+		Intent is = new Intent("com.bbv.prototype1.VIS_TEORI");
+		is.putExtras(newBundle);
 		startActivity(is);
-		
+
 	}
 }

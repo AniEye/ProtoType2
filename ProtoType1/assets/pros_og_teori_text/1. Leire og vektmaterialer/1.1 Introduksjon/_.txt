@@ -1,1 +1,35 @@
 #spacing and comments in file is to be created using # 
+<title>
+halo
+</title>
+<text>
+this is a test
+</text>
+#trying to add a picture dynamicly
+
+<image>
+<filename>
+anime-wallpapers.jpg
+</filename>
+<size>
+120x120
+</size>
+</picture>
+
+<text>
+hello how's it going, i'm trying to make a long line to see how that looks.
+
+this is a second test.
+
+
+
+
+a lot of them.
+
+with spaces
+
+but if their is to be a new line between sentences you'll have to add a empty spaces between the lines
+
+
+like so, there is 2 spaces between this line and the one before but it looks like there is only one
+</text>

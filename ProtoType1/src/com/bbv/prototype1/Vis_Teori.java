@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ public class Vis_Teori extends Activity {
 	protected String[] _testArray;
 	protected CharSequence _title;
 	protected CharSequence _activity_title;
+	protected Bundle theBundle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,11 @@ public class Vis_Teori extends Activity {
 
 		Initialize(savedInstanceState);
 		try {
+			theBundle = this.getIntent().getExtras();
 
 		} catch (Exception e) {
-
+			theBundle = new Bundle();
+			Log.println(Log.ERROR, "FileView", "Didn't get bundle from pros og teori");
 		}
 	}
 
@@ -147,11 +151,13 @@ public class Vis_Teori extends Activity {
 
 	protected void selectItem(int position) {
 		Fragment newFragment = new Fragment_1();
+		newFragment.setArguments(theBundle);
 		_title = "This is page 1";
 		FragmentManager fm = getFragmentManager();
 		switch (position) {
 		case 0:
 			newFragment = new Fragment_1();
+			newFragment.setArguments(theBundle);
 			_title = "This is page 1";
 			break;
 		case 1:
