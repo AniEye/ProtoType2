@@ -118,51 +118,42 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 
 		switch (index) {
 		case 0:
-			calc = new MasseBalanse(lLayout.getContext());
+			calc = new MasseOgVolumBalanse(lLayout.getContext());
 			break;
 		case 1:
-			calc = new VolumBalanse(lLayout.getContext());
-			break;
-		case 2:
-			calc = new Slamtetthet(lLayout.getContext());
-			break;
-		case 3:
-			calc = new Skjaerhastighet(lLayout.getContext());
-			break;
-		case 4:
 			calc = new Til_Viskos(lLayout.getContext());
 			break;
-		case 5:
+		case 2:
 			calc = new Plast_Viskos(lLayout.getContext());
 			break;
-		case 6:
+		case 3:
 			calc = new Flytegrense(lLayout.getContext());
 			break;
-		case 7:
+		case 4:
 			calc = new PowerLaw(lLayout.getContext());
 			break;
-		case 8:
+		case 5:
 			// calc = new Hersch_model(lLayout.getContext());
 			break;
-		case 9:
+		case 6:
 			// calc = new Darcy_filtertap(lLayout.getContext());
 			break;
-		case 10:
+		case 7:
 			// calc = new Stat_filtrering(lLayout.getContext());
 			break;
-		case 11:
+		case 8:
 			// calc = new Filtertap_Tid(lLayout.getContext());
 			break;
-		case 12:
+		case 9:
 			// calc = new Filtertap_Trykk(lLayout.getContext());
 			break;
-		case 13:
+		case 10:
 			// calc = new Filtertap_Temp(lLayout.getContext());
 			break;
-		case 14:
+		case 11:
 			// calc = new Spess_tetthet(lLayout.getContext());
 			break;
-		case 15:
+		case 12:
 			// calc = new Klorinnhold(lLayout.getContext());
 			break;
 		}

@@ -8,23 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="20sp"
-        android:src="@drawable/volum_balanse_icon" />
-
-    <TextView
-        android:id="@+id/tvm1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="V1 = volum av slam før tilsetting" />
-
-    <EditText
-        android:id="@+id/etVBm1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="[V1]"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
+        android:src="@drawable/masseogvolumbalanse" />
 
     <TextView
         android:id="@+id/textView2"
@@ -34,7 +18,7 @@
         android:text="Vv = volum av tilsatt vektmateriale" />
 
     <EditText
-        android:id="@+id/etVBmv"
+        android:id="@+id/etMOVBVv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -43,18 +27,68 @@
         android:textColorHint="@color/ButtonTextColor" />
 
     <TextView
+        android:id="@+id/tvm1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="V1 = volum av slam før tilsetting" />
+
+    <EditText
+        android:id="@+id/etMOVBV1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[V1]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="V2 = volum av slam etter tilsetting av vektmateriale" />
+        android:text="P2 = ***" />
 
     <EditText
-        android:id="@+id/etVBm2"
+        android:id="@+id/etMOVBP2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[V2]"
+        android:hint="[P2]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" >
+    </EditText>
+    
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="PV = ***" />
+
+    <EditText
+        android:id="@+id/etMOVBPV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[PV]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" >
+    </EditText>
+    
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="P1 = ***" />
+
+    <EditText
+        android:id="@+id/etMOVBP1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[P1]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" >
     </EditText>
@@ -66,13 +100,13 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/bVBUpdate"
+            android:id="@+id/bMOVBUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update" />
 
         <Button
-            android:id="@+id/bVBClear"
+            android:id="@+id/bMOVBClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Clear" />

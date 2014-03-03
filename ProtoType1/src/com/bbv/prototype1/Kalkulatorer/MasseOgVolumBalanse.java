@@ -2,36 +2,84 @@ package com.bbv.prototype1.Kalkulatorer;
 
 import com.bbv.prototype1.R;
 import android.content.Context;
+import android.util.Log;
 import android.view.*;
+import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-public class VolumBalanse extends Basic_Calc {
-	LinearLayout _linLay;
-	Button _clear, _update;
-	int[] _textFieldsStatus = { 0, 0, 0 };
+public class MasseOgVolumBalanse extends Basic_Calc {
+
+	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	// indexes: 0=theta, 1=RPM, 2=tilvisk
-	public final static int v1_INDEX=0, vv_INDEX=1, v2_INDEX=2;
-	EditText[] textFields = new EditText[_textFieldsStatus.length];
+	final int clearButtonID = R.id.bMOVBClear;
+	final int updateButtonID = R.id.bMOVBUpdate;
+	final int layout = R.layout.calc_masseogvolumbalanse;
 
-	public VolumBalanse(Context context) {
+	public final static int Vv_INDEX = 0, V1_INDEX = 1, p2_INDEX = 2,
+			Pv_INDEX = 3, p1_INDEX = 4;
+	
+	final int[] IDs = {R.id.etMOVBVv,  R.id.etMOVBV1, R.id.etMOVBP2, R.id.etMOVBPV, R.id.etMOVBP1};
+
+	public MasseOgVolumBalanse(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
 	}
+	
+
+	@Override
+	public String calculation(int variableToCalculate, float... fieldStatuses) {
+
+		float 	vv = fieldStatuses[0], 
+				v1 = fieldStatuses[1], 
+				p2 = fieldStatuses[2], 
+				pv = fieldStatuses[3], 
+				p1 = fieldStatuses[4];
+
+		float theAnswer = 0;
+		switch (variableToCalculate) {
+		case Vv_INDEX:
+			theAnswer = v1 * ((p2-pv)/(p1-p2));
+			break;
+		case V1_INDEX:
+			theAnswer = vv / ((p2-pv)/(p1-p2));
+			break;
+		case p2_INDEX:
+			theAnswer = (((vv*p1)/v1) + pv)/(1+(vv/v1));
+			break;
+		case p1_INDEX:
+			theAnswer = ((v1*(p2-pv)/vv)+p2);
+			break;
+		case Pv_INDEX:
+			theAnswer = p2 - (vv*(p1-p2)/v1);
+			break;
+		}
+		
+		Log.println(Log.DEBUG, "calc", "The calculated answer = " + theAnswer);
+		
+		if (theAnswer != 0)
+			return String.format("%.3f", theAnswer);
+		else
+			return "";
+	}
 
 	@Override
 	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(R.layout.calc_volumbalanse);
-		textFields[0] = FindAndReturnEditText(R.id.etVBm1, focChan);
-		textFields[1] = FindAndReturnEditText(R.id.etVBmv, focChan);
-		textFields[2] = FindAndReturnEditText(R.id.etVBm2, focChan);
-		_clear = FindAndReturnButton(R.id.bVBClear, cliLis);
-		_update = FindAndReturnButton(R.id.bVBUpdate, cliLis);
+		_linLay = setAndGetLinearLayout(layout);
+
+		textFields = new EditText[IDs.length];
+		_textFieldsStatus = new int[IDs.length];
+		
+		for (int i=0; i<IDs.length;i++)
+			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
+		
+		_clear = FindAndReturnButton(clearButtonID, cliLis);
+		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 	@Override
@@ -42,11 +90,11 @@ public class VolumBalanse extends Basic_Calc {
 			@Override
 			public void onClick(View v) {
 				switch (v.getId()) {
-				case R.id.bVBClear:
+				case clearButtonID:
 					ResetFields(textFields);
-					_textFieldsStatus = new int[] { 0, 0, 0 };
+					_textFieldsStatus = new int[IDs.length];
 					break;
-				case R.id.bVBUpdate:
+				case updateButtonID:
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
 						try {
@@ -66,17 +114,12 @@ public class VolumBalanse extends Basic_Calc {
 
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				switch (v.getId()) {
-				case R.id.etVBm1:
-					FocusChange(0, hasFocus);
-					break;
-				case R.id.etVBmv:
-					FocusChange(1, hasFocus);
-					break;
-				case R.id.etVBm2:
-					FocusChange(2, hasFocus);
-					break;
+				
+				for(int i=0; i<IDs.length; i++){
+					if(v.getId() == IDs[i])
+						FocusChange(i, hasFocus);
 				}
+				
 			}
 		};
 	}
@@ -85,7 +128,7 @@ public class VolumBalanse extends Basic_Calc {
 		String _fieldsString = textFields[indexOfCurrentField].getText()
 				.toString();
 
-		if (theSum(_textFieldsStatus) < _textFieldsStatus.length-1) {
+		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
 			if (focusStatus == false && !_fieldsString.contentEquals("")) {
 				try {
 					if (Float.parseFloat(_fieldsString) != 0.0) {
@@ -136,28 +179,5 @@ public class VolumBalanse extends Basic_Calc {
 		}
 	}
 
-	@Override
-	public String calculation(int variableToCalculate, float... fieldStatuses) {
-		/**
-		 * Takes in a float array of variables to calculate. The parameter variableToCalculate detirmines which
-		 * variable will be calculated.
-		 * $params variableToCalculate Determines which variable will be calculated
-		 */
-		float theAnswer = 0;
-		switch (variableToCalculate) {
-		case v1_INDEX:
-			theAnswer = fieldStatuses[2] - fieldStatuses[1];
-			break;
-		case vv_INDEX:
-			theAnswer = fieldStatuses[2] - fieldStatuses[0];
-			break;
-		case v2_INDEX:
-			theAnswer = fieldStatuses[0] + fieldStatuses[1];
-			break;
-		}
-		if (theAnswer != 0)
-			return String.format("%.3f", theAnswer);
-		else
-			return "";
-	}
+
 }

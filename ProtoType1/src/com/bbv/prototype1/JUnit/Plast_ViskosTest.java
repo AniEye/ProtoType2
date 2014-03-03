@@ -2,7 +2,6 @@ package com.bbv.prototype1.JUnit;
 
 
 import com.bbv.prototype1.Kalkulatorer.Basic_Calc;
-import com.bbv.prototype1.Kalkulatorer.MasseBalanse;
 import com.bbv.prototype1.Kalkulatorer.Plast_Viskos;
 
 import android.test.AndroidTestCase;
