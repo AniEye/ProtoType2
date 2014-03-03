@@ -35,7 +35,11 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		lastChoice = loadLC(); //Loads the last chosen calculator
+		try {
+			lastChoice = loadLC(); // Loads the last chosen calculator
+		} catch (NullPointerException e) {
+			Log.println(Log.ERROR, "TryCatch", "Error with SharedPreferences!");
+		}
 
 		setContentView(R.layout.activity_calculator);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -59,14 +63,15 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		 * a listview if the device is in a horizontal position
 		 */
 
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				R.layout.custom_spinner, getResources().getStringArray(
+						R.array.calculator));
+		adapter.setDropDownViewResource(SpinnerItemLayout);
+
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 			valg_vertical = (Spinner) findViewById(R.id.sKalkVertical);
 
 			// Adds the custom look for the spinner
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-					R.layout.custom_spinner, getResources().getStringArray(
-							R.array.calculator));
-			adapter.setDropDownViewResource(SpinnerItemLayout);
 			valg_vertical.setAdapter(adapter);
 			// Adds the custom look for the spinner
 
@@ -77,17 +82,15 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		} else {
 			valg_horizontal = (ListView) findViewById(R.id.listKalkHorizontal);
 
-			// Adds the custom look for the listview
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-					R.layout.custom_spinner, getResources().getStringArray(
-							R.array.calculator));
-			adapter.setDropDownViewResource(SpinnerItemLayout);
+			// Adds the custom look for the spinner
 			valg_horizontal.setAdapter(adapter);
-			// Adds the custom look for the listview
+			// Adds the custom look for the spinner
 
 			lLayout = (LinearLayout) findViewById(R.id.lInSVKalkHorizontal);
 			valg_horizontal.setOnItemClickListener(this);
-			showCalc(lastChoice); // Chooses which item the list starts at
+			valg_horizontal.performItemClick(
+					findViewById(R.id.lInSVKalkHorizontal), lastChoice,
+					lastChoice); // Chooses which item the list starts at
 		}
 	}
 
@@ -109,7 +112,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		/**
 		 * Shows the calculator selected in either the spinner or the listview
 		 */
-		
+
 		if (lLayout.getChildCount() > 0)
 			lLayout.removeAllViews();
 
@@ -172,7 +175,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 					"Somehow no calculator was selected!");
 		}
 
-		saveLC(index); //Saves the current index here
+		saveLC(index); // Saves the current index here
 	}
 
 	private int loadLC() {
@@ -188,7 +191,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 
 	private void saveLC(int index) {
 		/**
-		 * Saves the current position of the selected item in either the spinner 
+		 * Saves the current position of the selected item in either the spinner
 		 * or the listview
 		 */
 		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
@@ -200,6 +203,5 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
 	}
-
 
 }

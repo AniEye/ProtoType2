@@ -6,27 +6,18 @@
         <item name="android:layout_height">60dp</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/selector</item>
+        <item name="android:background">@drawable/selector_main_buttons</item>
         <item name="android:textAppearance">@style/CustomText</item>
         
     </style>
-    
-    <style name="CustomButton_Horizontal">
-        <item name="android:layout_width">230dp</item>
-        <item name="android:layout_height">60dp</item>
-        <item name="android:layout_margin">5dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/custom_button2_normal</item>
-        <item name="android:textAppearance">@style/CustomText</item>
-    </style>
 
     <style name="CustomSpinner">
-        <item name="android:background">@drawable/custom_button2_normal</item>
+        <item name="android:background">@drawable/selector_listview</item>
         <item name="android:textAppearance">@style/CustomText</item>
     </style>
     
     <style name="CustomSpinnerItem">
-        <item name="android:background">@color/ButtonAndSpinnerBackgroundColor</item>
+        <item name="android:background">@drawable/selector_listview</item>
         <item name="android:textAppearance">@style/CustomText</item>
     </style>
     
