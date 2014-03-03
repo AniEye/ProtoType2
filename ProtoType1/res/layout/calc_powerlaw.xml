@@ -70,7 +70,7 @@
 
         <TextView
             android:id="@+id/tvm3"
-            android:layout_width="dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:paddingTop="10dp" >
+        android:paddingTop="5dp" >
 
         <Button
             android:id="@+id/bPLUpdate"
