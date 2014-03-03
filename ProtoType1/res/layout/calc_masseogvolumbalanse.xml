@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="P2 = ***" />
+        android:text="P2 = Tetthet til slammet V2" />
 
     <EditText
         android:id="@+id/etMOVBP2"
@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="PV = ***" />
+        android:text="PV = Tetthet til slammet Vv" />
 
     <EditText
         android:id="@+id/etMOVBPV"
@@ -81,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="P1 = ***" />
+        android:text="P1 = Tetthet til slammet V1" />
 
     <EditText
         android:id="@+id/etMOVBP1"
