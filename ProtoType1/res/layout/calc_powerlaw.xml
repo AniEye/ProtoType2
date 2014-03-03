@@ -11,34 +11,18 @@
         android:src="@drawable/powerlaw_icon" />
 
     <TextView
-        android:id="@+id/tvm3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="K" />
-
-    <EditText
-        android:id="@+id/etPowerLawTegn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="[lbs/100 ft^2 /s]"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
-
-    <TextView
         android:id="@+id/tvm1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/theta300" />
+        android:text="@string/theta100" />
 
     <EditText
-        android:id="@+id/etPowerLawT300"
+        android:id="@+id/etPowerLawT100"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/theta300"
+        android:hint="@string/theta100"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -71,6 +55,22 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="n"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <TextView
+        android:id="@+id/tvm3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="K" />
+
+    <EditText
+        android:id="@+id/etPowerLawTegn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[lbs/100 ft^2 /s]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 

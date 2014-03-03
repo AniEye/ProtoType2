@@ -2,6 +2,7 @@ package com.bbv.prototype1.Kalkulatorer;
 
 import com.bbv.prototype1.R;
 import android.content.Context;
+import android.util.Log;
 import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,44 +17,76 @@ public class PowerLaw extends Basic_Calc {
 	final int clearButtonID = R.id.bPLClear;
 	final int updateButtonID = R.id.bPLUpdate;
 	final int layout = R.layout.calc_powerlaw;
-	
-	final int[] IDs = {R.id.etPowerLawTegn,  R.id.etPowerLawT300, R.id.etPowerLaw600, R.id.etPowerLawN};
-	
-	public final static int K_INDEX = 0, T3_INDEX = 1, T6_INDEX = 2, N_INDEX = 3;
+
+	final int[] IDs = { R.id.etPowerLawT100, R.id.etPowerLaw600,
+			R.id.etPowerLawN, R.id.etPowerLawTegn };
+
+	public final static int T1_INDEX = 0, T6_INDEX = 1, N_INDEX = 2,
+			K_INDEX = 3;
 
 	public PowerLaw(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
 	}
-	
+
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		float K = fieldStatuses[0];
-		float T3 = fieldStatuses[1];
-		float T6 = fieldStatuses[2];
-		float N = fieldStatuses[3];
+		float T1 = fieldStatuses[0];
+		float T6 = fieldStatuses[1];
+		float N = fieldStatuses[2];
+		float K = fieldStatuses[3];
 
 		float theAnswer = 0;
 		switch (variableToCalculate) {
-		case K_INDEX:
-			theAnswer = 1;
-			break;
-		case T3_INDEX:
-			theAnswer = 1;
+
+		case T1_INDEX:
+			Log.println(Log.ERROR, "calc",
+					"Tried to calculate T1, and this should not happen!");
 			break;
 		case T6_INDEX:
-			theAnswer = 1;
+			Log.println(Log.ERROR, "calc",
+					"Tried to calculate T6, and this should not happen!");
 			break;
 		case N_INDEX:
-			theAnswer = 111;
+			theAnswer = (float) ((Math.log10(T1 / T6)) / Math.log10(170 / 10));
+
+		case K_INDEX:
+
+			if (N == 0) {
+				Log.println(Log.ERROR, "calc",
+						"Somehow the program tried to calculate K without n!");
+				break;
+			}
+			
+			if (variableToCalculate == K_INDEX){
+				
+				K = calcK(T6, N);
+				
+				return String.format("%.3f", K);
+			} else {
+				
+				K = calcK(T6, theAnswer);
+
+				textFields[3].setText(String.format("%.3f", K));
+			}
+
+
+
+
+
 			break;
+
 		}
 		if (theAnswer != 0)
 			return String.format("%.3f", theAnswer);
 		else
 			return "";
+	}
+
+	protected float calcK(float T6, float n) {
+		return (float) (T6 / Math.pow(10, n));
 	}
 
 	@Override
@@ -62,10 +95,13 @@ public class PowerLaw extends Basic_Calc {
 
 		textFields = new EditText[IDs.length];
 		_textFieldsStatus = new int[IDs.length];
-		
-		for (int i=0; i<IDs.length;i++)
+
+		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-		
+
+		textFields[2].setEnabled(false);
+		textFields[3].setEnabled(false);
+
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
@@ -80,6 +116,10 @@ public class PowerLaw extends Basic_Calc {
 				switch (v.getId()) {
 				case clearButtonID:
 					ResetFields(textFields);
+
+					textFields[2].setEnabled(false);
+					textFields[3].setEnabled(false);
+
 					_textFieldsStatus = new int[IDs.length];
 					break;
 				case updateButtonID:
@@ -102,12 +142,12 @@ public class PowerLaw extends Basic_Calc {
 
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				
-				for(int i=0; i<IDs.length; i++){
-					if(v.getId() == IDs[i])
+
+				for (int i = 0; i < IDs.length; i++) {
+					if (v.getId() == IDs[i])
 						FocusChange(i, hasFocus);
 				}
-				
+
 			}
 		};
 	}
@@ -116,7 +156,7 @@ public class PowerLaw extends Basic_Calc {
 		String _fieldsString = textFields[indexOfCurrentField].getText()
 				.toString();
 
-		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
+		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 2) {
 			if (focusStatus == false && !_fieldsString.contentEquals("")) {
 				try {
 					if (Float.parseFloat(_fieldsString) != 0.0) {
@@ -139,10 +179,14 @@ public class PowerLaw extends Basic_Calc {
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);
+						textFields[2].setEnabled(false);
+						textFields[3].setEnabled(false);
 					} else if (number == 0.0) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						textFields[indexOfCurrentField].setText("");
 						Enabeling(textFields);
+						textFields[2].setEnabled(false);
+						textFields[3].setEnabled(false);
 					} else if (!_fieldsString.contentEquals("")) {
 						updateRelevantResult();
 					}
@@ -167,5 +211,4 @@ public class PowerLaw extends Basic_Calc {
 		}
 	}
 
-	
 }

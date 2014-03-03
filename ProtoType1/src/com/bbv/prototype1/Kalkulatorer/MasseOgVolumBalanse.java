@@ -59,9 +59,7 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 			theAnswer = p2 - (vv*(p1-p2)/v1);
 			break;
 		}
-		
-		Log.println(Log.DEBUG, "calc", "The calculated answer = " + theAnswer);
-		
+				
 		if (theAnswer != 0)
 			return String.format("%.3f", theAnswer);
 		else
