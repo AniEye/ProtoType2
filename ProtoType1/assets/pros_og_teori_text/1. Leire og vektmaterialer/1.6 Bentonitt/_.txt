@@ -1,0 +1,19 @@
+1. Leire og vektmaterialer/1.6 Bentonitt/_.txt
+
+<last>
+1. Leire og vektmaterialer/1.5 Leire i boreslam
+</last>
+
+<next>
+1. Leire og vektmaterialer/1.7 Vektmaterialer
+</next>
+
+<title>
+1.6 Bentonitt
+</title>
+
+<text>
+her vil det kommer mer i løpet av tiden
+
+sees senere
+</text>

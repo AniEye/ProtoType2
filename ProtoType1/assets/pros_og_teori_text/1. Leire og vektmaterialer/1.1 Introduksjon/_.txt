@@ -1,20 +1,24 @@
-#spacing and comments in file is to be created using # 
+1. Leire og vektmaterialer/1.1 Introduksjon/_.txt
+
+<next>
+1. Leire og vektmaterialer/1.2 Oppbygging av leirpartikler
+</next>
+
 <title>
-halo
+1.1 Introduksjon
 </title>
+
 <text>
 this is a test
 </text>
-#trying to add a picture dynamicly
 
 <image>
-<filename>
 anime-wallpapers.jpg
-</filename>
-<size>
-120x120
-</size>
-</picture>
+</image>
+
+<image>
+Amaterasu.full.346145.jpg
+</image>
 
 <text>
 hello how's it going, i'm trying to make a long line to see how that looks.
@@ -33,3 +37,11 @@ but if their is to be a new line between sentences you'll have to add a empty sp
 
 like so, there is 2 spaces between this line and the one before but it looks like there is only one
 </text>
+
+<image>
+1920x1080.Wallpaper.full.485921.jpg
+</image>
+
+<image>
+Wang.Yi.(Dynasty.Warriors).full.1450332.jpg
+</image>

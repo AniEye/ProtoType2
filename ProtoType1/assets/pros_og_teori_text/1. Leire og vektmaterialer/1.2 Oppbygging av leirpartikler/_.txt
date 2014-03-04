@@ -1,1 +1,21 @@
-then again, if this one shows up it means that it is working
+1. Leire og vektmaterialer/1.2 Oppbygging av leirpartikler/_.txt
+
+<last>
+1. Leire og vektmaterialer/1.1 Introduksjon
+</last>
+
+<next>
+1. Leire og vektmaterialer/1.3 Strukturer til leirmineraler
+</next>
+
+<title>
+1.2 Oppbygging av leirpartikler
+</title>
+
+<text>
+i don't know if this failed or not
+</text>
+
+<image>
+1920x1080.Wallpaper.full.485921.jpg
+</image>

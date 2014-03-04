@@ -1,0 +1,19 @@
+1. Leire og vektmaterialer/1.8 Masse- og volumbalanse/_.txt
+
+<last>
+1. Leire og vektmaterialer/1.7 Vektmaterialer
+</last>
+
+<next>
+2. Reologi og filtertap/2.1 Reologi
+</next>
+
+<title>
+1.8 Masse- og volumbalanse
+</title>
+
+<text>
+her vil det kommer mer i løpet av tiden
+
+sees senere
+</text>
