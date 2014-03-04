@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ViewWithSpinners"
     android:orientation="vertical"
-    tools:context=".Calculator" >
+    tools:context=".Calculator" 
+    >
 
     <Spinner
         android:id="@+id/sKalkVertical"
@@ -14,7 +15,7 @@
     <ScrollView
         android:id="@+id/svKalkVertical"
         android:background="@color/ButtonAndSpinnerBackgroundColor"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <LinearLayout

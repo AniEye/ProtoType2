@@ -151,7 +151,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			// calc = new Filtertap_Temp(lLayout.getContext());
 			break;
 		case 11:
-			// calc = new Spess_tetthet(lLayout.getContext());
+			calc = new Spess_tetthet(lLayout.getContext());
 			break;
 		case 12:
 			// calc = new Klorinnhold(lLayout.getContext());

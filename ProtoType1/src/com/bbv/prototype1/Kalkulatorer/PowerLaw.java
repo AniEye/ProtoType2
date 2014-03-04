@@ -20,6 +20,7 @@ public class PowerLaw extends Basic_Calc {
 
 	TextView K_notPA;
 	TextView K_PA;
+	TextView tvEksponent;
 
 	final int[] IDs = { R.id.etPowerLawT100, R.id.etPowerLaw600,
 			R.id.etPowerLawN };
@@ -57,10 +58,12 @@ public class PowerLaw extends Basic_Calc {
 		case K_INDEX:
 
 			float K;
+			float eksponent;
 			
 			if (N == 0) {
 				Log.println(Log.ERROR, "calc",
-						"Somehow the program tried to calculate K without n!");
+						"PowerLawCalc tried to calculate K without n!" +
+						"\nIgnore if running JUnit tests");
 				break;
 			}
 
@@ -73,11 +76,17 @@ public class PowerLaw extends Basic_Calc {
 
 				Log.println(Log.INFO, "calc", "Setting textviews in powerlaw!");
 				K = calcK(T6, theAnswer);
+				
+				eksponent = (float) (K*Math.pow(T6*1.7023, N));
+				
 				String _k = String.format("%.3f", K);
 				K_notPA.setText(_k);
 				
 				String _k_pa = String.format("%.3f", K * 0.511f);
 				K_PA.setText(_k_pa);
+				
+				String _eksponent = String.format("%.3f", eksponent);
+				tvEksponent.setText(_eksponent);
 
 			}
 
@@ -108,6 +117,7 @@ public class PowerLaw extends Basic_Calc {
 
 		K_PA = (TextView) findViewById(R.id.tvPLPA);
 		K_notPA = (TextView) findViewById(R.id.tvPLNOTPA);
+		tvEksponent = (TextView) findViewById(R.id.tvPLEks);
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -127,6 +137,7 @@ public class PowerLaw extends Basic_Calc {
 					textFields[2].setEnabled(false);
 					K_PA.setText("");
 					K_notPA.setText("");
+					tvEksponent.setText("");
 
 					_textFieldsStatus = new int[IDs.length];
 					break;

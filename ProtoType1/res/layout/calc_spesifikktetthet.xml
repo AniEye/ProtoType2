@@ -1,8 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ViewWithSpinners"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/ButtonAndSpinnerBackgroundColor" >
 
     <ImageView
@@ -10,37 +8,53 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="20sp"
-        android:src="@drawable/powerlaw_icon" />
-
-    <TextView
-        android:id="@+id/tvm1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/theta100" />
-
-    <EditText
-        android:id="@+id/etPowerLawT100"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/theta100"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
+        android:src="@drawable/spess_tetthet_icon" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/theta600" />
+        android:text="Pp = spesifikk tetthet (gjennomsnittlig) av suspenderte partikler" />
 
     <EditText
-        android:id="@+id/etPowerLaw600"
+        android:id="@+id/etSpessTettPp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/theta600"
+        android:hint="[Pp]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <TextView
+        android:id="@+id/textView999"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Klorinnhold, Cl-" />
+
+    <EditText
+        android:id="@+id/etSpessTettCL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[mg/l]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <TextView
+        android:id="@+id/tvm1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Pm = spesifikk tetthet til boreslammet" />
+
+    <EditText
+        android:id="@+id/etSpessTettPm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[Pm]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -49,16 +63,85 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="n" />
+        android:text="Po = spesifikk tetthet til oljen" />
 
     <EditText
-        android:id="@+id/etPowerLawN"
+        android:id="@+id/etSpessTettPo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="n"
+        android:hint="[Po]"
         android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
+        android:textColorHint="@color/ButtonTextColor" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Vv = vann fra retorte" />
+
+    <EditText
+        android:id="@+id/etSpessTettVv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[Volum%]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Vo = olje fra retorte" />
+
+    <EditText
+        android:id="@+id/etSpessTettVo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[Volum%]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Fw = Volumfraksjon av vann i slammet, fra retorte" />
+
+    <EditText
+        android:id="@+id/etSpessTettFw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[Fw]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Vfs = fast stoff fra retorte (salt + faste partikler)" />
+
+    <EditText
+        android:id="@+id/etSpessTettVfs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[volum%]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" >
+    </EditText>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,11 +157,38 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="K [lbs/100 ft^2/s] = "
+            android:text="Pf (spesifikk tetthet til filtratet) = "
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvPLNOTPA"
+            android:id="@+id/tvSpessTettPf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=""
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/tvm3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Vs (oppløst vann i slammet, [volum%]) = "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvSpessTettVs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -101,38 +211,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="K [Pa] = "
+            android:text="Vsf (salt i filtratet, [volum%]) = "
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvPLPA"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:text=""
-            android:textSize="16dp" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:weightSum="2" >
-
-        <TextView
-            android:id="@+id/tvm6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="@string/eksponent"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/tvPLEks"
+            android:id="@+id/tvSpessTettVsf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -145,17 +228,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingTop="5dp" >
+        android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/bPLUpdate"
+            android:id="@+id/bSpessTettUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update" />
 
         <Button
-            android:id="@+id/bPLClear"
+            android:id="@+id/bSpessTettClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Clear" />
