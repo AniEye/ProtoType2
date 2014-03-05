@@ -9,12 +9,14 @@ import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class MasseOgVolumBalanse extends Basic_Calc {
 
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
+	Toast toast;
 
 	final int clearButtonID = R.id.bMOVBClear;
 	final int updateButtonID = R.id.bMOVBUpdate;
@@ -42,6 +44,21 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 				p1 = fieldStatuses[4];
 
 		float theAnswer = 0;
+		
+		//Catches if dividing by 0
+		if (p2 == p1){
+			try {
+			toast.getView().isShown(); // true if visible
+			toast.setText("P1 kan ikke være lik P2! Du deler på 0!");
+		} catch (Exception e) { // invisible if exception
+			toast = Toast.makeText(getContext(),
+					"P1 kan ikke være lik P2! Du deler på 0!", Toast.LENGTH_SHORT);
+		}
+			toast.show();
+			return "";
+		}
+
+		
 		switch (variableToCalculate) {
 		case Vv_INDEX:
 			theAnswer = v1 * ((p2-pv)/(p1-p2));
