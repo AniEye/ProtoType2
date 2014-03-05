@@ -50,7 +50,7 @@ public class Spess_tetthet extends Basic_Calc {
 		float Cl = fieldStatuses[7];
 
 		float Pf = 0, Vs = 0, Vsf = 0;
-		
+
 		float theAnswer = 0;
 
 		if (variableToCalculate == Pp_INDEX) {
@@ -66,11 +66,12 @@ public class Spess_tetthet extends Basic_Calc {
 			Vs = calcVs(Vsf, Fw);
 			tvVs.setText(String.format("%.3f", Vs));
 
-			if(Pf==0 || Vsf==0 || Vs == 0){
-				Log.println(Log.INFO, "calc", "SpessTetthet got a value of Cl not between 5000 and 86656");
-			}
-			else
-				theAnswer = ((100 * Pm) - (Pf * (Vv + Vsf) + Po * Vo)) / (Vfs - Vs);
+			if (Pf == 0 || Vsf == 0 || Vs == 0) {
+				Log.println(Log.INFO, "calc",
+						"SpessTetthet got a value of Cl not between 5000 and 86656");
+			} else
+				theAnswer = ((100 * Pm) - (Pf * (Vv + Vsf) + Po * Vo))
+						/ (Vfs - Vs);
 
 		} else {
 			Log.println(
@@ -129,8 +130,7 @@ public class Spess_tetthet extends Basic_Calc {
 			Vsf = (float) (1.065 + (1.082 - 1.065)
 					* ((cl - 60000) / (80000 - 60000)));
 		} else if (cl < 100000) {
-			Pf = (float) (4.5 + (5.7 - 4.5)
-					* ((cl - 80000) / (100000 - 80000)));
+			Pf = (float) (4.5 + (5.7 - 4.5) * ((cl - 80000) / (100000 - 80000)));
 			Vsf = (float) (1.082 + (1.098 - 1.082)
 					* ((cl - 80000) / (100000 - 80000)));
 		} else if (cl < 120000) {
@@ -163,8 +163,10 @@ public class Spess_tetthet extends Basic_Calc {
 				toast.getView().isShown(); // true if visible
 				toast.setText("Cl må være mellom 5000 og 186650!");
 			} catch (Exception e) { // invisible if exception
-				toast = Toast.makeText(getContext(),
-						"Cl må være mellom 5000 og 186650!", Toast.LENGTH_SHORT);
+				toast = Toast
+						.makeText(getContext(),
+								"Cl må være mellom 5000 og 186650!",
+								Toast.LENGTH_SHORT);
 			}
 			toast.show();
 		}
