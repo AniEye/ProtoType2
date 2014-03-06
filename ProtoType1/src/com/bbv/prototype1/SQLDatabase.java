@@ -166,21 +166,22 @@ public class SQLDatabase {
 
 		Cursor c = ourDatabase.query(DATABASE_TABLE, column, where, null,
 				groupedBy, null, null);
+		String[] content = new String[c.getCount()];
+		int currentRow = 0;
+		if (!groupedBy.contentEquals(KEY_CHAPTER)) {
+			content = new String[c.getCount() + 1];
+			currentRow = 1;
+			if (groupedBy.contentEquals(KEY_CHAPTERPART1))
+				content[0] = "Choose partition";
+			else if (groupedBy.contentEquals(KEY_CHAPTERPART2))
+				content[0] = "Choose partition";
+			else {
+				content[0] = "Choose file";
+			}
 
-		String[] content = new String[c.getCount() + 1];
-		if (groupedBy.contentEquals(KEY_CHAPTER))
-			content[0] = "Choose chapter";
-		else if (groupedBy.contentEquals(KEY_CHAPTERPART1))
-			content[0] = "Choose partition";
-		else if (groupedBy.contentEquals(KEY_CHAPTERPART2))
-			content[0] = "Choose partition";
-		else {
-			content[0] = "Choose file";
 		}
-
 		int iChapter = c.getColumnIndex(groupedBy);
 
-		int currentRow = 1;
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 
 			content[currentRow] = c.getString(iChapter);

@@ -84,12 +84,11 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int index,
 			long arg3) {
+		String where;
 		switch (parent.getId()) {
 		case R.id.sKapittel:
-			if (index == 0) {
-				_sChapterPart1.setVisibility(android.view.View.GONE);
-			} else {
-				String where = SQLDatabase.KEY_CHAPTERPART1 + " != ''";
+			
+				 where = SQLDatabase.KEY_CHAPTERPART1 + " != ''";
 				where = SQLDatabase.KEY_CHAPTER + " = '"
 						+ getStringOfSelected(_sChapter) + "' and " + where;
 
@@ -103,13 +102,13 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 					ChapterPart1Adapter(getPartition1s);
 					_sChapterPart1.setVisibility(android.view.View.VISIBLE);
 				}
-			}
+			
 			break;
 		case R.id.sDelKapittel:
 			if (index == 0) {
 				_sChapterPart2.setVisibility(android.view.View.GONE);
 			} else {
-				String where = SQLDatabase.KEY_CHAPTERPART2 + " != '' ";
+				 where = SQLDatabase.KEY_CHAPTERPART2 + " != '' ";
 				where = SQLDatabase.KEY_CHAPTERPART1 + " = '"
 						+ getStringOfSelected(_sChapterPart1) + "' and "
 						+ where;
@@ -146,12 +145,9 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 	@Override
 	public void onClick(View v) {
 		Bundle newBundle = new Bundle();
-		if (_sChapter.getSelectedItemPosition() > 0) {
-			newBundle
-					.putString("Teori_Chapter", getStringOfSelected(_sChapter));
-		} else {
-			newBundle.putString("Teori_Chapter", null);
-		}
+
+		newBundle.putString("Teori_Chapter", getStringOfSelected(_sChapter));
+
 		if (_sChapterPart1.getSelectedItemPosition() > 0) {
 			newBundle.putString("Teori_ChapterPart1",
 					getStringOfSelected(_sChapterPart1));

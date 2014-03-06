@@ -55,10 +55,8 @@ public class Vis_Teori extends Activity {
 		_listView = (ListView) findViewById(R.id.lvVis_Teori);
 		_testArray = getResources().getStringArray(R.array.test_array);
 
-		_listView.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
-				_testArray));
-		_listView.setOnItemClickListener(new DrawerItemClickListener());
-
+		setListViewArray(_testArray);
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 		// helo
@@ -79,6 +77,12 @@ public class Vis_Teori extends Activity {
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
+	}
+	
+	public void setListViewArray(String[] list){
+		_listView.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
+				list));
+		_listView.setOnItemClickListener(new DrawerItemClickListener());
 	}
 
 	@Override
@@ -150,24 +154,33 @@ public class Vis_Teori extends Activity {
 	}
 
 	protected void selectItem(int position) {
-		Fragment newFragment = new Fragment_1();
-		newFragment.setArguments(theBundle);
-		_title = "This is page 1";
+//		Fragment newFragment = new Fragment_1();
+//		newFragment.setArguments(theBundle);
+//		_title = "This is page 1";
+//		FragmentManager fm = getFragmentManager();
+//		switch (position) {
+//		case 0:
+//			newFragment = new Fragment_1();
+//			
+//			newFragment.setArguments(theBundle);
+//			_title = "This is page 1";
+//			break;
+//		case 1:
+//			newFragment = new Fragment_2();
+//			_title = "This is page 2";
+//			break;
+//		}
+//		fm.beginTransaction().replace(R.id.flViskos, newFragment).commit();
+//		_listView.setItemChecked(position, true);
+//
+//		
+		Fragment_1 newFragment = new Fragment_1();
+		newFragment.setVisTeori(this);
+		_title = "Teori";
 		FragmentManager fm = getFragmentManager();
-		switch (position) {
-		case 0:
-			newFragment = new Fragment_1();
-			newFragment.setArguments(theBundle);
-			_title = "This is page 1";
-			break;
-		case 1:
-			newFragment = new Fragment_2();
-			_title = "This is page 2";
-			break;
-		}
 		fm.beginTransaction().replace(R.id.flViskos, newFragment).commit();
 		_listView.setItemChecked(position, true);
-
+		
 		_drawerLayout.closeDrawer(_listView);
 		// if to change the title depending on the selected item do it here
 		setTitle(_title);

@@ -1,0 +1,22 @@
+﻿test
+
+<list>
+Teori
+Øvinger
+Utstyr
+Kalkulator
+Kapitler
+</list>
+
+<Øvinger>
+</Øvinger>
+
+<Utstyr>
+Ti
+</Utstyr>
+
+<Kalkulator>
+ - En Kalkulator
+</Kalkulator>
+<link>
+</link>

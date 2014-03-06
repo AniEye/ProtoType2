@@ -1,19 +1,19 @@
-1. Leire og vektmaterialer/1.4 Leirmineraler/_.txt
+﻿2. Reologi og filtertap/2.2 Kontroll av filtertap og vannbaserte boreslam/_.txt
 
 <last>
-1. Leire og vektmaterialer/1.3 Strukturer til leirmineraler
+2. Reologi og filtertap/2.1 Reologi
 </last>
 
 <next>
-1. Leire og vektmaterialer/1.5 Leire i boreslam
+2. Reologi og filtertap/2.3 Viskositet og filtertapskontrollerende stoff
 </next>
 
 <title>
-1.4 Leirmineraler
+2.2 Kontroll av filtertap og vannbaserte boreslam
 </title>
 
 <text>
-her vil det kommer mer i l�pet av tiden
-
+her vil det kommer mer i løpet av tiden
+æøå
 sees senere
 </text>

@@ -1,4 +1,4 @@
-1. Leire og vektmaterialer/1.4 Leirmineraler/_.txt
+﻿1. Leire og vektmaterialer/1.4 Leirmineraler/_.txt
 
 <last>
 1. Leire og vektmaterialer/1.3 Strukturer til leirmineraler
@@ -13,7 +13,7 @@
 </title>
 
 <text>
-her vil det kommer mer i l�pet av tiden
-
+her vil det kommer mer i løpet av tiden
+æøå
 sees senere
 </text>

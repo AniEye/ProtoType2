@@ -1,4 +1,4 @@
-1. Leire og vektmaterialer/1.2 Oppbygging av leirpartikler/_.txt
+﻿1. Leire og vektmaterialer/1.2 Oppbygging av leirpartikler/_.txt
 
 <last>
 1. Leire og vektmaterialer/1.1 Introduksjon
@@ -13,7 +13,7 @@
 </title>
 
 <text>
-i don't know if this failed or not
+i don't know if this failed or not æøå
 </text>
 
 <image>

@@ -1,4 +1,8 @@
-1. Leire og vektmaterialer/1.1 Introduksjon/_.txt
+﻿1. Leire og vektmaterialer/1.1 Introduksjon/_.txt
+
+<last>
+1. Leire og vektmaterialer
+</last>
 
 <next>
 1. Leire og vektmaterialer/1.2 Oppbygging av leirpartikler
@@ -9,7 +13,7 @@
 </title>
 
 <text>
-this is a test
+this is a test to see if it can properly read special chars like æøå
 </text>
 
 <image>

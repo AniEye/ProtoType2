@@ -1,4 +1,4 @@
-1. Leire og vektmaterialer/1.7 Vektmaterialer/_.txt
+﻿1. Leire og vektmaterialer/1.7 Vektmaterialer/_.txt
 
 <last>
 1. Leire og vektmaterialer/1.6 Bentonitt
@@ -13,7 +13,7 @@
 </title>
 
 <text>
-her vil det kommer mer i l�pet av tiden
-
+her vil det kommer mer i løpet av tiden
+æøå
 sees senere
 </text>

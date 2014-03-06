@@ -1,19 +1,19 @@
-1. Leire og vektmaterialer/1.4 Leirmineraler/_.txt
+﻿3. Testing av vannbasert boreslam/3.2 Kjemisk analyse av vannbasert boreslam/_.txt
 
 <last>
-1. Leire og vektmaterialer/1.3 Strukturer til leirmineraler
+3. Testing av vannbasert boreslam/3.1 Fysiske tester
 </last>
 
 <next>
-1. Leire og vektmaterialer/1.5 Leire i boreslam
+4. Boreslam
 </next>
 
 <title>
-1.4 Leirmineraler
+3. Testing av vannbasert boreslam/3.2 Kjemisk analyse av vannbasert boreslam
 </title>
 
 <text>
-her vil det kommer mer i l�pet av tiden
-
+her vil det kommer mer i løpet av tiden
+æøå
 sees senere
 </text>
