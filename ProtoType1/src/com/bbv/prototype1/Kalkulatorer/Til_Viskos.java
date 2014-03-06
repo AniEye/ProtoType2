@@ -2,13 +2,16 @@ package com.bbv.prototype1.Kalkulatorer;
 
 import com.bbv.prototype1.R;
 import android.content.Context;
+import android.util.Log;
 import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class Til_Viskos extends Basic_Calc {
 	LinearLayout _linLay;
+	Toast toast;
 	Button _clear, _update;
 	int[] _textFieldsStatus = { 0, 0, 0 };
 	OnFocusChangeListener focChan;
@@ -158,6 +161,18 @@ public class Til_Viskos extends Basic_Calc {
 		case TIL_VISK_INDEX:// tilvisk
 			theAnswer = (float) ((300.0 * fieldStatuses[0]) / fieldStatuses[1]);
 			break;
+		}
+		if(Float.isInfinite(theAnswer) || Float.isNaN(theAnswer)){
+			Log.println(Log.ERROR, "calc", "Til_Viskos tried to divide by 0!");
+			try {
+				toast.getView().isShown(); // true if visible
+				toast.setText("You can't divide by 0!");
+			} catch (Exception e) { // invisible if exception
+				toast = Toast.makeText(getContext(),
+						"You can't divide by 0!", Toast.LENGTH_SHORT);
+			}
+				toast.show();
+				return "";
 		}
 		if (theAnswer != 0)
 			return String.format("%.3f", theAnswer);

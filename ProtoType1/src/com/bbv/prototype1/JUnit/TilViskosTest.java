@@ -14,7 +14,7 @@ public class TilViskosTest extends AndroidTestCase {
 	float THETA1=0, RPM1=600, TV1=60; //Theta = 120.0
 	float THETA2=45.5f, RPM2=0, TV2=100; //RPM = 136.5
 	float THETA3=40, RPM3=300, TV3=0; //TV= 40.0
-	
+		
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -37,7 +37,12 @@ public class TilViskosTest extends AndroidTestCase {
 		//Testing TV
 		assertEquals("40.000", test.calculation(2, variables3));
 		assertEquals("40.000", test.calculation(2, THETA3, RPM3, TV3));
-
+		
+		//Testing that program catches dividing with 0 errors
+		float[] variablesDivideBy0 = {0,0,0};
+		assertEquals("", test.calculation(0, variablesDivideBy0));
+		assertEquals("", test.calculation(1, variablesDivideBy0));
+		assertEquals("", test.calculation(2, variablesDivideBy0));
 		
 	}
 

@@ -2,13 +2,16 @@ package com.bbv.prototype1.Kalkulatorer;
 
 import com.bbv.prototype1.R;
 import android.content.Context;
+import android.util.Log;
 import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class Flytegrense extends Basic_Calc {
 
+	Toast toast;
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
@@ -46,6 +49,20 @@ public class Flytegrense extends Basic_Calc {
 			theAnswer = (2*T3) - FG;
 			break;
 		}
+		
+		if(Float.isInfinite(theAnswer) || Float.isNaN(theAnswer)){
+			Log.println(Log.ERROR, "calc", "Flytegrense tried to divide by 0!");
+			try {
+				toast.getView().isShown(); // true if visible
+				toast.setText("You can't divide by 0!");
+			} catch (Exception e) { // invisible if exception
+				toast = Toast.makeText(getContext(),
+						"You can't divide by 0!", Toast.LENGTH_SHORT);
+			}
+				toast.show();
+				return "";
+		}
+		
 		if (theAnswer != 0)
 			return String.format("%.3f", theAnswer);
 		else
