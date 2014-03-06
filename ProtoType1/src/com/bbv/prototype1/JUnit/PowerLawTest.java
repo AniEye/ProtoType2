@@ -8,9 +8,8 @@ import junit.framework.TestCase;
 
 public class PowerLawTest extends AndroidTestCase {
 	Basic_Calc test;
-	float[] variables1 = {100, 50, 0 , 0}; 
-	float[] variables2 = {100, 50, 0.245f, 0}; 
-
+	float[] variables1 = { 100, 50, 0, 0 };
+	float[] variables2 = { 100, 50, 0.245f, 0 };
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -18,15 +17,22 @@ public class PowerLawTest extends AndroidTestCase {
 	}
 
 	public void testCalculation() {
-		
-		//Testing n 
+
+		// Testing n
 		assertEquals("0.245", test.calculation(2, variables1));
-		
-		//Testing k fails and displays LogCat message
+
+		// Testing k fails and displays LogCat message
 		assertEquals("", test.calculation(3, variables1));
-		
-		//Testing k doesn't fail
+
+		// Testing k doesn't fail
 		assertEquals("28.443", test.calculation(3, variables2));
+
+		// Testing that the program catches dividing with 0 errors
+		float[] variablesDivideBy0 = { 0, 0, 0, 0 };
+		assertEquals("", test.calculation(0, variablesDivideBy0));
+		assertEquals("", test.calculation(1, variablesDivideBy0));
+		assertEquals("", test.calculation(2, variablesDivideBy0));
+		assertEquals("", test.calculation(3, variablesDivideBy0));
 	}
 
 }

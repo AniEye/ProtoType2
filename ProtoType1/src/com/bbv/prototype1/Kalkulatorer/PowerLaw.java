@@ -5,11 +5,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bbv.prototype1.R;
 
 public class PowerLaw extends Basic_Calc {
 
+	Toast toast;
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
@@ -93,10 +95,30 @@ public class PowerLaw extends Basic_Calc {
 			break;
 
 		}
+		
+		if(!testFloat(theAnswer))
+			return "";
+		
 		if (theAnswer != 0)
 			return String.format("%.3f", theAnswer);
 		else
 			return "";
+	}
+	
+	private boolean testFloat(float x){
+		if(Float.isInfinite(x) || Float.isNaN(x)){
+			Log.println(Log.ERROR, "calc", "Til_Viskos tried to divide by 0!");
+			try {
+				toast.getView().isShown(); // true if visible
+				toast.setText("You can't divide by 0!");
+			} catch (Exception e) { // invisible if exception
+				toast = Toast.makeText(getContext(),
+						"You can't divide by 0!", Toast.LENGTH_SHORT);
+			}
+				toast.show();
+				return false;
+		}
+		return true;
 	}
 
 	protected float calcK(float T6, float n) {
