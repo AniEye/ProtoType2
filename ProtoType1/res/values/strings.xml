@@ -29,19 +29,13 @@
         <item>Flytegrense (FG)</item>
         <item>Eksponent modellen (Power law)</item>
         <item>Herchel Burkley-modellen</item>
-        <item>Darcy"'""s lov for filtertap</item>
-        <item>Statisk filtrering</item>
-        <item>Filtertap - var. med tid</item>
-        <item>Filtertap - var. med trykk</item>
-        <item>Filtertap - var. med temp</item>
         <item>Spesifikk tetthet</item>
         <item>Klorinnhold</item>
+        
     </string-array>
-
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>
 
     <string-array name="test_array">
-
         <item>This</item>
         <item>Ended</item>
         <item>Up</item>

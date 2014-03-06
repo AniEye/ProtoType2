@@ -38,7 +38,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		try {
 			lastChoice = loadLC(); // Loads the last chosen calculator
 		} catch (NullPointerException e) {
-			Log.println(Log.ERROR, "TryCatch", "Error with SharedPreferences!");
+			Log.println(Log.ERROR, "TryCatch", "Error with SharedPreferences in kalkulator!");
 		}
 
 		setContentView(R.layout.activity_calculator);
@@ -136,22 +136,22 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			// calc = new Hersch_model(lLayout.getContext());
 			break;
 		case 6:
-			// calc = new Darcy_filtertap(lLayout.getContext());
+			calc = new Spess_tetthet(lLayout.getContext());
 			break;
 		case 7:
-			// calc = new Stat_filtrering(lLayout.getContext());
+			// calc = new Darcy_filtertap(lLayout.getContext());
 			break;
 		case 8:
-			// calc = new Filtertap_Tid(lLayout.getContext());
+			// calc = new Stat_filtrering(lLayout.getContext());
 			break;
 		case 9:
-			// calc = new Filtertap_Trykk(lLayout.getContext());
+			// calc = new Filtertap_Tid(lLayout.getContext());
 			break;
 		case 10:
-			// calc = new Filtertap_Temp(lLayout.getContext());
+			// calc = new Filtertap_Trykk(lLayout.getContext());
 			break;
 		case 11:
-			calc = new Spess_tetthet(lLayout.getContext());
+			// calc = new Filtertap_Temp(lLayout.getContext());
 			break;
 		case 12:
 			// calc = new Klorinnhold(lLayout.getContext());
