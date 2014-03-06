@@ -74,15 +74,23 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="K [lbs/100 ft^2/s] = "
+            android:text="K [lbs/100 ft^2/s]"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
             android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tvPLNOTPA"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
@@ -101,19 +109,27 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="K [Pa] = "
+            android:text="K [Pa]"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvm666"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
             android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tvPLPA"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -132,11 +148,19 @@
             android:textSize="16dp" />
 
         <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
+            android:textSize="16dp" />
+
+        <TextView
             android:id="@+id/tvPLEks"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>

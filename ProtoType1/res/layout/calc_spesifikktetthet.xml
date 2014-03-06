@@ -157,15 +157,23 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Pf (spesifikk tetthet til filtratet) = "
+            android:text="Pf (spesifikk tetthet til filtratet)"
+            android:textSize="16dp" />
+        
+          <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
             android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tvSpessTettPf"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
@@ -184,15 +192,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Vs (oppløst vann i slammet, [volum%]) = "
+            android:text="Vs (oppløst vann i slammet, [volum%])"
             android:textSize="16dp" />
 
+          <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
+            android:textSize="16dp" />
         <TextView
             android:id="@+id/tvSpessTettVs"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
@@ -211,15 +226,23 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Vsf (salt i filtratet, [volum%]) = "
+            android:text="Vsf (salt i filtratet, [volum%]) "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
             android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tvSpessTettVsf"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
