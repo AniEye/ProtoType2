@@ -3,26 +3,25 @@ package com.bbv.prototype1.Kalkulatorer;
 import com.bbv.prototype1.R;
 import android.content.Context;
 import android.view.*;
+import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 public class Plast_Viskos extends Basic_Calc {
-	LinearLayout _linLay;
-	Button _clear, _update;
+
 	int[] _textFieldsStatus = { 0, 0, 0 };
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	final int clearButton = R.id.bPlasViskosClear;
-	final int updateButton = R.id.bPlasViskosUpdate;
-
-	final int textField1 = R.id.etViskosPlas;
-	final int textField2 = R.id.etPlasViskTheta600;
-	final int textField3 = R.id.etPlasviskTheta300;
+	final int clearButtonID = R.id.bPlasViskosClear;
+	final int updateButtonID = R.id.bPlasViskosUpdate;
+	final int layout = R.layout.calc_viskositet_plastisk;
 	
+	final int[] IDs = {R.id.etViskosPlas,  R.id.etPlasViskTheta600, R.id.etPlasviskTheta300};
+
 	public final static int PV_INDEX = 0, T6_INDEX = 1, T3_INDEX = 2;
-	EditText[] textFields = new EditText[_textFieldsStatus.length];
 
 	public Plast_Viskos(Context context) {
 		super(context);
@@ -30,14 +29,45 @@ public class Plast_Viskos extends Basic_Calc {
 		Initialize();
 	}
 
+
+	@Override
+	public String calculation(int variableToCalculate, float... fieldStatuses) {
+
+		float PV = fieldStatuses[0];
+		float T6 = fieldStatuses[1];
+		float T3 = fieldStatuses[2];
+
+		float theAnswer = 0;
+		switch (variableToCalculate) {
+		case PV_INDEX:
+			theAnswer = T6 - T3;
+			break;
+		case T6_INDEX:
+			theAnswer = PV + T3;
+			break;
+		case T3_INDEX:
+			theAnswer = T6 - PV;
+			break;
+		}
+		if (theAnswer != 0)
+			return String.format("%.3f", theAnswer);
+		else
+			return "";
+	}
+
+	
 	@Override
 	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(R.layout.calc_viskositet_plastisk);
-		textFields[0] = FindAndReturnEditText(textField1, focChan);
-		textFields[1] = FindAndReturnEditText(textField2, focChan);
-		textFields[2] = FindAndReturnEditText(textField3, focChan);
-		_clear = FindAndReturnButton(clearButton, cliLis);
-		_update = FindAndReturnButton(updateButton, cliLis);
+		_linLay = setAndGetLinearLayout(layout);
+
+		textFields = new EditText[IDs.length];
+		_textFieldsStatus = new int[IDs.length];
+		
+		for (int i=0; i<IDs.length;i++)
+			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
+		
+		_clear = FindAndReturnButton(clearButtonID, cliLis);
+		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 	@Override
@@ -48,11 +78,11 @@ public class Plast_Viskos extends Basic_Calc {
 			@Override
 			public void onClick(View v) {
 				switch (v.getId()) {
-				case clearButton:
+				case clearButtonID:
 					ResetFields(textFields);
-					_textFieldsStatus = new int[] { 0, 0, 0 };
+					_textFieldsStatus = new int[IDs.length];
 					break;
-				case updateButton:
+				case updateButtonID:
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
 						try {
@@ -72,17 +102,12 @@ public class Plast_Viskos extends Basic_Calc {
 
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				switch (v.getId()) {
-				case textField1:
-					FocusChange(0, hasFocus);
-					break;
-				case textField2:
-					FocusChange(1, hasFocus);
-					break;
-				case textField3:
-					FocusChange(2, hasFocus);
-					break;
+				
+				for(int i=0; i<IDs.length; i++){
+					if(v.getId() == IDs[i])
+						FocusChange(i, hasFocus);
 				}
+				
 			}
 		};
 	}
@@ -142,28 +167,4 @@ public class Plast_Viskos extends Basic_Calc {
 		}
 	}
 
-	@Override
-	public String calculation(int variableToCalculate, float... fieldStatuses) {
-
-		float PV = fieldStatuses[0];
-		float T6 = fieldStatuses[1];
-		float T3 = fieldStatuses[2];
-
-		float theAnswer = 0;
-		switch (variableToCalculate) {
-		case PV_INDEX:
-			theAnswer = T6 - T3;
-			break;
-		case T6_INDEX:
-			theAnswer = PV + T3;
-			break;
-		case T3_INDEX:
-			theAnswer = T6 - PV;
-			break;
-		}
-		if (theAnswer != 0)
-			return String.format("%.3f", theAnswer);
-		else
-			return "";
-	}
 }
