@@ -11,28 +11,29 @@ import android.widget.Toast;
 
 import com.bbv.prototype1.R;
 
-public class PowerLaw extends Basic_Calc {
+public class Herch_Law extends Basic_Calc {
 
 	Toast toast;
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	final int clearButtonID = R.id.bPLClear;
-	final int updateButtonID = R.id.bPLUpdate;
-	final int layout = R.layout.calc_powerlaw;
+	final int clearButtonID = R.id.bMPLClear;
+	final int updateButtonID = R.id.bMPLUpdate;
+	final int layout = R.layout.calc_modpowerlaw;
 
-	TextView K_notPA;
-	TextView K_PA;
+	TextView tvK;
+	TextView tvEksY;
 	TextView tvskj;
-	TextView tvEksponent;
+	TextView tvEks;
+	TextView tvT0;
 
-	final int[] IDs = { R.id.etPowerLawT100, R.id.etPowerLaw600,
-			R.id.etPowerLawN };
+	final int[] IDs = { R.id.etModPowerLawT600, R.id.etModPowerLawT300,
+			R.id.etMODPowerLawN };
 
-	public final static int T1_INDEX = 0, T6_INDEX = 1, N_INDEX = 2;
+	public final static int T6_INDEX = 0, T3_INDEX = 1, N_INDEX = 2;
 
-	public PowerLaw(Context context) {
+	public Herch_Law(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -41,9 +42,11 @@ public class PowerLaw extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		float T1 = fieldStatuses[0];
-		float T6 = fieldStatuses[1];
+		float T6 = fieldStatuses[0];
+		float T3 = fieldStatuses[1];
 		float N;
+		float T0;
+		float ty;
 		float K;
 		float Y;
 		float T;
@@ -51,25 +54,27 @@ public class PowerLaw extends Basic_Calc {
 		float theAnswer = 0;
 		switch (variableToCalculate) {
 
-		case T1_INDEX:
-			Log.println(Log.ERROR, "calc",
-					"Tried to calculate T1, and this should not happen!");
-			break;
 		case T6_INDEX:
 			Log.println(Log.ERROR, "calc",
 					"Tried to calculate T6, and this should not happen!");
 			break;
+		case T3_INDEX:
+			Log.println(Log.ERROR, "calc",
+					"Tried to calculate T3, and this should not happen!");
+			break;
 		case N_INDEX:
 
-			N = calcN(T1, T6);
-			K = calcK(T6, N);
+			T0 = calcT0(T6, T3);
+			ty = calcTy(T0);
+			N = calcN(T6, T3, T0);
+			K = calcK(T6, T0, N);
 			Y = calcY(T6);
-			T = calcT(K, Y, N);
+			T = calcT(ty, K, Y, N);
 
-			float[] testFloats = {N, K, Y, T };
+			float[] testFloats = { T0, ty, N, K, Y, T };
 			boolean floatIsFine = true;
 			for (int i = 0; i < testFloats.length; i++) {
-				//Displays a toast saying that there was an error if any value returned NaN or infinity
+
 				if (testFloat(testFloats[i]) == false)
 					floatIsFine = false;
 			}
@@ -77,29 +82,57 @@ public class PowerLaw extends Basic_Calc {
 			if (floatIsFine == false)
 				return "";
 
-			Log.println(Log.INFO, "calc", "Setting textviews in Powerlaw!");
+			Log.println(Log.INFO, "calc", "Setting textviews in Modpowerlaw!");
 
+			String _T0 = String.format("%.3f", T0);
+			String _ty = String.format("%.3f", ty);
 			String _K = String.format("%.3f", K);
-			String _KPA = String.format("%.3f", K*0.511f);
 			String _Y = String.format("%.3f", Y);
 			String _T = String.format("%.3f", T);
-			
-			K_notPA.setText(_K);
+
+			tvK.setText(_K);
+			tvEksY.setText(_ty);
 			tvskj.setText(_Y);
-			K_PA.setText(_KPA);
-			tvEksponent.setText(_T);
+			tvEks.setText(_T);
+			tvT0.setText(_T0);
 
 			return String.format("%.3f", N);
 
 		}
 
 		return "";
+	}
 
+	public float calcTy(float t0) {
+		return t0 * 0.511f;
+	}
+
+	public float calcT0(float t6, float t3) {
+		return (2 * t3) - t6;
+	}
+
+	public float calcN(float t6, float t3, float t0) {
+		return (float) (3.32 * Math.log10((t6 - t0) / (t3 - t0)));
+	}
+
+	public float calcK(float t6, float t0, float n) {
+		return (float) (0.511 * ((t6 - t0) / Math.pow(1022, n)));
+	}
+
+	public float calcY(float t6) {
+		return (float) (1.7023 * t6);
+	}
+
+	public float calcT(float ty, float K, float Y, float N) {
+		return (float) (ty + (K * Math.pow(Y, N)));
 	}
 
 	private boolean testFloat(float x) {
+		/**
+		 * Returns false if float is NaN or infinite! Returns true if okay
+		 */
 		if (Float.isInfinite(x) || Float.isNaN(x)) {
-			Log.println(Log.ERROR, "calc", "Til_Viskos tried to divide by 0!");
+			Log.println(Log.ERROR, "calc", "ModPowerLaw tried to divide by 0!");
 			try {
 				toast.getView().isShown(); // true if visible
 				toast.setText("You can't divide by 0!");
@@ -111,22 +144,6 @@ public class PowerLaw extends Basic_Calc {
 			return false;
 		}
 		return true;
-	}
-
-	public float calcN(float T100, float T6) {
-		return (float) (Math.log10(T100/T6)/Math.log10(170/10));
-	}
-
-	public float calcY(float T6) {
-		return T6 * 1.7023f;
-	}
-
-	public float calcT(float K, float Y, float N) {
-		return (float) (K*Math.pow(Y, N));
-	}
-
-	public float calcK(float T6, float n) {
-		return (float) (T6 / Math.pow(10, n));
 	}
 
 	@Override
@@ -141,10 +158,11 @@ public class PowerLaw extends Basic_Calc {
 
 		textFields[2].setEnabled(false);
 
-		K_PA = (TextView) findViewById(R.id.tvPLPA);
-		K_notPA = (TextView) findViewById(R.id.tvPLNOTPA);
-		tvEksponent = (TextView) findViewById(R.id.tvPLEks);
-		tvskj = (TextView) findViewById(R.id.tvPLskj);
+		tvK = (TextView) findViewById(R.id.tvMPLK);
+		tvEksY = (TextView) findViewById(R.id.tvMPLEksY);
+		tvEks = (TextView) findViewById(R.id.tvMPLEks);
+		tvT0 = (TextView) findViewById(R.id.tvMPLT0);
+		tvskj = (TextView) findViewById(R.id.tvMPLskj);
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -162,9 +180,10 @@ public class PowerLaw extends Basic_Calc {
 					ResetFields(textFields);
 
 					textFields[2].setEnabled(false);
-					K_PA.setText("");
-					K_notPA.setText("");
-					tvEksponent.setText("");
+					tvK.setText("");
+					tvEksY.setText("");
+					tvEks.setText("");
+					tvT0.setText("");
 					tvskj.setText("");
 
 					_textFieldsStatus = new int[IDs.length];

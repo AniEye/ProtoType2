@@ -133,7 +133,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			calc = new PowerLaw(lLayout.getContext());
 			break;
 		case 5:
-			// calc = new Hersch_model(lLayout.getContext());
+			calc = new Herch_Law(lLayout.getContext());
 			break;
 		case 6:
 			calc = new Spess_tetthet(lLayout.getContext());

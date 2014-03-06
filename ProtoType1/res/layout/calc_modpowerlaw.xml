@@ -10,21 +10,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="20sp"
-        android:src="@drawable/powerlaw_icon" />
+        android:src="@drawable/mod_powerlaw_icon" />
 
     <TextView
         android:id="@+id/tvm1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/theta100" />
+        android:text="@string/theta600" />
 
     <EditText
-        android:id="@+id/etPowerLawT100"
+        android:id="@+id/etModPowerLawT600"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/theta100"
+        android:hint="@string/theta600"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -33,14 +33,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/theta600" />
+        android:text="@string/theta300" />
 
     <EditText
-        android:id="@+id/etPowerLaw600"
+        android:id="@+id/etModPowerLawT300"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/theta600"
+        android:hint="@string/theta300"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -52,7 +52,7 @@
         android:text="n" />
 
     <EditText
-        android:id="@+id/etPowerLawN"
+        android:id="@+id/etMODPowerLawN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -60,6 +60,41 @@
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/theta0"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvMPLT0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text=""
+            android:textSize="16dp" />
+    </LinearLayout>
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="K [lbs/100 ft^2/s]"
+            android:text="K [Pa * s^n]"
             android:textSize="16dp" />
 
         <TextView
@@ -86,42 +121,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvPLNOTPA"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="left|center_vertical"
-            android:text=""
-            android:textSize="16dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:weightSum="2" >
-
-        <TextView
-            android:id="@+id/tvm6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="K [Pa]"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/tvm666"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text=" = "
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/tvPLPA"
+            android:id="@+id/tvMPLK"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -148,7 +148,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvm6"
+            android:id="@+id/tvm666"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -156,7 +156,42 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvPLskj"
+            android:id="@+id/tvMPLskj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text=""
+            android:textSize="16dp" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/eksponentY"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvm666"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvMPLEksY"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -191,7 +226,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvPLEks"
+            android:id="@+id/tvMPLEks"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -208,13 +243,13 @@
         android:paddingTop="5dp" >
 
         <Button
-            android:id="@+id/bPLUpdate"
+            android:id="@+id/bMPLUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update" />
 
         <Button
-            android:id="@+id/bPLClear"
+            android:id="@+id/bMPLClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Clear" />

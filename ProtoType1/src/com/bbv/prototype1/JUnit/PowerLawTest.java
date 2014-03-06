@@ -1,14 +1,15 @@
 package com.bbv.prototype1.JUnit;
 
-import com.bbv.prototype1.Kalkulatorer.Basic_Calc;
+import android.test.AndroidTestCase;
+
 import com.bbv.prototype1.Kalkulatorer.PowerLaw;
 
-import android.test.AndroidTestCase;
-import junit.framework.TestCase;
-
 public class PowerLawTest extends AndroidTestCase {
-	Basic_Calc test;
-	float[] variables1 = { 100, 50, 0, 0 };
+	PowerLaw test;
+	float epsilon = 0.0001f; // Sets the standard for how much the float values
+								// can diviate.
+
+	float[] variables1 = { 100, 50, 0, 0, 0 };
 	float[] variables2 = { 100, 50, 0.245f, 0 };
 
 	protected void setUp() throws Exception {
@@ -17,22 +18,21 @@ public class PowerLawTest extends AndroidTestCase {
 	}
 
 	public void testCalculation() {
-
-		// Testing n
-		assertEquals("0.245", test.calculation(2, variables1));
-
-		// Testing k fails and displays LogCat message
-		assertEquals("", test.calculation(3, variables1));
-
-		// Testing k doesn't fail
-		assertEquals("28.443", test.calculation(3, variables2));
-
-		// Testing that the program catches dividing with 0 errors
-		float[] variablesDivideBy0 = { 0, 0, 0, 0 };
-		assertEquals("", test.calculation(0, variablesDivideBy0));
-		assertEquals("", test.calculation(1, variablesDivideBy0));
-		assertEquals("", test.calculation(2, variablesDivideBy0));
-		assertEquals("", test.calculation(3, variablesDivideBy0));
+		/**
+		 * Returns false if float is NaN or infinite! Returns true if okay
+		 */
+		// Testing n to successfully calculate
+		float N = (float) ((Math.log10(80/40) / (Math.log10(170 / 10))));
+		assertEquals(N, test.calcN(80, 40), epsilon);
+		// Testing K to successfully calculate
+		float K = (float) (200 / Math.pow(10, 4));
+		assertEquals(K, test.calcK(200, 4), epsilon);
+		// Testing Y successfully calculates
+		float Y = (float) (600 * 1.7023);
+		assertEquals(Y, test.calcY(600), epsilon);
+		// Testing t successfully calculates
+		float T = (float) (35 * Math.pow(20, 4));
+		assertEquals(T, test.calcT(35, 20, 4), epsilon);
 	}
 
 }
