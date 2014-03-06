@@ -1,5 +1,6 @@
 package com.bbv.prototype1.Kalkulatorer;
 
+import junit.framework.Assert;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -25,9 +26,9 @@ public class Spess_tetthet extends Basic_Calc {
 	TextView tvVs;
 	TextView tvVsf;
 
-	final int[] IDs = { R.id.etSpessTettPp, R.id.etSpessTettPm,
+	final int[] IDs = { R.id.etSpessTettPp, R.id.etSpessTettCL, R.id.etSpessTettPm,
 			R.id.etSpessTettPo, R.id.etSpessTettVv, R.id.etSpessTettVo,
-			R.id.etSpessTettFw, R.id.etSpessTettVfs, R.id.etSpessTettCL };
+			R.id.etSpessTettFw, R.id.etSpessTettVfs};
 
 	public final static int Pp_INDEX = 0;
 
@@ -39,15 +40,14 @@ public class Spess_tetthet extends Basic_Calc {
 
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
-
-		float Pp = fieldStatuses[0];
-		float Pm = fieldStatuses[1];
-		float Po = fieldStatuses[2];
-		float Vv = fieldStatuses[3];
-		float Vo = fieldStatuses[4];
-		float Fw = fieldStatuses[5];
-		float Vfs = fieldStatuses[6];
-		float Cl = fieldStatuses[7];
+		
+		float Cl = fieldStatuses[1];
+		float Pm = fieldStatuses[2];
+		float Po = fieldStatuses[3];
+		float Vv = fieldStatuses[4];
+		float Vo = fieldStatuses[5];
+		float Fw = fieldStatuses[6];
+		float Vfs = fieldStatuses[7];
 
 		float Pf = 0, Vs = 0, Vsf = 0;
 
@@ -58,20 +58,34 @@ public class Spess_tetthet extends Basic_Calc {
 			float[] PfAndVsf = calcPfOrVsf(Cl);
 
 			Pf = PfAndVsf[0];
+			Log.println(Log.DEBUG, "calc", "Spesstetthet calculated Pf to be " + Pf);
 			tvPf.setText(String.format("%.3f", Pf));
 
 			Vsf = PfAndVsf[1];
+			Log.println(Log.DEBUG, "calc", "Spesstetthet calculated Vsf to be " + Vsf);
 			tvVsf.setText(String.format("%.3f", Vsf));
 
 			Vs = calcVs(Vsf, Fw);
+			Log.println(Log.DEBUG, "calc", "Spesstetthet calculated Vs to be " + Vs);
 			tvVs.setText(String.format("%.3f", Vs));
 
 			if (Pf == 0 || Vsf == 0 || Vs == 0) {
 				Log.println(Log.INFO, "calc",
 						"SpessTetthet got a value of Cl not between 5000 and 86656");
-			} else
-				theAnswer = ((100 * Pm) - (Pf * (Vv + Vsf) + Po * Vo))
+			} else if (Vfs == Vs) { //Catches dividing with 0 error
+				showToast("Vfs is equal to Vs! Can't divide with 0!");
+				Log.println(Log.ERROR,
+				"calc",
+				"Spess_Tetthet got a dividing with 0 error!"
+						+ "\nIgnore if running JUnit tests");
+				return "";
+			}
+			else{
+				theAnswer = ((100f * Pm) - (Pf * (Vv + Vsf) + Po * Vo))
 						/ (Vfs - Vs);
+				Log.println(Log.INFO,"calc" , "SpessTetthet calculated an answer! It was " + theAnswer);
+			}
+				
 
 		} else {
 			Log.println(
@@ -93,82 +107,47 @@ public class Spess_tetthet extends Basic_Calc {
 		 * "Øvinger i Bore- og brønnteknikk"
 		 */
 
+		float[] Cl_values = { 5000f, 10000f, 20000f, 30000f, 40000f, 60000f, 80000f,
+				100000f, 120000f, 140000f, 160000f, 180000f, 186650f };
+		float[] Pf_values = { 0.3f, 0.6f, 1.2f, 1.8f, 2.3f, 3.4f, 4.5f, 5.7f,
+				7.0f, 8.2f, 9.5f, 10.8f, 11.4f };
+		float[] Vsf_values = { 1.004f, 1.010f, 1.021f, 1.032f, 1.043f, 1.065f,
+				1.082f, 1.098f, 1.129f, 1.149f, 1.170f, 1.194f, 1.197f };
+
 		float Pf = 0;
 		float Vsf = 0;
 
-		if (cl < 5000) {
-			try {
-				toast.getView().isShown(); // true if visible
-				toast.setText("Cl må være mer enn 5000!");
-			} catch (Exception e) { // invisible if exception
-				toast = Toast.makeText(getContext(),
-						"Cl må være mer enn 5000!", Toast.LENGTH_SHORT);
-			}
-			toast.show();
-		} else if (cl < 10000) {
-			Pf = (float) (0.3 + (0.6 - 0.3) * ((cl - 5000) / (10000 - 5000)));
-			Vsf = (float) (1.004f + (1.010f - 1.004f)
-					* ((cl - 5000) / (10000 - 5000)));
-		} else if (cl < 20000) {
-			Pf = (float) (0.6 + (1.2 - 0.6) * ((cl - 10000) / (20000 - 10000)));
-			Vsf = (float) (1.010 + (1.021 - 1.010)
-					* ((cl - 10000) / (20000 - 10000)));
-		} else if (cl < 30000) {
-			Pf = (float) (1.2 + (1.8 - 1.2) * ((cl - 20000) / (30000 - 20000)));
-			Vsf = (float) (1.021 + (1.032 - 1.021)
-					* ((cl - 20000) / (30000 - 20000)));
-		} else if (cl < 40000) {
-			Pf = (float) (1.8 + (2.3 - 1.8) * ((cl - 30000) / (40000 - 30000)));
-			Vsf = (float) (1.032 + (1.043 - 1.032)
-					* ((cl - 30000) / (40000 - 30000)));
-		} else if (cl < 60000) {
-			Pf = (float) (2.3 + (3.4 - 2.3) * ((cl - 40000) / (60000 - 40000)));
-			Vsf = (float) (1.043 + (1.065 - 1.043)
-					* ((cl - 40000) / (60000 - 40000)));
-		} else if (cl < 80000) {
-			Pf = (float) (3.4 + (4.5 - 3.4) * ((cl - 60000) / (80000 - 60000)));
-			Vsf = (float) (1.065 + (1.082 - 1.065)
-					* ((cl - 60000) / (80000 - 60000)));
-		} else if (cl < 100000) {
-			Pf = (float) (4.5 + (5.7 - 4.5) * ((cl - 80000) / (100000 - 80000)));
-			Vsf = (float) (1.082 + (1.098 - 1.082)
-					* ((cl - 80000) / (100000 - 80000)));
-		} else if (cl < 120000) {
-			Pf = (float) (5.7 + (7.0 - 5.7)
-					* ((cl - 100000) / (120000 - 100000)));
-			Vsf = (float) (1.098 + (1.129 - 1.098)
-					* ((cl - 100000) / (120000 - 100000)));
-		} else if (cl < 140000) {
-			Pf = (float) (7.0 + (8.2 - 7.0)
-					* ((cl - 120000) / (140000 - 120000)));
-			Vsf = (float) (1.129 + (1.149 - 1.129)
-					* ((cl - 120000) / (140000 - 120000)));
-		} else if (cl < 160000) {
-			Pf = (float) (8.2 + (9.5 - 8.2)
-					* ((cl - 140000) / (160000 - 140000)));
-			Vsf = (float) (1.149 + (1.170 - 1.149)
-					* ((cl - 140000) / (160000 - 140000)));
-		} else if (cl < 180000) {
-			Pf = (float) (9.5 + (10.8 - 9.5)
-					* ((cl - 160000) / (180000 - 160000)));
-			Vsf = (float) (1.170 + (1.194 - 1.170)
-					* ((cl - 160000) / (180000 - 160000)));
-		} else if (cl <= 186650) {
-			Pf = (float) (10.8 + (11.4 - 10.8)
-					* ((cl - 180000) / (186650 - 180000)));
-			Vsf = (float) (1.194 + (1.197 - 1.194)
-					* ((cl - 180000) / (186650 - 180000)));
+		if (cl < 5000) { // Cl cannot be less than 5000
+			showToast("Cl må være mer enn 5000!");
+		} else if (cl > 186650) { // Cl cannot be more than 186650
+			showToast("Cl må være mellom 5000 og 186650!");
 		} else {
-			try {
-				toast.getView().isShown(); // true if visible
-				toast.setText("Cl må være mellom 5000 og 186650!");
-			} catch (Exception e) { // invisible if exception
-				toast = Toast
-						.makeText(getContext(),
-								"Cl må være mellom 5000 og 186650!",
-								Toast.LENGTH_SHORT);
+
+			for (int i = 0; i < Cl_values.length; i++) {
+
+				if (cl == Cl_values[i]) {
+					Pf = Pf_values[i];
+					Vsf = Vsf_values[i];
+					break; // Found values, no need to continue
+				} else if (cl < Cl_values[i]) {
+					
+					Pf = Pf_values[i - 1]
+							+ ((Pf_values[i] - Pf_values[i - 1])
+							* ((cl - Cl_values[i - 1]) / (Cl_values[i] - Cl_values[i - 1])));
+					
+					Vsf = Vsf_values[i - 1]
+							+ ((Vsf_values[i] - Vsf_values[i - 1])
+							* ((cl - Cl_values[i - 1]) / (Cl_values[i] - Cl_values[i - 1])));
+					
+					break; // Found values, no need to continue
+
+				}
+
 			}
-			toast.show();
+
+			if (Pf == 0 || Vsf == 0)
+				throw new Error("Something went severly wrong in SpessTetthet");
+
 		}
 
 		float[] returnValue = { Pf, Vsf };
@@ -309,6 +288,17 @@ public class Spess_tetthet extends Basic_Calc {
 				break;
 			}
 		}
+	}
+
+	private void showToast(String message){
+		try {
+			toast.getView().isShown(); // true if visible
+			toast.setText(message);
+		} catch (Exception e) { // invisible if exception
+			toast = Toast.makeText(getContext(),
+					message, Toast.LENGTH_SHORT);
+		}
+		toast.show();
 	}
 
 }

@@ -44,39 +44,43 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 				p1 = fieldStatuses[4];
 
 		float theAnswer = 0;
-		
-		//Catches if dividing by 0
-		if (p2 == p1){
-			try {
-			toast.getView().isShown(); // true if visible
-			toast.setText("P1 kan ikke være lik P2! Du deler på 0!");
-		} catch (Exception e) { // invisible if exception
-			toast = Toast.makeText(getContext(),
-					"P1 kan ikke være lik P2! Du deler på 0!", Toast.LENGTH_SHORT);
-		}
-			toast.show();
+
+		try {
+			
+			switch (variableToCalculate) {
+			case Vv_INDEX:
+				Log.println(Log.DEBUG, "calc", "P1 = " + p1 + "\nP2 = " + p2);
+				theAnswer = v1 * ((p2-pv)/(p1-p2));
+				Log.println(Log.DEBUG, "calc", "The answer = " + theAnswer);
+				break;
+			case V1_INDEX:
+				theAnswer = vv / ((p2-pv)/(p1-p2));
+				break;
+			case p2_INDEX:
+				theAnswer = (((vv*p1)/v1) + pv)/(1+(vv/v1));
+				break;
+			case p1_INDEX:
+				theAnswer = ((v1*(p2-pv)/vv)+p2);
+				break;
+			case Pv_INDEX:
+				theAnswer = p2 - (vv*(p1-p2)/v1);
+				break;
+			}
+			
+		} catch (Exception e) {//Catches if dividing by 0
+			Log.println(Log.ERROR, "calc", "Dividing with 0 error in MasseogVolumBal!" +
+					"\nIgnore if using JUnit test" );
+			showToast("Dividing with 0 error! Try again.");
 			return "";
 		}
-
 		
-		switch (variableToCalculate) {
-		case Vv_INDEX:
-			theAnswer = v1 * ((p2-pv)/(p1-p2));
-			break;
-		case V1_INDEX:
-			theAnswer = vv / ((p2-pv)/(p1-p2));
-			break;
-		case p2_INDEX:
-			theAnswer = (((vv*p1)/v1) + pv)/(1+(vv/v1));
-			break;
-		case p1_INDEX:
-			theAnswer = ((v1*(p2-pv)/vv)+p2);
-			break;
-		case Pv_INDEX:
-			theAnswer = p2 - (vv*(p1-p2)/v1);
-			break;
+		if(Float.isNaN(theAnswer)) {
+			Log.println(Log.ERROR, "calc", "Dividing with 0 error in MasseogVolumBal!" +
+					"\nIgnore if using JUnit test" );
+			showToast("Dividing with 0 error! Try again.");
+			return "";
 		}
-				
+		
 		if (theAnswer != 0)
 			return String.format("%.3f", theAnswer);
 		else
@@ -193,6 +197,17 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 			}
 		}
 	}
+	
 
+	private void showToast(String message) {
+		try {
+			toast.getView().isShown(); // true if visible
+			toast.setText(message);
+		} catch (Exception e) { // invisible if exception
+			toast = Toast.makeText(getContext(),
+					message, Toast.LENGTH_SHORT);
+		}
+			toast.show();
+	}
 
 }
