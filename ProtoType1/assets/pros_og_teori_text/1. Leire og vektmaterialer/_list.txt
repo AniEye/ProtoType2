@@ -18,5 +18,25 @@ Ti
 <Kalkulator>
  - En Kalkulator
 </Kalkulator>
-<link>
-</link>
+
+<actions>
+<intent>
+
+</intent>
+
+<intent>
+
+</intent>
+
+<intent>
+
+</intent>
+
+<intent>
+Kalkulator
+</intent>
+
+<intent>
+
+</intent>
+</actions>

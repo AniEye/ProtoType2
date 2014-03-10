@@ -1,7 +1,8 @@
 package com.bbv.prototype1;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.Intent;
@@ -27,6 +28,8 @@ public class Vis_Teori extends Activity {
 	protected CharSequence _title;
 	protected CharSequence _activity_title;
 	protected Bundle theBundle;
+	protected Fragment_Base _nFB;
+	protected ArrayList<Intent> _intents;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +43,17 @@ public class Vis_Teori extends Activity {
 
 		} catch (Exception e) {
 			theBundle = new Bundle();
-			Log.println(Log.ERROR, "FileView", "Didn't get bundle from pros og teori");
+			Log.println(Log.ERROR, "FileView",
+					"Didn't get bundle from pros og teori");
 		}
 	}
 
 	// this is not fixed up yet
 	private void checkForBundle() {
 
+	}
+	public void setBundle(Bundle newBundle){
+		theBundle = newBundle;
 	}
 
 	private void Initialize(Bundle savedInstanceState) {
@@ -56,10 +63,10 @@ public class Vis_Teori extends Activity {
 		_testArray = getResources().getStringArray(R.array.test_array);
 
 		setListViewArray(_testArray);
-		
+
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-		// helo
+		
 		_actionDrawerToggle = new ActionBarDrawerToggle(this, _drawerLayout,
 				R.drawable.ic_drawer, R.string.drawer_open,
 				R.string.drawer_close) {
@@ -73,13 +80,14 @@ public class Vis_Teori extends Activity {
 				invalidateOptionsMenu();
 			}
 		};
+		
 		_drawerLayout.setDrawerListener(_actionDrawerToggle);
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
 	}
-	
-	public void setListViewArray(String[] list){
+
+	public void setListViewArray(String[] list) {
 		_listView.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
 				list));
 		_listView.setOnItemClickListener(new DrawerItemClickListener());
@@ -154,33 +162,47 @@ public class Vis_Teori extends Activity {
 	}
 
 	protected void selectItem(int position) {
-//		Fragment newFragment = new Fragment_1();
-//		newFragment.setArguments(theBundle);
-//		_title = "This is page 1";
-//		FragmentManager fm = getFragmentManager();
-//		switch (position) {
-//		case 0:
-//			newFragment = new Fragment_1();
-//			
-//			newFragment.setArguments(theBundle);
-//			_title = "This is page 1";
-//			break;
-//		case 1:
-//			newFragment = new Fragment_2();
-//			_title = "This is page 2";
-//			break;
-//		}
-//		fm.beginTransaction().replace(R.id.flViskos, newFragment).commit();
-//		_listView.setItemChecked(position, true);
-//
-//		
-		Fragment_1 newFragment = new Fragment_1();
-		newFragment.setVisTeori(this);
-		_title = "Teori";
+		// Fragment newFragment = new Fragment_1();
+		// newFragment.setArguments(theBundle);
+		// _title = "This is page 1";
+		// FragmentManager fm = getFragmentManager();
+		// switch (position) {
+		// case 0:
+		// newFragment = new Fragment_1();
+		//
+		// newFragment.setArguments(theBundle);
+		// _title = "This is page 1";
+		// break;
+		// case 1:
+		// newFragment = new Fragment_2();
+		// _title = "This is page 2";
+		// break;
+		// }
+		// fm.beginTransaction().replace(R.id.flViskos, newFragment).commit();
+		// _listView.setItemChecked(position, true);
+		//
+		//
 		FragmentManager fm = getFragmentManager();
-		fm.beginTransaction().replace(R.id.flViskos, newFragment).commit();
+
+		switch (position) {
+		case 0:
+			_nFB = new Fragment_Teori();
+			_nFB.setVisTeori(this);
+			_nFB.setBundle(theBundle);
+			_title = "Teori";
+			break;
+		case 1:
+			_nFB = new Fragment_Ovinger();
+			_nFB.setVisTeori(this);
+			_title = "Øvinger";
+		default:
+			goToNextPage(position);
+		}
+
+
+		fm.beginTransaction().replace(R.id.flViskos, _nFB).commit();
 		_listView.setItemChecked(position, true);
-		
+
 		_drawerLayout.closeDrawer(_listView);
 		// if to change the title depending on the selected item do it here
 		setTitle(_title);
@@ -191,6 +213,19 @@ public class Vis_Teori extends Activity {
 		super.onPostCreate(savedInstanceState);
 		// Sync the toggle state after onRestoreInstanceState has occurred.
 		_actionDrawerToggle.syncState();
+	}
+
+	public void setIntentArray(ArrayList<Intent> IntentArray) {
+		_intents = IntentArray;
+	}
+
+	public void goToNextPage(int position) {
+		try {
+			if (_intents.get(position) != null)
+				startActivity(_intents.get(position));
+		} catch (Exception e) {
+			Log.e("Intent", "Could not start Activity");
+		}
 	}
 
 	@Override

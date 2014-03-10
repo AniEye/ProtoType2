@@ -1,13 +1,13 @@
 package com.bbv.prototype1;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,34 +26,29 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class Fragment_1 extends Fragment implements OnClickListener {
+public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 
-	protected FrameLayout _flTextContent;
 	protected Button _Next, _Last;
-	protected View _rootView;
 	protected String _Chapter, _ChapterPart1, _ChapterPart2;
-	protected LinearLayout _LinLay;
-	protected ScrollView _Scroll;
-	protected int _ViewHeight, _ViewWidth;
 	protected Bundle _currentBundle, _nextBundle, _lastBundle;
 	protected AssetManager _as;
-	protected Vis_Teori _visReff;
 	protected Boolean _bTitle = false, _bText = false, _bImage = false,
-			_bNextOrLast = false, _bList = false, _bReadBothfiles = false;
+			_bNextOrLast = false, _bList = false, _bReadBothfiles = false,
+			_bIntent = false;
 	protected StringBuffer _buffer;
 	protected ArrayList<String> _listAL;
 	protected String _filename;
+	protected ArrayList<Intent> _intents;
 
-	//conect fragment list items to links or actions that is to be done when
-	//clicken on one of the options in the list
-	
+	// conect fragment list items to links or actions that is to be done when
+	// clicken on one of the options in the list
+
 	// also put a progress bar to make the user know that the page is still
 	// rendering
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
-		_rootView = inflater.inflate(R.layout.fragment_1, container, false);
+		setRootView(R.layout.fragment_1,inflater, container);
 		Initialize();
 		try {
 			_currentBundle = getActivity().getIntent().getExtras();
@@ -61,8 +56,10 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 			_filename = makeTeoriFileName(_currentBundle) + "_.txt";
 			decodeContentDocument();
 
+			_intents = new ArrayList<Intent>();
 			_filename = makeTeoriFileName(_currentBundle) + "_list.txt";
 			decodeListContent();
+			_visReff.setIntentArray(_intents);
 
 		} catch (Exception e) {
 			Log.e("FileView", "Didn't get bundle");
@@ -78,7 +75,6 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 			BufferedReader reader = new BufferedReader(
 					new InputStreamReader(is));
 
-			_buffer = new StringBuffer();
 			if (is != null) {
 				while ((str = reader.readLine()) != null) {
 
@@ -88,7 +84,8 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 						continue;
 					} else if (str.contains("</title")) {
 						_bTitle = false;
-						createTitle(_buffer.toString());
+						_linlay.addView(createTextView(_buffer.toString(),
+								Color.RED, 35, Gravity.CENTER));
 						continue;
 					} else if (str.contains("<text>")) {
 						_bText = true;
@@ -96,7 +93,8 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 						continue;
 					} else if (str.contains("</text>")) {
 						_bText = false;
-						createTextView(_buffer.toString());
+						_linlay.addView(createTextView(_buffer.toString(),
+								Color.CYAN, 20, Gravity.NO_GRAVITY));
 						continue;
 					} else if (str.contains("<image>")) {
 						_bImage = true;
@@ -104,8 +102,8 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 						continue;
 					} else if (str.contains("</image>")) {
 						_bImage = false;
-						createImageView(makeTeoriFileName(_currentBundle)
-								+ _buffer.toString());
+						_linlay.addView(createImageView(makeTeoriFileName(_currentBundle)
+								+ _buffer.toString()));
 						continue;
 					} else if (str.contains("<next>") || str.contains("<last>")) {
 						_bNextOrLast = true;
@@ -131,7 +129,7 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 			}
 			is.close();
 		} catch (IOException e) {
-			Log.e( "FileView", "Didn't open or find _.txt");
+			Log.e("FileView", "Didn't open or find _.txt");
 		}
 	}
 
@@ -142,7 +140,6 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 			BufferedReader reader = new BufferedReader(
 					new InputStreamReader(is));
 
-			_buffer = new StringBuffer();
 			if (is != null) {
 				while ((str = reader.readLine()) != null) {
 
@@ -154,10 +151,43 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 						_bList = false;
 						_visReff.setListViewArray(arrayListToStringArray(_listAL));
 						continue;
+					} else if (str.contains("<actions>")) {
+
+					} else if (str.contains("</actions>")) {
+
+					} else if (str.contains("<action>")) {
+
+					} else if (str.contains("</action>")) {
+
+					} else if (str.contains("<intent>")) {
+						_bIntent = true;
+						_buffer = new StringBuffer();
+						continue;
+
+					} else if (str.contains("</intent>")) {
+						_bIntent = false;
+						try {
+							Log.e("Intent",
+									"the buffer holds: " + _buffer.toString());
+							Class<?> theClass = Class
+									.forName("com.bbv.prototype1."
+											+ _buffer.toString());
+							Intent newIntent = new Intent(getActivity(),
+									theClass);
+							_intents.add(newIntent);
+						} catch (Exception e) {
+							_intents.add(null);
+							Log.e("Intent", "Intent is empty");
+						}
+						Log.e("Intent", "Length of intent array is: "
+								+ _intents.size());
+						continue;
 					}
 
 					if (_bList) {
 						_listAL.add(str);
+					} else if (_bIntent) {
+						_buffer.append(str);
 					}
 				}
 			}
@@ -172,7 +202,7 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 		_Next.setOnClickListener(this);
 		_Last = (Button) _rootView.findViewById(R.id.bLast);
 		_Last.setOnClickListener(this);
-		_LinLay = (LinearLayout) _rootView.findViewById(R.id.llFrag);
+		setLinearLayout(R.id.llFrag);
 	}
 
 	public Bundle createNewBundle(String filePath) {
@@ -193,30 +223,27 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		_LinLay.removeAllViews();
+		_linlay.removeAllViews();
 		switch (v.getId()) {
 		case R.id.bNext:
 			_currentBundle = _nextBundle;
+			_visReff.setBundle(_currentBundle);
 			break;
 		case R.id.bLast:
 			_currentBundle = _lastBundle;
+			_visReff.setBundle(_currentBundle);
 			break;
 		}
 		_bReadBothfiles = false;
 		_filename = makeTeoriFileName(_currentBundle) + "_.txt";
 		decodeContentDocument();
+		_intents = new ArrayList<Intent>();
 		_filename = makeTeoriFileName(_currentBundle) + "_list.txt";
 		decodeListContent();
+		_visReff.setIntentArray(_intents);
 	}
 
-	protected String[] arrayListToStringArray(ArrayList<String> list) {
-		int length = list.size();
-		String[] array = new String[length];
-		for (int i = 0; i < length; i++) {
-			array[i] = list.get(i);
-		}
-		return array;
-	}
+	
 
 	private String makeTeoriFileName(Bundle theBundle) {
 		String filename = "pros_og_teori_text/";
@@ -234,36 +261,5 @@ public class Fragment_1 extends Fragment implements OnClickListener {
 		return filename;
 	}
 
-	public void createTitle(String text) {
-		TextView addTitle = new TextView(getActivity());
-		addTitle.setText(text);
-		addTitle.setTextColor(Color.RED);
-		addTitle.setGravity(Gravity.CENTER);
-		addTitle.setTextSize(30);
-		_LinLay.addView(addTitle);
-	}
-
-	public void createTextView(String text) {
-		TextView addText = new TextView(getActivity());
-		addText.setText(text);
-		addText.setTextColor(Color.CYAN);
-		_LinLay.addView(addText);
-	}
-
-	public void createImageView(String ImagePath) {
-		try {
-			InputStream iis = getActivity().getAssets().open(ImagePath);
-			ImageView image = new ImageView(getActivity());
-			image.setPadding(0, 10, 0, 10);
-			Bitmap thePicture = BitmapFactory.decodeStream(iis);
-			image.setImageBitmap(thePicture);
-			_LinLay.addView(image);
-		} catch (Exception e) {
-			Log.println(Log.ERROR, "Image", "Image not found");
-		}
-	}
-
-	public void setVisTeori(Vis_Teori vis) {
-		_visReff = vis;
-	}
+	
 }

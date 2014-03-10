@@ -17,3 +17,18 @@ Ti
 <Kalkulator>
  - En Kalkulator
 </Kalkulator>
+<actions>
+
+<intent>
+</intent>
+
+<intent>
+Ovinger
+</intent>
+
+<intent>
+</intent>
+
+<intent>
+</intent>
+</actions>

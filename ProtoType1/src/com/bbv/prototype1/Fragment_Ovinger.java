@@ -1,22 +1,24 @@
 package com.bbv.prototype1;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Fragment_2 extends Fragment{
-	public CharSequence title = "This is page 2";
-	public Fragment_2() {
-		// TODO Auto-generated constructor stub
-	}
+public class Fragment_Ovinger extends Fragment_Base{
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		setRootView(R.layout.fragment_2, inflater, container);
+		Initialize();
+		return _rootView;
+	}
+
+	@Override
+	protected void Initialize() {
 		// TODO Auto-generated method stub
-		View rootView = inflater.inflate(R.layout.fragment_2, container, false);
-		return rootView;
+		
 	}
 
 }
