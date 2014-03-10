@@ -139,22 +139,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			calc = new Spess_tetthet(lLayout.getContext());
 			break;
 		case 7:
-			// calc = new Darcy_filtertap(lLayout.getContext());
-			break;
-		case 8:
-			// calc = new Stat_filtrering(lLayout.getContext());
-			break;
-		case 9:
-			// calc = new Filtertap_Tid(lLayout.getContext());
-			break;
-		case 10:
-			// calc = new Filtertap_Trykk(lLayout.getContext());
-			break;
-		case 11:
-			// calc = new Filtertap_Temp(lLayout.getContext());
-			break;
-		case 12:
-			// calc = new Klorinnhold(lLayout.getContext());
+			calc = new KloridInnhold(lLayout.getContext());
 			break;
 		}
 
