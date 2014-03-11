@@ -22,6 +22,7 @@ public class Spess_tetthet extends Basic_Calc {
 	final int updateButtonID = R.id.bSpessTettUpdate;
 	final int layout = R.layout.calc_spesifikktetthet;
 
+	TextView tvPp;
 	TextView tvPf;
 	TextView tvVs;
 	TextView tvVsf;
@@ -97,8 +98,11 @@ public class Spess_tetthet extends Basic_Calc {
 							+ "\nIgnore if running JUnit tests");
 		}
 
-		if (theAnswer != 0)
+		if (theAnswer != 0){
+			tvPp.setText(String.format("%.3f", theAnswer));
 			return String.format("%.3f", theAnswer);
+		}
+		
 		else
 			return "";
 	}
@@ -136,8 +140,9 @@ public class Spess_tetthet extends Basic_Calc {
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 
-		textFields[0].setEnabled(false);
+		textFields[0].setVisibility(GONE);
 
+		tvPp = (TextView) findViewById(R.id.tvSpessTettPp);
 		tvPf = (TextView) findViewById(R.id.tvSpessTettPf);
 		tvVs = (TextView) findViewById(R.id.tvSpessTettVs);
 		tvVsf = (TextView) findViewById(R.id.tvSpessTettVsf);
@@ -157,9 +162,8 @@ public class Spess_tetthet extends Basic_Calc {
 				case clearButtonID:
 					ResetFields(textFields);
 
-					textFields[0].setEnabled(false); // Sets the field for Pp to
-														// not be enabled for
-														// input
+					textFields[0].setEnabled(false); // Sets the field for Pp to not be enabled for input
+					tvPp.setText("");
 					tvVs.setText("");
 					tvVsf.setText("");
 					tvPf.setText("");

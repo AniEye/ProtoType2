@@ -10,13 +10,6 @@
         android:paddingBottom="20sp"
         android:src="@drawable/spess_tetthet_icon" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Pp = spesifikk tetthet (gjennomsnittlig) av suspenderte partikler" />
-
     <EditText
         android:id="@+id/etSpessTettPp"
         android:layout_width="wrap_content"
@@ -143,6 +136,41 @@
         android:textColorHint="@color/ButtonTextColor" >
     </EditText>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/tvm3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Pp = spesifikk tetthet (gjennomsnittlig) av suspenderte partikler"
+            android:textSize="16dp" />
+        
+          <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvSpessTettPp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text=""
+            android:textSize="16dp" />
+    </LinearLayout>
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
