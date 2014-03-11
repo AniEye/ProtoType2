@@ -11,29 +11,46 @@ import android.widget.Toast;
 
 import com.bbv.prototype1.R;
 
-public class PowerLaw extends Basic_Calc {
+public class TotalHardhet extends Basic_Calc {
 
 	Toast toast;
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	final int clearButtonID = R.id.bPLClear;
-	final int updateButtonID = R.id.bPLUpdate;
-	final int layout = R.layout.calc_powerlaw;
+	final int clearButtonID = R.id.bKIClear;
+	final int updateButtonID = R.id.bKIUpdate;
+	final int layout = R.layout.calc_total_hardhet;
+	
+	TextView tvKloridML;
+	TextView tvKloridPPM;
+	TextView tvNaClMG;
+	TextView tvNaClPPM;
+	
+	
+	//Variables used for calculation
+	float Cl;
+	float V_AgNO3;
+	float V_filtrat;
+	float AgNO3 = 0.0282f;
+	float MCl = 35.45f;
+	float MNaCl = 58.44f;
+	float Pf;
+	float CCl;
+	float ClPPM;
+	float NaClMG;
+	float NaClPPM;
 
-	TextView tvN;
-	TextView K_notPA;
-	TextView K_PA;
-	TextView tvskj;
-	TextView tvEksponent;
+	final int[] IDs = { 
+			R.id.etKICl, //Textfield of Cl
+			R.id.etKIVAgNO3, //Textfield of AgNO3
+			R.id.etKIVF, //Textfield of filtrat
+			R.id.etKICCl //Textfield of CCl - Will be disabled for input
+			};
 
-	final int[] IDs = { R.id.etPowerLawT100, R.id.etPowerLaw600,
-			R.id.etPowerLawN };
+	public final static int Cl_index = 0, AgNO3_index = 1, VFiltrat_index = 2, CCl_index = 3;
 
-	public final static int T1_INDEX = 0, T6_INDEX = 1, N_INDEX = 2;
-
-	public PowerLaw(Context context) {
+	public TotalHardhet(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -42,57 +59,73 @@ public class PowerLaw extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		float T1 = fieldStatuses[0];
-		float T6 = fieldStatuses[1];
-		float N;
-		float K;
-		float Y;
-		float T;
+		Cl = fieldStatuses[0];
+		V_AgNO3 = fieldStatuses[1];
+		V_filtrat = fieldStatuses[2];
 
-		float theAnswer = 0;
 		switch (variableToCalculate) {
 
-		case T1_INDEX:
+		case Cl_index:
 			Log.println(Log.ERROR, "calc",
-					"Tried to calculate T1, and this should not happen!");
+					"Tried to calculate Cl, and this should not happen!");
 			break;
-		case T6_INDEX:
+		case AgNO3_index:
 			Log.println(Log.ERROR, "calc",
-					"Tried to calculate T6, and this should not happen!");
+					"Tried to calculate volume of AgNO3, and this should not happen!");
 			break;
-		case N_INDEX:
+		case VFiltrat_index:
+			Log.println(Log.ERROR, "calc",
+					"Tried to calculate volume of VFiltrat, and this should not happen!");
+			break;
+		case CCl_index:
 
-			N = calcN(T1, T6);
-			K = calcK(T6, N);
-			Y = calcY(T6);
-			T = calcT(K, Y, N);
+			if(Cl < 5000){
+				showToast("Klor innhold kan ikke være mindre enn 5000!");
+				return "";
+			} else if (Cl > 188665){
+				showToast("Klor innhold kan ikke være mer enn 188665!");
+				return "";
+			}		
+			
+			Table_3_1 table = new Table_3_1(Cl);
+			
+			if (table.getPf() != -1)
+				Pf = table.getPf();
+			else {
+				Log.println(Log.ERROR, "calc", "Somehow there was an error with tables in KlorInnhold");
+				return "";
+			}
+	
+			
+			CCl = ((AgNO3 * V_AgNO3 * MCl * 1000)/V_filtrat);
+			ClPPM = CCl / Pf;
+			NaClMG = ((AgNO3 * V_AgNO3 * MNaCl * 1000)/V_filtrat);
+			NaClPPM = NaClMG/Pf;
 
-			float[] testFloats = {N, K, Y, T };
+			Log.println(Log.INFO, "calc", "Setting textviews in " + this.getClass().getName() + "!");
+			
+			float[] testFloats = {CCl, ClPPM, NaClMG, NaClPPM};
 			boolean floatIsFine = true;
 			for (int i = 0; i < testFloats.length; i++) {
 				//Displays a toast saying that there was an error if any value returned NaN or infinity
 				if (testFloat(testFloats[i]) == false)
-					floatIsFine = false;
+				{
+					Log.println(Log.DEBUG, "calc", "Dividing with 0 error in " + this.getClass().getName());
+					return "";
+				}
 			}
 
-			if (floatIsFine == false)
-				return "";
-
-			Log.println(Log.INFO, "calc", "Setting textviews in Powerlaw!");
-
-			String _N = String.format("%.3f", N);
-			String _K = String.format("%.3f", K);
-			String _KPA = String.format("%.3f", K*0.511f);
-			String _Y = String.format("%.3f", Y);
-			String _T = String.format("%.3f", T);
+			String _KloridMG = String.format("%.3f", CCl);
+			String _KloridPPM = String.format("%.3f", ClPPM);
+			String _NaClMG = String.format("%.3f", NaClMG);
+			String _NaClPPM = String.format("%.3f", NaClPPM);
 			
-			tvN.setText(_N);
-			K_notPA.setText(_K);
-			tvskj.setText(_Y);
-			K_PA.setText(_KPA);
-			tvEksponent.setText(_T);
+			tvKloridML.setText(_KloridMG);
+			tvKloridPPM.setText(_KloridPPM);
+			tvNaClMG.setText(_NaClMG);
+			tvNaClPPM.setText(_NaClPPM);
 
-			return String.format("%.3f", N);
+			return String.format("%.3f", CCl);
 
 		}
 
@@ -102,35 +135,23 @@ public class PowerLaw extends Basic_Calc {
 
 	private boolean testFloat(float x) {
 		if (Float.isInfinite(x) || Float.isNaN(x)) {
-			Log.println(Log.ERROR, "calc", "Til_Viskos tried to divide by 0!");
-			try {
-				toast.getView().isShown(); // true if visible
-				toast.setText("You can't divide by 0!");
-			} catch (Exception e) { // invisible if exception
-				toast = Toast.makeText(getContext(), "You can't divide by 0!",
-						Toast.LENGTH_SHORT);
-			}
-			toast.show();
+			Log.println(Log.ERROR, "calc", this.getClass().getName() + " tried to divide by 0!");
+			showToast("You can't divide by 0!");
 			return false;
 		}
 		return true;
 	}
-
-	public float calcN(float T100, float T6) {
-		return (float) (Math.log10(T100/T6)/Math.log10(170/10));
+	
+	private void showToast(String message) {
+		try {
+			toast.getView().isShown(); // true if visible
+			toast.setText(message);
+		} catch (Exception e) { // invisible if exception
+			toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
+		}
+		toast.show();
 	}
 
-	public float calcY(float T6) {
-		return T6 * 1.7023f;
-	}
-
-	public float calcT(float K, float Y, float N) {
-		return (float) (K*Math.pow(Y, N));
-	}
-
-	public float calcK(float T6, float n) {
-		return (float) (T6 / Math.pow(10, n));
-	}
 
 	@Override
 	protected void Initialize() {
@@ -142,13 +163,12 @@ public class PowerLaw extends Basic_Calc {
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 
-		textFields[2].setVisibility(GONE);
+		textFields[3].setVisibility(GONE);
 
-		tvN = (TextView) findViewById(R.id.tvPLN);
- 		K_PA = (TextView) findViewById(R.id.tvPLPA);
-		K_notPA = (TextView) findViewById(R.id.tvPLNOTPA);
-		tvEksponent = (TextView) findViewById(R.id.tvPLEks);
-		tvskj = (TextView) findViewById(R.id.tvPLskj);
+		tvKloridML = (TextView) findViewById(R.id.tvKIKIMG);
+		tvKloridPPM = (TextView) findViewById(R.id.tvKIKIPPM);
+		tvNaClMG = (TextView) findViewById(R.id.tvKINaCLMG);
+		tvNaClPPM = (TextView) findViewById(R.id.tvKINaPPM);
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -165,11 +185,10 @@ public class PowerLaw extends Basic_Calc {
 				case clearButtonID:
 					ResetFields(textFields);
 
-					tvN.setText("");
-					K_PA.setText("");
-					K_notPA.setText("");
-					tvEksponent.setText("");
-					tvskj.setText("");
+					tvKloridML.setText("");
+					tvKloridPPM.setText("");
+					tvNaClMG.setText("");
+					tvNaClPPM.setText("");
 
 					_textFieldsStatus = new int[IDs.length];
 					break;
@@ -256,6 +275,46 @@ public class PowerLaw extends Basic_Calc {
 				break;
 			}
 		}
+	}
+	
+	public float getCl() {
+		return Cl;
+	}
+
+	public float getV_AgNO3() {
+		return V_AgNO3;
+	}
+
+	public float getAgNO3() {
+		return AgNO3;
+	}
+
+	public float getMCl() {
+		return MCl;
+	}
+
+	public float getMNaCl() {
+		return MNaCl;
+	}
+
+	public float getPf() {
+		return Pf;
+	}
+
+	public float getCCl() {
+		return CCl;
+	}
+
+	public float getClPPM() {
+		return ClPPM;
+	}
+
+	public float getNaClMG() {
+		return NaClMG;
+	}
+
+	public float getNaClPPM() {
+		return NaClPPM;
 	}
 
 }

@@ -183,7 +183,6 @@ public class Herch_Law extends Basic_Calc {
 				case clearButtonID:
 					ResetFields(textFields);
 
-					textFields[2].setEnabled(false);
 					tvN.setText("");
 					tvK.setText("");
 					tvEksY.setText("");
@@ -250,12 +249,10 @@ public class Herch_Law extends Basic_Calc {
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);
-						textFields[2].setEnabled(false);
 					} else if (number == 0.0) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						textFields[indexOfCurrentField].setText("");
 						Enabeling(textFields);
-						textFields[2].setEnabled(false);
 					} else if (!_fieldsString.contentEquals("")) {
 						updateRelevantResult();
 					}

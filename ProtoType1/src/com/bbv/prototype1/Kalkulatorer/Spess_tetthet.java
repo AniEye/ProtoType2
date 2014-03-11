@@ -161,8 +161,6 @@ public class Spess_tetthet extends Basic_Calc {
 				switch (v.getId()) {
 				case clearButtonID:
 					ResetFields(textFields);
-
-					textFields[0].setEnabled(false); // Sets the field for Pp to not be enabled for input
 					tvPp.setText("");
 					tvVs.setText("");
 					tvVsf.setText("");
@@ -227,16 +225,10 @@ public class Spess_tetthet extends Basic_Calc {
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);
-						textFields[0].setEnabled(false); // Sets the field for
-															// Pp to not be
-															// enabled for input
 					} else if (number == 0.0) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						textFields[indexOfCurrentField].setText("");
 						Enabeling(textFields);
-						textFields[0].setEnabled(false); // Sets the field for
-															// Pp to not be
-															// enabled for input
 					} else if (!_fieldsString.contentEquals("")) {
 						updateRelevantResult();
 					}

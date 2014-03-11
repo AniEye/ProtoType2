@@ -51,6 +51,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			this.finish();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -140,6 +141,9 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			break;
 		case 7:
 			calc = new KloridInnhold(lLayout.getContext());
+			break;
+		case 8:
+			calc = new TotalHardhet(lLayout.getContext());
 			break;
 		}
 
