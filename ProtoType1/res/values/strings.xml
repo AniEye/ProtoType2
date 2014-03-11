@@ -30,7 +30,7 @@
         <item>Eksponent modellen (Power law)</item>
         <item>Herchel Burkley-modellen</item>
         <item>Spesifikk tetthet</item>
-        <item>Klorinnhold</item>
+        <item>Klorid innhold</item>
         
     </string-array>
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>

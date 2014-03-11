@@ -21,7 +21,8 @@ public class KloridInnhold extends Basic_Calc {
 	final int clearButtonID = R.id.bKIClear;
 	final int updateButtonID = R.id.bKIUpdate;
 	final int layout = R.layout.calc_klorid_innhold;
-
+	
+	TextView tvKloridML;
 	TextView tvKloridPPM;
 	TextView tvNaClMG;
 	TextView tvNaClPPM;
@@ -114,10 +115,12 @@ public class KloridInnhold extends Basic_Calc {
 				}
 			}
 
+			String _KloridMG = String.format("%.3f", CCl);
 			String _KloridPPM = String.format("%.3f", ClPPM);
 			String _NaClMG = String.format("%.3f", NaClMG);
 			String _NaClPPM = String.format("%.3f", NaClPPM);
 			
+			tvKloridML.setText(_KloridMG);
 			tvKloridPPM.setText(_KloridPPM);
 			tvNaClMG.setText(_NaClMG);
 			tvNaClPPM.setText(_NaClPPM);
@@ -160,8 +163,9 @@ public class KloridInnhold extends Basic_Calc {
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 
-		textFields[3].setEnabled(false);
+		textFields[3].setVisibility(GONE);
 
+		tvKloridML = (TextView) findViewById(R.id.tvKIKIMG);
 		tvKloridPPM = (TextView) findViewById(R.id.tvKIKIPPM);
 		tvNaClMG = (TextView) findViewById(R.id.tvKINaCLMG);
 		tvNaClPPM = (TextView) findViewById(R.id.tvKINaPPM);
@@ -182,6 +186,7 @@ public class KloridInnhold extends Basic_Calc {
 					ResetFields(textFields);
 
 					textFields[3].setEnabled(false);
+					tvKloridML.setText("");
 					tvKloridPPM.setText("");
 					tvNaClMG.setText("");
 					tvNaClPPM.setText("");

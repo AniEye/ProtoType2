@@ -22,6 +22,7 @@ public class Herch_Law extends Basic_Calc {
 	final int updateButtonID = R.id.bMPLUpdate;
 	final int layout = R.layout.calc_modpowerlaw;
 
+	TextView tvN;
 	TextView tvK;
 	TextView tvEksY;
 	TextView tvskj;
@@ -84,12 +85,14 @@ public class Herch_Law extends Basic_Calc {
 
 			Log.println(Log.INFO, "calc", "Setting textviews in Modpowerlaw!");
 
+			String _N = String.format("%.3f", N);
 			String _T0 = String.format("%.3f", T0);
 			String _ty = String.format("%.3f", ty);
 			String _K = String.format("%.3f", K);
 			String _Y = String.format("%.3f", Y);
 			String _T = String.format("%.3f", T);
 
+			tvN.setText(_N);
 			tvK.setText(_K);
 			tvEksY.setText(_ty);
 			tvskj.setText(_Y);
@@ -156,8 +159,9 @@ public class Herch_Law extends Basic_Calc {
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 
-		textFields[2].setEnabled(false);
+		textFields[2].setVisibility(GONE);
 
+		tvN = (TextView) findViewById(R.id.tvMPLN);
 		tvK = (TextView) findViewById(R.id.tvMPLK);
 		tvEksY = (TextView) findViewById(R.id.tvMPLEksY);
 		tvEks = (TextView) findViewById(R.id.tvMPLEks);
@@ -180,6 +184,7 @@ public class Herch_Law extends Basic_Calc {
 					ResetFields(textFields);
 
 					textFields[2].setEnabled(false);
+					tvN.setText("");
 					tvK.setText("");
 					tvEksY.setText("");
 					tvEks.setText("");

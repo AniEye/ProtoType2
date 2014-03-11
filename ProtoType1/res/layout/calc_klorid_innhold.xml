@@ -59,13 +59,6 @@
         android:hint="[ml]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
-    
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="C Cl- - Klorid Innhold (ml/l)" />
 
     <EditText
         android:id="@+id/etKICCl"
@@ -90,7 +83,42 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Klorid Innhold (ppm Cl-)"
+            android:text="Klorid Innhold \n (mg/l Cl-)"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvm666"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvKIKIMG"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text=""
+            android:textSize="16dp" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Klorid Innhold \n (ppm Cl-)"
             android:textSize="16dp" />
 
         <TextView
@@ -125,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="NaCl innhold (mg/l NaCl)"
+            android:text="NaCl innhold \n (mg/l NaCl)"
             android:textSize="16dp" />
 
         <TextView
@@ -160,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="NaCl innhold (ppm NaCl)"
+            android:text="NaCl innhold \n (ppm NaCl)"
             android:textSize="16dp" />
 
         <TextView

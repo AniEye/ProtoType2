@@ -22,6 +22,7 @@ public class PowerLaw extends Basic_Calc {
 	final int updateButtonID = R.id.bPLUpdate;
 	final int layout = R.layout.calc_powerlaw;
 
+	TextView tvN;
 	TextView K_notPA;
 	TextView K_PA;
 	TextView tvskj;
@@ -79,11 +80,13 @@ public class PowerLaw extends Basic_Calc {
 
 			Log.println(Log.INFO, "calc", "Setting textviews in Powerlaw!");
 
+			String _N = String.format("%.3f", N);
 			String _K = String.format("%.3f", K);
 			String _KPA = String.format("%.3f", K*0.511f);
 			String _Y = String.format("%.3f", Y);
 			String _T = String.format("%.3f", T);
 			
+			tvN.setText(_N);
 			K_notPA.setText(_K);
 			tvskj.setText(_Y);
 			K_PA.setText(_KPA);
@@ -139,9 +142,10 @@ public class PowerLaw extends Basic_Calc {
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 
-		textFields[2].setEnabled(false);
+		textFields[2].setVisibility(GONE);
 
-		K_PA = (TextView) findViewById(R.id.tvPLPA);
+		tvN = (TextView) findViewById(R.id.tvPLN);
+ 		K_PA = (TextView) findViewById(R.id.tvPLPA);
 		K_notPA = (TextView) findViewById(R.id.tvPLNOTPA);
 		tvEksponent = (TextView) findViewById(R.id.tvPLEks);
 		tvskj = (TextView) findViewById(R.id.tvPLskj);
@@ -162,6 +166,7 @@ public class PowerLaw extends Basic_Calc {
 					ResetFields(textFields);
 
 					textFields[2].setEnabled(false);
+					tvN.setText("");
 					K_PA.setText("");
 					K_notPA.setText("");
 					tvEksponent.setText("");
