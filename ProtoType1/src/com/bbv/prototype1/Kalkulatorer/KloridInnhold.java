@@ -80,10 +80,14 @@ public class KloridInnhold extends Basic_Calc {
 		case CCl_index:
 
 			if(Cl < 5000){
-				showToast("Klor innhold kan ikke være mindre enn 5000!");
+				String message = "Klor innhold kan ikke være mindre enn 5000!";
+				showToast(message);
+				Log.println(Log.INFO, "calc", "Toast displayed with info: " + message);
 				return "";
-			} else if (Cl > 188665){
-				showToast("Klor innhold kan ikke være mer enn 188665!");
+			} else if (Cl > 188650){
+				String message = "Klor innhold kan ikke være mer enn 188650!";
+				showToast(message);
+				Log.println(Log.INFO, "calc", "Toast displayed with info: " + message);
 				return "";
 			}		
 			

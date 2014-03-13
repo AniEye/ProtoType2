@@ -23,9 +23,9 @@ public class KloridInnholdTest extends AndroidTestCase {
 		assertEquals("", calc.calculation(1, new float[] {1,1,1}));
 		assertEquals("", calc.calculation(2, new float[] {1,1,1}));
 		
-		// Testing values of Cl below 5000 and over 188665 fail
+		// Testing values of Cl below 5000 and over 188650 fail
 		assertEquals("", calc.calculation(3, new float[] {4999,5,5}));
-		assertEquals("", calc.calculation(3, new float[] {188665,5,5}));
+		assertEquals("", calc.calculation(3, new float[] {188651,5,5}));
 
 		// Testing that calculator succeeds
 		float V_AgNO3 = 20;

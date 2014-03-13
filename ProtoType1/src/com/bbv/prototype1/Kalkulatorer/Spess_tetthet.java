@@ -75,7 +75,7 @@ public class Spess_tetthet extends Basic_Calc {
 
 			if (Pf == 0 || Vsf == 0 || Vs == 0) {
 				Log.println(Log.INFO, "calc",
-						"SpessTetthet got a value of Cl not between 5000 and 86656");
+						"SpessTetthet got a value of Cl not between 5000 and 186650");
 			} else if (Vfs == Vs) { // Catches dividing with 0 error
 				showToast("Vfs is equal to Vs! Can't divide with 0!");
 				Log.println(Log.ERROR, "calc",
