@@ -9,7 +9,7 @@
 </next>
 
 <title>
-3. Testing av vannbasert boreslam/3.2 Kjemisk analyse av vannbasert boreslam
+3.2 Kjemisk analyse av vannbasert boreslam
 </title>
 
 <text>

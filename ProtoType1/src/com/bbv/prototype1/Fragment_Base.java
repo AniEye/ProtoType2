@@ -21,6 +21,14 @@ public abstract class Fragment_Base extends Fragment {
 	protected View _rootView;
 	protected Vis_Teori _visReff;
 	protected Bundle _currentBundle;
+	public final static String KEY_OVING = "SOving";
+	public final static String KEY_PROS_TEORI ="BProsTeori";
+	
+	public final static String KEY_CHAPTER = "Teori_Chapter";
+	public final static String KEY_CHAPTERPART1 = "Teori_ChapterPart1";
+	public final static String KEY_CHAPTERPART2 = "Teori_ChapterPart2";
+	
+	public final static String KEY_VIS_TEORI = "com.bbv.prototype1.VIS_TEORI";
 
 	@Override
 	public abstract View onCreateView(LayoutInflater inflater,

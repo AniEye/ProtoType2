@@ -9,7 +9,7 @@
 </next>
 
 <title>
-4. Boreslam/4.3 Valg av slamsystem
+4.3 Valg av slamsystem
 </title>
 
 <text>

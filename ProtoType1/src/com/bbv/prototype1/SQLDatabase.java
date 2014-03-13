@@ -22,9 +22,13 @@ public class SQLDatabase {
 	public static final String KEY_CHAPTERPART1 = "chapter_part1";
 	public static final String KEY_CHAPTERPART2 = "chapter_part2";
 	public static final String KEY_FILENAME = "filename";
+	
+	public static final String KEY_OVING = "oving";
 
 	private static final String DATABASE_NAME = "ProsTeoriDB";
-	private static final String DATABASE_TABLE = "TeoriTable";
+	private static final String DATABASE_TABLE_TEORI = "TeoriTable";
+	private static final String DATABASE_TABLE_OVINGER = "OvingTable";
+	
 	private static final int DATABASE_VERSION = 1;
 
 	private DBHelper ourHelper;
@@ -42,7 +46,7 @@ public class SQLDatabase {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			// TODO Auto-generated method stub
-			db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (" + KEY_CHAPTER
+			db.execSQL("CREATE TABLE " + DATABASE_TABLE_TEORI + " (" + KEY_CHAPTER
 					+ " TEXT NOT NULL, " + KEY_CHAPTERPART1 + " TEXT, "
 					+ KEY_CHAPTERPART2 + " TEXT, " + KEY_FILENAME
 					+ " TEXT NOT NULL);");
@@ -66,13 +70,37 @@ public class SQLDatabase {
 				}
 				is.close();
 			} catch (IOException e) {
+				Log.e("Database", "TeoriTable.txt does not exist or not able to open it");
+			}
+			
+			db.execSQL("CREATE TABLE " + DATABASE_TABLE_OVINGER + " (" + KEY_OVING
+					+ " TEXT NOT NULL);");
+			
+			try {
+				AssetManager as = c.getAssets();
+				InputStream is = as.open("Database/OvingTable.txt");
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(is));
+				if (is != null) {
+					while ((str = reader.readLine()) != null) {
+						if (!str.contains("#"))
+							if (!str.isEmpty()) {
+								db.execSQL("INSERT INTO OvingTable (oving) VALUES "
+										+ str);
+							}
+					}
+				}
+				is.close();
+			} catch (IOException e) {
+				Log.e("Database", "OvingTable.txt does not exist or not able to open it");
 			}
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			// TODO Auto-generated method stub
-			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
+			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_TEORI);
+			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_OVINGER);
 			onCreate(db);
 		}
 
@@ -89,8 +117,10 @@ public class SQLDatabase {
 	}
 
 	public void createFromExisting() {
-		ourDatabase.delete(DATABASE_TABLE, null, null);
-
+		ourDatabase.delete(DATABASE_TABLE_TEORI, null, null);
+		ourDatabase.delete(DATABASE_TABLE_OVINGER, null, null);
+		
+		
 		String str = "";
 		try {
 			AssetManager as = ourContext.getAssets();
@@ -109,8 +139,31 @@ public class SQLDatabase {
 			}
 			is.close();
 		} catch (IOException e) {
+			Log.e("Database", "Could not open or find TeoriTable.txt");
+		}
+		
+		
+		
+		try {
+			AssetManager as = ourContext.getAssets();
+			InputStream is = as.open("Database/OvingTable.txt");
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(is));
+			if (is != null) {
+				while ((str = reader.readLine()) != null) {
+					if (!str.contains("#"))
+						if (!str.isEmpty()) {
+							ourDatabase
+									.execSQL("INSERT INTO OvingTable (oving) VALUES "
+											+ str);
+						}
+				}
+			}
+			is.close();
+		} catch (IOException e) {
 
 		}
+		
 	}
 
 	public void close() {
@@ -118,7 +171,7 @@ public class SQLDatabase {
 	}
 
 	public void deleteTableContent(String where) {
-		ourDatabase.delete(DATABASE_TABLE, where, null);
+		ourDatabase.delete(DATABASE_TABLE_TEORI, where, null);
 	}
 
 	public long createEntry(String chapter, String chapterPart1,
@@ -129,14 +182,14 @@ public class SQLDatabase {
 		cv.put(KEY_CHAPTERPART2, chapterPart2);
 		cv.put(KEY_FILENAME, filename);
 		// check out the null if that's the reason that it doesn't
-		return ourDatabase.insert(DATABASE_TABLE, null, cv);
+		return ourDatabase.insert(DATABASE_TABLE_TEORI, null, cv);
 
 	}
 
 	public DatabaseContent[] getData() {
 		String[] columns = new String[] { KEY_CHAPTER, KEY_CHAPTERPART1,
 				KEY_CHAPTERPART2, KEY_FILENAME };
-		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null,
+		Cursor c = ourDatabase.query(DATABASE_TABLE_TEORI, columns, null, null, null,
 				null, null);
 
 		DatabaseContent[] content = new DatabaseContent[c.getCount()];
@@ -158,21 +211,45 @@ public class SQLDatabase {
 
 		return content;
 	}
+	
+	public String[] getOvingTableRows(){
+		String[] returnTable;
+		try{
+		String[] column = {KEY_OVING};
+		Cursor c = ourDatabase.query(DATABASE_TABLE_OVINGER, column, null, null,
+				null, null, null);
+		returnTable=new String[c.getCount()];
+		int iOving = c.getColumnIndex(KEY_OVING);
+		int currentRow=0;
+		for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+			returnTable[currentRow]=c.getString(iOving);
+			currentRow++;
+		}
+		}catch(Exception e){
+			Log.e("Database", "Can't find table and column your looking for");
+			returnTable = new String[]{"Nothing in table"};
+		}
+		return returnTable;
+	}
 
 	public String[] getColumnGrouped(String[] column, String groupedBy,
 			String where) {
 		if (where == null)
 			where = groupedBy + " != '' ";
 
-		Cursor c = ourDatabase.query(DATABASE_TABLE, column, where, null,
+		//create a cursor that is connected to a table based on where clause
+		Cursor c = ourDatabase.query(DATABASE_TABLE_TEORI, column, where, null,
 				groupedBy, null, null);
+		//create an array of the size equal to the amount of rows in column
 		String[] content = new String[c.getCount()];
+		
+		
 		int currentRow = 0;
-		if (!groupedBy.contentEquals(KEY_CHAPTER)) {
-			content = new String[c.getCount() + 1];
-			currentRow = 1;
-			if (groupedBy.contentEquals(KEY_CHAPTERPART1))
-				content[0] = "Choose partition";
+		if (!groupedBy.contentEquals(KEY_CHAPTER)) {//if the content is not grouped by chapters
+			content = new String[c.getCount() + 1]; //the return array is to be 1 size bigger
+			currentRow = 1;// and the cursors content is to be loaded into the array from index 1
+			if (groupedBy.contentEquals(KEY_CHAPTERPART1))//if what we're looking for was chapterpart1
+				content[0] = "Choose partition";//the first index 
 			else if (groupedBy.contentEquals(KEY_CHAPTERPART2))
 				content[0] = "Choose partition";
 			else {
@@ -180,10 +257,10 @@ public class SQLDatabase {
 			}
 
 		}
-		int iChapter = c.getColumnIndex(groupedBy);
+		int iChapter = c.getColumnIndex(groupedBy);//get the index of the column of the column you want to have
 
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-
+			//here starts the for loop that will fill up the rest of the returned array
 			content[currentRow] = c.getString(iChapter);
 			currentRow++;
 
@@ -211,7 +288,7 @@ public class SQLDatabase {
 		}
 		String[] column = new String[] { KEY_FILENAME };
 
-		Cursor c = ourDatabase.query(DATABASE_TABLE, column, where, null, null,
+		Cursor c = ourDatabase.query(DATABASE_TABLE_TEORI, column, where, null, null,
 				null, null);
 
 		String[] content = new String[c.getCount() + 1];
@@ -245,7 +322,7 @@ public class SQLDatabase {
 		}
 		String[] columns = new String[] { KEY_CHAPTER, KEY_CHAPTERPART1,
 				KEY_CHAPTERPART2, KEY_FILENAME };
-		Cursor c = ourDatabase.query(DATABASE_TABLE, columns, where, null,
+		Cursor c = ourDatabase.query(DATABASE_TABLE_TEORI, columns, where, null,
 				null, null, null);
 
 		DatabaseContent[] content = new DatabaseContent[c.getCount() + 1];
