@@ -42,8 +42,7 @@ public class Vis_Teori extends Activity {
 	}
 
 	public void setTeoriBundle(Bundle newBundle) {
-//		this.getIntent().putExtra(Fragment_Base.KEY_PROS_TEORI, newBundle);
-		this.getIntent().putExtras(newBundle);
+		this.getIntent().putExtra(Fragment_Base.KEY_PROS_TEORI, newBundle);
 	}
 
 	private void Initialize(Bundle savedInstanceState) {
@@ -72,24 +71,19 @@ public class Vis_Teori extends Activity {
 		};
 
 		_drawerLayout.setDrawerListener(_actionDrawerToggle);
-		if (savedInstanceState == null) {
-			selectItem(VTStatus);
-		} else {
-			
-			setTeoriBundle(savedInstanceState);
-			selectItem(VTStatus);
-		}
+//		if (savedInstanceState == null) {
+//			selectItem(VTStatus);
+//		} else {
+//			selectItem(VTStatus);
+//		}
+		selectItem(VTStatus);
 	}
 
 	private void findCurrentVTStatus() {
 		if (this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI) != null) {
-			
-			Bundle b = this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI);
-			Log.e("Vis_Teori", "Got prosteori bundle " + b.getString(Fragment_Base.KEY_CHAPTER));
 			VTStatus = 0;
 		} else if (this.getIntent().getStringExtra(Fragment_Base.KEY_OVING) != null) {
-			VTStatus = 1;
-			Log.e("Vis_Teori", "Got ovinger string " + this.getIntent().getStringExtra(Fragment_Base.KEY_OVING));
+			VTStatus = 1;		
 		}
 	}
 
@@ -195,9 +189,7 @@ public class Vis_Teori extends Activity {
 
 			VTStatus = 0;
 			_nFB = new Fragment_Teori();
-			 _nFB.setArguments(this.getIntent().getExtras());
-////			_nFB.setArguments(prosTeoriBundle);
-//			_nFB.setArguments(this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI));
+			_nFB.setArguments(this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI));
 			_nFB.setVisTeori(this);
 
 			break;
@@ -254,18 +246,7 @@ public class Vis_Teori extends Activity {
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		 outState.putBundle(null, this.getIntent().getExtras());
-//		if (this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI) != null) {
-//			outState.putBundle(Fragment_Base.KEY_PROS_TEORI, this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI));
-//			Log.e("Vis_Teori", "saved prosteori bundle");
-//		}else{
-//			outState.putBundle(Fragment_Base.KEY_PROS_TEORI,null);
-//		}
-//		if (this.getIntent().getStringExtra(Fragment_Base.KEY_OVING) != null) {
-//			outState.putString(Fragment_Base.KEY_OVING, this.getIntent().getStringExtra(Fragment_Base.KEY_OVING));
-//			Log.e("Vis_Teori", "saved ovinger string");
-//		}else{
-//			outState.putBundle(Fragment_Base.KEY_OVING,null);
-//		}
+//		 outState.putBundle(Fragment_Base.KEY_PROS_TEORI, this.getIntent().getExtras());
 	}
 
 }

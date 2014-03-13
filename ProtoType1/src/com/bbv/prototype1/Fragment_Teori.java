@@ -234,14 +234,14 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.bNext:
 			_currentBundle = _nextBundle;
-			
+			_visReff.setTeoriBundle(_currentBundle);
 			break;
 		case R.id.bLast:
 			_currentBundle = _lastBundle;
-			
+			_visReff.setTeoriBundle(_currentBundle);
 			break;
 		}
-		_visReff.setTeoriBundle(_currentBundle);
+		
 		_bReadBothfiles = false;
 		_filename = makeTeoriFileName(_currentBundle) + "_.txt";
 		decodeContentDocument();

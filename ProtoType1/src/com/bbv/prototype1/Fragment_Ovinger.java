@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class Fragment_Ovinger extends Fragment_Base implements OnClickListener{
-	
+	//rotation doesn't work in this class yet
 	protected Button _Next,_Last;
 	
 	@Override
