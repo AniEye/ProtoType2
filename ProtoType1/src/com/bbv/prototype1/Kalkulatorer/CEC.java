@@ -63,7 +63,7 @@ public class CEC extends Basic_Calc {
 		case CEC_INDEX:
 
 			if (V_mbl == 0 || V_boreslam == 0) {
-				showToast("You are dividing by 0!");
+				showToast("Verdiene kan ikke være 0!");
 				return "";
 			}
 
