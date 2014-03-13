@@ -38,7 +38,8 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		try {
 			lastChoice = loadLC(); // Loads the last chosen calculator
 		} catch (NullPointerException e) {
-			Log.println(Log.ERROR, "TryCatch", "Error with SharedPreferences in kalkulator!");
+			Log.println(Log.ERROR, "TryCatch",
+					"Error with SharedPreferences in kalkulator!");
 		}
 
 		setContentView(R.layout.activity_calculator);
@@ -147,6 +148,10 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			break;
 		case 9:
 			calc = new CEC(lLayout.getContext());
+			break;
+		case 10:
+			calc = new AlkaPm(lLayout.getContext());
+			break;
 		}
 
 		try {
