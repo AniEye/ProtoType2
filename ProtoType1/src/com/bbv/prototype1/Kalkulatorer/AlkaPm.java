@@ -62,6 +62,11 @@ public class AlkaPm extends Basic_Calc {
 			break;
 		case Ca_INDEX:
 
+			if (Pm == 0 || Fw == 0 || Pf == 0){
+				showToast("Du kan ikke bruke 0-verdier!");
+				return "";
+			}
+			
 			Ca = 0.742f * (Pm - Fw * Pf);
 
 			float[] testFloats = { Ca, Pm, Fw, Pf };
