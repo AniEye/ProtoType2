@@ -228,30 +228,16 @@ public class Herch_Law extends Basic_Calc {
 
 		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
 			if (focusStatus == false && !_fieldsString.contentEquals("")) {
-				try {
-					if (Float.parseFloat(_fieldsString) != 0.0) {
-						_textFieldsStatus[indexOfCurrentField] = 1;
-					}
-				} catch (NumberFormatException e) {
-					// TODO: handle exception
-				}
+
+				_textFieldsStatus[indexOfCurrentField] = 1;
+
 			}
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-					float number = 0;
-					try {
-						number = Float.parseFloat(_fieldsString);
-					} catch (NumberFormatException e) {
-						e.printStackTrace();
-					}
-
+					
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
-						Enabeling(textFields);
-					} else if (number == 0.0) {
-						_textFieldsStatus[indexOfCurrentField] = 0;
-						textFields[indexOfCurrentField].setText("");
 						Enabeling(textFields);
 					} else if (!_fieldsString.contentEquals("")) {
 						updateRelevantResult();
@@ -263,7 +249,6 @@ public class Herch_Law extends Basic_Calc {
 			}
 		}
 	}
-
 	@Override
 	protected void updateRelevantResult() {
 		for (int i = 0; i < _textFieldsStatus.length; i++) {
