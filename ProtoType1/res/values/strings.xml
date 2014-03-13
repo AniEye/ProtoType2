@@ -32,6 +32,7 @@
         <item>Spesifikk tetthet</item>
         <item>Klorid innhold</item>
         <item>Total hardhet</item>
+        <item>Caution Exchange Capasity</item>
         
     </string-array>
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>

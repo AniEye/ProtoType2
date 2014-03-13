@@ -145,6 +145,8 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		case 8:
 			calc = new TotalHardhet(lLayout.getContext());
 			break;
+		case 9:
+			calc = new CEC(lLayout.getContext());
 		}
 
 		try {

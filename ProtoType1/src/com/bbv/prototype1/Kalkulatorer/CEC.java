@@ -11,46 +11,38 @@ import android.widget.Toast;
 
 import com.bbv.prototype1.R;
 
-public class KloridInnhold extends Basic_Calc {
+public class CEC extends Basic_Calc {
 
 	Toast toast;
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	final int clearButtonID = R.id.bKIClear;
-	final int updateButtonID = R.id.bKIUpdate;
-	final int layout = R.layout.calc_klorid_innhold;
-	
-	TextView tvKloridML;
-	TextView tvKloridPPM;
-	TextView tvNaClMG;
-	TextView tvNaClPPM;
-	
-	
-	//Variables used for calculation
-	float Cl;
-	float V_AgNO3;
-	float V_filtrat;
-	float AgNO3 = 0.0282f;
-	float MCl = 35.45f;
-	float MNaCl = 58.44f;
-	float Pf;
-	float CCl;
-	float ClPPM;
-	float NaClMG;
-	float NaClPPM;
+	final int clearButtonID = R.id.bCECClear;
+	final int updateButtonID = R.id.bCECUpdate;
+	final int layout = R.layout.calc_cec;
 
-	final int[] IDs = { 
-			R.id.etKICl, //Textfield of Cl
-			R.id.etKIVAgNO3, //Textfield of AgNO3
-			R.id.etKIVF, //Textfield of filtrat
-			R.id.etKICCl //Textfield of CCl - Will be disabled for input
-			};
+	TextView tvCEC;
+	TextView tvbentPPM;
+	TextView tvbentKG;
 
-	public final static int Cl_index = 0, AgNO3_index = 1, VFiltrat_index = 2, CCl_index = 3;
+	// Variables used for calculation
+	float CEC;
+	float BentPPM;
+	float BentKG;
+	float V_mbl;
+	float V_boreslam;
 
-	public KloridInnhold(Context context) {
+	final int[] IDs = { R.id.etCECVmbl, // Textfield of V metylenblått-løsning
+			R.id.etCECVb, // Textfield of V boreslam
+			R.id.etCECCEC, // Textfield of CEC - Will be disabled
+	};
+
+	public final static int V_mbl_INDEX = 0, V_boreslam_INDEX = 1,
+			CEC_INDEX = 2; // Only used for error catching. Only CEC_INDEX
+							// should ever be used
+
+	public CEC(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -59,75 +51,46 @@ public class KloridInnhold extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		Cl = fieldStatuses[0];
-		V_AgNO3 = fieldStatuses[1];
-		V_filtrat = fieldStatuses[2];
+		V_mbl = fieldStatuses[0];
+		V_boreslam = fieldStatuses[1];
 
 		switch (variableToCalculate) {
 
-		case Cl_index:
+		default:
 			Log.println(Log.ERROR, "calc",
-					"Tried to calculate Cl, and this should not happen!");
+					"Tried to calculate anything other than CEC, and this should not happen!");
 			break;
-		case AgNO3_index:
-			Log.println(Log.ERROR, "calc",
-					"Tried to calculate volume of AgNO3, and this should not happen!");
-			break;
-		case VFiltrat_index:
-			Log.println(Log.ERROR, "calc",
-					"Tried to calculate volume of VFiltrat, and this should not happen!");
-			break;
-		case CCl_index:
+		case CEC_INDEX:
 
-			if(Cl < 5000){
-				String message = "Klor innhold kan ikke være mindre enn 5000!";
-				showToast(message);
-				return "";
-			} else if (Cl > 188650){
-				String message = "Klor innhold kan ikke være mer enn 188650!";
-				showToast(message);
-				return "";
-			}		
-			
-			Table_3_1 table = new Table_3_1(Cl);
-			
-			if (table.getPf() != -1)
-				Pf = table.getPf();
-			else {
-				Log.println(Log.ERROR, "calc", "Somehow there was an error with tables in KlorInnhold");
+			if (V_mbl == 0 || V_boreslam == 0) {
+				showToast("You are dividing by 0!");
 				return "";
 			}
-	
-			
-			CCl = ((AgNO3 * V_AgNO3 * MCl * 1000)/V_filtrat);
-			ClPPM = CCl / Pf;
-			NaClMG = ((AgNO3 * V_AgNO3 * MNaCl * 1000)/V_filtrat);
-			NaClPPM = NaClMG/Pf;
 
-			Log.println(Log.INFO, "calc", "Setting textviews in " + this.getClass().getName() + "!");
-			
-			float[] testFloats = {CCl, ClPPM, NaClMG, NaClPPM};
-			boolean floatIsFine = true;
+			CEC = V_mbl / V_boreslam;
+			BentPPM = 5 * CEC;
+			BentKG = 14.25f * CEC;
+
+			float[] testFloats = { CEC, BentKG, BentPPM };
 			for (int i = 0; i < testFloats.length; i++) {
-				//Displays a toast saying that there was an error if any value returned NaN or infinity
-				if (testFloat(testFloats[i]) == false)
-				{
-					Log.println(Log.DEBUG, "calc", "Dividing with 0 error in " + this.getClass().getName());
+				// Displays a toast saying that there was an error if any value
+				// returned NaN or infinity
+				if (testFloat(testFloats[i]) == false) {
+					Log.println(Log.DEBUG, "calc", "Dividing with 0 error in "
+							+ this.getClass().getName());
 					return "";
 				}
 			}
 
-			String _KloridMG = String.format("%.3f", CCl);
-			String _KloridPPM = String.format("%.3f", ClPPM);
-			String _NaClMG = String.format("%.3f", NaClMG);
-			String _NaClPPM = String.format("%.3f", NaClPPM);
-			
-			tvKloridML.setText(_KloridMG);
-			tvKloridPPM.setText(_KloridPPM);
-			tvNaClMG.setText(_NaClMG);
-			tvNaClPPM.setText(_NaClPPM);
+			String _CEC = String.format("%.3f", CEC);
+			String _BentPPM = String.format("%.3f", BentPPM);
+			String _BentKG = String.format("%.3f", BentKG);
 
-			return String.format("%.3f", CCl);
+			tvCEC.setText(_CEC);
+			tvbentPPM.setText(_BentPPM);
+			tvbentKG.setText(_BentKG);
+
+			return String.format("%.3f", CEC);
 
 		}
 
@@ -137,13 +100,14 @@ public class KloridInnhold extends Basic_Calc {
 
 	private boolean testFloat(float x) {
 		if (Float.isInfinite(x) || Float.isNaN(x)) {
-			Log.println(Log.ERROR, "calc", this.getClass().getName() + " tried to divide by 0!");
+			Log.println(Log.ERROR, "calc", this.getClass().getName()
+					+ " tried to divide by 0!");
 			showToast("You can't divide by 0!");
 			return false;
 		}
 		return true;
 	}
-	
+
 	private void showToast(String message) {
 		try {
 			toast.getView().isShown(); // true if visible
@@ -151,10 +115,9 @@ public class KloridInnhold extends Basic_Calc {
 		} catch (Exception e) { // invisible if exception
 			toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
 		}
-		Log.println(Log.INFO, "calc", "Toast displayed with info: " + message);
+		Log.println(Log.INFO, "calc", "Displayed toast saying: " + message);
 		toast.show();
 	}
-
 
 	@Override
 	protected void Initialize() {
@@ -166,12 +129,11 @@ public class KloridInnhold extends Basic_Calc {
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 
-		textFields[3].setVisibility(GONE);
+		textFields[2].setVisibility(GONE);
 
-		tvKloridML = (TextView) findViewById(R.id.tvKIKIMG);
-		tvKloridPPM = (TextView) findViewById(R.id.tvKIKIPPM);
-		tvNaClMG = (TextView) findViewById(R.id.tvKINaCLMG);
-		tvNaClPPM = (TextView) findViewById(R.id.tvKINaPPM);
+		tvbentKG = (TextView) findViewById(R.id.tvCECbentKG);
+		tvbentPPM = (TextView) findViewById(R.id.tvCECbentPPM);
+		tvCEC = (TextView) findViewById(R.id.tvCECCEC);
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -188,10 +150,9 @@ public class KloridInnhold extends Basic_Calc {
 				case clearButtonID:
 					ResetFields(textFields);
 
-					tvKloridML.setText("");
-					tvKloridPPM.setText("");
-					tvNaClMG.setText("");
-					tvNaClPPM.setText("");
+					tvbentKG.setText("");
+					tvbentPPM.setText("");
+					tvCEC.setText("");
 
 					_textFieldsStatus = new int[IDs.length];
 					break;
@@ -279,45 +240,17 @@ public class KloridInnhold extends Basic_Calc {
 			}
 		}
 	}
-	
-	public float getCl() {
-		return Cl;
+
+	public float getCEC() {
+		return CEC;
 	}
 
-	public float getV_AgNO3() {
-		return V_AgNO3;
+	public float getBentPPM() {
+		return BentPPM;
 	}
 
-	public float getAgNO3() {
-		return AgNO3;
-	}
-
-	public float getMCl() {
-		return MCl;
-	}
-
-	public float getMNaCl() {
-		return MNaCl;
-	}
-
-	public float getPf() {
-		return Pf;
-	}
-
-	public float getCCl() {
-		return CCl;
-	}
-
-	public float getClPPM() {
-		return ClPPM;
-	}
-
-	public float getNaClMG() {
-		return NaClMG;
-	}
-
-	public float getNaClPPM() {
-		return NaClPPM;
+	public float getBentKG() {
+		return BentKG;
 	}
 
 }
