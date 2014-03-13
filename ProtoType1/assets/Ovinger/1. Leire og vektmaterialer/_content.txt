@@ -1,0 +1,32 @@
+﻿1. Leire og vektmaterialer/_content.txt
+
+<next>
+2. Reologi og filtertap/_.txt
+</next>
+
+<last>
+1. Leire og vektmaterialer/_.txt
+</last>
+
+<title>
+1. Leire og vektmaterialer
+</title>
+
+<text>
+5.1 Effekt av salt (NaCl) på bentonittslam
+</text>
+
+<text>
+I denne delen av øvingen skal vi blande sammen tre enkle bentonittslam (tabell 5.1)
+og se hvilken effekt salt her på leiren. Legg merke til at det tilsettes først NaOH for å heve pH
+verdien til omtrent 9,5-10,0. Dette gjøres for å få bedre løselighet av tilsetningsstoffer som lignitt, lignosulfonat og tanniner.
+En høy pH-verdi er også viktig for å motvirke korrosjon og for å nøytralisere eventuelt giftig H2S gass fra formasjonen.
+</text>
+
+<text>
+5.1.1 Testing
+</text>
+
+<text>
+Testingen utføres som beskrevet i tabell 5.1. Teori om viskositetsmålinger og -modeller finnes i kapittel 2 i dette kompendiet.
+</text>

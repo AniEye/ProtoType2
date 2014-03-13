@@ -39,19 +39,23 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 	protected ArrayList<String> _listAL;
 	protected String _filename;
 	protected ArrayList<Intent> _intents;
+	
 
-	// conect fragment list items to links or actions that is to be done when
-	// clicken on one of the options in the list
+	// Connect fragment list items to links or actions that is to be done when
+	// Clicked on one of the options in the list
 
 	// also put a progress bar to make the user know that the page is still
 	// rendering
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		setRootView(R.layout.fragment_1,inflater, container);
+		setRootView(R.layout.fragment_1, inflater, container);
 		Initialize();
 		try {
-			_currentBundle = getActivity().getIntent().getExtras();
+
+			//_currentBundle = getActivity().getIntent().getExtras();
+			_currentBundle = getArguments();
+
 			_as = getActivity().getAssets();
 			_filename = makeTeoriFileName(_currentBundle) + "_.txt";
 			decodeContentDocument();
@@ -84,6 +88,8 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 						continue;
 					} else if (str.contains("</title")) {
 						_bTitle = false;
+						_visReff.setTitle(_buffer.toString());
+
 						_linlay.addView(createTextView(_buffer.toString(),
 								Color.RED, 35, Gravity.CENTER));
 						continue;
@@ -174,13 +180,14 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 											+ _buffer.toString());
 							Intent newIntent = new Intent(getActivity(),
 									theClass);
+							
+
 							_intents.add(newIntent);
 						} catch (Exception e) {
 							_intents.add(null);
 							Log.e("Intent", "Intent is empty");
 						}
-						Log.e("Intent", "Length of intent array is: "
-								+ _intents.size());
+						
 						continue;
 					}
 
@@ -209,13 +216,13 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 		Bundle newBundle = new Bundle();
 		filePath = filePath.trim();
 		String[] filePathDevided = filePath.split("/");
-		newBundle.putString("Teori_Chapter", filePathDevided[0]);
-		newBundle.putString("Teori_ChapterPart1", null);
-		newBundle.putString("Teori_ChapterPart2", null);
+		newBundle.putString(KEY_CHAPTER, filePathDevided[0]);
+		newBundle.putString(KEY_CHAPTERPART1, null);
+		newBundle.putString(KEY_CHAPTERPART2, null);
 		if (filePathDevided.length > 1) {
-			newBundle.putString("Teori_ChapterPart1", filePathDevided[1]);
+			newBundle.putString(KEY_CHAPTERPART1, filePathDevided[1]);
 			if (filePathDevided.length > 2) {
-				newBundle.putString("Teori_ChapterPart2", filePathDevided[2]);
+				newBundle.putString(KEY_CHAPTERPART2, filePathDevided[2]);
 			}
 		}
 		return newBundle;
@@ -227,13 +234,14 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.bNext:
 			_currentBundle = _nextBundle;
-			_visReff.setBundle(_currentBundle);
+			
 			break;
 		case R.id.bLast:
 			_currentBundle = _lastBundle;
-			_visReff.setBundle(_currentBundle);
+			
 			break;
 		}
+		_visReff.setTeoriBundle(_currentBundle);
 		_bReadBothfiles = false;
 		_filename = makeTeoriFileName(_currentBundle) + "_.txt";
 		decodeContentDocument();
@@ -243,23 +251,20 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 		_visReff.setIntentArray(_intents);
 	}
 
-	
-
 	private String makeTeoriFileName(Bundle theBundle) {
 		String filename = "pros_og_teori_text/";
-		if (theBundle.getString("Teori_Chapter") != null) {
-			filename = filename + theBundle.getString("Teori_Chapter") + "/";
-			if (theBundle.getString("Teori_ChapterPart1") != null) {
-				filename = filename + theBundle.getString("Teori_ChapterPart1")
+		if (theBundle.getString(KEY_CHAPTER) != null) {
+			filename = filename + theBundle.getString(KEY_CHAPTER) + "/";
+			if (theBundle.getString(KEY_CHAPTERPART1) != null) {
+				filename = filename + theBundle.getString(KEY_CHAPTERPART1)
 						+ "/";
-				if (theBundle.getString("Teori_ChapterPart2") != null)
+				if (theBundle.getString(KEY_CHAPTERPART2) != null)
 					filename = filename
-							+ theBundle.getString("Teori_ChapterPart2") + "/";
+							+ theBundle.getString(KEY_CHAPTERPART2) + "/";
 			}
 		}
 
 		return filename;
 	}
 
-	
 }

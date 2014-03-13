@@ -1,0 +1,20 @@
+﻿5. Boreslam/_.txt
+
+<next>
+5. Boreslam/_content.txt
+</next>
+
+<last>
+4. Modifikasjon av boreslam/_content.txt
+</last>
+
+<title>
+5. Boreslam
+</title>
+
+<text>
+I denne øvingen skal vi bygge opp et enkelt vannbasert bentonittslam, studere reologien og se hvilken effekt salt (NaCl)
+har på viskositet og filtertap. Vi skal også justere tettheten til et slam ved hjelp av barytt og premikset slam.
+
+De testene som skal utføres i øvingen står beskrevet i kapittel 3 i dette kompendiet.
+</text>

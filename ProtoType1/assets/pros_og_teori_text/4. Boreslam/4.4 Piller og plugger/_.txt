@@ -9,7 +9,7 @@
 </next>
 
 <title>
-4. Boreslam/4.4 Piller og plugger
+4.4 Piller og plugger
 </title>
 
 <text>

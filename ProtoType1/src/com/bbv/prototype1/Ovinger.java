@@ -1,59 +1,55 @@
 package com.bbv.prototype1;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-public class Ovinger extends Activity implements OnItemSelectedListener,
+public class Ovinger extends Activity implements 
 		OnClickListener {
 
-	Spinner oving;
-	Button gVidere;
-	ArrayAdapter<CharSequence> delOving;
-	int SpinnerLayout = R.layout.custom_spinner;
-	int SpinnerItemLayout = R.layout.custom_spinner_item;
-	final int OVING1 = 0, OVING2 = 1, OVING3 = 2, OVING4 = 3, OVING5 = 4;
-
+	protected Spinner _sOving;
+	protected Button _gVidere;
+	protected ArrayAdapter<CharSequence> _AAOving;
+	
+	protected int SpinnerLayout = R.layout.custom_spinner;
+	protected int SpinnerItemLayout = R.layout.custom_spinner_item;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ovinger);
-		arrayAdapterSetup();
+		
 		initialize();
+		InitializeSpinnerAdapter();
 	}
-
-	private void arrayAdapterSetup() {
-
-		delOving = ArrayAdapter.createFromResource(this, R.array.ovinger,
-				android.R.layout.simple_dropdown_item_1line); 
-		delOving.setDropDownViewResource(android.R.layout.simple_list_item_1);
-
+	
+	private void OvingAdapter(String[] array) {
+		_AAOving = new ArrayAdapter<CharSequence>(this, SpinnerLayout, array);
+		_AAOving.setDropDownViewResource(SpinnerItemLayout);
+		_sOving.setAdapter(_AAOving);
+	}
+	
+	private void InitializeSpinnerAdapter(){
+		SQLDatabase ovingTable = new SQLDatabase(Ovinger.this);
+		ovingTable.open();
+		String[] ovinger = ovingTable.getOvingTableRows();
+		ovingTable.close();
+		OvingAdapter(ovinger);
 	}
 
 	private void initialize() {
-		oving = (Spinner) findViewById(R.id.sOvinger);
+		_sOving = (Spinner) findViewById(R.id.sOvinger);
+		_gVidere = (Button) findViewById(R.id.bVidere_Oving);
 
-		// Adds the custom look for the spinner
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.custom_spinner, getResources().getStringArray(
-						R.array.ovinger));
-
-		adapter.setDropDownViewResource(SpinnerItemLayout); //Sets the layout for individual items
-		
-		oving.setAdapter(adapter);
-		// Adds the custom look for the spinner
-
-		gVidere = (Button) findViewById(R.id.bVidere_Oving);
-
-		gVidere.setOnClickListener(this);
-		oving.setOnItemSelectedListener(this);
+		_gVidere.setOnClickListener(this);
 	}
 
 	@Override
@@ -63,43 +59,16 @@ public class Ovinger extends Activity implements OnItemSelectedListener,
 		return true;
 	}
 
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int index,
-			long arg3) {
-		switch (parent.getId()) {
-		case R.id.sOvinger:
-			switch (index) {
-			case OVING1:
-
-				break;
-			case OVING2:
-
-				break;
-			case OVING3:
-
-				break;
-			case OVING4:
-
-				break;
-			case OVING5:
-
-				break;
-			}
-			break;
-		}
-
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-
+	private String getStringOfSelected(Spinner s) {
+		return ((TextView) s.getSelectedView()).getText().toString();
 	}
 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-
+		Intent newIntent = new Intent(Fragment_Base.KEY_VIS_TEORI);
+		newIntent.putExtra(Fragment_Base.KEY_OVING, getStringOfSelected(_sOving));
+		startActivity(newIntent);
 	}
 
 }

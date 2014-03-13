@@ -9,7 +9,7 @@
 </next>
 
 <title>
-4. Boreslam/4.2 Oljebaserte boreslam
+4.2 Oljebaserte boreslam
 </title>
 
 <text>

@@ -28,32 +28,22 @@ public class Vis_Teori extends Activity {
 	protected CharSequence _title;
 	protected CharSequence _activity_title;
 	protected Bundle theBundle;
-	protected Fragment_Base _nFB;
+	protected Fragment_Base _nFB = null;
 	protected ArrayList<Intent> _intents;
+	protected int VTStatus = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.vis_teori);
-
+		findCurrentVTStatus();
 		Initialize(savedInstanceState);
-		try {
-			theBundle = this.getIntent().getExtras();
-
-		} catch (Exception e) {
-			theBundle = new Bundle();
-			Log.println(Log.ERROR, "FileView",
-					"Didn't get bundle from pros og teori");
-		}
 	}
 
-	// this is not fixed up yet
-	private void checkForBundle() {
-
-	}
-	public void setBundle(Bundle newBundle){
-		theBundle = newBundle;
+	public void setTeoriBundle(Bundle newBundle) {
+//		this.getIntent().putExtra(Fragment_Base.KEY_PROS_TEORI, newBundle);
+		this.getIntent().putExtras(newBundle);
 	}
 
 	private void Initialize(Bundle savedInstanceState) {
@@ -66,7 +56,7 @@ public class Vis_Teori extends Activity {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-		
+
 		_actionDrawerToggle = new ActionBarDrawerToggle(this, _drawerLayout,
 				R.drawable.ic_drawer, R.string.drawer_open,
 				R.string.drawer_close) {
@@ -80,10 +70,26 @@ public class Vis_Teori extends Activity {
 				invalidateOptionsMenu();
 			}
 		};
-		
+
 		_drawerLayout.setDrawerListener(_actionDrawerToggle);
 		if (savedInstanceState == null) {
-			selectItem(0);
+			selectItem(VTStatus);
+		} else {
+			
+			setTeoriBundle(savedInstanceState);
+			selectItem(VTStatus);
+		}
+	}
+
+	private void findCurrentVTStatus() {
+		if (this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI) != null) {
+			
+			Bundle b = this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI);
+			Log.e("Vis_Teori", "Got prosteori bundle " + b.getString(Fragment_Base.KEY_CHAPTER));
+			VTStatus = 0;
+		} else if (this.getIntent().getStringExtra(Fragment_Base.KEY_OVING) != null) {
+			VTStatus = 1;
+			Log.e("Vis_Teori", "Got ovinger string " + this.getIntent().getStringExtra(Fragment_Base.KEY_OVING));
 		}
 	}
 
@@ -110,7 +116,7 @@ public class Vis_Teori extends Activity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// If the nav drawer is open, hide action items related to the content
 		// view
-		boolean drawerOpen = _drawerLayout.isDrawerOpen(_listView);
+		//boolean drawerOpen = _drawerLayout.isDrawerOpen(_listView);
 		// menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
@@ -151,7 +157,7 @@ public class Vis_Teori extends Activity {
 		}
 	}
 
-	/* The click listner for ListView in the navigation drawer */
+	/* The click listener for ListView in the navigation drawer */
 	private class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
 		@Override
@@ -186,19 +192,28 @@ public class Vis_Teori extends Activity {
 
 		switch (position) {
 		case 0:
+
+			VTStatus = 0;
 			_nFB = new Fragment_Teori();
+			 _nFB.setArguments(this.getIntent().getExtras());
+////			_nFB.setArguments(prosTeoriBundle);
+//			_nFB.setArguments(this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI));
 			_nFB.setVisTeori(this);
-			_nFB.setBundle(theBundle);
-			_title = "Teori";
+
 			break;
 		case 1:
+
+			VTStatus = 1;
 			_nFB = new Fragment_Ovinger();
+			Bundle _b = new Bundle();
+			_b.putString(Fragment_Base.KEY_OVING, this.getIntent().getStringExtra(Fragment_Base.KEY_OVING));
+			_nFB.setArguments(_b);
+			
 			_nFB.setVisTeori(this);
-			_title = "Øvinger";
+
 		default:
 			goToNextPage(position);
 		}
-
 
 		fm.beginTransaction().replace(R.id.flViskos, _nFB).commit();
 		_listView.setItemChecked(position, true);
@@ -233,6 +248,24 @@ public class Vis_Teori extends Activity {
 		super.onConfigurationChanged(newConfig);
 		// Pass any configuration change to the drawer toggls
 		_actionDrawerToggle.onConfigurationChanged(newConfig);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		 outState.putBundle(null, this.getIntent().getExtras());
+//		if (this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI) != null) {
+//			outState.putBundle(Fragment_Base.KEY_PROS_TEORI, this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI));
+//			Log.e("Vis_Teori", "saved prosteori bundle");
+//		}else{
+//			outState.putBundle(Fragment_Base.KEY_PROS_TEORI,null);
+//		}
+//		if (this.getIntent().getStringExtra(Fragment_Base.KEY_OVING) != null) {
+//			outState.putString(Fragment_Base.KEY_OVING, this.getIntent().getStringExtra(Fragment_Base.KEY_OVING));
+//			Log.e("Vis_Teori", "saved ovinger string");
+//		}else{
+//			outState.putBundle(Fragment_Base.KEY_OVING,null);
+//		}
 	}
 
 }

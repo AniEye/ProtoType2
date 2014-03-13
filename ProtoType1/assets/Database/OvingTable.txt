@@ -1,0 +1,28 @@
+#this is the database at start
+#the sign # is used to comment out lines
+#the format to use for inputs is:
+
+#INSERT INTO `database`.`table` (`column1`, `column2`, `column3`) VALUES ('value1', 'value2', 'value3');
+
+#DATABASE_NAME = "ProsTeoriDB"
+#DATABASE_TABLE = "TeoriTable"
+
+#KEY_CHAPTER = "oving"
+#KEY_FILENAME = "filename"
+
+
+#####################  1. Leire og vektmaterialer  ######################
+('1. Leire og vektmaterialer');
+
+
+#####################  2. Reologi og filtertap  ######################
+('2. Reologi og filtertap');
+
+#####################  3. Testing av vannbasert boreslam  ######################
+('3. Testing av vannbasert boreslam');
+
+#####################  4. Modifikasjon av boreslam ######################
+('4. Modifikasjon av boreslam');
+
+#####################  5. Boreslam  ######################
+('5. Boreslam');

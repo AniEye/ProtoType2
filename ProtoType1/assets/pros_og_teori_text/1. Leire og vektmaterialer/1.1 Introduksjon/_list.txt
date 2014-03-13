@@ -7,28 +7,22 @@ Utstyr
 Kalkulator
 </list>
 
-<Øvinger>
-</Øvinger>
-
-<Utstyr>
-Ti
-</Utstyr>
-
-<Kalkulator>
- - En Kalkulator
-</Kalkulator>
 <actions>
 
 <intent>
 </intent>
 
 <intent>
-Ovinger
 </intent>
 
 <intent>
 </intent>
 
 <intent>
+Kalkulator
 </intent>
 </actions>
+
+<Øvinger>
+Øving 1
+</Øvinger>

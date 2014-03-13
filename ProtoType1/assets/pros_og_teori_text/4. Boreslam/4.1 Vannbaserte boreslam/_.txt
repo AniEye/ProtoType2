@@ -9,7 +9,7 @@
 </next>
 
 <title>
-4. Boreslam/4.1 Vannbaserte boreslam
+4.1 Vannbaserte boreslam
 </title>
 
 <text>
