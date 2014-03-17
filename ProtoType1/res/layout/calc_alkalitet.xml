@@ -32,7 +32,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow2"
+            android:id="@+id/trAlkalitet1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" >
@@ -42,20 +42,23 @@
                 android:text="Pf = 0" />
 
             <TextView
+                android:id="@+id/tvAlkalitet11"
                 style="@style/CustomTableItem"
                 android:text="0" />
 
             <TextView
+                android:id="@+id/tvAlkalitet12"
                 style="@style/CustomTableItem"
                 android:text="0" />
 
             <TextView
+                android:id="@+id/tvAlkalitet13"
                 style="@style/CustomTableItem"
                 android:text="1220( Mf )" />
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow3"
+            android:id="@+id/trAlkalitet2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" >
@@ -65,20 +68,23 @@
                 android:text="2Pf &lt; Mf" />
 
             <TextView
+                android:id="@+id/tvAlkalitet21"
                 style="@style/CustomTableItem"
                 android:text="0" />
 
             <TextView
+                android:id="@+id/tvAlkalitet22"
                 style="@style/CustomTableItem"
                 android:text="1200( Pf )" />
 
             <TextView
+                android:id="@+id/tvAlkalitet23"
                 style="@style/CustomTableItem"
                 android:text="1220( Mf - 2Pf )" />
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow4"
+            android:id="@+id/trAlkalitet3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -87,20 +93,23 @@
                 android:text="2Pf = Mf" />
 
             <TextView
+                android:id="@+id/tvAlkalitet31"
                 style="@style/CustomTableItem"
                 android:text="0" />
 
             <TextView
+                android:id="@+id/tvAlkalitet32"
                 style="@style/CustomTableItem"
                 android:text="1200( Pf )" />
 
             <TextView
+                android:id="@+id/tvAlkalitet33"
                 style="@style/CustomTableItem"
                 android:text="0" />
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow5"
+            android:id="@+id/trAlkalitet4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -109,20 +118,23 @@
                 android:text="2Pf > Mf" />
 
             <TextView
+                android:id="@+id/tvAlkalitet41"
                 style="@style/CustomTableItem"
                 android:text="340( 2Pf - Mf )" />
 
             <TextView
+                android:id="@+id/tvAlkalitet42"
                 style="@style/CustomTableItem"
                 android:text="1200( Mf - Pf )" />
 
             <TextView
+                android:id="@+id/tvAlkalitet43"
                 style="@style/CustomTableItem"
                 android:text="0" />
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow6"
+            android:id="@+id/trAlkalitet5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -131,14 +143,17 @@
                 android:text="Pf = Mf" />
 
             <TextView
+                android:id="@+id/tvAlkalitet51"
                 style="@style/CustomTableItem"
                 android:text="340( Mf )" />
 
             <TextView
+                android:id="@+id/tvAlkalitet52"
                 style="@style/CustomTableItem"
                 android:text="0" />
 
             <TextView
+                android:id="@+id/tvAlkalitet53"
                 style="@style/CustomTableItem"
                 android:text="0" />
         </TableRow>

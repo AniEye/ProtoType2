@@ -106,15 +106,8 @@ public class KloridInnhold extends Basic_Calc {
 			Log.println(Log.INFO, "calc", "Setting textviews in " + this.getClass().getName() + "!");
 			
 			float[] testFloats = {CCl, ClPPM, NaClMG, NaClPPM};
-			boolean floatIsFine = true;
-			for (int i = 0; i < testFloats.length; i++) {
-				//Displays a toast saying that there was an error if any value returned NaN or infinity
-				if (testFloat(testFloats[i]) == false)
-				{
-					Log.println(Log.DEBUG, "calc", "Dividing with 0 error in " + this.getClass().getName());
-					return "";
-				}
-			}
+			if (testFloat(testFloats) == false)
+				return "";
 
 			String _KloridMG = String.format("%.3f", CCl);
 			String _KloridPPM = String.format("%.3f", ClPPM);

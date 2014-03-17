@@ -71,15 +71,8 @@ public class CEC extends Basic_Calc {
 			BentKG = 14.25f * CEC;
 
 			float[] testFloats = { CEC, BentKG, BentPPM };
-			for (int i = 0; i < testFloats.length; i++) {
-				// Displays a toast saying that there was an error if any value
-				// returned NaN or infinity
-				if (testFloat(testFloats[i]) == false) {
-					Log.println(Log.DEBUG, "calc", "Dividing with 0 error in "
-							+ this.getClass().getName());
-					return "";
-				}
-			}
+			if (testFloat(testFloats) == false)
+				return "";
 
 			String _CEC = String.format("%.3f", CEC);
 			String _BentPPM = String.format("%.3f", BentPPM);

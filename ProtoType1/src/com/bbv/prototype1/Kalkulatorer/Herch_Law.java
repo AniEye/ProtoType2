@@ -72,14 +72,8 @@ public class Herch_Law extends Basic_Calc {
 			T = calcT(ty, K, Y, N);
 
 			float[] testFloats = { T0, ty, N, K, Y, T };
-			boolean floatIsFine = true;
-			for (int i = 0; i < testFloats.length; i++) {
 
-				if (testFloat(testFloats[i]) == false)
-					floatIsFine = false;
-			}
-
-			if (floatIsFine == false)
+			if (testFloat(testFloats) == false)
 				return "";
 
 			Log.println(Log.INFO, "calc", "Setting textviews in Modpowerlaw!");

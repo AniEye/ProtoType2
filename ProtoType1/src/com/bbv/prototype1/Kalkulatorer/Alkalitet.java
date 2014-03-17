@@ -1,5 +1,7 @@
 package com.bbv.prototype1.Kalkulatorer;
 
+import java.lang.reflect.Field;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -22,12 +24,17 @@ public class Alkalitet extends Basic_Calc {
 	final int updateButtonID = R.id.bAlkalitetUpdate;
 	final int layout = R.layout.calc_alkalitet;
 
+	// Variables used for calculations
+	float Pf;
+	float Mf;
+
 	final int[] IDs = { R.id.etAlkalitetPf, // Edittext of Mf
 			R.id.etAlkalitetMf, // Edittext of Fw
 			R.id.etAlkalitetHideThis // Edittext of nothing - Will be disabled
 	};
 
-	public final static int KEY_INDEX = 2; // Only used for error catching when calculating. Only
+	public final static int KEY_INDEX = 2; // Only used for error catching when
+											// calculating. Only
 											// Key_INDEX should ever be used
 
 	public Alkalitet(Context context) {
@@ -39,45 +46,112 @@ public class Alkalitet extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-//		Pm = fieldStatuses[0];
-//		Fw = fieldStatuses[1];
-//		Pf = fieldStatuses[2];
-//
-//		switch (variableToCalculate) {
-//
-//		default:
-//			Log.println(Log.ERROR, "calc",
-//					"Tried to calculate anything other than CEC, and this should not happen!");
-//			break;
-//		case Ca_INDEX:
-//
-//			if (Pm == 0 || Fw == 0 || Pf == 0) {
-//				showToast("Du kan ikke bruke 0-verdier!");
-//				return "";
-//			}
-//
-//			Ca = 0.742f * (Pm - Fw * Pf);
-//
-//			float[] testFloats = { Ca, Pm, Fw, Pf };
-//			for (int i = 0; i < testFloats.length; i++) {
-//				// Displays a toast saying that there was an error if any value
-//				// returned NaN or infinity
-//				if (testFloat(testFloats[i]) == false) {
-//					Log.println(Log.DEBUG, "calc", "Dividing with 0 error in "
-//							+ this.getClass().getName());
-//					return "";
-//				}
-//			}
-//
-//			String _Ca = String.format("%.3f", Ca);
-//
-//			tvCa.setText(_Ca);
-//
-//			return _Ca;
-//
-//		}
-//
+		Pf = fieldStatuses[0];
+		Mf = fieldStatuses[1];
+
+		switch (variableToCalculate) {
+
+		default:
+			Log.println(Log.ERROR, "calc",
+					"Tried to calculate wrong value, and this should not happen!");
+			break;
+		case KEY_INDEX:
+
+			Table_3_3 table = new Table_3_3(Pf, Mf);
+
+			if (table.getCalculatedRow() == -1) {
+				Log.println(Log.ERROR, "calc", "Something went wrong in "
+						+ this.getClass().getName());
+				showToast("Something went wrong!");
+				return "";
+			}
+
+			Log.println(Log.INFO, "calc", "OH = " + table.getOH());
+			Log.println(Log.INFO, "calc", "CO = " + table.getCO());
+			Log.println(Log.INFO, "calc", "HCO = " + table.getHCO());
+
+			lightUpRow(table.getCalculatedRow());
+
+		}
+
 		return "";
+
+	}
+
+	private void resetTableItems() {
+
+		for (int i = 1; i <= 5; i++) {
+			
+			for (int j=1; j<=3; j++)
+			{
+
+			String String_ID = "tvAlkalitet" + String.valueOf(i)
+					+ String.valueOf(j);
+			Log.println(Log.DEBUG, "calc", "ID lightupRow: " + String_ID);
+
+			Class clazz = R.id.class;
+			Field f = null;
+			int id = -1;
+			try {
+				f = clazz.getField(String_ID);
+				id = f.getInt(null); // pass in null, since field is a static
+										// field.
+			} catch (NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// Find better way to deal with this!
+			findViewById(id).setBackgroundDrawable(
+					getResources().getDrawable(
+							R.drawable.table_item_with_border));
+
+			}
+		}
+
+	}
+
+	private void lightUpRow(int calculatedRow) {
+		// TODO Auto-generated method stub
+
+		resetTableItems();
+
+		for (int i = 1; i <= 3; i++) {
+
+			String String_ID = "tvAlkalitet" + String.valueOf(calculatedRow)
+					+ String.valueOf(i);
+			Log.println(Log.DEBUG, "calc", "ID lightupRow: " + String_ID);
+
+			Class clazz = R.id.class;
+			Field f = null;
+			int id = -1;
+			try {
+				f = clazz.getField(String_ID);
+				id = f.getInt(null); // pass in null, since field is a static
+										// field.
+			} catch (NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// Find better way to deal with this!
+			findViewById(id).setBackgroundDrawable(
+					getResources().getDrawable(
+							R.drawable.table_item_with_border_selected));
+
+		}
 
 	}
 
@@ -106,17 +180,11 @@ public class Alkalitet extends Basic_Calc {
 				case clearButtonID:
 					ResetFields(textFields);
 					_textFieldsStatus = new int[IDs.length];
+					resetTableItems();
 					break;
 				case updateButtonID:
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
-//						try {
-//							if (Float.parseFloat(textFields[i].getText()
-//									.toString()) == 0.0)
-//								textFields[i].setText("");
-//						} catch (NumberFormatException e) {
-//							e.printStackTrace();
-//						}
 					}
 					break;
 				}

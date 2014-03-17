@@ -67,14 +67,7 @@ public class PowerLaw extends Basic_Calc {
 			T = calcT(K, Y, N);
 
 			float[] testFloats = {N, K, Y, T };
-			boolean floatIsFine = true;
-			for (int i = 0; i < testFloats.length; i++) {
-				//Displays a toast saying that there was an error if any value returned NaN or infinity
-				if (testFloat(testFloats[i]) == false)
-					floatIsFine = false;
-			}
-
-			if (floatIsFine == false)
+			if (testFloat(testFloats) == false)
 				return "";
 
 			Log.println(Log.INFO, "calc", "Setting textviews in Powerlaw!");

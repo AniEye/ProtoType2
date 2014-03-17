@@ -50,18 +50,8 @@ public class Flytegrense extends Basic_Calc {
 			break;
 		}
 		
-		if(Float.isInfinite(theAnswer) || Float.isNaN(theAnswer)){
-			Log.println(Log.ERROR, "calc", "Flytegrense tried to divide by 0!");
-			try {
-				toast.getView().isShown(); // true if visible
-				toast.setText("You can't divide by 0!");
-			} catch (Exception e) { // invisible if exception
-				toast = Toast.makeText(getContext(),
-						"You can't divide by 0!", Toast.LENGTH_SHORT);
-			}
-				toast.show();
-				return "";
-		}
+		if (testFloat(theAnswer) == false)
+			return "";
 		
 		if (theAnswer != 0)
 			return String.format("%.3f", theAnswer);

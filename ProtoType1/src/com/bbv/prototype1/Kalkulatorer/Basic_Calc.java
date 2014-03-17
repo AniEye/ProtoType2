@@ -95,12 +95,18 @@ public abstract class Basic_Calc extends LinearLayout {
 		}
 	} 
 	
-	protected boolean testFloat(float x) {
-		if (Float.isInfinite(x) || Float.isNaN(x)) {
-			Log.println(Log.ERROR, "calc", this.getClass().getName()
-					+ " tried to divide by 0!");
-			showToast("You can't divide by 0!");
-			return false;
+	protected boolean testFloat(float... x) {
+		
+		for (int i = 0; i < x.length; i++) {
+			// Displays a toast saying that there was an error if any value
+			// returned NaN or infinity
+			
+			if (Float.isInfinite(x[i]) || Float.isNaN(x[i])) {
+				Log.println(Log.ERROR, "calc", "Dividing with 0 error in "
+						+ this.getClass().getName());
+				showToast("You can't divide by 0!");
+				return false;
+			}
 		}
 		return true;
 	}
