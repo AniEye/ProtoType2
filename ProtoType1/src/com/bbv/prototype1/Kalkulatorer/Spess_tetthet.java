@@ -12,8 +12,6 @@ import com.bbv.prototype1.R;
 
 public class Spess_tetthet extends Basic_Calc {
 
-	Toast toast = new Toast(this.getContext());
-
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
@@ -237,16 +235,6 @@ public class Spess_tetthet extends Basic_Calc {
 				break;
 			}
 		}
-	}
-
-	private void showToast(String message) {
-		try {
-			toast.getView().isShown(); // true if visible
-			toast.setText(message);
-		} catch (Exception e) { // invisible if exception
-			toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
-		}
-		toast.show();
 	}
 
 }

@@ -13,30 +13,30 @@
         android:src="@drawable/total_hardhet" />
 
     <TextView
-        android:id="@+id/tvm1"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="[EDTA]" />
+        android:text="Volum EDTA" />
 
     <EditText
-        android:id="@+id/etKICl"
+        android:id="@+id/etTotHardVEDTA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[mg/l]"
+        android:hint="[ml]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
-
+    
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="V AgNO3 - Volum av sølvnitrat forbrukt" />
+        android:text="Volum titrert Ca2+" />
 
     <EditText
-        android:id="@+id/etKIVAgNO3"
+        android:id="@+id/etTotHardVCa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -52,7 +52,7 @@
         android:text="V filtrat - Volum filtrat" />
 
     <EditText
-        android:id="@+id/etKIVF"
+        android:id="@+id/etTotHardVF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -61,11 +61,10 @@
         android:textColorHint="@color/ButtonTextColor" />
 
     <EditText
-        android:id="@+id/etKICCl"
+        android:id="@+id/etTotHardHideThis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[ml/l]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -83,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Klorid Innhold \n (mg/l Cl-)"
+            android:text="Total hardhet \n[mg/l CaCO3]"
             android:textSize="16dp" />
 
         <TextView
@@ -95,7 +94,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvKIKIMG"
+            android:id="@+id/tvTotHardCaCo"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -103,7 +102,7 @@
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -118,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Klorid Innhold \n (ppm Cl-)"
+            android:text="Kalsium hardhet \n[mg/l Ca2+]"
             android:textSize="16dp" />
 
         <TextView
@@ -130,7 +129,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvKIKIPPM"
+            android:id="@+id/tvTotHardCa2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -153,7 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="NaCl innhold \n (mg/l NaCl)"
+            android:text="Magnesium hardhet \n[mg/l Mg2+]"
             android:textSize="16dp" />
 
         <TextView
@@ -165,42 +164,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvKINaCLMG"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="left|center_vertical"
-            android:text=""
-            android:textSize="16dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:weightSum="2" >
-
-        <TextView
-            android:id="@+id/tvm6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="NaCl innhold \n (ppm NaCl)"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/tvm6"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text=" = "
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/tvKINaPPM"
+            android:id="@+id/tvTotHardMg2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -217,13 +181,13 @@
         android:paddingTop="5dp" >
 
         <Button
-            android:id="@+id/bKIUpdate"
+            android:id="@+id/bTotHardUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update" />
 
         <Button
-            android:id="@+id/bKIClear"
+            android:id="@+id/bTotHardClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Clear" />

@@ -152,6 +152,9 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		case 10:
 			calc = new AlkaPm(lLayout.getContext());
 			break;
+		case 11: 
+			calc = new Alkalitet(lLayout.getContext());
+			break;
 		}
 
 		try {

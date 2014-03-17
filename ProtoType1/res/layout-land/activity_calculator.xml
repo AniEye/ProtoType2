@@ -10,7 +10,7 @@
         android:id="@+id/listKalkHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.6"
+        android:layout_weight="0.5"
         android:entries="@array/calculator"
         android:choiceMode="singleChoice"
         android:listSelector="@color/ButtonAndSpinnerBackgroundColor_Pressed"
@@ -20,7 +20,7 @@
         android:id="@+id/svKalkHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.4"
+        android:layout_weight="1.5"
         android:background="@color/ButtonAndSpinnerBackgroundColor" >
 
         <LinearLayout

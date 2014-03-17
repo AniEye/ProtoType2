@@ -13,7 +13,6 @@ import com.bbv.prototype1.R;
 
 public class Herch_Law extends Basic_Calc {
 
-	Toast toast;
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
@@ -128,25 +127,6 @@ public class Herch_Law extends Basic_Calc {
 
 	public float calcT(float ty, float K, float Y, float N) {
 		return (float) (ty + (K * Math.pow(Y, N)));
-	}
-
-	private boolean testFloat(float x) {
-		/**
-		 * Returns false if float is NaN or infinite! Returns true if okay
-		 */
-		if (Float.isInfinite(x) || Float.isNaN(x)) {
-			Log.println(Log.ERROR, "calc", "ModPowerLaw tried to divide by 0!");
-			try {
-				toast.getView().isShown(); // true if visible
-				toast.setText("You can't divide by 0!");
-			} catch (Exception e) { // invisible if exception
-				toast = Toast.makeText(getContext(), "You can't divide by 0!",
-						Toast.LENGTH_SHORT);
-			}
-			toast.show();
-			return false;
-		}
-		return true;
 	}
 
 	@Override

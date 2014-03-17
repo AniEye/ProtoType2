@@ -1,0 +1,205 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ViewWithSpinners"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ButtonAndSpinnerBackgroundColor" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+            <TextView style="@style/CustomTableItem" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="@string/OH" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="@string/CO23" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="@string/HCO3" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="Pf = 0" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="0" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="0" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="1220( Mf )" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="2Pf &lt; Mf" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="0" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="1200( Pf )" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="1220( Mf - 2Pf )" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="2Pf = Mf" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="0" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="1200( Pf )" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="0" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="2Pf > Mf" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="340( 2Pf - Mf )" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="1200( Mf - Pf )" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="0" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="Pf = Mf" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="340( Mf )" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="0" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="0" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Pf" />
+
+    <EditText
+        android:id="@+id/etAlkalitetPf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[ml]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Mf" />
+
+    <EditText
+        android:id="@+id/etAlkalitetMf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[ml]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <EditText
+        android:id="@+id/etAlkalitetHideThis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="5dp" >
+
+        <Button
+            android:id="@+id/bAlkalitetUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update" />
+
+        <Button
+            android:id="@+id/bAlkalitetClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear" />
+    </LinearLayout>
+
+</LinearLayout>

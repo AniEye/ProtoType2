@@ -13,6 +13,9 @@
     <string name="title_tests">Øvinger</string>
     <string name="drawer_open">hi opening</string>
     <string name="drawer_close">Godbye clsing</string>
+    <string name="OH">OH<sup>-</sup>, [mg/l]</string>
+    <string name="CO23">CO<sup>2-<sub>3</sub></sup>, [mg/l]</string>
+    <string name="HCO3">HCO<sup>-<sub>3</sub></sup>, [mg/l]</string>
 
     <string-array name="ovinger">
         <item>Velg Øving</item>
@@ -34,6 +37,7 @@
         <item>Total hardhet</item>
         <item>Caution Exchange Capasity</item>
         <item>Ca (OH)2</item>
+        <item>Alkalitet</item>
     </string-array>
 
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>

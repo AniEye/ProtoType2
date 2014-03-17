@@ -11,40 +11,26 @@ import android.widget.Toast;
 
 import com.bbv.prototype1.R;
 
-public class TotalHardhet extends Basic_Calc {
+public class Alkalitet extends Basic_Calc {
 
+	Toast toast;
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	final int clearButtonID = R.id.bTotHardClear;
-	final int updateButtonID = R.id.bTotHardUpdate;
-	final int layout = R.layout.calc_total_hardhet;
-	
-	TextView tvCaCo3;
-	TextView tvCa2;
-	TextView tvMg2;	
-	
-	//Variables used for calculation
-	float CaCo3;
-	float Ca2;
-	float Mg2;
-	float V_EDTA;
-	float V_filtrat;
-	float EDTA = 0.01f;
-	float M_CaCO3 = 100.0869f;
-	float M_Ca2 = 40.78f;
-	float M_Mg2 = 24.3050f;
+	final int clearButtonID = R.id.bAlkalitetClear;
+	final int updateButtonID = R.id.bAlkalitetUpdate;
+	final int layout = R.layout.calc_alkalitet;
 
-	final int[] IDs = { 
-			R.id.etTotHardVEDTA, //Textfield of V EDTA
-			R.id.etTotHardVF, //Textfield of V filtrat
-			R.id.etTotHardHideThis, //Textfield of CaCO3 - Will be disabled
-			};
+	final int[] IDs = { R.id.etAlkalitetPf, // Edittext of Mf
+			R.id.etAlkalitetMf, // Edittext of Fw
+			R.id.etAlkalitetHideThis // Edittext of nothing - Will be disabled
+	};
 
-	public final static int VEDTA_index = 0, VFiltrat_index = 1, CaCO3_index = 2;
+	public final static int KEY_INDEX = 2; // Only used for error catching when calculating. Only
+											// Key_INDEX should ever be used
 
-	public TotalHardhet(Context context) {
+	public Alkalitet(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -53,48 +39,44 @@ public class TotalHardhet extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		V_EDTA = fieldStatuses[0];
-		V_filtrat = fieldStatuses[1];
-
-		switch (variableToCalculate) {
-
-		case VFiltrat_index:
-			Log.println(Log.ERROR, "calc",
-					"Tried to calculate Cl, and this should not happen!");
-			break;
-		case VEDTA_index:
-			Log.println(Log.ERROR, "calc",
-					"Tried to calculate volume of AgNO3, and this should not happen!");
-			break;
-		case CaCO3_index:
-
-			Log.println(Log.INFO, "calc", "Setting textviews in " + this.getClass().getName() + "!");
-			
-//			float[] testFloats = {CCl, ClPPM, NaClMG, NaClPPM};
-//			boolean floatIsFine = true;
+//		Pm = fieldStatuses[0];
+//		Fw = fieldStatuses[1];
+//		Pf = fieldStatuses[2];
+//
+//		switch (variableToCalculate) {
+//
+//		default:
+//			Log.println(Log.ERROR, "calc",
+//					"Tried to calculate anything other than CEC, and this should not happen!");
+//			break;
+//		case Ca_INDEX:
+//
+//			if (Pm == 0 || Fw == 0 || Pf == 0) {
+//				showToast("Du kan ikke bruke 0-verdier!");
+//				return "";
+//			}
+//
+//			Ca = 0.742f * (Pm - Fw * Pf);
+//
+//			float[] testFloats = { Ca, Pm, Fw, Pf };
 //			for (int i = 0; i < testFloats.length; i++) {
-//				//Displays a toast saying that there was an error if any value returned NaN or infinity
-//				if (testFloat(testFloats[i]) == false)
-//				{
-//					Log.println(Log.DEBUG, "calc", "Dividing with 0 error in " + this.getClass().getName());
+//				// Displays a toast saying that there was an error if any value
+//				// returned NaN or infinity
+//				if (testFloat(testFloats[i]) == false) {
+//					Log.println(Log.DEBUG, "calc", "Dividing with 0 error in "
+//							+ this.getClass().getName());
 //					return "";
 //				}
 //			}
 //
-//			String _KloridMG = String.format("%.3f", CCl);
-//			String _KloridPPM = String.format("%.3f", ClPPM);
-//			String _NaClMG = String.format("%.3f", NaClMG);
-//			String _NaClPPM = String.format("%.3f", NaClPPM);
-//			
-//			tvKloridML.setText(_KloridMG);
-//			tvKloridPPM.setText(_KloridPPM);
-//			tvNaClMG.setText(_NaClMG);
-//			tvNaClPPM.setText(_NaClPPM);
+//			String _Ca = String.format("%.3f", Ca);
 //
-//			return String.format("%.3f", CCl);
-
-		}
-
+//			tvCa.setText(_Ca);
+//
+//			return _Ca;
+//
+//		}
+//
 		return "";
 
 	}
@@ -108,12 +90,6 @@ public class TotalHardhet extends Basic_Calc {
 
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		textFields[2].setVisibility(GONE);
-
-		tvCa2 = (TextView) findViewById(R.id.tvKIKIMG);
-		tvCaCo3 = (TextView) findViewById(R.id.tvKIKIPPM);
-		tvMg2 = (TextView) findViewById(R.id.tvKINaCLMG);
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -129,23 +105,18 @@ public class TotalHardhet extends Basic_Calc {
 				switch (v.getId()) {
 				case clearButtonID:
 					ResetFields(textFields);
-
-					tvCa2.setText("");
-					tvCaCo3.setText("");
-					tvMg2.setText("");
-
 					_textFieldsStatus = new int[IDs.length];
 					break;
 				case updateButtonID:
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
-						try {
-							if (Float.parseFloat(textFields[i].getText()
-									.toString()) == 0.0)
-								textFields[i].setText("");
-						} catch (NumberFormatException e) {
-							e.printStackTrace();
-						}
+//						try {
+//							if (Float.parseFloat(textFields[i].getText()
+//									.toString()) == 0.0)
+//								textFields[i].setText("");
+//						} catch (NumberFormatException e) {
+//							e.printStackTrace();
+//						}
 					}
 					break;
 				}
@@ -179,7 +150,7 @@ public class TotalHardhet extends Basic_Calc {
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-					
+
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);
@@ -207,24 +178,4 @@ public class TotalHardhet extends Basic_Calc {
 		}
 	}
 
-	public float getCaCo3() {
-		return CaCo3;
-	}
-
-	public float getCa2() {
-		return Ca2;
-	}
-
-	public float getMg2() {
-		return Mg2;
-	}
-
-	public float getV_EDTA() {
-		return V_EDTA;
-	}
-
-	public float getV_filtrat() {
-		return V_filtrat;
-	}
-	
 }

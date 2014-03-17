@@ -1,13 +1,16 @@
 package com.bbv.prototype1.Kalkulatorer;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public abstract class Basic_Calc extends LinearLayout {
 
+	Toast toast;
 	Button _clear, _update;
 	EditText[] textFields;
 	Context cont;
@@ -91,5 +94,26 @@ public abstract class Basic_Calc extends LinearLayout {
 			editTexts[i].setEnabled(true);
 		}
 	} 
+	
+	protected boolean testFloat(float x) {
+		if (Float.isInfinite(x) || Float.isNaN(x)) {
+			Log.println(Log.ERROR, "calc", this.getClass().getName()
+					+ " tried to divide by 0!");
+			showToast("You can't divide by 0!");
+			return false;
+		}
+		return true;
+	}
+	
+	protected void showToast(String message) {
+		try {
+			toast.getView().isShown(); // true if visible
+			toast.setText(message);
+		} catch (Exception e) { // invisible if exception
+			toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
+		}
+		Log.println(Log.INFO, "calc", "Displayed toast saying: " + message);
+		toast.show();
+	}
 	
 }

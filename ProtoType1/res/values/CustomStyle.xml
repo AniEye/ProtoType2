@@ -8,19 +8,27 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/selector_main_buttons</item>
         <item name="android:textAppearance">@style/CustomText</item>
-        
+    </style>
+
+    <style name="CustomTableItem">
+        <item name="android:background">@drawable/table_item_border</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/TableBorderColor</item>
     </style>
 
     <style name="CustomSpinner">
         <item name="android:background">@drawable/selector_listview</item>
         <item name="android:textAppearance">@style/CustomText</item>
     </style>
-    
+
     <style name="CustomSpinnerItem">
         <item name="android:background">@drawable/selector_listview</item>
         <item name="android:textAppearance">@style/CustomText</item>
     </style>
-    
 
     <style name="CustomText" parent="@android:style/TextAppearance">
         <item name="android:textSize">15sp</item>
@@ -42,12 +50,13 @@
     <color name="BackgroundColor">#0F0F0F</color>
     <color name="ButtonAndSpinnerBackgroundColor">#808080</color>
     <color name="ButtonAndSpinnerBackgroundColor_Pressed">#B7B7B7</color>
-    
     <color name="ButtonTextColor">#F8F8FF</color>
+    <color name="TableBackgroundColor">#FFFFFF</color>
+    <color name="TableBorderColor">#000000</color>
 
     <!--
     For colors that go well: http://www.w3schools.com/tags/ref_color_tryit.asp?color=Grey
-    Change ...?color=*** with a background color to test
+    Change ....ast?color=*** with a background color to test
     -->
 
 </resources>

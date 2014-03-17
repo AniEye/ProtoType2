@@ -13,7 +13,6 @@ import com.bbv.prototype1.R;
 
 public class KloridInnhold extends Basic_Calc {
 
-	Toast toast;
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
@@ -133,26 +132,6 @@ public class KloridInnhold extends Basic_Calc {
 
 		return "";
 
-	}
-
-	private boolean testFloat(float x) {
-		if (Float.isInfinite(x) || Float.isNaN(x)) {
-			Log.println(Log.ERROR, "calc", this.getClass().getName() + " tried to divide by 0!");
-			showToast("You can't divide by 0!");
-			return false;
-		}
-		return true;
-	}
-	
-	private void showToast(String message) {
-		try {
-			toast.getView().isShown(); // true if visible
-			toast.setText(message);
-		} catch (Exception e) { // invisible if exception
-			toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
-		}
-		Log.println(Log.INFO, "calc", "Toast displayed with info: " + message);
-		toast.show();
 	}
 
 

@@ -172,14 +172,4 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 		}
 	}
 
-	private void showToast(String message) {
-		try {
-			toast.getView().isShown(); // true if visible
-			toast.setText(message);
-		} catch (Exception e) { // invisible if exception
-			toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
-		}
-		toast.show();
-	}
-
 }
