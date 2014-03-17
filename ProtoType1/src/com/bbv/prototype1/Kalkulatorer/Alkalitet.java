@@ -15,7 +15,6 @@ import com.bbv.prototype1.R;
 
 public class Alkalitet extends Basic_Calc {
 
-	Toast toast;
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
@@ -27,6 +26,9 @@ public class Alkalitet extends Basic_Calc {
 	// Variables used for calculations
 	float Pf;
 	float Mf;
+	float OH;
+	float CO;
+	float HCO;
 
 	final int[] IDs = { R.id.etAlkalitetPf, // Edittext of Mf
 			R.id.etAlkalitetMf, // Edittext of Fw
@@ -65,6 +67,10 @@ public class Alkalitet extends Basic_Calc {
 				showToast("Something went wrong!");
 				return "";
 			}
+			
+			OH = table.getOH();
+			HCO = table.getHCO();
+			CO = table.getCO();
 
 			Log.println(Log.INFO, "calc", "OH = " + table.getOH());
 			Log.println(Log.INFO, "calc", "CO = " + table.getCO());
@@ -91,10 +97,14 @@ public class Alkalitet extends Basic_Calc {
 
 			int ID = returnIDFromString(String_ID);
 
+			TextView tableItem = (TextView) findViewById(ID);
+			
 			// Find better way to deal with this!
-			findViewById(ID).setBackgroundDrawable(
+			tableItem.setBackgroundDrawable(
 					getResources().getDrawable(
 							R.drawable.table_item_with_border));
+			
+			tableItem.setText((new Table_3_3(0, 0)).getInitialRows()[i-1][j-1]);
 
 			}
 		}
@@ -113,15 +123,55 @@ public class Alkalitet extends Basic_Calc {
 
 			int ID = returnIDFromString(String_ID);
 
+			TextView tableItem = (TextView) findViewById(ID);
+			
 			// Find better way to deal with this!
-			findViewById(ID).setBackgroundDrawable(
+			tableItem.setBackgroundDrawable(
 					getResources().getDrawable(
 							R.drawable.table_item_with_border_selected));
+			
+			showResults(tableItem, calculatedRow,i);
 
 		}
 
 	}
 	
+	private void showResults(TextView tableItem, int row, int column) {
+		
+		switch (row) {
+		case 1:
+			if(column == 3)
+				tableItem.setText(String.format("%.3f", HCO));
+			break;
+		case 2:
+			if(column == 2)
+				tableItem.setText(String.format("%.3f", CO));
+			if (column == 3)
+				tableItem.setText(String.format("%.3f", HCO));
+			break;
+		case 3:
+			if (column == 2)
+				tableItem.setText(String.format("%.3f", CO));
+			break;
+		case 4:
+			if(column == 1)
+				tableItem.setText(String.format("%.3f", OH));
+			if(column == 2)
+				tableItem.setText(String.format("%.3f", CO));
+			break;
+		case 5:
+			if (column == 1)
+				tableItem.setText(String.format("%.3f", OH));
+			break;
+
+		default:
+			Log.println(Log.ERROR, "calc", "A row value not between 1 and 5 was chosen in Alkalitet");
+			break;
+		}
+		
+		
+	}
+
 	private int returnIDFromString(String String_ID){
 		Class clazz = R.id.class;
 		Field f = null;

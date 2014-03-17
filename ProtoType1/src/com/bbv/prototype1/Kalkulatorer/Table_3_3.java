@@ -6,6 +6,13 @@ public class Table_3_3 {
 	private float CO;
 	private float HCO;
 	private int calculatedRow;
+	
+	String[] row1 = {"0","0","1220( Mf )"};
+	String[] row2 = {"0","1200( Pf )","1220( Mf - 2Pf )"};
+	String[] row3 = {"0","1200( Pf )","0"};
+	String[] row4 = {"340( 2Pf - Mf )","1200( Mf - Pf )","0"};
+	String[] row5 = {"340( Mf )","0","0"};
+	String[][] rows = {row1,row2,row3,row4,row5};
 
 	public Table_3_3(float Pf, float Mf) {
 
@@ -58,6 +65,10 @@ public class Table_3_3 {
 
 	public int getCalculatedRow() {
 		return calculatedRow;
+	}
+	
+	public String[][] getInitialRows(){
+		return rows;
 	}
 
 }
