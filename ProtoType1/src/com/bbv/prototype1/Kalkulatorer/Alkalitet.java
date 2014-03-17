@@ -89,32 +89,15 @@ public class Alkalitet extends Basic_Calc {
 					+ String.valueOf(j);
 			Log.println(Log.DEBUG, "calc", "ID lightupRow: " + String_ID);
 
-			Class clazz = R.id.class;
-			Field f = null;
-			int id = -1;
-			try {
-				f = clazz.getField(String_ID);
-				id = f.getInt(null); // pass in null, since field is a static
-										// field.
-			} catch (NoSuchFieldException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			int ID = returnIDFromString(String_ID);
 
 			// Find better way to deal with this!
-			findViewById(id).setBackgroundDrawable(
+			findViewById(ID).setBackgroundDrawable(
 					getResources().getDrawable(
 							R.drawable.table_item_with_border));
 
 			}
 		}
-
 	}
 
 	private void lightUpRow(int calculatedRow) {
@@ -128,31 +111,39 @@ public class Alkalitet extends Basic_Calc {
 					+ String.valueOf(i);
 			Log.println(Log.DEBUG, "calc", "ID lightupRow: " + String_ID);
 
-			Class clazz = R.id.class;
-			Field f = null;
-			int id = -1;
-			try {
-				f = clazz.getField(String_ID);
-				id = f.getInt(null); // pass in null, since field is a static
-										// field.
-			} catch (NoSuchFieldException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			int ID = returnIDFromString(String_ID);
 
 			// Find better way to deal with this!
-			findViewById(id).setBackgroundDrawable(
+			findViewById(ID).setBackgroundDrawable(
 					getResources().getDrawable(
 							R.drawable.table_item_with_border_selected));
 
 		}
 
+	}
+	
+	private int returnIDFromString(String String_ID){
+		Class clazz = R.id.class;
+		Field f = null;
+		int id = -1;
+		try {
+			f = clazz.getField(String_ID);
+			id = f.getInt(null); // pass in null, since field is a static
+									// field.
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			Log.println(Log.ERROR, "TryCatch", "Error when returning textview ID");
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			Log.println(Log.ERROR, "TryCatch", "Error when returning textview ID");
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			Log.println(Log.ERROR, "TryCatch", "Error when returning textview ID");
+			e.printStackTrace();
+		}
+		return id;
 	}
 
 	@Override
