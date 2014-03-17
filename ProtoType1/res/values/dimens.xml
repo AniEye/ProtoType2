@@ -5,5 +5,10 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="Custom_button_width">60dp</dimen>
     <dimen name="Custom_button_height">5dp</dimen>
+    <dimen name="H1Size">10sp</dimen>
+    <dimen name="H2Size">8sp</dimen>
+    <dimen name="H3Size">6sp</dimen>
+    <dimen name="H4Size">4sp</dimen>
+    <dimen name="H5Size">2sp</dimen>
 
 </resources>

@@ -26,3 +26,7 @@ Kalkulator
 <Øvinger>
 Øving 1
 </Øvinger>
+<bundle>
+Ovinger#1. Leire og vektmaterialer
+Ovinger#2. Reologi og filtertap
+</bundle>

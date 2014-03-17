@@ -23,7 +23,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/aero_blue"
-            android:text="Neste" />
+            android:text="Neste" 
+            />
     </LinearLayout>
     <ScrollView
         android:id="@+id/scrollView1"

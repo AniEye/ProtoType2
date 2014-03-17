@@ -34,11 +34,13 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 	protected AssetManager _as;
 	protected Boolean _bTitle = false, _bText = false, _bImage = false,
 			_bNextOrLast = false, _bList = false, _bReadBothfiles = false,
-			_bIntent = false;
+			_bIntent = false,_bBundle=false;
 	protected StringBuffer _buffer;
 	protected ArrayList<String> _listAL;
 	protected String _filename;
 	protected ArrayList<Intent> _intents;
+	protected ArrayList<Bundle> _bundles;
+	protected ArrayList<ArrayList<Bundle>> _list;
 	
 
 	// Connect fragment list items to links or actions that is to be done when
@@ -173,8 +175,6 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 					} else if (str.contains("</intent>")) {
 						_bIntent = false;
 						try {
-							Log.e("Intent",
-									"the buffer holds: " + _buffer.toString());
 							Class<?> theClass = Class
 									.forName("com.bbv.prototype1."
 											+ _buffer.toString());
@@ -189,12 +189,30 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 						}
 						
 						continue;
+					}else if(str.contains("<bundle>")){
+						_bBundle=true;
+						_bundles = new ArrayList<Bundle>();
+						continue;
+					}else if(str.contains("</bundle>")){
+						_bBundle=false;			
+						_list.add(_bundles);
+						continue;
 					}
 
 					if (_bList) {
 						_listAL.add(str);
 					} else if (_bIntent) {
 						_buffer.append(str);
+					}else if(_bBundle){
+						Bundle newBundle= new Bundle();
+						String[] newString = str.split("#");
+
+						if(newString[0].equalsIgnoreCase("Ovinger")){
+							newBundle.putString(Fragment_Base.KEY_OVING, newString[1]+"/_.txt");
+						}else if(newString[0].equalsIgnoreCase("Teori")){
+//							String[] nextString = newString[1].split("/");
+						}
+						_bundles.add(newBundle);
 					}
 				}
 			}
@@ -242,7 +260,7 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 			break;
 		}
 		
-		_bReadBothfiles = false;
+		_bReadBothfiles = false;//is this needed anymore??
 		_filename = makeTeoriFileName(_currentBundle) + "_.txt";
 		decodeContentDocument();
 		_intents = new ArrayList<Intent>();
@@ -251,7 +269,7 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 		_visReff.setIntentArray(_intents);
 	}
 
-	private String makeTeoriFileName(Bundle theBundle) {
+	public String makeTeoriFileName(Bundle theBundle) {
 		String filename = "pros_og_teori_text/";
 		if (theBundle.getString(KEY_CHAPTER) != null) {
 			filename = filename + theBundle.getString(KEY_CHAPTER) + "/";

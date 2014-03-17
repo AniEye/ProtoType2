@@ -7,5 +7,6 @@
     <color name="red_dark">#680000</color>
     <color name="red_darklight">#990000</color>
     <color name="grey_dark">#606060</color>
+    <color name="trans">#80000000</color>
     
 </resources>

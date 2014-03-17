@@ -2,6 +2,7 @@ package com.bbv.prototype1;
 
 import java.util.ArrayList;
 
+import android.R.fraction;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.SearchManager;
@@ -27,31 +28,52 @@ public class Vis_Teori extends Activity {
 	protected String[] _testArray;
 	protected CharSequence _title;
 	protected CharSequence _activity_title;
-	protected Bundle theBundle;
+
 	protected Fragment_Base _nFB = null;
 	protected ArrayList<Intent> _intents;
+	protected Bundle _savedInstanceBundle = null;
+	protected ArrayList<ArrayList<Bundle>> _bundleList;
 	protected int VTStatus = 0;
+	protected int priorityPosition;
+	protected Bundle priorityBundle;
+
+	private final static String KEY_PRIORITY = "Priority";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.vis_teori);
-		findCurrentVTStatus();
+		findCurrentVTStatus(savedInstanceState);
+
 		Initialize(savedInstanceState);
 	}
 
 	public void setTeoriBundle(Bundle newBundle) {
 		this.getIntent().putExtra(Fragment_Base.KEY_PROS_TEORI, newBundle);
+		setPriorityBundle(newBundle);
+	}
+
+	public void setOvingerBundle(Bundle newBundle) {
+		this.getIntent().putExtra(Fragment_Base.KEY_OVING, newBundle);
+		setPriorityBundle(newBundle);
+	}
+
+	public void setPriorityBundle(Bundle priority) {
+		if (VTStatus == priorityPosition) {
+			priorityBundle = priority;
+		}
 	}
 
 	private void Initialize(Bundle savedInstanceState) {
 		_activity_title = getTitle();
 		_drawerLayout = (DrawerLayout) findViewById(R.id.dlVis_Teori);
 		_listView = (ListView) findViewById(R.id.lvVis_Teori);
-		_testArray = getResources().getStringArray(R.array.test_array);
 
+		// this can later be removed
+		_testArray = getResources().getStringArray(R.array.test_array);
 		setListViewArray(_testArray);
+		//
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
@@ -71,19 +93,30 @@ public class Vis_Teori extends Activity {
 		};
 
 		_drawerLayout.setDrawerListener(_actionDrawerToggle);
-//		if (savedInstanceState == null) {
-//			selectItem(VTStatus);
-//		} else {
-//			selectItem(VTStatus);
-//		}
+		// if (savedInstanceState == null) {
+		// selectItem(VTStatus);
+		// } else {
+		// selectItem(VTStatus);
+		// }
 		selectItem(VTStatus);
 	}
 
-	private void findCurrentVTStatus() {
+	private void findCurrentVTStatus(Bundle savedInBundle) {
 		if (this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI) != null) {
 			VTStatus = 0;
-		} else if (this.getIntent().getStringExtra(Fragment_Base.KEY_OVING) != null) {
-			VTStatus = 1;		
+			if (savedInBundle == null) {
+				priorityPosition = 0;
+				priorityBundle=this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI);
+			}
+		} else if (this.getIntent().getBundleExtra(Fragment_Base.KEY_OVING) != null) {
+			VTStatus = 1;
+			if (savedInBundle == null) {
+				priorityPosition = 1;
+				priorityBundle=this.getIntent().getBundleExtra(Fragment_Base.KEY_OVING);
+			}
+		}
+		if (savedInBundle != null) {
+			priorityPosition = savedInBundle.getInt(KEY_PRIORITY);
 		}
 	}
 
@@ -110,7 +143,7 @@ public class Vis_Teori extends Activity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// If the nav drawer is open, hide action items related to the content
 		// view
-		//boolean drawerOpen = _drawerLayout.isDrawerOpen(_listView);
+		// boolean drawerOpen = _drawerLayout.isDrawerOpen(_listView);
 		// menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
@@ -162,49 +195,30 @@ public class Vis_Teori extends Activity {
 	}
 
 	protected void selectItem(int position) {
-		// Fragment newFragment = new Fragment_1();
-		// newFragment.setArguments(theBundle);
-		// _title = "This is page 1";
-		// FragmentManager fm = getFragmentManager();
-		// switch (position) {
-		// case 0:
-		// newFragment = new Fragment_1();
-		//
-		// newFragment.setArguments(theBundle);
-		// _title = "This is page 1";
-		// break;
-		// case 1:
-		// newFragment = new Fragment_2();
-		// _title = "This is page 2";
-		// break;
-		// }
-		// fm.beginTransaction().replace(R.id.flViskos, newFragment).commit();
-		// _listView.setItemChecked(position, true);
-		//
-		//
 		FragmentManager fm = getFragmentManager();
 
 		switch (position) {
 		case 0:
-
 			VTStatus = 0;
 			_nFB = new Fragment_Teori();
-			_nFB.setArguments(this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI));
+			_nFB.setArguments(this.getIntent().getBundleExtra(
+					Fragment_Base.KEY_PROS_TEORI));
 			_nFB.setVisTeori(this);
 
 			break;
 		case 1:
-
 			VTStatus = 1;
 			_nFB = new Fragment_Ovinger();
-			Bundle _b = new Bundle();
-			_b.putString(Fragment_Base.KEY_OVING, this.getIntent().getStringExtra(Fragment_Base.KEY_OVING));
-			_nFB.setArguments(_b);
-			
+			_nFB.setArguments(this.getIntent().getBundleExtra(
+					Fragment_Base.KEY_OVING));
 			_nFB.setVisTeori(this);
 
 		default:
-			goToNextPage(position);
+			if (position != priorityPosition)
+				goToNextPage(position);
+			else{
+				_nFB.setArguments(priorityBundle);
+			}
 		}
 
 		fm.beginTransaction().replace(R.id.flViskos, _nFB).commit();
@@ -226,12 +240,16 @@ public class Vis_Teori extends Activity {
 		_intents = IntentArray;
 	}
 
+	public void setBundleArray(ArrayList<ArrayList<Bundle>> bundleList) {
+		if (priorityPosition == VTStatus)
+			_bundleList = bundleList;
+	}
+
 	public void goToNextPage(int position) {
-		try {
-			if (_intents.get(position) != null)
-				startActivity(_intents.get(position));
-		} catch (Exception e) {
-			Log.e("Intent", "Could not start Activity");
+		if (!_bundleList.isEmpty()) {
+			if (!_bundleList.get(position).isEmpty()) {
+				_nFB.setArguments(_bundleList.get(position).get(0));
+			}
 		}
 	}
 
@@ -245,8 +263,16 @@ public class Vis_Teori extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		 outState.putBundle(null, this.getIntent().getExtras());
-//		 outState.putBundle(Fragment_Base.KEY_PROS_TEORI, this.getIntent().getExtras());
+
+		if (this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI) != null) {
+			outState.putBundle(Fragment_Base.KEY_PROS_TEORI, getIntent()
+					.getBundleExtra(Fragment_Base.KEY_PROS_TEORI));
+		} else if (this.getIntent().getBundleExtra(Fragment_Base.KEY_OVING) != null) {
+			outState.putBundle(Fragment_Base.KEY_OVING, getIntent()
+					.getBundleExtra(Fragment_Base.KEY_OVING));
+		}
+		outState.putInt(KEY_PRIORITY, priorityPosition);
+		outState.putBundle(KEY_PRIORITY, priorityBundle);
 	}
 
 }

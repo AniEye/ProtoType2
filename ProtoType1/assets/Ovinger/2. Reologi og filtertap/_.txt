@@ -8,11 +8,11 @@
 1. Leire og vektmaterialer/_content.txt
 </last>
 
-<title>
+<title><h2>
 2. Reologi og filtertap
 </title>
 
-<text>
+<text><h3>
 I denne øvingen skal vi bygge opp et enkelt vannbasert bentonittslam, studere reologien og se hvilken effekt salt (NaCl)
 har på viskositet og filtertap. Vi skal også justere tettheten til et slam ved hjelp av barytt og premikset slam.
 
