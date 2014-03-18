@@ -1,12 +1,11 @@
 package com.bbv.prototype1;
 
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-import android.R.fraction;
 import android.app.Activity;
 import android.app.FragmentManager;
-import android.app.SearchManager;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -16,60 +15,43 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
-public class Vis_Teori extends Activity {
+public class ShowContent extends Activity implements OnClickListener {
 	protected DrawerLayout _drawerLayout;
 	protected ListView _listView;
 	protected ActionBarDrawerToggle _actionDrawerToggle;
 	protected String[] _testArray;
 	protected CharSequence _title;
 	protected CharSequence _activity_title;
+	protected WebViewBase _nWVB;
+	protected int _currentIndex = 0;
+	protected Button _bPrevious, _bNext;
 
-	protected Fragment_Base _nFB = null;
-	protected ArrayList<Intent> _intents;
-	protected Bundle _savedInstanceBundle = null;
-	protected ArrayList<ArrayList<Bundle>> _bundleList;
-	protected int VTStatus = 0;
-	protected int priorityPosition;
-	protected Bundle priorityBundle;
+	protected Bundle _currentBundle, _nextBundle, _previousBundle;
 
-	private final static String KEY_PRIORITY = "Priority";
-	private final static String KEY_PRIORITY_BUNDLE = "PriorityBundle";
+	public final static String KEY_SHOWCONTENT = "com.bbv.prototype1.SHOWCONTENT";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.vis_teori);
-		findCurrentVTStatus(savedInstanceState);
-
+		setContentView(R.layout.showcontent);
 		Initialize(savedInstanceState);
-	}
-
-	public void setTeoriBundle(Bundle newBundle) {
-		this.getIntent().putExtra(Fragment_Base.KEY_PROS_TEORI, newBundle);
-		setPriorityBundle(newBundle);
-	}
-
-	public void setOvingerBundle(Bundle newBundle) {
-		this.getIntent().putExtra(Fragment_Base.KEY_OVING, newBundle);
-		setPriorityBundle(newBundle);
-	}
-
-	public void setPriorityBundle(Bundle priority) {
-		if (VTStatus == priorityPosition) {
-			priorityBundle = priority;
-		}
+		_currentBundle = this.getIntent().getBundleExtra(
+				WebViewBase.KEY_PROS_TEORI);
 	}
 
 	private void Initialize(Bundle savedInstanceState) {
 		_activity_title = getTitle();
 		_drawerLayout = (DrawerLayout) findViewById(R.id.dlVis_Teori);
 		_listView = (ListView) findViewById(R.id.lvVis_Teori);
+		_bNext = (Button) findViewById(R.id.bNext);
+		_bPrevious = (Button) findViewById(R.id.bPrevious);
 
 		// this can later be removed
 		_testArray = getResources().getStringArray(R.array.test_array);
@@ -94,34 +76,34 @@ public class Vis_Teori extends Activity {
 		};
 
 		_drawerLayout.setDrawerListener(_actionDrawerToggle);
+		_bNext.setOnClickListener(this);
+		_bPrevious.setOnClickListener(this);
 		// if (savedInstanceState == null) {
 		// selectItem(VTStatus);
 		// } else {
 		// selectItem(VTStatus);
 		// }
-		selectItem(VTStatus);
+		selectItem(_currentIndex);
 	}
 
-	private void findCurrentVTStatus(Bundle savedInBundle) {
-		if (this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI) != null) {
-			VTStatus = 0;
-			if (savedInBundle == null) {
-				priorityPosition = 0;
-				priorityBundle = this.getIntent().getBundleExtra(
-						Fragment_Base.KEY_PROS_TEORI);
-			}
-		} else if (this.getIntent().getBundleExtra(Fragment_Base.KEY_OVING) != null) {
-			VTStatus = 1;
-			if (savedInBundle == null) {
-				priorityPosition = 1;
-				priorityBundle = this.getIntent().getBundleExtra(
-						Fragment_Base.KEY_OVING);
-			}
+	private void selectItem(int position) {
+
+		FragmentManager fm = getFragmentManager();
+		switch (position) {
+		case 0:
+			_currentIndex = 0;
+			_nWVB = new WebViewTeori();
+			_nWVB.setArguments(this.getIntent().getBundleExtra(
+					WebViewBase.KEY_PROS_TEORI));
+			break;
 		}
-		if (savedInBundle != null) {
-			priorityPosition = savedInBundle.getInt(KEY_PRIORITY);
-			priorityBundle = savedInBundle.getBundle(KEY_PRIORITY_BUNDLE);
-		}
+		getNewBundles(position);
+		fm.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
+		_listView.setItemChecked(position, true);
+
+		_drawerLayout.closeDrawer(_listView);
+		// if to change the title depending on the selected item do it here
+		// setTitle(_title);// if don't inside fragment, this not needed
 	}
 
 	public void setListViewArray(String[] list) {
@@ -174,62 +156,11 @@ public class Vis_Teori extends Activity {
 		}
 	}
 
-	protected void selectItem(int position) {
-		FragmentManager fm = getFragmentManager();
-
-		switch (position) {
-		case 0:
-			VTStatus = 0;
-			_nFB = new Fragment_Teori();
-			_nFB.setArguments(this.getIntent().getBundleExtra(
-					Fragment_Base.KEY_PROS_TEORI));
-			_nFB.setVisTeori(this);
-
-			break;
-		case 1:
-			VTStatus = 1;
-			_nFB = new Fragment_Ovinger();
-			Bundle newBundle = new Bundle();
-			newBundle.putString(Fragment_Ovinger.KEY_OVING, "1. Leire og vektmaterialer/_.txt");
-//			_nFB.setArguments(this.getIntent().getBundleExtra(
-//					Fragment_Base.KEY_OVING));
-			_nFB.setArguments(newBundle);
-			_nFB.setVisTeori(this);
-			break;
-
-		}
-		
-
-		fm.beginTransaction().replace(R.id.flViskos, _nFB).commit();
-		_listView.setItemChecked(position, true);
-
-		_drawerLayout.closeDrawer(_listView);
-		// if to change the title depending on the selected item do it here
-		setTitle(_title);//if don't inside fragment, this not needed
-	}
-
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		// Sync the toggle state after onRestoreInstanceState has occurred.
 		_actionDrawerToggle.syncState();
-	}
-
-	public void setIntentArray(ArrayList<Intent> IntentArray) {
-		_intents = IntentArray;
-	}
-
-	public void setBundleArray(ArrayList<ArrayList<Bundle>> bundleList) {
-		if (priorityPosition == VTStatus)
-			_bundleList = bundleList;
-	}
-
-	public void goToNextPage(int position) {
-		if (!_bundleList.isEmpty()) {
-			if (!_bundleList.get(position).isEmpty()) {
-				_nFB.setArguments(_bundleList.get(position).get(0));
-			}
-		}
 	}
 
 	@Override
@@ -240,18 +171,79 @@ public class Vis_Teori extends Activity {
 	}
 
 	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-
-		if (this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI) != null) {
-			outState.putBundle(Fragment_Base.KEY_PROS_TEORI, getIntent()
-					.getBundleExtra(Fragment_Base.KEY_PROS_TEORI));
-		} else if (this.getIntent().getBundleExtra(Fragment_Base.KEY_OVING) != null) {
-			outState.putBundle(Fragment_Base.KEY_OVING, getIntent()
-					.getBundleExtra(Fragment_Base.KEY_OVING));
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.bNext:
+			_currentBundle = _nextBundle;
+			Log.e("ShowContent", "Next Button Presset");
+			// setTeoriBundle(_currentBundle);
+			break;
+		case R.id.bPrevious:
+			_currentBundle = _previousBundle;
+			Log.e("ShowContent", "Previous Button Presset");
+			// setTeoriBundle(_currentBundle);
+			break;
 		}
-		outState.putInt(KEY_PRIORITY, priorityPosition);
-		outState.putBundle(KEY_PRIORITY_BUNDLE, priorityBundle);
+		getNewBundles(_currentIndex);
+		_nWVB.Reload(_currentBundle);
+		
 	}
 
+	public void getNewBundles(int position) {
+		if (position == 0) {
+			try {
+				String str = "";
+				String path = "If shown it failed";
+				InputStream is = this.getAssets().open("pros_og_teori_text/1. Leire og vektmaterialer/_.txt");
+				try {
+					path = WebViewBase.getFilePathFromTeoriBundle(_currentBundle);
+					is = this.getAssets().open(path + "/_.txt");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(is));
+				StringBuffer buffer = new StringBuffer();
+				Boolean _bTitle = false, _bNextOrLast = false;
+
+				if (is != null) {
+					while ((str = reader.readLine()) != null) {
+
+						if (str.contains("<title>")) {
+							_bTitle = true;
+							buffer = new StringBuffer();
+							continue;
+						} else if (str.contains("</title")) {
+							_bTitle = false;
+							setTitle(buffer.toString());
+							continue;
+						} else if (str.contains("<next>")
+								|| str.contains("<last>")) {
+							_bNextOrLast = true;
+							buffer = new StringBuffer();
+							continue;
+						} else if (str.contains("</next>")) {
+							_bNextOrLast = false;
+							_nextBundle = _nWVB.createNewTeoriBundle(buffer
+									.toString());
+							continue;
+						} else if (str.contains("</last>")) {
+							_bNextOrLast = false;
+							_previousBundle = _nWVB.createNewTeoriBundle(buffer
+									.toString());
+							continue;
+						}
+
+						if (_bTitle || _bNextOrLast) {
+							buffer.append(str);
+						}
+					}
+				}
+				is.close();
+			} catch (Exception e) {
+				Log.e("ShowContent", "File not found or existing");
+			}
+		}
+	}
 }

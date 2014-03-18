@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="25dp" >
 
-        <LinearLayout
+       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
@@ -33,9 +33,9 @@
                 android:text="Øvinger" />
 
             <Button
-                android:id="@+id/bVis_Teori"
+                android:id="@+id/bShowContent"
                 style="@style/CustomButton"
-                android:text="Vis Teori" />
+                android:text="Show Content" />
 
             <Button
                 android:id="@+id/bSQLDatabase"
@@ -51,6 +51,8 @@
                 android:id="@+id/bWebViewTest"
                 style="@style/CustomButton"
                 android:text="WebView" />
+            
+
         </LinearLayout>
     </ScrollView>
 

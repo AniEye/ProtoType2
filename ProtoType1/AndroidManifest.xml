@@ -31,6 +31,15 @@
             android:name="com.bbv.prototype1.Ovinger"
             android:label="@string/title_tests" >
         </activity>
+        <activity
+            android:name="com.bbv.prototype1.ShowContent" >
+            <intent-filter>
+                <action android:name="com.bbv.prototype1.SHOWCONTENT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+       
          <activity
             android:name="com.bbv.prototype1.WebViewTest"
             android:label="@string/title_tests" >
