@@ -1,0 +1,178 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ViewWithSpinners"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ButtonAndSpinnerBackgroundColor" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20sp"
+        android:src="@drawable/olje_vann" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="R olje = Volum fra retorte" />
+
+    <EditText
+        android:id="@+id/etOVRO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[ml]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+    
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="R vann = Volum fra retorte" />
+
+    <EditText
+        android:id="@+id/etOVRV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[ml]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <EditText
+        android:id="@+id/etOVHideThis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="O = olje i væskefasen \n[Vol%]"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvOVO"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text=""
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="W = vann i væskefasen \n[Vol%]"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvm666"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvOVW"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text=""
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="O/W"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvm666"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvOVOW"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text=""
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="5dp" >
+
+        <Button
+            android:id="@+id/bOVUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update" />
+
+        <Button
+            android:id="@+id/bOVClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear" />
+    </LinearLayout>
+
+</LinearLayout>

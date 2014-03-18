@@ -85,6 +85,8 @@ public class Alkalitet extends Basic_Calc {
 	}
 
 	private void resetTableItems() {
+		
+		Table_3_3 table = new Table_3_3(0, 0);
 
 		for (int i = 1; i <= 5; i++) {
 			
@@ -104,7 +106,7 @@ public class Alkalitet extends Basic_Calc {
 					getResources().getDrawable(
 							R.drawable.table_item_with_border));
 			
-			tableItem.setText((new Table_3_3(0, 0)).getInitialRows()[i-1][j-1]);
+			tableItem.setText(table.getInitialRows()[i-1][j-1]);
 
 			}
 		}

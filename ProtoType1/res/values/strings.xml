@@ -38,6 +38,10 @@
         <item>Caution Exchange Capasity</item>
         <item>Ca (OH)2</item>
         <item>Alkalitet</item>
+        <item>Olje/vann forhold</item>
+        <item>Ca(OH)<sup>-</sup> innhold</item>
+        <item>Klorid innhold i vannfasen</item>
+        <item>CaCl<sub>2</sub> i vannfasen</item>
     </string-array>
 
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>
