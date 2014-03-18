@@ -38,6 +38,7 @@ public class Vis_Teori extends Activity {
 	protected Bundle priorityBundle;
 
 	private final static String KEY_PRIORITY = "Priority";
+	private final static String KEY_PRIORITY_BUNDLE = "PriorityBundle";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -106,17 +107,20 @@ public class Vis_Teori extends Activity {
 			VTStatus = 0;
 			if (savedInBundle == null) {
 				priorityPosition = 0;
-				priorityBundle=this.getIntent().getBundleExtra(Fragment_Base.KEY_PROS_TEORI);
+				priorityBundle = this.getIntent().getBundleExtra(
+						Fragment_Base.KEY_PROS_TEORI);
 			}
 		} else if (this.getIntent().getBundleExtra(Fragment_Base.KEY_OVING) != null) {
 			VTStatus = 1;
 			if (savedInBundle == null) {
 				priorityPosition = 1;
-				priorityBundle=this.getIntent().getBundleExtra(Fragment_Base.KEY_OVING);
+				priorityBundle = this.getIntent().getBundleExtra(
+						Fragment_Base.KEY_OVING);
 			}
 		}
 		if (savedInBundle != null) {
 			priorityPosition = savedInBundle.getInt(KEY_PRIORITY);
+			priorityBundle = savedInBundle.getBundle(KEY_PRIORITY_BUNDLE);
 		}
 	}
 
@@ -209,17 +213,20 @@ public class Vis_Teori extends Activity {
 		case 1:
 			VTStatus = 1;
 			_nFB = new Fragment_Ovinger();
-			_nFB.setArguments(this.getIntent().getBundleExtra(
-					Fragment_Base.KEY_OVING));
+			Bundle newBundle = new Bundle();
+			newBundle.putString(Fragment_Ovinger.KEY_OVING, "1. Leire og vektmaterialer/_.txt");
+//			_nFB.setArguments(this.getIntent().getBundleExtra(
+//					Fragment_Base.KEY_OVING));
+			_nFB.setArguments(newBundle);
 			_nFB.setVisTeori(this);
+			break;
 
-		default:
-			if (position != priorityPosition)
-				goToNextPage(position);
-			else{
-				_nFB.setArguments(priorityBundle);
-			}
 		}
+		
+		
+//		if (VTStatus != priorityPosition)
+//			goToNextPage(position);
+		
 
 		fm.beginTransaction().replace(R.id.flViskos, _nFB).commit();
 		_listView.setItemChecked(position, true);
@@ -272,7 +279,7 @@ public class Vis_Teori extends Activity {
 					.getBundleExtra(Fragment_Base.KEY_OVING));
 		}
 		outState.putInt(KEY_PRIORITY, priorityPosition);
-		outState.putBundle(KEY_PRIORITY, priorityBundle);
+		outState.putBundle(KEY_PRIORITY_BUNDLE, priorityBundle);
 	}
 
 }

@@ -1,0 +1,15 @@
+﻿h1{
+color:red;
+align:center;
+}
+p{
+align:justify;
+color:white;
+}
+body{
+background-color:black;
+}
+img{
+max-height:100%;
+max-width:100%;
+}

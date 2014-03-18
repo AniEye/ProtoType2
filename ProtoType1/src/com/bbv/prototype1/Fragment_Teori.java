@@ -34,14 +34,14 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 	protected AssetManager _as;
 	protected Boolean _bTitle = false, _bText = false, _bImage = false,
 			_bNextOrLast = false, _bList = false, _bReadBothfiles = false,
-			_bIntent = false,_bBundle=false;
+			_bIntent = false, _bBundle = false;
 	protected StringBuffer _buffer;
 	protected ArrayList<String> _listAL;
 	protected String _filename;
 	protected ArrayList<Intent> _intents;
 	protected ArrayList<Bundle> _bundles;
 	protected ArrayList<ArrayList<Bundle>> _list;
-	
+	protected int _TextSize;
 
 	// Connect fragment list items to links or actions that is to be done when
 	// Clicked on one of the options in the list
@@ -55,7 +55,7 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 		Initialize();
 		try {
 
-			//_currentBundle = getActivity().getIntent().getExtras();
+			// _currentBundle = getActivity().getIntent().getExtras();
 			_currentBundle = getArguments();
 
 			_as = getActivity().getAssets();
@@ -84,6 +84,23 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 			if (is != null) {
 				while ((str = reader.readLine()) != null) {
 
+					if (str.contains("<h1>")) {
+						_TextSize = getResources().getDimensionPixelSize(
+								R.dimen.H1Size);
+					} else if (str.contains("<h2>")) {
+						_TextSize = getResources().getDimensionPixelSize(
+								R.dimen.H2Size);
+					} else if (str.contains("<h3>")) {
+						_TextSize = getResources().getDimensionPixelSize(
+								R.dimen.H3Size);
+					} else if (str.contains("<h4>")) {
+						_TextSize = getResources().getDimensionPixelSize(
+								R.dimen.H4Size);
+					} else if (str.contains("<h5>")) {
+						_TextSize = getResources().getDimensionPixelSize(
+								R.dimen.H5Size);
+					}					
+					
 					if (str.contains("<title>")) {
 						_bTitle = true;
 						_buffer = new StringBuffer();
@@ -93,7 +110,7 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 						_visReff.setTitle(_buffer.toString());
 
 						_linlay.addView(createTextView(_buffer.toString(),
-								Color.RED, 35, Gravity.CENTER));
+								Color.RED, _TextSize, Gravity.FILL_HORIZONTAL));
 						continue;
 					} else if (str.contains("<text>")) {
 						_bText = true;
@@ -102,7 +119,7 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 					} else if (str.contains("</text>")) {
 						_bText = false;
 						_linlay.addView(createTextView(_buffer.toString(),
-								Color.CYAN, 20, Gravity.NO_GRAVITY));
+								Color.CYAN, _TextSize, Gravity.CENTER));
 						continue;
 					} else if (str.contains("<image>")) {
 						_bImage = true;
@@ -180,21 +197,20 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 											+ _buffer.toString());
 							Intent newIntent = new Intent(getActivity(),
 									theClass);
-							
 
 							_intents.add(newIntent);
 						} catch (Exception e) {
 							_intents.add(null);
 							Log.e("Intent", "Intent is empty");
 						}
-						
+
 						continue;
-					}else if(str.contains("<bundle>")){
-						_bBundle=true;
+					} else if (str.contains("<bundle>")) {
+						_bBundle = true;
 						_bundles = new ArrayList<Bundle>();
 						continue;
-					}else if(str.contains("</bundle>")){
-						_bBundle=false;			
+					} else if (str.contains("</bundle>")) {
+						_bBundle = false;
 						_list.add(_bundles);
 						continue;
 					}
@@ -203,16 +219,24 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 						_listAL.add(str);
 					} else if (_bIntent) {
 						_buffer.append(str);
-					}else if(_bBundle){
-						Bundle newBundle= new Bundle();
-						String[] newString = str.split("#");
+					} else if (_bBundle) {
+						Bundle newBundle = new Bundle();
+						Log.e("Fragment_Teori", "str is:" + str);
+						if (!str.isEmpty()) {
+							String[] newString = str.split("#");
 
-						if(newString[0].equalsIgnoreCase("Ovinger")){
-							newBundle.putString(Fragment_Base.KEY_OVING, newString[1]+"/_.txt");
-						}else if(newString[0].equalsIgnoreCase("Teori")){
-//							String[] nextString = newString[1].split("/");
+							if (newString[0].equalsIgnoreCase("Ovinger")) {
+								Log.e("Fragment_Teori", "newString[1] is:"
+										+ newString[1]);
+								newBundle.putString(Fragment_Base.KEY_OVING,
+										newString[1] + "/_.txt");
+							} else if (newString[0].equalsIgnoreCase("Teori")) {
+								// String[] nextString =
+								// newString[1].split("/");
+							}
 						}
 						_bundles.add(newBundle);
+
 					}
 				}
 			}
@@ -259,8 +283,8 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 			_visReff.setTeoriBundle(_currentBundle);
 			break;
 		}
-		
-		_bReadBothfiles = false;//is this needed anymore??
+
+		_bReadBothfiles = false;// is this needed anymore??
 		_filename = makeTeoriFileName(_currentBundle) + "_.txt";
 		decodeContentDocument();
 		_intents = new ArrayList<Intent>();
@@ -277,8 +301,8 @@ public class Fragment_Teori extends Fragment_Base implements OnClickListener {
 				filename = filename + theBundle.getString(KEY_CHAPTERPART1)
 						+ "/";
 				if (theBundle.getString(KEY_CHAPTERPART2) != null)
-					filename = filename
-							+ theBundle.getString(KEY_CHAPTERPART2) + "/";
+					filename = filename + theBundle.getString(KEY_CHAPTERPART2)
+							+ "/";
 			}
 		}
 

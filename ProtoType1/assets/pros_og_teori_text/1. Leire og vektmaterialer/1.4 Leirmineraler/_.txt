@@ -8,12 +8,79 @@
 1. Leire og vektmaterialer/1.5 Leire i boreslam
 </next>
 
-<title>
+<title><h1>
 1.4 Leirmineraler
 </title>
 
-<text>
-her vil det kommer mer i løpet av tiden
-æøå
-sees senere
+<text><h3>
+Det er publisert lister på over 400 navngitte mineraler som er klassisert som
+leirmineraler. Her skal vi kun ta for oss de mest vanlige formasjonsleirer og de
+mest anvendelige innen boreslamteknologi.
 </text>
+
+<title><h2>
+1.4.1 Smektitt
+</title>
+<text><h3>
+Det mest vanlige mineralet som tilhører denne gruppen er montmorillonitt (se
+figur 1.5). Montmorillonitt er også hovedmineralet i "bentonitt".
+
+Den viktigste egenskapen som gir opphav til mineralgruppens svellende egenskaper
+er at substitusjonen av ioner hovedsaklig skjer i oktaederlaget. Fordi
+ladningen er i senteret av strukturen, vil kationer som er assosiert med mineralet
+for å nøytralisere ioneladningen ikke komme nært nok den negative ladningen
+til å fullstendig fjerne ionekarakteren på kationet og mineraloveraten. Den svake
+gjenværende ionekarakteren tilfører de tiltrekningskreftene leirmineralet har
+for adsorpsjon av polare molekyler, slik som vann mellom enhetslagene. De unike
+egenskapene til montmorillonitt skyldes den svært store overaten leiren får
+når den hydrerer og splittes opp i enkeltplater. Undersøkelser har vist at montmorillonitt
+har klart størst tilgjengelig areal for adsorpsjon, spesielt for polare
+molekyler (vann), men også av ikke-polare molekyler (nitrogen). Svelleevnen er
+avhengig av type kation som er adsorbert til leiroveraten.
+</text>
+
+<title><h1>
+bilde her
+</title>
+
+<text><h3>
+De mest vanlige er natrium og kalsium. Et monovalent kation, slik som Na+ vil
+være tilknyttet til et område med negativ ladning, slik at en vannløsning vil føre
+til at leirpartiklene splittes opp i enkeltplater.
+
+Et divalent kation slik som Ca2+ vil ikke kunne assosieres til to negative ladninger
+på samme leiroverate, og må derfor knytte to leirpartikler sammen.
+Kontakt med vann kan forårsak svelling, og mekaniske krefter kan dispergere
+leirpartiklene, men tilgjengelig overateareal og volum av krystallbundet vann
+vil være betraktelig mindre enn med natrium.
+
+Svellende montmorillonittleire kan nnes i større mengder i leirskifer som følge
+av avsetning av vulkansk aske i marint miljø. En slik leirskifer sveller når den får
+tilgang på vann, og den store overatearealet fører til plastisk, klebrig borekutt
+når den bores. Leiren omtales ofte som "Gumbo clay".
+</text>
+
+<title><h3>
+Svelling av montmorillonitt
+</title>
+
+<text><h3>
+Når bentonitt tilsettes ferskvann vil den svelle til ere ganger sitt opprinnelige
+volum (se figur 1.6). Det er i hovedsak Na-montmorillonitten i bentonitten
+som har denne egenskapen. Med Ca2+ (se figur 1.7) bundet til overatene på
+montmorillonitten vil den svelle bare 10-20 % av det som er mulig for Namontmorillonitten.
+
+Na+ er et enverdig ion og vil bare binde seg til overaten på et krystall, mens
+Ca2+ er toverdig og vil som regel binde sammen to forskjellige krystallater.
+Dermed blir det mindre plass for vann mellom krystallene. Det er to hovedmekanismer
+som styrer leirsvellingen.
+</text>
+
+<title><h1>
+bilde her
+</title>
+
+<text><h3>
+</text>
+<title><h2>
+</title>
