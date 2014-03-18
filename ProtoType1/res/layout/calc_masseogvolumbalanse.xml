@@ -15,14 +15,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Vv = volum av tilsatt vektmateriale" />
+        android:text="@string/Vv" />
 
     <EditText
         android:id="@+id/etMOVBVv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[Vv]"
+        android:hint="[ml]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -31,14 +31,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="V1 = volum av slam før tilsetting" />
+        android:text="@string/V1"/>"
 
     <EditText
         android:id="@+id/etMOVBV1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[V1]"
+        android:hint="[ml]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -47,14 +47,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="P2 = Tetthet til slammet V2" />
+        android:text="@string/P2"
+        android:lineSpacingExtra="5dp" />
 
     <EditText
         android:id="@+id/etMOVBP2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[P2]"
+        android:hint="[kg/l]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" >
     </EditText>
@@ -64,14 +65,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="PV = Tetthet til slammet Vv" />
+        android:text="@string/Pv" 
+        />
 
     <EditText
         android:id="@+id/etMOVBPV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[PV]"
+        android:hint="[kg/l]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" >
     </EditText>
@@ -81,14 +83,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="P1 = Tetthet til slammet V1" />
+        android:text="@string/P1" />
 
     <EditText
         android:id="@+id/etMOVBP1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[P1]"
+        android:hint="[kg/l]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" >
     </EditText>

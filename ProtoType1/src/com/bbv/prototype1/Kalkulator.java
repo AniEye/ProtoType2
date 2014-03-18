@@ -161,6 +161,9 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		case 13: 
 			calc = new CaOHInnhold(lLayout.getContext());
 			break;
+		case 14: 
+			calc = new KloridInnholdIVannfasen(lLayout.getContext());
+			break;
 		}
 
 		try {

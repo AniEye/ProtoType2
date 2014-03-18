@@ -14,17 +14,14 @@
         android:id="@+id/etSpessTettPp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="[Pp]"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/textView999"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Klorinnhold, Cl-" />
+        android:text="@string/KlorinnholdCl" />
 
     <EditText
         android:id="@+id/etSpessTettCL"
@@ -40,7 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Pm = spesifikk tetthet til boreslammet" />
+        android:text="@string/Pm" 
+        android:lineSpacingExtra="4dp"/>
 
     <EditText
         android:id="@+id/etSpessTettPm"
@@ -56,7 +54,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Po = spesifikk tetthet til oljen" />
+        android:text="@string/Po" 
+        android:lineSpacingExtra="4dp"/>
 
     <EditText
         android:id="@+id/etSpessTettPo"
@@ -73,7 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Vv = vann fra retorte" />
+        android:text="@string/SpessTettVv" 
+        android:lineSpacingExtra="4dp"/>
 
     <EditText
         android:id="@+id/etSpessTettVv"
@@ -90,7 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Vo = olje fra retorte" />
+        android:text="@string/Vo" 
+        android:lineSpacingExtra="4dp"/>
 
     <EditText
         android:id="@+id/etSpessTettVo"
@@ -107,7 +108,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Fw = Volumfraksjon av vann i slammet, fra retorte" />
+        android:text="@string/SpessTettFw" 
+        android:lineSpacingExtra="4dp"/>
 
     <EditText
         android:id="@+id/etSpessTettFw"
@@ -124,7 +126,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Vfs = fast stoff fra retorte (salt + faste partikler)" />
+        android:text="@string/Vfs" 
+        android:lineSpacingExtra="4dp"/>
 
     <EditText
         android:id="@+id/etSpessTettVfs"
@@ -150,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Pp = spesifikk tetthet (gjennomsnittlig) av suspenderte partikler"
+            android:text="@string/Pp"
             android:textSize="16dp" />
         
           <TextView
@@ -185,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Pf (spesifikk tetthet til filtratet)"
+            android:text="@string/Pf"
             android:textSize="16dp" />
         
           <TextView
@@ -220,7 +223,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Vs (oppløst vann i slammet, [volum%])"
+            android:text="@string/Vs"
             android:textSize="16dp" />
 
           <TextView
@@ -254,7 +257,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Vsf (salt i filtratet, [volum%]) "
+            android:text="@string/Vsf"
             android:textSize="16dp" />
 
         <TextView

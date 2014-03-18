@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Klor Innhold C-" />
+        android:text="@string/KlorinnholdCl" />
 
     <EditText
         android:id="@+id/etKICl"
@@ -33,7 +33,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="V AgNO3 - Volum av sølvnitrat forbrukt" />
+        android:text="@string/AgNO3" 
+        android:lineSpacingExtra="5dp"/>
 
     <EditText
         android:id="@+id/etKIVAgNO3"
@@ -49,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="V filtrat - Volum filtrat" />
+        android:text="@string/Fv" />
 
     <EditText
         android:id="@+id/etKIVF"
@@ -83,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Klorid Innhold \n (mg/l Cl-)"
+            android:text="@string/KlCLmg"
             android:textSize="16dp" />
 
         <TextView
@@ -118,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Klorid Innhold \n (ppm Cl-)"
+            android:text="@string/KlCLppm"
             android:textSize="16dp" />
 
         <TextView
@@ -153,7 +154,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="NaCl innhold \n (mg/l NaCl)"
+            android:text="NaCl innhold \n ( mg/l NaCl )"
             android:textSize="16dp" />
 
         <TextView
@@ -188,7 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="NaCl innhold \n (ppm NaCl)"
+            android:text="NaCl innhold \n ( ppm NaCl )"
             android:textSize="16dp" />
 
         <TextView

@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Pm" />
+        android:text="@string/AlkaPm" />
 
     <EditText
         android:id="@+id/etAlkaPm"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Fw" />
+        android:text="@string/SpessTettFw" />
 
     <EditText
         android:id="@+id/etAlkaFw"
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Pf"/>
+        android:text="@string/AlkaPf"/>
 
     <EditText
         android:id="@+id/etAlkaPf"
@@ -82,8 +82,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Ca (OH)2"
-            android:textSize="16dp" />
+            android:text="@string/CaOH"
+            android:textSize="16dp" 
+            android:lineSpacingExtra="4dp"/>
 
         <TextView
             android:id="@+id/tvm6"

@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="bentonitt \n[kg/m^3]"
+            android:text="@string/bentonitt"
             android:textSize="16dp" />
 
         <TextView

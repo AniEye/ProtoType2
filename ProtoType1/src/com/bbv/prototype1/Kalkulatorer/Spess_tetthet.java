@@ -138,8 +138,6 @@ public class Spess_tetthet extends Basic_Calc {
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 
-		textFields[0].setVisibility(GONE);
-
 		tvPp = (TextView) findViewById(R.id.tvSpessTettPp);
 		tvPf = (TextView) findViewById(R.id.tvSpessTettPf);
 		tvVs = (TextView) findViewById(R.id.tvSpessTettVs);

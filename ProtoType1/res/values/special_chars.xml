@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="theta600">\u03B8 600</string>
-    <string name="theta300">\u03B8 300</string>
-    <string name="theta100">\u03B8 100</string>
-    <string name="theta0">\u03B8 0</string>
+    <string name="theta600">\u03B8<sub>600</sub></string>
+    <string name="theta300">\u03B8<sub>300</sub></string>
+    <string name="theta100">\u03B8<sub>100</sub></string>
+    <string name="theta0">\u03B8<sub>0</sub></string>
     <string name="eksponent">\u03C4</string>
-    <string name="eksponentY">\u03C4y</string>
-    <string name="theta">\u03B8rpm</string>
+    <string name="eksponentY">\u03C4<sub>y</sub></string>
+    <string name="theta">\u03B8<sub>rpm</sub></string>
     <string name="skjaerhastighetTegn">\u03B3</string>
     <string name="skjaerhastighet">\u03B3 = Skjæringshastighet</string>
 

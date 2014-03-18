@@ -17,7 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="R olje = Volum fra retorte" />
+        android:text="@string/Rolje" 
+        android:lineSpacingExtra="5.5dp"/>
 
     <EditText
         android:id="@+id/etOVRO"
@@ -33,7 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="R vann = Volum fra retorte" />
+        android:text="@string/Rvann" 
+        android:lineSpacingExtra="5.5dp"/>/
 
     <EditText
         android:id="@+id/etOVRV"

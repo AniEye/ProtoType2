@@ -29,7 +29,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/theta300" />
+        android:text="@string/theta300"
+        android:lineSpacingExtra="4dp" />
 
     <EditText
         android:id="@+id/etFGTheta300"
@@ -44,7 +45,8 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/theta600" />
+        android:text="@string/theta600" 
+        android:lineSpacingExtra="4dp"/>
 
    <EditText
         android:id="@+id/etFGTheta600"

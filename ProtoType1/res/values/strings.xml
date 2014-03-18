@@ -13,9 +13,43 @@
     <string name="title_tests">Øvinger</string>
     <string name="drawer_open">hi opening</string>
     <string name="drawer_close">Godbye clsing</string>
+
+    <!-- Strings used by calculator using chemistry notation -->
     <string name="OH">OH<sup>-</sup>, [mg/l]</string>
     <string name="CO23">CO<sup>2-<sub>3</sub></sup>, [mg/l]</string>
     <string name="HCO3">HCO<sup>-<sub>3</sub></sup>, [mg/l]</string>
+    <string name="Vv">V<sub><small>v</small></sub> = volum av tilsatt vektmateriale</string>
+    <string name="V1">V<sub><small>1</small></sub> = volum av slam før tilsetting</string>
+    <string name="P2">P<sub><small>2</small></sub> = Tetthet til slammet V<sub><small>2</small></sub></string>
+    <string name="P1">P<sub><small>1</small></sub> = Tetthet til slammet V<sub><small>1</small></sub></string>
+    <string name="Pv">P<sub><small>v</small></sub> = Tetthet til slammet V<sub><small>v</small></sub></string>
+    <string name="KlorinnholdCl">Klorinnhold, Cl<sup>-</sup></string>
+    <string name="Pm">P<sub>m</sub> = spesifikk tetthet til boreslammet</string>
+    <string name="Po">P<sub>o</sub> = spesifikk tetthet til oljen</string>
+    <string name="SpessTettVv">V<sub>v</sub> = vann fra retorte</string>
+    <string name="Vo">V<sub>o</sub> = olje fra retorte</string>
+    <string name="SpessTettFw">F<sub>w</sub> - Volumfraksjon av vann \ni slammet, fra retorte</string>
+    <string name="Vfs">V<sub>fs</sub> = fast stoff fra retorte (salt + faste partikler)</string>
+    <string name="Pp">P<sub>p</sub> = spesifikk tetthet (gjennomsnittlig) av suspenderte partikler</string>
+    <string name="Pf">P<sub>f</sub> (spesifikk tetthet til filtratet)</string>
+    <string name="Vs">V<sub>s</sub> (oppløst vann i slammet, [volum%])</string>
+    <string name="Vsf">V<sub>sf</sub> (salt i filtratet, [volum%]) </string>
+    <string name="AgNO3">V<sub>AgNO3</sub> - Volum av sølvnitrat forbrukt</string>
+    <string name="Fv">F<sub>v</sub> - fraksjonen av vann i det oljebaserte slammet</string>
+    <string name="KlCLmg">Klorid Innhold \n ( mg/l Cl<sup>-</sup> )</string>
+    <string name="KlCLppm">Klorid Innhold \n ( ppm Cl<sup>-</sup> )</string>
+    <string name="bentonitt">bentonitt \n[kg/m<sup><small>3</small></sup>]</string>
+    <string name="CaOH">Ca (OH)<sub>2</sub></string>
+    <string name="CaOHInnhold">Ca (OH)<sup>-</sup> Innhold</string>
+    <string name="AlkaPm">P<sub>m</sub> - ml 0.01 M H<sub><small>2</small></sub>SO<sub><small>4</small></sub> \nforbrukt pr ml slam</string>
+    <string name="AlkaMf">M<sub>f</sub> - ml 0.01 M H<sub><small>2</small></sub>SO<sub><small>4</small></sub> \nforbrukt pr ml slam</string>
+    <string name="AlkaPf">P<sub>f</sub> - ml 0.01 M H<sub><small>2</small></sub>SO<sub><small>4</small></sub> \nforbrukt pr ml filtrat</string>
+    <string name="Rolje">R<sub>olje</sub> - Volum olje fra retorte</string>
+    <string name="Rvann">R<sub>vann</sub> - Volum vann fra retorte</string>
+    <string name="Mp">M<sub>p</sub> = antall ml 0.05 \nH<sub><small>2</small></sub>SO<sub><small>4</small></sub> forbrukt pr. ml slam</string>
+    <string name="CaOHValue">[Ca (OH)<sub><small>2</small></sub>]</string>
+    <string name="CaClVannfase">CaCl<sub>2</sub> i vannfasen</string>
+    <!-- Strings used by calculator using chemistry notation -->
 
     <string-array name="ovinger">
         <item>Velg Øving</item>
@@ -36,12 +70,12 @@
         <item>Klorid innhold</item>
         <item>Total hardhet</item>
         <item>Caution Exchange Capasity</item>
-        <item>Ca (OH)2</item>
+        <item>@string/CaOH</item>
         <item>Alkalitet</item>
         <item>Olje/vann forhold</item>
-        <item>Ca(OH)<sup>-</sup> innhold</item>
+        <item>@string/CaOHInnhold</item>
         <item>Klorid innhold i vannfasen</item>
-        <item>CaCl<sub>2</sub> i vannfasen</item>
+        <item>@string/CaClVannfase</item>
     </string-array>
 
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>
