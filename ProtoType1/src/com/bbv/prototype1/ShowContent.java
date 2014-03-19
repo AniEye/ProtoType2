@@ -43,7 +43,7 @@ public class ShowContent extends ShowContentBase {
 				_PriorityIndex = 0;
 			else if (this.getIntent().getBundleExtra(KEY_OVING) != null)
 				_PriorityIndex = 1;
-			
+
 			setPriorityIndex(_PriorityIndex);
 		} else {
 			_PriorityIndex = this.getIntent()
@@ -287,9 +287,10 @@ public class ShowContent extends ShowContentBase {
 							_bList = false;
 						}
 						continue;
-					} else if (str.contains("</list>")||_bList) {
+					} else if (str.contains("</list>")) {
 						_bList = false;
-						setListViewArray(arrayListToStringArray(_StringArray));
+						if (!_StringArray.isEmpty())
+							setListViewArray(arrayListToStringArray(_StringArray));
 						continue;
 					}
 
