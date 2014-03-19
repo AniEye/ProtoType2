@@ -66,11 +66,9 @@ public class Ovinger extends Activity implements
 	@Override
 	public void onClick(View v) {
 		Bundle newBundle = new Bundle();
-//		newBundle.putString(Fragment_Base.KEY_OVING,getStringOfSelected(_sOving)+"/_.txt");
-		newBundle.putString(Fragment_Base.KEY_OVING,getStringOfSelected(_sOving));
-//		Intent newIntent = new Intent(Fragment_Base.KEY_VIS_TEORI);
+		newBundle.putString(ShowContentBase.KEY_OVING,getStringOfSelected(_sOving));
 		Intent newIntent = new Intent(ShowContentBase.KEY_SHOWCONTENT); 
-		newIntent.putExtra(Fragment_Base.KEY_OVING,newBundle);		
+		newIntent.putExtra(ShowContentBase.KEY_OVING,newBundle);		
 		startActivity(newIntent);
 	}
 

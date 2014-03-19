@@ -39,16 +39,16 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 			savedInstanceExists = true;
 			Log.e("Pros_Saved", "SavedInstanceState is not null");
 			String chapter = savedInstanceState
-					.getString(Fragment_Base.KEY_CHAPTER);
+					.getString(ShowContentBase.KEY_CHAPTER);
 			Log.e("Pros_Saved", "chapter is: " + chapter);
 
-			if (savedInstanceState.getString(Fragment_Base.KEY_CHAPTERPART1) != null) {
+			if (savedInstanceState.getString(ShowContentBase.KEY_CHAPTERPART1) != null) {
 				chapterPart1 = savedInstanceState
-						.getString(Fragment_Base.KEY_CHAPTERPART1);
+						.getString(ShowContentBase.KEY_CHAPTERPART1);
 				if (savedInstanceState
-						.getString(Fragment_Base.KEY_CHAPTERPART2) != null) {
+						.getString(ShowContentBase.KEY_CHAPTERPART2) != null) {
 					chapterPart2 = savedInstanceState
-							.getString(Fragment_Base.KEY_CHAPTERPART2);
+							.getString(ShowContentBase.KEY_CHAPTERPART2);
 
 				}
 
@@ -210,7 +210,6 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -218,50 +217,48 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 	public void onClick(View v) {
 		newBundle = new Bundle();
 
-		newBundle.putString(Fragment_Base.KEY_CHAPTER,
+		newBundle.putString(ShowContentBase.KEY_CHAPTER,
 				getStringOfSelected(_sChapter));
 
 		if (_sChapterPart1.getSelectedItemPosition() > 0) {
-			newBundle.putString(Fragment_Base.KEY_CHAPTERPART1,
+			newBundle.putString(ShowContentBase.KEY_CHAPTERPART1,
 					getStringOfSelected(_sChapterPart1));
 
 		} else {
-			newBundle.putString(Fragment_Base.KEY_CHAPTERPART1, null);
+			newBundle.putString(ShowContentBase.KEY_CHAPTERPART1, null);
 		}
 		if (_sChapterPart2.getSelectedItemPosition() > 0) {
-			newBundle.putString(Fragment_Base.KEY_CHAPTERPART2,
+			newBundle.putString(ShowContentBase.KEY_CHAPTERPART2,
 					getStringOfSelected(_sChapterPart2));
 		} else {
-			newBundle.putString(Fragment_Base.KEY_CHAPTERPART2, null);
+			newBundle.putString(ShowContentBase.KEY_CHAPTERPART2, null);
 		}
 
-//		Intent is = new Intent(Fragment_Base.KEY_VIS_TEORI);
 		Intent is = new Intent(ShowContent.KEY_SHOWCONTENT);
-		 is.putExtra(Fragment_Base.KEY_PROS_TEORI, newBundle);
+		 is.putExtra(ShowContentBase.KEY_PROS_TEORI, newBundle);
 		startActivity(is);
 
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
 		super.onSaveInstanceState(outState);
 
-		outState.putString(Fragment_Base.KEY_CHAPTER,
+		outState.putString(ShowContentBase.KEY_CHAPTER,
 				getStringOfSelected(_sChapter));
 		Log.e("Pros_Saved", "onSavedInstanceState is run");
 		if (_sChapterPart1.getSelectedItemPosition() > 0) {
-			outState.putString(Fragment_Base.KEY_CHAPTERPART1,
+			outState.putString(ShowContentBase.KEY_CHAPTERPART1,
 					getStringOfSelected(_sChapterPart1));
 
 		} else {
-			outState.putString(Fragment_Base.KEY_CHAPTERPART1, null);
+			outState.putString(ShowContentBase.KEY_CHAPTERPART1, null);
 		}
 		if (_sChapterPart2.getSelectedItemPosition() > 0) {
-			outState.putString(Fragment_Base.KEY_CHAPTERPART2,
+			outState.putString(ShowContentBase.KEY_CHAPTERPART2,
 					getStringOfSelected(_sChapterPart2));
 		} else {
-			outState.putString(Fragment_Base.KEY_CHAPTERPART2, null);
+			outState.putString(ShowContentBase.KEY_CHAPTERPART2, null);
 		}
 	}
 

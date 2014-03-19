@@ -6,14 +6,14 @@
     android:background="@color/BackgroundColor"
     android:gravity="center_horizontal"
     android:orientation="horizontal"
-    android:weightSum="2"
-    android:padding="15dp" >
+    android:padding="15dp"
+    android:weightSum="2" >
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical" 
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical" >
 
         <Button
             android:id="@+id/bTeori"
@@ -23,34 +23,24 @@
         <Button
             android:id="@+id/bKalk"
             style="@style/CustomButton"
-            android:text="Kalk" />
-
-        <Button
-            android:id="@+id/bOvinger"
-            style="@style/CustomButton"
-            android:text="Øvinger" />
+            android:text="Kalkulator" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical" 
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical" >
 
         <Button
-            android:id="@+id/bVis_Teori"
+            android:id="@+id/bOvinger"
             style="@style/CustomButton"
-            android:text="Vis Teori" />
+            android:text="Øvinger" />
 
         <Button
             android:id="@+id/bSQLDatabase"
             style="@style/CustomButton"
             android:text="Database" />
-
-        <Button
-            android:id="@+id/bFileViewtest"
-            style="@style/CustomButton"
-            android:text="View a file" />
     </LinearLayout>
 
 </LinearLayout>

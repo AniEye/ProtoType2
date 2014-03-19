@@ -193,17 +193,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 			Intent i = new Intent("com.bbv.prototype1.SQLVIEW");
 			startActivity(i);
 			break;
-		case R.id.bSQLPoTViewFile:
-			if (_FileNameSpinnerCurrentIndex > 0) {
-				Bundle newBundle = new Bundle();			
-				String filename = makeFileName(_FileNameSpinnerCurrentIndex);
-				filename = FileView._Folder_pros + "/"+filename;			
-				newBundle.putString("Folder", filename);			
-				Intent is = new Intent("com.bbv.prototype1.FILEVIEW");
-				is.putExtras(newBundle);
-				startActivity(is);
-			}
-			break;
 		case R.id.bSQLPoTDelAll:
 			SQLDatabase dbs = new SQLDatabase(SQLPros_Teori.this);
 			dbs.open();

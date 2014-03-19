@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="25dp" >
 
-       <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
@@ -23,36 +23,19 @@
                 android:text="Prosedyrer og Teori" />
 
             <Button
-                android:id="@+id/bKalk"
-                style="@style/CustomButton"
-                android:text="Kalk" />
-
-            <Button
                 android:id="@+id/bOvinger"
                 style="@style/CustomButton"
                 android:text="Øvinger" />
 
             <Button
-                android:id="@+id/bShowContent"
+                android:id="@+id/bKalk"
                 style="@style/CustomButton"
-                android:text="Show Content" />
+                android:text="Kalkulator" />
 
             <Button
                 android:id="@+id/bSQLDatabase"
                 style="@style/CustomButton"
                 android:text="Database" />
-
-            <Button
-                android:id="@+id/bFileViewtest"
-                style="@style/CustomButton"
-                android:text="View a file" />
-
-            <Button
-                android:id="@+id/bWebViewTest"
-                style="@style/CustomButton"
-                android:text="WebView" />
-            
-
         </LinearLayout>
     </ScrollView>
 
