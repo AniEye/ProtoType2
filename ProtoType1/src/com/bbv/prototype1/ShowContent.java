@@ -1,53 +1,62 @@
 package com.bbv.prototype1;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.content.res.Configuration;
+import javax.xml.datatype.Duration;
+
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class ShowContent extends Activity implements OnClickListener {
-	protected DrawerLayout _drawerLayout;
-	protected ListView _listView;
-	protected ActionBarDrawerToggle _actionDrawerToggle;
-	protected String[] _testArray;
-	protected CharSequence _title;
-	protected CharSequence _activity_title;
-	protected WebViewBase _nWVB;
-	protected int _currentIndex = 0;
-	protected Button _bPrevious, _bNext;
-
-	protected Bundle _currentBundle, _nextBundle, _previousBundle;
-
-	public final static String KEY_SHOWCONTENT = "com.bbv.prototype1.SHOWCONTENT";
+public class ShowContent extends ShowContentBase {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showcontent);
-		Initialize(savedInstanceState);
-		_currentBundle = this.getIntent().getBundleExtra(
-				WebViewBase.KEY_PROS_TEORI);
+
+		if (this.getIntent().getBundleExtra(KEY_PROS_TEORI) != null) {
+
+			_currentBundle = this.getIntent().getBundleExtra(KEY_PROS_TEORI);
+			_currentIndex = 0;
+			Log.i(KEY_LOGCAT, "theorybundle from intent is(chapter): "
+					+ _currentBundle.getString(KEY_CHAPTER));
+			Log.i(KEY_LOGCAT, "Retrieved theorybundle from intent");
+		} else if (this.getIntent().getBundleExtra(KEY_OVING) != null) {
+			_currentBundle = this.getIntent().getBundleExtra(KEY_OVING);
+			_currentIndex = 1;
+			Log.i(KEY_LOGCAT, "ovingbundle from intent is(oving): "
+					+ _currentBundle.getString(KEY_OVING));
+			Log.i(KEY_LOGCAT, "Retrieved ovingbundle from intent");
+		}
+		if (savedInstanceState == null) {
+			if (this.getIntent().getBundleExtra(KEY_PROS_TEORI) != null)
+				_PriorityIndex = 0;
+			else if (this.getIntent().getBundleExtra(KEY_OVING) != null)
+				_PriorityIndex = 1;
+			
+			setPriorityIndex(_PriorityIndex);
+		} else {
+			_PriorityIndex = this.getIntent()
+					.getIntExtra(KEY_PRIORITY_INDEX, 0);
+		}
+
+		Initialize();
+
 	}
 
-	private void Initialize(Bundle savedInstanceState) {
-		_activity_title = getTitle();
+	private void Initialize() {
+		// _activity_title = getTitle();
+		setActivityTitle("Menyen >.<");
 		_drawerLayout = (DrawerLayout) findViewById(R.id.dlVis_Teori);
 		_listView = (ListView) findViewById(R.id.lvVis_Teori);
 		_bNext = (Button) findViewById(R.id.bNext);
@@ -78,38 +87,61 @@ public class ShowContent extends Activity implements OnClickListener {
 		_drawerLayout.setDrawerListener(_actionDrawerToggle);
 		_bNext.setOnClickListener(this);
 		_bPrevious.setOnClickListener(this);
-		// if (savedInstanceState == null) {
-		// selectItem(VTStatus);
-		// } else {
-		// selectItem(VTStatus);
-		// }
+
 		selectItem(_currentIndex);
+
 	}
 
-	private void selectItem(int position) {
+	@Override
+	protected void selectItem(int position) {
 
-		FragmentManager fm = getFragmentManager();
+		Log.i(KEY_LOGCAT, "Running selectItem");
+		_fragManag = getFragmentManager();
+		Log.i(KEY_LOGCAT, "got fragment manager");
 		switch (position) {
 		case 0:
-			_currentIndex = 0;
-			_nWVB = new WebViewTeori();
-			_nWVB.setArguments(this.getIntent().getBundleExtra(
-					WebViewBase.KEY_PROS_TEORI));
+			if (this.getIntent().getBundleExtra(KEY_PROS_TEORI) != null) {
+				_currentIndex = 0;
+				_nWVB = new WebViewTeori();
+				Log.i(KEY_LOGCAT, "created new instance of webViewTeori");
+				_currentBundle = this.getIntent()
+						.getBundleExtra(KEY_PROS_TEORI);
+				_nWVB.setArguments(_currentBundle);
+				Log.i(KEY_LOGCAT, "gave it the arguments needed");
+			} else {
+				Toast.makeText(this, "Ingen teori lagt til som referanse",
+						Toast.LENGTH_LONG).show();
+			}
+			break;
+		case 1:
+			if (this.getIntent().getBundleExtra(KEY_OVING) != null) {
+				_currentIndex = 1;
+				_nWVB = new WebViewOving();
+				Log.i(KEY_LOGCAT, "created new instance of webViewOving");
+				_currentBundle = this.getIntent().getBundleExtra(KEY_OVING);
+				_nWVB.setArguments(_currentBundle);
+				Log.i(KEY_LOGCAT, "gave it the arguments needed");
+			} else {
+				Toast.makeText(this, "Ingen øving lagt til som referanse",
+						Toast.LENGTH_LONG).show();
+			}
 			break;
 		}
-		getNewBundles(position);
-		fm.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
+		if (_currentIndex == 0) {
+			_filePath = getFilePathFromTeoriBundle(_currentBundle);
+		} else if (_currentIndex == 1) {
+			_filePath = getFilePathFromOvingBundle(_currentBundle);
+		}
+		decodeDataDocument();
+
+		_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
+		Log.i(KEY_LOGCAT, "replacing the fragment with fragment manager");
 		_listView.setItemChecked(position, true);
 
 		_drawerLayout.closeDrawer(_listView);
-		// if to change the title depending on the selected item do it here
-		// setTitle(_title);// if don't inside fragment, this not needed
-	}
 
-	public void setListViewArray(String[] list) {
-		_listView.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
-				list));
-		_listView.setOnItemClickListener(new DrawerItemClickListener());
+		Log.i(KEY_LOGCAT, "Finishing selectItem");
+		Log.i(KEY_LOGCAT, "  ");
 	}
 
 	@Override
@@ -117,11 +149,6 @@ public class ShowContent extends Activity implements OnClickListener {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
 		return super.onCreateOptionsMenu(menu);
-	}
-
-	public void setTitle(CharSequence title) {
-		_title = title;
-		getActionBar().setTitle(_title);
 	}
 
 	/* Called whenever we call invalidateOptionsMenu() */
@@ -134,40 +161,22 @@ public class ShowContent extends Activity implements OnClickListener {
 		return super.onPrepareOptionsMenu(menu);
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (_actionDrawerToggle.onOptionsItemSelected(item)) {
-			return true;
-		}
-		// Handle action buttons
-		switch (item.getItemId()) {
-		default:
-			return super.onOptionsItemSelected(item);
-		}
+	protected void setTheoryBundle(Bundle aBundle) {
+		this.getIntent().putExtra(KEY_PROS_TEORI, aBundle);
+		Log.i(KEY_LOGCAT, "Finishing setTheoryBundle");
+		Log.i(KEY_LOGCAT, "  ");
 	}
 
-	/* The click listener for ListView in the navigation drawer */
-	private class DrawerItemClickListener implements
-			ListView.OnItemClickListener {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			selectItem(position);
-		}
+	protected void setOvingBundle(Bundle aBundle) {
+		this.getIntent().putExtra(KEY_OVING, aBundle);
+		Log.i(KEY_LOGCAT, "Finishing setOvingBundle");
+		Log.i(KEY_LOGCAT, "  ");
 	}
 
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
-		// Sync the toggle state after onRestoreInstanceState has occurred.
-		_actionDrawerToggle.syncState();
-	}
-
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		// Pass any configuration change to the drawer toggls
-		_actionDrawerToggle.onConfigurationChanged(newConfig);
+	protected void setPriorityIndex(int index) {
+		this.getIntent().putExtra(KEY_PRIORITY_INDEX, index);
+		Log.i(KEY_LOGCAT, "Finishing setPriorityIndex");
+		Log.i(KEY_LOGCAT, "  ");
 	}
 
 	@Override
@@ -175,75 +184,160 @@ public class ShowContent extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.bNext:
 			_currentBundle = _nextBundle;
-			Log.e("ShowContent", "Next Button Presset");
-			// setTeoriBundle(_currentBundle);
+			Log.i(KEY_LOGCAT, "Next Button Presset");
 			break;
 		case R.id.bPrevious:
 			_currentBundle = _previousBundle;
-			Log.e("ShowContent", "Previous Button Presset");
-			// setTeoriBundle(_currentBundle);
+			Log.i(KEY_LOGCAT, "Previous Button Presset");
 			break;
 		}
-		getNewBundles(_currentIndex);
+		if (_currentIndex == 0) {
+			_filePath = getFilePathFromTeoriBundle(_currentBundle);
+		} else if (_currentIndex == 1) {
+			_filePath = getFilePathFromOvingBundle(_currentBundle);
+		}
+		decodeDataDocument();
+
+		if (_currentIndex == 0) {
+			setTheoryBundle(_currentBundle);
+		} else if (_currentIndex == 1) {
+			setOvingBundle(_currentBundle);
+		}
 		_nWVB.Reload(_currentBundle);
-		
+
+		Log.i(KEY_LOGCAT, "Finishing onClick");
+		Log.i(KEY_LOGCAT, "  ");
 	}
 
-	public void getNewBundles(int position) {
-		if (position == 0) {
-			try {
-				String str = "";
-				String path = "If shown it failed";
-				InputStream is = this.getAssets().open("pros_og_teori_text/1. Leire og vektmaterialer/_.txt");
-				try {
-					path = WebViewBase.getFilePathFromTeoriBundle(_currentBundle);
-					is = this.getAssets().open(path + "/_.txt");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+		// Log.i(KEY_LOGCAT, "Running onSaveInstance");
+		// Log.i(KEY_LOGCAT,
+		// "Is theoryBundle empty: "+getIntent().getBundleExtra(WebViewBase.KEY_PROS_TEORI).isEmpty());
+		//
+		// if
+		// (!this.getIntent().getBundleExtra(WebViewBase.KEY_PROS_TEORI).isEmpty())
+		// {
+		// outState.putBundle(WebViewBase.KEY_PROS_TEORI, getIntent()
+		// .getBundleExtra(WebViewBase.KEY_PROS_TEORI));
+		// Log.i(KEY_LOGCAT, "Saving theoryBundle");
+		// }
+		//
+		// Log.i(KEY_LOGCAT, "Finishing onsaveinstanceState");
+		// Log.i(KEY_LOGCAT, "  ");
+	}
 
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(is));
-				StringBuffer buffer = new StringBuffer();
-				Boolean _bTitle = false, _bNextOrLast = false;
+	public void decodeDataDocument() {
+		try {
+			String str = "";
+			_bTitle = _bNextOrLast = false;
+			setAssetManager();
+			setInputStream(_filePath + "_.txt");
+			setBufferedReader(_InputStream);
+			newStringBuffer();
 
-				if (is != null) {
-					while ((str = reader.readLine()) != null) {
+			if (_InputStream != null) {
+				while ((str = _BufferedReader.readLine()) != null) {
 
-						if (str.contains("<title>")) {
-							_bTitle = true;
-							buffer = new StringBuffer();
-							continue;
-						} else if (str.contains("</title")) {
-							_bTitle = false;
-							setTitle(buffer.toString());
-							continue;
-						} else if (str.contains("<next>")
-								|| str.contains("<last>")) {
-							_bNextOrLast = true;
-							buffer = new StringBuffer();
-							continue;
-						} else if (str.contains("</next>")) {
-							_bNextOrLast = false;
-							_nextBundle = _nWVB.createNewTeoriBundle(buffer
-									.toString());
-							continue;
-						} else if (str.contains("</last>")) {
-							_bNextOrLast = false;
-							_previousBundle = _nWVB.createNewTeoriBundle(buffer
-									.toString());
-							continue;
+					if (str.contains("<title>")) {
+						_bTitle = true;
+						newStringBuffer();
+						continue;
+					} else if (str.contains("</title")) {
+						_bTitle = false;
+						setTitle(_StringBuffer.toString());
+						Log.i(KEY_LOGCAT, "Set the title in the action bar");
+						continue;
+					} else if (str.contains("<next>") || str.contains("<last>")) {
+						_bNextOrLast = true;
+						newStringBuffer();
+						continue;
+					} else if (str.contains("</next>")) {
+						_bNextOrLast = false;
+						if (_currentIndex == 0) {
+							setNextBundle(createNewTeoriBundle(_StringBuffer
+									.toString()));
+						} else if (_currentIndex == 1) {
+							setNextBundle(createNewOvingBundle(_StringBuffer
+									.toString()));
 						}
+						Log.i(KEY_LOGCAT,
+								"Created the bundle for the next page");
+						continue;
+					} else if (str.contains("</last>")) {
+						_bNextOrLast = false;
+						if (_currentIndex == 0) {
+							setPreviousBundle(createNewTeoriBundle(_StringBuffer
+									.toString()));
+						} else if (_currentIndex == 1) {
+							setPreviousBundle(createNewOvingBundle(_StringBuffer
+									.toString()));
+						}
+						Log.i(KEY_LOGCAT,
+								"Created the bundle for the previous page");
+						continue;
+					} else if (str.contains("<list>")) {
+						if (_currentIndex == _PriorityIndex) {
+							// make sure that this priority thing works
+							_bList = true;
+							_StringArray = new ArrayList<String>();
+						} else {
+							_bList = false;
+						}
+						continue;
+					} else if (str.contains("</list>")||_bList) {
+						_bList = false;
+						setListViewArray(arrayListToStringArray(_StringArray));
+						continue;
+					}
 
-						if (_bTitle || _bNextOrLast) {
-							buffer.append(str);
+					if (_bTitle || _bNextOrLast) {
+						_StringBuffer.append(str);
+					} else if (_bList) {
+						if (!str.isEmpty()) {
+							if (str.contains("#")) {
+								String[] SplitString = str.split("#");
+								_StringArray.add(SplitString[0]);
+								if (SplitString.length > 1) {
+									SplitString = SplitString[1].split("/");
+									newStringBuffer();
+									if (SplitString[0]
+											.contentEquals("pros_og_teori_text")) {
+										for (int i = 1; i < SplitString.length - 1; i++) {
+											_StringBuffer.append(SplitString[i]
+													+ "/");
+										}
+										_StringBuffer
+												.append(SplitString[SplitString.length - 1]);
+										setTheoryBundle(createNewTeoriBundle(_StringBuffer
+												.toString()));
+									} else if (SplitString[0]
+											.contentEquals("Ovinger")) {
+										for (int i = 1; i < SplitString.length - 1; i++) {
+											_StringBuffer.append(SplitString[i]
+													+ "/");
+										}
+										_StringBuffer
+												.append(SplitString[SplitString.length - 1]);
+										setOvingBundle(createNewOvingBundle(_StringBuffer
+												.toString()));
+									}
+								}
+							} else {
+								_StringArray.add(str);
+							}
 						}
 					}
 				}
-				is.close();
-			} catch (Exception e) {
-				Log.e("ShowContent", "File not found or existing");
 			}
+			_InputStream.close();
+		} catch (IOException e) {
+			Log.e(KEY_LOGCAT, "Didn't open or find _.txt");
 		}
+		Log.i(KEY_LOGCAT, "Finishing decodeDataDocument");
+		Log.i(KEY_LOGCAT, "  ");
 	}
+
 }

@@ -11,9 +11,3 @@
 <title>
 4.3 Valg av slamsystem
 </title>
-
-<text>
-her vil det kommer mer i løpet av tiden
-æøå
-sees senere
-</text>

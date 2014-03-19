@@ -12,8 +12,3 @@
 3.2 Kjemisk analyse av vannbasert boreslam
 </title>
 
-<text>
-her vil det kommer mer i løpet av tiden
-æøå
-sees senere
-</text>

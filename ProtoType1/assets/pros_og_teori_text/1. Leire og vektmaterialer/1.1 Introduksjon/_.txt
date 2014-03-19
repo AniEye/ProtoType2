@@ -12,37 +12,10 @@
 1.1 Introduksjon
 </title>
 
-<text><h3>
-Den gruppen mineraler som er klassisert som leire spiller en viktig rolle innenfor
-mange områder av boreteknologien, deriblant borevæsker. Leire kan kjemisk
-beskrives som aluminiumsilikater. Siden de elementene som leiren er oppbygd
-av utgjør over 80 % av jordens masse (Al = 8 %, Si = 27,7 % og O = 46,6%),
-er det helt naturlig at vi til enhver tid vil komme i kontakt med leirholdige
-formasjoner når brønner bores.
-
-De mest vanlige formasjoner som bores er leire og skifer. Mengde og type leirmineraler
-som disse formasjonene består av er blant de viktigste faktorer med hensyn
-på de kjemiske og mekaniske egenskapene bergarten har. Valg av borevæske
-er ofte avhengig av reaksjonen mellom borevæske og bergarten, da væsken kan
-påvirke stabiliteten i brønnveggen. Derfor vil forståelse av leirkjemi være svært
-viktig ved valg av boreslamsystemer, og i forståelse av borehullsstabilitet.
-
-De este sandsteinsreservoarer inneholder også noe leirmineraler. Disse leirmineralene
-kan reagere med borevæsken og i verste fall føre til en fullstendig blokkering
-av formasjonen. Igjen vil det være viktig med en forståelse av leirens
-oppbygging og reaksjon ved design av borevæsker som kommer i kontakt med
-en produksjonssone.
-
-Leire kan også brukes som tilsetning i boreslam for å gi væsken viskositet og
-filtertapskontrollerende egenskaper. Bentonitt blir da tilsatt med hensikt, samtidig
-som formasjonsleire dispergerer inn i borevæsken under boring. Et stort
-antall kjemikalier tilsettes for å kontrollere viskositet og ltertaps-egenskapene.
-En forståelse av kjemien til disse kjemikaliene og til leirene er svært viktig for
-at slamingeniøren skal kunne kontrollere borevæskens egenskaper.
-
-
-Vi vil i de påfølgende avsnitt beskrive de fysiske og kjemiske egenskapene til
-forskjellige typer leirmineraler og relatere dette til leirens oppførsel i borevæsker
-og i leirskifer.
-</text>
+<list>
+Teori
+Øvinger
+Utstyr
+Kalkulator
+</list>
 

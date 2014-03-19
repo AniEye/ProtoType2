@@ -11,9 +11,3 @@
 <title>
 1.8 Masse- og volumbalanse
 </title>
-
-<text>
-her vil det kommer mer i løpet av tiden
-æøå
-sees senere
-</text>

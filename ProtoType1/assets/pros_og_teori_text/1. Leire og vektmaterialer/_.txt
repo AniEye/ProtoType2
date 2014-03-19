@@ -12,4 +12,10 @@
 1. Leire og vektmaterialer
 </title>
 
-
+<list>
+Teori
+Øvinger
+Utstyr
+Kalkulator
+Kapitler
+</list>

@@ -11,9 +11,3 @@
 <title>
 4.2 Oljebaserte boreslam
 </title>
-
-<text>
-her vil det kommer mer i løpet av tiden
-æøå
-sees senere
-</text>

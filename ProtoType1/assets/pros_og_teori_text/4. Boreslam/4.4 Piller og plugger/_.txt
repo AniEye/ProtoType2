@@ -12,10 +12,3 @@
 4.4 Piller og plugger
 </title>
 
-<text>
-her vil det kommer mer i løpet av tiden
-
-æøå
-
-sees senere
-</text>

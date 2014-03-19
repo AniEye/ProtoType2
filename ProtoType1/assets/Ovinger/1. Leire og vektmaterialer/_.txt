@@ -1,20 +1,26 @@
 ﻿1. Leire og vektmaterialer/_.txt
 
-<next>
+
 1. Leire og vektmaterialer/_content.txt
+
+<next>
+2. Reologi og filtertap
 </next>
 
 <last>
-1. Leire og vektmaterialer/_.txt
+1. Leire og vektmaterialer
 </last>
 
-<title><h3><color>GREEN</color>
+<title>
 1. Leire og vektmaterialer
 </title>
 
-<text><h2>
-I denne øvingen skal vi bygge opp et enkelt vannbasert bentonittslam, studere reologien og se hvilken effekt salt (NaCl)
-har på viskositet og filtertap. Vi skal også justere tettheten til et slam ved hjelp av barytt og premikset slam.
-
-De testene som skal utføres i øvingen står beskrevet i kapittel 3 i dette kompendiet.
-</text>
+<list>
+Teori#pros_og_teori_text/1. Leire og vektmaterialer/1.1 Introduksjon
+Øvinger
+Utstyr
+Kalkulator
+Test
+I
+Øving 1
+</list>

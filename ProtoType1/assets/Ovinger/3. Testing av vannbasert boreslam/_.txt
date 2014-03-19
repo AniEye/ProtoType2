@@ -1,20 +1,13 @@
 ﻿3. Testing av vannbasert boreslam/_.txt
 
 <next>
-3. Testing av vannbasert boreslam/_content.txt
+4. Modifikasjon av boreslam
 </next>
 
 <last>
-2. Reologi og filtertap/_content.txt
+2. Reologi og filtertap
 </last>
 
 <title>
 3. Testing av vannbasert boreslam
 </title>
-
-<text>
-I denne øvingen skal vi bygge opp et enkelt vannbasert bentonittslam, studere reologien og se hvilken effekt salt (NaCl)
-har på viskositet og filtertap. Vi skal også justere tettheten til et slam ved hjelp av barytt og premikset slam.
-
-De testene som skal utføres i øvingen står beskrevet i kapittel 3 i dette kompendiet.
-</text>

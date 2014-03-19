@@ -1,6 +1,7 @@
 package com.bbv.prototype1;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,21 +19,15 @@ public class WebViewTeori extends WebViewBase {
 	@Override
 	protected void Initialize() {
 		setWebView();
-		setAssetManager();
-		ReloadTheory(getArguments());
-	}
-	
-	public void reload(Bundle aBundle){
-		_filePath = "file:///android_asset/"
-				+ getFilePathFromTeoriBundle(aBundle) + "_.html";
-		loadFile(_filePath);
+		Reload(getArguments());
 	}
 
 	@Override
 	public void Reload(Bundle aBundle) {
-		_filePath = "file:///android_asset/"
-				+ getFilePathFromTeoriBundle(aBundle) + "_.html";
-		loadFile(_filePath);
-	}
+		_filePath = getFilePathFromTeoriBundle(aBundle);
+		loadFile("file:///android_asset/" + _filePath + "_.html");
 
+		Log.i(KEY_LOGCAT, "Finishing Reload");
+		Log.i(KEY_LOGCAT, "  ");
+	}
 }

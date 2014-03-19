@@ -12,8 +12,3 @@
 2.2 Kontroll av filtertap og vannbaserte boreslam
 </title>
 
-<text>
-her vil det kommer mer i løpet av tiden
-æøå
-sees senere
-</text>

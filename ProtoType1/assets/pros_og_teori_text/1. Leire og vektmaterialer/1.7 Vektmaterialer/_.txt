@@ -11,9 +11,3 @@
 <title>
 1.7 Vektmaterialer
 </title>
-
-<text>
-her vil det kommer mer i løpet av tiden
-æøå
-sees senere
-</text>
