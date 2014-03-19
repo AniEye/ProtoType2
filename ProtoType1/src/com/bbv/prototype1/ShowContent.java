@@ -2,13 +2,9 @@ package com.bbv.prototype1;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.xml.datatype.Duration;
-
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,71 +20,33 @@ public class ShowContent extends ShowContentBase {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showcontent);
 
-		if (this.getIntent().getBundleExtra(KEY_PROS_TEORI) != null) {
-
-			_currentBundle = this.getIntent().getBundleExtra(KEY_PROS_TEORI);
-			_currentIndex = 0;
-			Log.i(KEY_LOGCAT, "theorybundle from intent is(chapter): "
-					+ _currentBundle.getString(KEY_CHAPTER));
-			Log.i(KEY_LOGCAT, "Retrieved theorybundle from intent");
-		} else if (this.getIntent().getBundleExtra(KEY_OVING) != null) {
-			_currentBundle = this.getIntent().getBundleExtra(KEY_OVING);
-			_currentIndex = 1;
-			Log.i(KEY_LOGCAT, "ovingbundle from intent is(oving): "
-					+ _currentBundle.getString(KEY_OVING));
-			Log.i(KEY_LOGCAT, "Retrieved ovingbundle from intent");
-		}
 		if (savedInstanceState == null) {
-			if (this.getIntent().getBundleExtra(KEY_PROS_TEORI) != null)
-				_PriorityIndex = 0;
-			else if (this.getIntent().getBundleExtra(KEY_OVING) != null)
-				_PriorityIndex = 1;
-
-			setPriorityIndex(_PriorityIndex);
+			Log.i(KEY_LOGCAT,
+					"Start doing what is needed when savedInstace = null");
+			if (getTheoryBundle() != null) {
+				setPriorityIndex(0);
+				setCurrentIndex(0);
+			} else if (getOvingBundle() != null) {
+				setPriorityIndex(1);
+				setCurrentIndex(1);
+			}
 		} else {
-			_PriorityIndex = this.getIntent()
-					.getIntExtra(KEY_PRIORITY_INDEX, 0);
+			Log.i(KEY_LOGCAT,
+					"Start doing what is needed when savedInstace != null");
+
+			Log.i(KEY_LOGCAT, "PriorityIndex is: " + getPriorityIndex());
+			Log.i(KEY_LOGCAT, "CurrentIndex is: " + getCurrentIndex());
+
+			// try {
+			// setListViewArray(getListArray());
+			// Log.e(KEY_LOGCAT, "Managed to retrive listarray");
+			// } catch (Exception e) {
+			// Log.e(KEY_LOGCAT, "Failed to retrive listarray");
+			// }
+
 		}
 
 		Initialize();
-
-	}
-
-	private void Initialize() {
-		// _activity_title = getTitle();
-		setActivityTitle("Menyen >.<");
-		_drawerLayout = (DrawerLayout) findViewById(R.id.dlVis_Teori);
-		_listView = (ListView) findViewById(R.id.lvVis_Teori);
-		_bNext = (Button) findViewById(R.id.bNext);
-		_bPrevious = (Button) findViewById(R.id.bPrevious);
-
-		// this can later be removed
-		_testArray = getResources().getStringArray(R.array.test_array);
-		setListViewArray(_testArray);
-		//
-
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
-
-		_actionDrawerToggle = new ActionBarDrawerToggle(this, _drawerLayout,
-				R.drawable.ic_drawer, R.string.drawer_open,
-				R.string.drawer_close) {
-			public void onDrawerClosed(View v) {
-				getActionBar().setTitle(_title);
-				invalidateOptionsMenu();
-			}
-
-			public void onDrawerOpened(View v) {
-				getActionBar().setTitle(_activity_title);
-				invalidateOptionsMenu();
-			}
-		};
-
-		_drawerLayout.setDrawerListener(_actionDrawerToggle);
-		_bNext.setOnClickListener(this);
-		_bPrevious.setOnClickListener(this);
-
-		selectItem(_currentIndex);
 
 	}
 
@@ -98,15 +56,14 @@ public class ShowContent extends ShowContentBase {
 		Log.i(KEY_LOGCAT, "Running selectItem");
 		_fragManag = getFragmentManager();
 		Log.i(KEY_LOGCAT, "got fragment manager");
+
 		switch (position) {
 		case 0:
-			if (this.getIntent().getBundleExtra(KEY_PROS_TEORI) != null) {
-				_currentIndex = 0;
+			if (getTheoryBundle() != null) {
+				setCurrentIndex(0);
 				_nWVB = new WebViewTeori();
 				Log.i(KEY_LOGCAT, "created new instance of webViewTeori");
-				_currentBundle = this.getIntent()
-						.getBundleExtra(KEY_PROS_TEORI);
-				_nWVB.setArguments(_currentBundle);
+				_nWVB.setArguments(getTheoryBundle());
 				Log.i(KEY_LOGCAT, "gave it the arguments needed");
 			} else {
 				Toast.makeText(this, "Ingen teori lagt til som referanse",
@@ -114,12 +71,11 @@ public class ShowContent extends ShowContentBase {
 			}
 			break;
 		case 1:
-			if (this.getIntent().getBundleExtra(KEY_OVING) != null) {
-				_currentIndex = 1;
+			if (getOvingBundle() != null) {
+				setCurrentIndex(1);
 				_nWVB = new WebViewOving();
 				Log.i(KEY_LOGCAT, "created new instance of webViewOving");
-				_currentBundle = this.getIntent().getBundleExtra(KEY_OVING);
-				_nWVB.setArguments(_currentBundle);
+				_nWVB.setArguments(getOvingBundle());
 				Log.i(KEY_LOGCAT, "gave it the arguments needed");
 			} else {
 				Toast.makeText(this, "Ingen øving lagt til som referanse",
@@ -127,10 +83,10 @@ public class ShowContent extends ShowContentBase {
 			}
 			break;
 		}
-		if (_currentIndex == 0) {
-			_filePath = getFilePathFromTeoriBundle(_currentBundle);
-		} else if (_currentIndex == 1) {
-			_filePath = getFilePathFromOvingBundle(_currentBundle);
+		if (getCurrentIndex() == 0) {
+			_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
+		} else if (getCurrentIndex() == 1) {
+			_filePath = getFilePathFromOvingBundle(getOvingBundle());
 		}
 		decodeDataDocument();
 
@@ -141,41 +97,6 @@ public class ShowContent extends ShowContentBase {
 		_drawerLayout.closeDrawer(_listView);
 
 		Log.i(KEY_LOGCAT, "Finishing selectItem");
-		Log.i(KEY_LOGCAT, "  ");
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	/* Called whenever we call invalidateOptionsMenu() */
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		// If the nav drawer is open, hide action items related to the content
-		// view
-		// boolean drawerOpen = _drawerLayout.isDrawerOpen(_listView);
-		// menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
-		return super.onPrepareOptionsMenu(menu);
-	}
-
-	protected void setTheoryBundle(Bundle aBundle) {
-		this.getIntent().putExtra(KEY_PROS_TEORI, aBundle);
-		Log.i(KEY_LOGCAT, "Finishing setTheoryBundle");
-		Log.i(KEY_LOGCAT, "  ");
-	}
-
-	protected void setOvingBundle(Bundle aBundle) {
-		this.getIntent().putExtra(KEY_OVING, aBundle);
-		Log.i(KEY_LOGCAT, "Finishing setOvingBundle");
-		Log.i(KEY_LOGCAT, "  ");
-	}
-
-	protected void setPriorityIndex(int index) {
-		this.getIntent().putExtra(KEY_PRIORITY_INDEX, index);
-		Log.i(KEY_LOGCAT, "Finishing setPriorityIndex");
 		Log.i(KEY_LOGCAT, "  ");
 	}
 
@@ -191,42 +112,20 @@ public class ShowContent extends ShowContentBase {
 			Log.i(KEY_LOGCAT, "Previous Button Presset");
 			break;
 		}
-		if (_currentIndex == 0) {
-			_filePath = getFilePathFromTeoriBundle(_currentBundle);
-		} else if (_currentIndex == 1) {
-			_filePath = getFilePathFromOvingBundle(_currentBundle);
-		}
-		decodeDataDocument();
-
-		if (_currentIndex == 0) {
+		if (getCurrentIndex() == 0) {
 			setTheoryBundle(_currentBundle);
-		} else if (_currentIndex == 1) {
+			_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
+			_nWVB.Reload(getTheoryBundle());
+			decodeDataDocument();
+		} else if (getCurrentIndex() == 1) {
 			setOvingBundle(_currentBundle);
+			_filePath = getFilePathFromOvingBundle(getOvingBundle());
+			_nWVB.Reload(getOvingBundle());
+			decodeDataDocument();
 		}
-		_nWVB.Reload(_currentBundle);
 
 		Log.i(KEY_LOGCAT, "Finishing onClick");
 		Log.i(KEY_LOGCAT, "  ");
-	}
-
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(outState);
-		// Log.i(KEY_LOGCAT, "Running onSaveInstance");
-		// Log.i(KEY_LOGCAT,
-		// "Is theoryBundle empty: "+getIntent().getBundleExtra(WebViewBase.KEY_PROS_TEORI).isEmpty());
-		//
-		// if
-		// (!this.getIntent().getBundleExtra(WebViewBase.KEY_PROS_TEORI).isEmpty())
-		// {
-		// outState.putBundle(WebViewBase.KEY_PROS_TEORI, getIntent()
-		// .getBundleExtra(WebViewBase.KEY_PROS_TEORI));
-		// Log.i(KEY_LOGCAT, "Saving theoryBundle");
-		// }
-		//
-		// Log.i(KEY_LOGCAT, "Finishing onsaveinstanceState");
-		// Log.i(KEY_LOGCAT, "  ");
 	}
 
 	public void decodeDataDocument() {
@@ -256,10 +155,10 @@ public class ShowContent extends ShowContentBase {
 						continue;
 					} else if (str.contains("</next>")) {
 						_bNextOrLast = false;
-						if (_currentIndex == 0) {
+						if (getCurrentIndex() == 0) {
 							setNextBundle(createNewTeoriBundle(_StringBuffer
 									.toString()));
-						} else if (_currentIndex == 1) {
+						} else if (getCurrentIndex() == 1) {
 							setNextBundle(createNewOvingBundle(_StringBuffer
 									.toString()));
 						}
@@ -268,30 +167,37 @@ public class ShowContent extends ShowContentBase {
 						continue;
 					} else if (str.contains("</last>")) {
 						_bNextOrLast = false;
-						if (_currentIndex == 0) {
+						if (getCurrentIndex() == 0) {
 							setPreviousBundle(createNewTeoriBundle(_StringBuffer
 									.toString()));
-						} else if (_currentIndex == 1) {
+						} else if (getCurrentIndex() == 1) {
 							setPreviousBundle(createNewOvingBundle(_StringBuffer
 									.toString()));
 						}
 						Log.i(KEY_LOGCAT,
 								"Created the bundle for the previous page");
 						continue;
-					} else if (str.contains("<list>")) {
-						if (_currentIndex == _PriorityIndex) {
-							// make sure that this priority thing works
-							_bList = true;
-							_StringArray = new ArrayList<String>();
-						} else {
-							_bList = false;
+					} else {
+						// this is where i left off
+						if (getCurrentIndex() == getPriorityIndex()) {
+							if (str.contains("<list>")) {
+								// make sure that this priority thing works
+								_bList = true;
+								_StringArray = new ArrayList<String>();
+								continue;
+							} else if (str.contains("</list>")) {
+								_bList = false;
+								if (!_StringArray.isEmpty()) {
+									String[] stringarray = arrayListToStringArray(_StringArray);
+									setListViewArray(stringarray);
+									Log.i(KEY_LOGCAT,
+											"Length of stored string: "
+													+ stringarray.length);
+									setListArray(stringarray);
+								}
+								continue;
+							}
 						}
-						continue;
-					} else if (str.contains("</list>")) {
-						_bList = false;
-						if (!_StringArray.isEmpty())
-							setListViewArray(arrayListToStringArray(_StringArray));
-						continue;
 					}
 
 					if (_bTitle || _bNextOrLast) {
@@ -341,4 +247,119 @@ public class ShowContent extends ShowContentBase {
 		Log.i(KEY_LOGCAT, "  ");
 	}
 
+	private void Initialize() {
+		// _activity_title = getTitle();
+		setActivityTitle("Menyen >.<");
+		_drawerLayout = (DrawerLayout) findViewById(R.id.dlVis_Teori);
+		_listView = (ListView) findViewById(R.id.lvVis_Teori);
+		_bNext = (Button) findViewById(R.id.bNext);
+		_bPrevious = (Button) findViewById(R.id.bPrevious);
+
+		// this can later be removed
+		_testArray = getResources().getStringArray(R.array.test_array);
+		setListViewArray(_testArray);
+		//
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);
+
+		_actionDrawerToggle = new ActionBarDrawerToggle(this, _drawerLayout,
+				R.drawable.ic_drawer, R.string.drawer_open,
+				R.string.drawer_close) {
+			public void onDrawerClosed(View v) {
+				getActionBar().setTitle(_title);
+				invalidateOptionsMenu();
+			}
+
+			public void onDrawerOpened(View v) {
+				getActionBar().setTitle(_activity_title);
+				invalidateOptionsMenu();
+			}
+		};
+
+		_drawerLayout.setDrawerListener(_actionDrawerToggle);
+		_bNext.setOnClickListener(this);
+		_bPrevious.setOnClickListener(this);
+
+		selectItem(getCurrentIndex());
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	/* Called whenever we call invalidateOptionsMenu() */
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		// If the nav drawer is open, hide action items related to the content
+		// view
+		// boolean drawerOpen = _drawerLayout.isDrawerOpen(_listView);
+		// menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	// setter and getter for the theory and oving bundles
+	protected void setTheoryBundle(Bundle aBundle) {
+		this.getIntent().putExtra(KEY_PROS_TEORI, aBundle);
+		Log.i(KEY_LOGCAT, "Finishing setTheoryBundle");
+		Log.i(KEY_LOGCAT, "  ");
+	}
+
+	protected void setOvingBundle(Bundle aBundle) {
+		this.getIntent().putExtra(KEY_OVING, aBundle);
+		Log.i(KEY_LOGCAT, "Finishing setOvingBundle");
+		Log.i(KEY_LOGCAT, "  ");
+	}
+
+	protected Bundle getTheoryBundle() {
+		return this.getIntent().getBundleExtra(KEY_PROS_TEORI);
+	}
+
+	protected Bundle getOvingBundle() {
+		return this.getIntent().getBundleExtra(KEY_OVING);
+	}
+
+	// setter and getter for priorityindex
+	protected void setPriorityIndex(int index) {
+		this.getIntent().putExtra(KEY_PRIORITY_INDEX, index);
+		Log.i(KEY_LOGCAT, "Finishing setPriorityIndex");
+		Log.i(KEY_LOGCAT, "  ");
+	}
+
+	protected int getPriorityIndex() {
+		return this.getIntent().getIntExtra(KEY_PRIORITY_INDEX, -1);
+	}
+
+	// setter and getter for currentindex
+	protected int getCurrentIndex() {
+		return this.getIntent().getIntExtra(KEY_CURRENT_INDEX, -1);
+	}
+
+	protected void setCurrentIndex(int index) {
+		this.getIntent().putExtra(KEY_CURRENT_INDEX, index);
+		Log.i(KEY_LOGCAT, "Finishing setCurrentIndex");
+		Log.i(KEY_LOGCAT, "  ");
+	}
+
+	// setter and getter for listarray
+	// maybe remove this later if found out that it's useless
+	protected void setListArray(String[] anArray) {
+		this.getIntent().putExtra(KEY_LIST_ARRAY, anArray);
+		Log.i(KEY_LOGCAT, "Finishing storeCurrentIndex");
+		Log.i(KEY_LOGCAT, "  ");
+	}
+
+	protected String[] getListArray() throws Exception {
+		return this.getIntent().getStringArrayExtra(KEY_LIST_ARRAY);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+	}
 }

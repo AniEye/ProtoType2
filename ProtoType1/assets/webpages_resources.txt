@@ -6,3 +6,22 @@ http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/inde
 
 android swipe option
 http://developer.android.com/design/patterns/swipe-views.html
+
+
+used as reference for making a webview:
+http://www.seal.io/2010/12/only-way-how-to-align-text-in-block-in.html
+
+used to get information about the different sizeing methods:
+http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android
+
+used as reference to save content when page is destroyed:
+http://stackoverflow.com/questions/15608709/using-onsaveinstancestate-with-fragments-in-backstack
+
+in case we are to do further research on zooming:
+http://developer.android.com/training/animation/zoom.html
+
+used as reference when needed to read from a file in assets:
+http://www.vogella.com/tutorials/AndroidFileBasedPersistence/article.html
+http://stackoverflow.com/questions/11206082/android-development-open-file-txt-and-return-content
+http://stackoverflow.com/questions/9752417/how-to-reference-a-file-in-raw-folder-in-android
+http://stackoverflow.com/questions/18973550/load-images-from-assets-folder

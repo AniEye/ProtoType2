@@ -45,6 +45,9 @@ public abstract class ShowContentBase extends Activity implements
 	protected ArrayList<String> _StringArray;
 
 	public final static String KEY_PRIORITY_INDEX = "PriorityIndex";
+	public final static String KEY_LIST_ARRAY = "ListArray";
+	public final static String KEY_CURRENT_INDEX = "CurrentIndex";
+	
 	public final static String KEY_OVING = "SOving";
 	public final static String KEY_PROS_TEORI = "BProsTeori";
 
