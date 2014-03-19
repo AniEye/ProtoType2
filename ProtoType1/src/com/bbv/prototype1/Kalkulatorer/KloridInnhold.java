@@ -106,7 +106,7 @@ public class KloridInnhold extends Basic_Calc {
 			Log.println(Log.INFO, "calc", "Setting textviews in " + this.getClass().getName() + "!");
 			
 			float[] testFloats = {CCl, ClPPM, NaClMG, NaClPPM};
-			if (testFloat(testFloats) == false)
+			if (checkForDivisionErrors(testFloats) == false)
 				return "";
 
 			String _KloridMG = String.format("%.3f", CCl);

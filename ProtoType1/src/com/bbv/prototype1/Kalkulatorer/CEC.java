@@ -71,7 +71,7 @@ public class CEC extends Basic_Calc {
 			BentKG = 14.25f * CEC;
 
 			float[] testFloats = { CEC, BentKG, BentPPM };
-			if (testFloat(testFloats) == false)
+			if (checkForDivisionErrors(testFloats) == false)
 				return "";
 
 			String _CEC = String.format("%.3f", CEC);

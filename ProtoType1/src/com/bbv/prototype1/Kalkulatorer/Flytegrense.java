@@ -50,7 +50,7 @@ public class Flytegrense extends Basic_Calc {
 			break;
 		}
 		
-		if (testFloat(theAnswer) == false)
+		if (checkForDivisionErrors(theAnswer) == false)
 			return "";
 		
 		if (theAnswer != 0)

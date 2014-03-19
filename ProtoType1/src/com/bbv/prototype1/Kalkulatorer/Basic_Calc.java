@@ -19,14 +19,11 @@ public abstract class Basic_Calc extends LinearLayout {
 	public Basic_Calc(Context context) {
 		super(context);
 		cont = context;
+		
 	}
 
 	protected abstract void Initialize();
 
-	/**
-	 * the user should use this method for all the listeners that are used in 
-	 * the class extending Basic_Calc
-	 */
 	protected abstract void CreateListeners();
 
 	protected LinearLayout setAndGetLinearLayout(int layoutID) {
@@ -77,6 +74,13 @@ public abstract class Basic_Calc extends LinearLayout {
 		return returnFloatList;
 	}
 
+	/**
+	 * Takes in the index of which variable to calculate, and the variables it needs to do so. 
+	 * Must define how variables work together.
+	 * @param editTextIndex - Index of textfield that will be calculated
+	 * @param fieldStatuses - Float-array of variables 
+	 * @return Should return a String which will set the text of the textfield
+	 */
 	public abstract String calculation(int editTextIndex,
 			float... fieldStatuses);
 
@@ -95,11 +99,14 @@ public abstract class Basic_Calc extends LinearLayout {
 		}
 	} 
 	
-	protected boolean testFloat(float... x) {
-		
+	/**
+	 * Displays a toast saying that there was an error if any value returned NaN or infinity; Division with 0 error.
+	 * @param x - Float array of variables to test
+	 * @return Returns true if no variables were infinite or NaN \nReturns false if there were
+	 */
+	protected boolean checkForDivisionErrors(float... x) {
+
 		for (int i = 0; i < x.length; i++) {
-			// Displays a toast saying that there was an error if any value
-			// returned NaN or infinity
 			
 			if (Float.isInfinite(x[i]) || Float.isNaN(x[i])) {
 				Log.println(Log.ERROR, "calc", "Dividing with 0 error in "
@@ -111,6 +118,11 @@ public abstract class Basic_Calc extends LinearLayout {
 		return true;
 	}
 	
+	/**
+	 * Shows a toast on the device with the message from parameter message.
+	 * Also prints a logcat with info.
+	 * @param message - The message displayed by the toast
+	 */
 	protected void showToast(String message) {
 		try {
 			toast.getView().isShown(); // true if visible
@@ -122,4 +134,27 @@ public abstract class Basic_Calc extends LinearLayout {
 		toast.show();
 	}
 	
+	/**
+	 * Use this method to check for values of 0 if the calculation should not support it.
+	 * Only one variable should be 0, and that is the variable that is being calculated.
+	 * Will display a toast and logcat message. 
+	 * @param x - Values to check for 0 values
+	 * @return 
+	 */
+	protected boolean checkForNullValues(float... x){
+		
+		int numberOfZeroValues = 0;
+		
+		for (int i=0; i<x.length;i++){
+			if(x[i] == 0.0)
+				numberOfZeroValues++;
+			
+			if(numberOfZeroValues>1){
+				showToast("Du kan ikke bruke 0 verdier!");
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }

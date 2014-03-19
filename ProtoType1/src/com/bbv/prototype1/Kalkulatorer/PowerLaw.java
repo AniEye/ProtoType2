@@ -67,7 +67,7 @@ public class PowerLaw extends Basic_Calc {
 			T = calcT(K, Y, N);
 
 			float[] testFloats = {N, K, Y, T };
-			if (testFloat(testFloats) == false)
+			if (checkForDivisionErrors(testFloats) == false)
 				return "";
 
 			Log.println(Log.INFO, "calc", "Setting textviews in Powerlaw!");

@@ -16,7 +16,6 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
-	Toast toast;
 
 	final int clearButtonID = R.id.bMOVBClear;
 	final int updateButtonID = R.id.bMOVBUpdate;
@@ -41,7 +40,11 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 
 		float theAnswer = 0;
 
+		if (!checkForNullValues(fieldStatuses))
+			return "";
+
 		switch (variableToCalculate) {
+
 		case Vv_INDEX:
 			Log.println(Log.DEBUG, "calc", "P1 = " + p1 + "\nP2 = " + p2);
 			theAnswer = v1 * ((p2 - pv) / (p1 - p2));
@@ -61,18 +64,11 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 			break;
 		}
 
-		if (Float.isNaN(theAnswer) || Float.isInfinite(theAnswer)) {
-			Log.println(Log.ERROR, "calc",
-					"Dividing with 0 error in MasseogVolumBal!"
-							+ "\nIgnore if using JUnit test");
-			showToast("Dividing with 0 error! Try again.");
+		if (!checkForDivisionErrors(theAnswer))
 			return "";
-		}
 
-		if (theAnswer != 0)
-			return String.format("%.3f", theAnswer);
-		else
-			return "";
+		return String.format("%.3f", theAnswer);
+
 	}
 
 	@Override
@@ -104,13 +100,6 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 				case updateButtonID:
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
-						try {
-							if (Float.parseFloat(textFields[i].getText()
-									.toString()) == 0.0)
-								textFields[i].setText("");
-						} catch (NumberFormatException e) {
-							e.printStackTrace();
-						}
 					}
 					break;
 				}
@@ -144,12 +133,14 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-					
+
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);
 					} else if (!_fieldsString.contentEquals("")) {
 						updateRelevantResult();
+						Log.println(Log.DEBUG, "calc", "Runs here!");
+						
 					}
 				}
 			} else {
@@ -162,6 +153,7 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 	@Override
 	protected void updateRelevantResult() {
 		for (int i = 0; i < _textFieldsStatus.length; i++) {
+						
 			if (_textFieldsStatus[i] == 0) {
 
 				textFields[i].setText(calculation(i,

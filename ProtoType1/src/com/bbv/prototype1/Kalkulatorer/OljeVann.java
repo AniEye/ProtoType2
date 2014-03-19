@@ -68,7 +68,7 @@ public class OljeVann extends Basic_Calc {
 			W = (Rvann / (Rolje+Rvann))*100;
 
 			float[] testFloats = { O, W };
-			if (testFloat(testFloats) == false)
+			if (checkForDivisionErrors(testFloats) == false)
 				return "";
 			
 			String _O = String.format("%.0f", O);

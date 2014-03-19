@@ -73,7 +73,7 @@ public class Herch_Law extends Basic_Calc {
 
 			float[] testFloats = { T0, ty, N, K, Y, T };
 
-			if (testFloat(testFloats) == false)
+			if (checkForDivisionErrors(testFloats) == false)
 				return "";
 
 			Log.println(Log.INFO, "calc", "Setting textviews in Modpowerlaw!");

@@ -72,7 +72,7 @@ public class AlkaPm extends Basic_Calc {
 			for (int i = 0; i < testFloats.length; i++) {
 				// Displays a toast saying that there was an error if any value
 				// returned NaN or infinity
-				if (testFloat(testFloats[i]) == false) {
+				if (checkForDivisionErrors(testFloats[i]) == false) {
 					Log.println(Log.DEBUG, "calc", "Dividing with 0 error in "
 							+ this.getClass().getName());
 					return "";
