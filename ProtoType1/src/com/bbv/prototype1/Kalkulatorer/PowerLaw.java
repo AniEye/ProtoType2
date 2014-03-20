@@ -60,6 +60,9 @@ public class PowerLaw extends Basic_Calc {
 					"Tried to calculate T6, and this should not happen!");
 			break;
 		case N_INDEX:
+			
+			if (checkForNullValues(T6,T1) == false || checkForNegativeValues(T6,T1))
+				return "";
 
 			N = calcN(T1, T6);
 			K = calcK(T6, N);

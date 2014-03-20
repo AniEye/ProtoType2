@@ -2,6 +2,7 @@ package com.bbv.prototype1.Kalkulatorer;
 
 import com.bbv.prototype1.R;
 import android.content.Context;
+import android.util.Log;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -18,8 +19,9 @@ public class Plast_Viskos extends Basic_Calc {
 	final int clearButtonID = R.id.bPlasViskosClear;
 	final int updateButtonID = R.id.bPlasViskosUpdate;
 	final int layout = R.layout.calc_viskositet_plastisk;
-	
-	final int[] IDs = {R.id.etViskosPlas,  R.id.etPlasViskTheta600, R.id.etPlasviskTheta300};
+
+	final int[] IDs = { R.id.etViskosPlas, R.id.etPlasViskTheta600,
+			R.id.etPlasviskTheta300 };
 
 	public final static int PV_INDEX = 0, T6_INDEX = 1, T3_INDEX = 2;
 
@@ -28,7 +30,6 @@ public class Plast_Viskos extends Basic_Calc {
 		CreateListeners();
 		Initialize();
 	}
-
 
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
@@ -40,32 +41,37 @@ public class Plast_Viskos extends Basic_Calc {
 		float theAnswer = 0;
 		switch (variableToCalculate) {
 		case PV_INDEX:
+			if (checkForNullValues(T6, T3) == false)
+				return "";
 			theAnswer = T6 - T3;
 			break;
 		case T6_INDEX:
+			if (checkForNullValues(PV, T3) == false)
+				return "";
 			theAnswer = PV + T3;
 			break;
 		case T3_INDEX:
+			if (checkForNullValues(T6, PV) == false)
+				return "";
 			theAnswer = T6 - PV;
 			break;
 		}
-		if (theAnswer != 0)
+		if(checkForDivisionErrors(theAnswer) == true)
 			return String.format("%.3f", theAnswer);
 		else
 			return "";
 	}
 
-	
 	@Override
 	protected void Initialize() {
 		_linLay = setAndGetLinearLayout(layout);
 
 		textFields = new EditText[IDs.length];
 		_textFieldsStatus = new int[IDs.length];
-		
-		for (int i=0; i<IDs.length;i++)
+
+		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-		
+
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
@@ -102,12 +108,12 @@ public class Plast_Viskos extends Basic_Calc {
 
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				
-				for(int i=0; i<IDs.length; i++){
-					if(v.getId() == IDs[i])
+
+				for (int i = 0; i < IDs.length; i++) {
+					if (v.getId() == IDs[i])
 						FocusChange(i, hasFocus);
 				}
-				
+
 			}
 		};
 	}
@@ -125,7 +131,7 @@ public class Plast_Viskos extends Basic_Calc {
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-					
+
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);

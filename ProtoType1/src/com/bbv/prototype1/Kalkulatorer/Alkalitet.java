@@ -59,15 +59,19 @@ public class Alkalitet extends Basic_Calc {
 			break;
 		case KEY_INDEX:
 
+			if (checkForNegativeValues(Pf, Mf) == false
+					|| checkForNullValues(Pf, Mf) == false)
+				return "";
+
 			Table_3_3 table = new Table_3_3(Pf, Mf);
 
 			if (table.getCalculatedRow() == -1) {
 				Log.println(Log.ERROR, "calc", "Something went wrong in "
 						+ this.getClass().getName());
-				showToast("Something went wrong!");
+				showToast("Something went wrong with the calculation!");
 				return "";
 			}
-			
+
 			OH = table.getOH();
 			HCO = table.getHCO();
 			CO = table.getCO();
@@ -85,28 +89,26 @@ public class Alkalitet extends Basic_Calc {
 	}
 
 	private void resetTableItems() {
-		
+
 		Table_3_3 table = new Table_3_3(0, 0);
 
 		for (int i = 1; i <= 5; i++) {
-			
-			for (int j=1; j<=3; j++)
-			{
 
-			String String_ID = "tvAlkalitet" + String.valueOf(i)
-					+ String.valueOf(j);
-			Log.println(Log.DEBUG, "calc", "ID lightupRow: " + String_ID);
+			for (int j = 1; j <= 3; j++) {
 
-			int ID = returnIDFromString(String_ID);
+				String String_ID = "tvAlkalitet" + String.valueOf(i)
+						+ String.valueOf(j);
+				Log.println(Log.DEBUG, "calc", "ID lightupRow: " + String_ID);
 
-			TextView tableItem = (TextView) findViewById(ID);
-			
-			// Find better way to deal with this!
-			tableItem.setBackgroundDrawable(
-					getResources().getDrawable(
-							R.drawable.table_item_with_border));
-			
-			tableItem.setText(table.getInitialRows()[i-1][j-1]);
+				int ID = returnIDFromString(String_ID);
+
+				TextView tableItem = (TextView) findViewById(ID);
+
+				// Find better way to deal with this!
+				tableItem.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.table_item_with_border));
+
+				tableItem.setText(table.getInitialRows()[i - 1][j - 1]);
 
 			}
 		}
@@ -126,27 +128,26 @@ public class Alkalitet extends Basic_Calc {
 			int ID = returnIDFromString(String_ID);
 
 			TextView tableItem = (TextView) findViewById(ID);
-			
+
 			// Find better way to deal with this!
-			tableItem.setBackgroundDrawable(
-					getResources().getDrawable(
-							R.drawable.table_item_with_border_selected));
-			
-			showResults(tableItem, calculatedRow,i);
+			tableItem.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.table_item_with_border_selected));
+
+			showResults(tableItem, calculatedRow, i);
 
 		}
 
 	}
-	
+
 	private void showResults(TextView tableItem, int row, int column) {
-		
+
 		switch (row) {
 		case 1:
-			if(column == 3)
+			if (column == 3)
 				tableItem.setText(String.format("%.3f", HCO));
 			break;
 		case 2:
-			if(column == 2)
+			if (column == 2)
 				tableItem.setText(String.format("%.3f", CO));
 			if (column == 3)
 				tableItem.setText(String.format("%.3f", HCO));
@@ -156,9 +157,9 @@ public class Alkalitet extends Basic_Calc {
 				tableItem.setText(String.format("%.3f", CO));
 			break;
 		case 4:
-			if(column == 1)
+			if (column == 1)
 				tableItem.setText(String.format("%.3f", OH));
-			if(column == 2)
+			if (column == 2)
 				tableItem.setText(String.format("%.3f", CO));
 			break;
 		case 5:
@@ -167,14 +168,14 @@ public class Alkalitet extends Basic_Calc {
 			break;
 
 		default:
-			Log.println(Log.ERROR, "calc", "A row value not between 1 and 5 was chosen in Alkalitet");
+			Log.println(Log.ERROR, "calc",
+					"A row value not between 1 and 5 was chosen in Alkalitet");
 			break;
 		}
-		
-		
+
 	}
 
-	private int returnIDFromString(String String_ID){
+	private int returnIDFromString(String String_ID) {
 		Class clazz = R.id.class;
 		Field f = null;
 		int id = -1;
@@ -184,15 +185,18 @@ public class Alkalitet extends Basic_Calc {
 									// field.
 		} catch (NoSuchFieldException e) {
 			// TODO Auto-generated catch block
-			Log.println(Log.ERROR, "TryCatch", "Error when returning textview ID");
+			Log.println(Log.ERROR, "TryCatch",
+					"Error when returning textview ID");
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
-			Log.println(Log.ERROR, "TryCatch", "Error when returning textview ID");
+			Log.println(Log.ERROR, "TryCatch",
+					"Error when returning textview ID");
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
-			Log.println(Log.ERROR, "TryCatch", "Error when returning textview ID");
+			Log.println(Log.ERROR, "TryCatch",
+					"Error when returning textview ID");
 			e.printStackTrace();
 		}
 		return id;

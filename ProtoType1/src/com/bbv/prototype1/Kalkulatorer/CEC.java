@@ -61,10 +61,8 @@ public class CEC extends Basic_Calc {
 			break;
 		case CEC_INDEX:
 
-			if (V_mbl == 0 || V_boreslam == 0) {
-				showToast("Verdiene kan ikke være 0!");
+			if (checkForNullValues(V_mbl, V_boreslam) == false)
 				return "";
-			}
 
 			CEC = V_mbl / V_boreslam;
 			BentPPM = 5 * CEC;

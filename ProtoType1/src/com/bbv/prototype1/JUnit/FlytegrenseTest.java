@@ -22,11 +22,11 @@ public class FlytegrenseTest extends AndroidTestCase {
 
 	public void testCalculationIntFloatFloat() {
 
-		assertEquals("20.000", test.calculation(0, variables1));
+		assertEquals("20.000", test.calculation(Flytegrense.FG_INDEX, variables1));
 
-		assertEquals("20.000", test.calculation(1, variables2));
+		assertEquals("20.000", test.calculation(Flytegrense.T3_INDEX, variables2));
 
-		assertEquals("20.000", test.calculation(2, variables3));
+		assertEquals("20.000", test.calculation(Flytegrense.T6_INDEX, variables3));
 
 		// Testing that program catches dividing with 0 errors
 		float[] variablesDivideBy0 = { 0, 0, 0 };

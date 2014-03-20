@@ -129,6 +129,7 @@ public abstract class Basic_Calc extends LinearLayout {
 				return false;
 			}
 		}
+		Log.println(Log.INFO, "calc", "Found no infinite values in " + getClass().getName());
 		return true;
 	}
 	
@@ -144,7 +145,7 @@ public abstract class Basic_Calc extends LinearLayout {
 		} catch (Exception e) { // invisible if exception
 			toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
 		}
-		Log.println(Log.INFO, "calc", "Displayed toast saying: " + message);
+		Log.println(Log.DEBUG, "calc", "Displayed toast saying: " + message);
 		toast.show();
 	}
 	
@@ -165,7 +166,7 @@ public abstract class Basic_Calc extends LinearLayout {
 				return false;
 			}
 		}
-		
+		Log.println(Log.DEBUG, "calc", "Found no null values in " + getClass().getName());
 		return true;
 	}
 	
@@ -185,7 +186,7 @@ public abstract class Basic_Calc extends LinearLayout {
 				return false;
 			}
 		}
-		
+		Log.println(Log.DEBUG, "calc", "Found no negative values in " + getClass().getName());
 		return true;
 	}
 }

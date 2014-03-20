@@ -63,6 +63,9 @@ public class Herch_Law extends Basic_Calc {
 					"Tried to calculate T3, and this should not happen!");
 			break;
 		case N_INDEX:
+			
+			if (checkForNullValues(T6,T3) == false || checkForNegativeValues(T6,T3))
+				return "";
 
 			T0 = calcT0(T6, T3);
 			ty = calcTy(T0);

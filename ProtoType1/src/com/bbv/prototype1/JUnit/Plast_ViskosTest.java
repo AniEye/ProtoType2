@@ -24,11 +24,11 @@ public class Plast_ViskosTest extends AndroidTestCase {
 	public void testCalculationIntFloatFloat() {
 
 		
-		assertEquals("-10.000", test.calculation(0, variables1));
+		assertEquals("-10.000", test.calculation(Plast_Viskos.PV_INDEX, variables1));
 
-		assertEquals("20.000", test.calculation(1, variables2));
+		assertEquals("20.000", test.calculation(Plast_Viskos.T6_INDEX, variables2));
 		
-		assertEquals("30.000", test.calculation(2, variables3));
+		assertEquals("30.000", test.calculation(Plast_Viskos.T3_INDEX, variables3));
 
 		
 	}

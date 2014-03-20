@@ -59,34 +59,34 @@ public class Spess_tetthet extends Basic_Calc {
 			Pf = PfAndVsf[1];
 			Log.println(Log.DEBUG, "calc", "Spesstetthet calculated Pf to be "
 					+ Pf);
-			tvPf.setText(String.format("%.3f", Pf));
 
 			Vsf = PfAndVsf[0];
 			Log.println(Log.DEBUG, "calc", "Spesstetthet calculated Vsf to be "
 					+ Vsf);
-			tvVsf.setText(String.format("%.3f", Vsf));
 
 			Vs = calcVs(Vsf, Fw);
 			Log.println(Log.DEBUG, "calc", "Spesstetthet calculated Vs to be "
 					+ Vs);
-			tvVs.setText(String.format("%.3f", Vs));
 
-			if (Pf == 0 || Vsf == 0 || Vs == 0) {
+			if (checkForNullValues(Vsf, Pf, Vs) == false) {
 				Log.println(Log.INFO, "calc",
 						"SpessTetthet got a value of Cl not between 5000 and 186650");
-			} else if (Vfs == Vs) { // Catches dividing with 0 error
-				showToast("Vfs is equal to Vs! Can't divide with 0!");
-				Log.println(Log.ERROR, "calc",
-						"Spess_Tetthet got a dividing with 0 error!"
-								+ "\nIgnore if running JUnit tests");
 				return "";
-			} else {
-				theAnswer = ((100f * Pm) - (Pf * (Vv + Vsf) + Po * Vo))
-						/ (Vfs - Vs);
-				Log.println(Log.INFO, "calc",
-						"SpessTetthet calculated an answer! It was "
-								+ theAnswer);
 			}
+
+			tvPf.setText(String.format("%.3f", Pf));
+			tvVsf.setText(String.format("%.3f", Vsf));
+			tvVs.setText(String.format("%.3f", Vs));
+
+			theAnswer = ((100f * Pm) - (Pf * (Vv + Vsf) + Po * Vo))
+					/ (Vfs - Vs);
+
+			if (checkForDivisionErrors(theAnswer) == false)
+				return "";
+			
+			
+			Log.println(Log.INFO, "calc",
+					"SpessTetthet calculated an answer! It was " + theAnswer);
 
 		} else {
 			Log.println(
@@ -96,11 +96,11 @@ public class Spess_tetthet extends Basic_Calc {
 							+ "\nIgnore if running JUnit tests");
 		}
 
-		if (theAnswer != 0){
+		if (theAnswer != 0) {
 			tvPp.setText(String.format("%.3f", theAnswer));
 			return String.format("%.3f", theAnswer);
 		}
-		
+
 		else
 			return "";
 	}
@@ -207,7 +207,7 @@ public class Spess_tetthet extends Basic_Calc {
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-					
+
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);

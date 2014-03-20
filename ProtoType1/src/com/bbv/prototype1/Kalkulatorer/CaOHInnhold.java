@@ -47,30 +47,15 @@ public class CaOHInnhold extends Basic_Calc {
 
 		case Mp_INDEX:
 			
-			if (CaOH2 < 0){
-				Log.println(Log.DEBUG, "calc", "CaOH2 was less than zero!");
-				showToast("Du kan ikke bruke negative verdier!");
+			if (checkForNullValues(CaOH2) == false || checkForNegativeValues(CaOH2) == false)
 				return "";
-			} else if(CaOH2 == 0){
-				Log.println(Log.DEBUG, "calc", "CaOH2 was zero!");
-				showToast("Du kan ikke bruke 0 verdier!");
-				return "";
-			}
-
 			Mp = CaOH2 / 1.3f;
 			return String.format("%.03f", Mp);
 
 		case CaOH_INDEX:
 			
-			if (Mp < 0){
-				Log.println(Log.DEBUG, "calc", "Mp was less than zero!");
-				showToast("Du kan ikke bruke negative verdier!");
+			if (checkForNullValues(Mp) == false || checkForNegativeValues(Mp) == false)
 				return "";
-			} else if(Mp == 0){
-				Log.println(Log.DEBUG, "calc", "Mp was zero!");
-				showToast("Du kan ikke bruke 0 verdier!");
-				return "";
-			}
 
 			CaOH2 = Mp * 1.3f;
 			return String.format("%.03f", CaOH2);

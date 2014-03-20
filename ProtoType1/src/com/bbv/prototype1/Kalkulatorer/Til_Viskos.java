@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class Til_Viskos extends Basic_Calc {
-	
+
 	Toast toast;
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
@@ -21,60 +21,57 @@ public class Til_Viskos extends Basic_Calc {
 	final int clearButtonID = R.id.bViskosClear;
 	final int updateButtonID = R.id.bViskosUpdate;
 	final int layout = R.layout.calc_viskositet_tilsynelatende;
-	
-	final int[] IDs = {R.id.etViskosTil,  R.id.etRPM, R.id.etRPM};
-	
+
+	final int[] IDs = { R.id.etViskosTil, R.id.etRPM, R.id.etRPM };
+
 	public final static int THETA_INDEX = 0, RPM_INDEX = 1, TIL_VISK_INDEX = 2;
-	
+
 	public Til_Viskos(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
 	}
 
-	
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
-		/**
-		 * This method calculates the expression according to which field is
-		 * left blank.
-		 * 
-		 * @param variableToCalculate
-		 *            The index of the variable to be calculated { @value
-		 *            #THETA_INDEX } { @value #RPM_INDEX } { @value
-		 *            #TIL_VISK_INDEX }
-		 */
+		float theta = fieldStatuses[0];
+		float rpm = fieldStatuses[1];
+		float TV = fieldStatuses[2];
 
 		float theAnswer = 0;
 		switch (variableToCalculate) {
 		case THETA_INDEX:// theta
-			theAnswer = (fieldStatuses[2] * fieldStatuses[1]) / 300;
+
+			if (checkForNullValues(TV, rpm) == false
+					|| checkForNegativeValues(TV, rpm) == false)
+				return "";
+
+			theAnswer = (TV * rpm) / 300;
 			break;
 		case RPM_INDEX:// rpm
-			theAnswer = (float) ((300.0 * fieldStatuses[0]) / fieldStatuses[2]);
+			if (checkForNullValues(TV, theta) == false
+					|| checkForNegativeValues(TV, theta) == false)
+				return "";
+
+			theAnswer = (float) ((300.0 * theta) / TV);
 			break;
 		case TIL_VISK_INDEX:// tilvisk
-			theAnswer = (float) ((300.0 * fieldStatuses[0]) / fieldStatuses[1]);
+
+			if (checkForNullValues(theta, rpm) == false
+					|| checkForNegativeValues(theta, rpm) == false)
+				return "";
+
+			theAnswer = (float) ((300.0 * theta) / rpm);
 			break;
 		}
-		if (Float.isInfinite(theAnswer) || Float.isNaN(theAnswer)) {
-			Log.println(Log.ERROR, "calc", "Til_Viskos tried to divide by 0!");
-			try {
-				toast.getView().isShown(); // true if visible
-				toast.setText("You can't divide by 0!");
-			} catch (Exception e) { // invisible if exception
-				toast = Toast.makeText(getContext(), "You can't divide by 0!",
-						Toast.LENGTH_SHORT);
-			}
-			toast.show();
+		if (checkForDivisionErrors(theAnswer) == false
+				|| checkForNullValues(theAnswer) == false)
 			return "";
-		}
-		if (theAnswer != 0)
-			return String.format("%.3f", theAnswer);
 		else
-			return "";
+			return String.format("%.3f", theAnswer);
+
 	}
-	
+
 	@Override
 	protected void Initialize() {
 		_linLay = setAndGetLinearLayout(layout);
@@ -144,7 +141,7 @@ public class Til_Viskos extends Basic_Calc {
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-					
+
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);
@@ -171,6 +168,5 @@ public class Til_Viskos extends Basic_Calc {
 			}
 		}
 	}
-
 
 }

@@ -19,9 +19,9 @@ public class Flytegrense extends Basic_Calc {
 	final int clearButtonID = R.id.bFGClear;
 	final int updateButtonID = R.id.bFGUpdate;
 	final int layout = R.layout.calc_flytegrense;
-	
-	final int[] IDs = {R.id.etFG,  R.id.etFGTheta300, R.id.etFGTheta600};
-	
+
+	final int[] IDs = { R.id.etFG, R.id.etFGTheta300, R.id.etFGTheta600 };
+
 	public final static int FG_INDEX = 0, T3_INDEX = 1, T6_INDEX = 2;
 
 	public Flytegrense(Context context) {
@@ -29,7 +29,7 @@ public class Flytegrense extends Basic_Calc {
 		CreateListeners();
 		Initialize();
 	}
-	
+
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
@@ -40,20 +40,29 @@ public class Flytegrense extends Basic_Calc {
 		float theAnswer = 0;
 		switch (variableToCalculate) {
 		case FG_INDEX:
-			theAnswer = (2*T3) - T6;
+
+			if (checkForNullValues(T6, T3) == false)
+				return "";
+
+
+			theAnswer = (2 * T3) - T6;
 			break;
 		case T3_INDEX:
-			theAnswer = (FG+T6)/2;
+			if (checkForNullValues(T6, FG) == false)
+				return "";
+			theAnswer = (FG + T6) / 2;
 			break;
 		case T6_INDEX:
-			theAnswer = (2*T3) - FG;
+			if (checkForNullValues(FG, T3) == false)
+				return "";
+			theAnswer = (2 * T3) - FG;
 			break;
 		}
-		
+
 		if (checkForDivisionErrors(theAnswer) == false)
 			return "";
-		
-		if (theAnswer != 0)
+
+		if (checkForNullValues(theAnswer) == true)
 			return String.format("%.3f", theAnswer);
 		else
 			return "";
@@ -65,10 +74,10 @@ public class Flytegrense extends Basic_Calc {
 
 		textFields = new EditText[IDs.length];
 		_textFieldsStatus = new int[IDs.length];
-		
-		for (int i=0; i<IDs.length;i++)
+
+		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-		
+
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
@@ -105,12 +114,12 @@ public class Flytegrense extends Basic_Calc {
 
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				
-				for(int i=0; i<IDs.length; i++){
-					if(v.getId() == IDs[i])
+
+				for (int i = 0; i < IDs.length; i++) {
+					if (v.getId() == IDs[i])
 						FocusChange(i, hasFocus);
 				}
-				
+
 			}
 		};
 	}
@@ -128,7 +137,7 @@ public class Flytegrense extends Basic_Calc {
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-					
+
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);
@@ -156,5 +165,4 @@ public class Flytegrense extends Basic_Calc {
 		}
 	}
 
-	
 }

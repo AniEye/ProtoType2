@@ -59,11 +59,9 @@ public class OljeVann extends Basic_Calc {
 			break;
 		case KEY_INDEX:
 
-			if (Rolje == -Rvann || Rvann == -Rolje) {
-				showToast("Du kan ikke dele på null!");
+			if(checkForNegativeValues(fieldStatuses) == false)
 				return "";
-			}
-
+			
 			O = (Rolje / (Rolje+Rvann))*100;
 			W = (Rvann / (Rolje+Rvann))*100;
 
