@@ -81,9 +81,10 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 			break;
 		}
 
-		if (!checkForDivisionErrors(theAnswer))
+		if (checkForDivisionErrors(theAnswer) == false)
 			return "";
 
+		Log.println(Log.INFO, "calc", "Returning " + theAnswer);
 		return String.format("%.3f", theAnswer);
 
 	}
@@ -144,7 +145,9 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 
 		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
 			if (focusStatus == false && !_fieldsString.contentEquals("")) {
-
+				
+				Log.println(Log.DEBUG, "calc", "Sum: " + theSum(_textFieldsStatus));
+				Log.println(Log.DEBUG, "calc", "Length of _textfieldStatus: " + (_textFieldsStatus.length-1));
 				_textFieldsStatus[indexOfCurrentField] = 1;
 
 			}
@@ -157,8 +160,6 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 						Enabeling(textFields);
 					} else if (!_fieldsString.contentEquals("")) {
 						updateRelevantResult();
-						Log.println(Log.DEBUG, "calc", "Runs here!");
-
 					}
 				}
 			} else {

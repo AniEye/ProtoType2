@@ -64,6 +64,8 @@ public class Til_Viskos extends Basic_Calc {
 			theAnswer = (float) ((300.0 * theta) / rpm);
 			break;
 		}
+		
+		Log.println(Log.DEBUG, "calc", "Printing the answer");
 		if (checkForDivisionErrors(theAnswer) == false
 				|| checkForNullValues(theAnswer) == false)
 			return "";
