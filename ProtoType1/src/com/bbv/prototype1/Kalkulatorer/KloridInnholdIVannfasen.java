@@ -21,10 +21,9 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 	final int updateButtonID = R.id.bKIUpdate;
 	final int layout = R.layout.calc_klorid_innhold_i_vannfasen;
 	
-	TextView tvKloridML;
-	TextView tvKloridPPM;
-	TextView tvNaClMG;
-	TextView tvNaClPPM;
+	TextView tvCaCo3;
+	TextView tvCa2;
+	TextView Mg2;
 	
 	
 	//Variables used for calculation
@@ -114,10 +113,6 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 			String _NaClMG = String.format("%.3f", NaClMG);
 			String _NaClPPM = String.format("%.3f", NaClPPM);
 			
-			tvKloridML.setText(_KloridMG);
-			tvKloridPPM.setText(_KloridPPM);
-			tvNaClMG.setText(_NaClMG);
-			tvNaClPPM.setText(_NaClPPM);
 
 			return String.format("%.3f", CCl);
 
@@ -138,12 +133,6 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 
-		textFields[3].setVisibility(GONE);
-
-		tvKloridML = (TextView) findViewById(R.id.tvKIKIMG);
-		tvKloridPPM = (TextView) findViewById(R.id.tvKIKIPPM);
-		tvNaClMG = (TextView) findViewById(R.id.tvKINaCLMG);
-		tvNaClPPM = (TextView) findViewById(R.id.tvKINaPPM);
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -159,11 +148,6 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 				switch (v.getId()) {
 				case clearButtonID:
 					ResetFields(textFields);
-
-					tvKloridML.setText("");
-					tvKloridPPM.setText("");
-					tvNaClMG.setText("");
-					tvNaClPPM.setText("");
 
 					_textFieldsStatus = new int[IDs.length];
 					break;

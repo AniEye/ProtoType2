@@ -40,26 +40,43 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 
 		float theAnswer = 0;
 
-		if (!checkForNullValues(fieldStatuses))
-			return "";
-
 		switch (variableToCalculate) {
 
 		case Vv_INDEX:
+
+			if (checkForNullValues(v1, p2, pv, p1) == false)
+				return "";
+
 			Log.println(Log.DEBUG, "calc", "P1 = " + p1 + "\nP2 = " + p2);
 			theAnswer = v1 * ((p2 - pv) / (p1 - p2));
 			Log.println(Log.DEBUG, "calc", "The answer = " + theAnswer);
 			break;
 		case V1_INDEX:
+
+			if (checkForNullValues(vv, p2, pv, p1) == false)
+				return "";
+
 			theAnswer = vv / ((p2 - pv) / (p1 - p2));
 			break;
 		case p2_INDEX:
+
+			if (checkForNullValues(v1, vv, pv, p1) == false)
+				return "";
+
 			theAnswer = (((vv * p1) / v1) + pv) / (1 + (vv / v1));
 			break;
 		case p1_INDEX:
+
+			if (checkForNullValues(v1, p2, pv, vv) == false)
+				return "";
+
 			theAnswer = ((v1 * (p2 - pv) / vv) + p2);
 			break;
 		case Pv_INDEX:
+
+			if (checkForNullValues(v1, p2, vv, p1) == false)
+				return "";
+
 			theAnswer = p2 - (vv * (p1 - p2) / v1);
 			break;
 		}
@@ -140,7 +157,7 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 					} else if (!_fieldsString.contentEquals("")) {
 						updateRelevantResult();
 						Log.println(Log.DEBUG, "calc", "Runs here!");
-						
+
 					}
 				}
 			} else {
@@ -153,7 +170,7 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 	@Override
 	protected void updateRelevantResult() {
 		for (int i = 0; i < _textFieldsStatus.length; i++) {
-						
+
 			if (_textFieldsStatus[i] == 0) {
 
 				textFields[i].setText(calculation(i,

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public abstract class Basic_Calc extends LinearLayout {
@@ -13,6 +14,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	Toast toast;
 	Button _clear, _update;
 	EditText[] textFields;
+	TextView[] textviews;
 	Context cont;
 	LinearLayout _linLay;
 
@@ -34,9 +36,7 @@ public abstract class Basic_Calc extends LinearLayout {
 
 	protected EditText FindAndReturnEditText(int id,
 			OnFocusChangeListener aListener) {
-		/**
-		 * This is to set up the reference for a edittext
-		 */
+	
 		EditText aField = (EditText) _linLay.findViewById(id);
 		aField.setOnFocusChangeListener(aListener);
 
@@ -91,7 +91,21 @@ public abstract class Basic_Calc extends LinearLayout {
 		}
 		return sumOfEditedFields;
 	}
+	
+	
+	/**
+	 * Call this method to set textviews text to nothing
+	 * @param textView - TextView array of textviews
+	 */
+	protected void ResetTextViews(TextView... textView){
+		for(int i= 0; i<textView.length;i++)
+			textView[i].setText("");
+	}
 
+	/**
+	 * Call this method to set EditTexts text to nothing and enable them
+	 * @param editTexts - EditText array of edittexts
+	 */
 	protected void ResetFields(EditText... editTexts ){
 		for(int i =0;i<editTexts.length;i++){
 			editTexts[i].setText("");
@@ -102,7 +116,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	/**
 	 * Displays a toast saying that there was an error if any value returned NaN or infinity; Division with 0 error.
 	 * @param x - Float array of variables to test
-	 * @return Returns true if no variables were infinite or NaN \nReturns false if there were
+	 * @return Returns true if no variables were infinite or NaN. Returns false if there were
 	 */
 	protected boolean checkForDivisionErrors(float... x) {
 
@@ -135,22 +149,39 @@ public abstract class Basic_Calc extends LinearLayout {
 	}
 	
 	/**
-	 * Use this method to check for values of 0 if the calculation should not support it.
+	 * Use this method to check for values of 0 if the calculation does not support it.
 	 * Only one variable should be 0, and that is the variable that is being calculated.
 	 * Will display a toast and logcat message. 
 	 * @param x - Values to check for 0 values
-	 * @return 
+	 * @return FALSE if a value is 0, and TRUE if no values are 0
 	 */
 	protected boolean checkForNullValues(float... x){
 		
-		int numberOfZeroValues = 0;
+		for (int i=0; i<x.length;i++){
+			
+			if(x[i]==0.0f){
+				Log.println(Log.ERROR, "calc", "Division with 0 error! " + getClass().getName());
+				showToast("Du kan ikke bruke 0 verdier!");
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Use this method to check for negative values if the calculation does not support it.
+	 * Will display a toast and logcat message. 
+	 * @param x - Values to check for negative values
+	 * @return FALSE if a value is negative, and TRUE if no values are negative
+	 */
+	protected boolean checkForNegativeValues(float... x){
 		
 		for (int i=0; i<x.length;i++){
-			if(x[i] == 0.0)
-				numberOfZeroValues++;
 			
-			if(numberOfZeroValues>1){
-				showToast("Du kan ikke bruke 0 verdier!");
+			if(x[i]<0){
+				Log.println(Log.ERROR, "calc", "Found negative value in " + getClass().getName());
+				showToast("Du kan ikke bruke negative verdier!");
 				return false;
 			}
 		}
