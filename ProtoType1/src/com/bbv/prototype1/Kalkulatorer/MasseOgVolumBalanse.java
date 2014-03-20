@@ -118,6 +118,7 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
 					}
+					hideSoftKeyboard();
 					break;
 				}
 			}

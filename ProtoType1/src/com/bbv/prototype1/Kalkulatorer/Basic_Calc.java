@@ -3,6 +3,7 @@ package com.bbv.prototype1.Kalkulatorer;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -188,5 +189,11 @@ public abstract class Basic_Calc extends LinearLayout {
 		}
 		Log.println(Log.DEBUG, "calc", "Found no negative values in " + getClass().getName());
 		return true;
+	}
+	
+	protected void hideSoftKeyboard(){
+		InputMethodManager imm = (InputMethodManager)getContext().getSystemService(
+				Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(getWindowToken(), 0);
 	}
 }

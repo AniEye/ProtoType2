@@ -124,14 +124,8 @@ public class OljeVann extends Basic_Calc {
 				case updateButtonID:
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
-						try {
-							if (Float.parseFloat(textFields[i].getText()
-									.toString()) == 0.0)
-								textFields[i].setText("");
-						} catch (NumberFormatException e) {
-							e.printStackTrace();
-						}
 					}
+					hideSoftKeyboard();
 					break;
 				}
 			}

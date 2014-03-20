@@ -5,11 +5,9 @@ import java.lang.reflect.Field;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bbv.prototype1.R;
 
@@ -233,6 +231,7 @@ public class Alkalitet extends Basic_Calc {
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
 					}
+					hideSoftKeyboard();
 					break;
 				}
 			}
