@@ -130,7 +130,7 @@ public class TotalHardhet extends Basic_Calc {
 				switch (v.getId()) {
 				case clearButtonID:
 					ResetFields(textFields);
-					ResetTextViews(textviews);
+					ResetTextViews();
 					_textFieldsStatus = new int[editTextIDs.length];
 					break;
 				case updateButtonID:

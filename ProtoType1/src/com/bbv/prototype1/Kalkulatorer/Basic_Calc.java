@@ -98,9 +98,9 @@ public abstract class Basic_Calc extends LinearLayout {
 	 * Call this method to set textviews text to nothing
 	 * @param textView - TextView array of textviews
 	 */
-	protected void ResetTextViews(TextView... textView){
-		for(int i= 0; i<textView.length;i++)
-			textView[i].setText("");
+	protected void ResetTextViews(){
+		for(int i= 0; i<textviews.length;i++)
+			textviews[i].setText("");
 	}
 
 	/**

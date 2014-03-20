@@ -36,6 +36,7 @@
     <string name="Vsf">V<sub>sf</sub> (salt i filtratet, [volum%]) </string>
     <string name="AgNO3">V<sub>AgNO3</sub> - Volum av sølvnitrat forbrukt</string>
     <string name="Fv">F<sub>v</sub> - fraksjonen av vann i det oljebaserte slammet</string>
+    <string name="Vfiltrat">V<sub>filtrat</sub> - Volum filtrat utpipettèrt</string>
     <string name="KlCLmg">Klorid Innhold \n ( mg/l Cl<sup>-</sup> )</string>
     <string name="KlCLppm">Klorid Innhold \n ( ppm Cl<sup>-</sup> )</string>
     <string name="bentonitt">bentonitt \n[kg/m<sup><small>3</small></sup>]</string>

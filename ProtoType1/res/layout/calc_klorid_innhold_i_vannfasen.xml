@@ -17,10 +17,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Klor Innhold C-" />
+        android:text="@string/KlorinnholdCl" />
 
     <EditText
-        android:id="@+id/etKICl"
+        android:id="@+id/etKIVFCl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -33,10 +33,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="V AgNO3 - Volum av sølvnitrat forbrukt" />
+        android:text="@string/AgNO3"
+        android:lineSpacingExtra="5dp" />
 
     <EditText
-        android:id="@+id/etKIVAgNO3"
+        android:id="@+id/etKIVFVAgNO3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -49,10 +50,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="V filtrat - Volum filtrat" />
+        android:text="@string/Fv" />
 
     <EditText
-        android:id="@+id/etKIVF"
+        android:id="@+id/etKIVFFv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -61,13 +62,11 @@
         android:textColorHint="@color/ButtonTextColor" />
 
     <EditText
-        android:id="@+id/etKICCl"
+        android:id="@+id/etKIVFCCl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[ml/l]"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Klorid Innhold \n (mg/l Cl-)"
+            android:text="@string/KlCLmg"
             android:textSize="16dp" />
 
         <TextView
@@ -95,7 +94,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvKIKIMG"
+            android:id="@+id/tvKIVFKIMG"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -118,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Klorid Innhold \n (ppm Cl-)"
+            android:text="@string/KlCLppm"
             android:textSize="16dp" />
 
         <TextView
@@ -130,7 +129,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvKIKIPPM"
+            android:id="@+id/tvKIVFKIPPM"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -153,7 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="NaCl innhold \n (mg/l NaCl)"
+            android:text="NaCl innhold \n ( mg/l NaCl )"
             android:textSize="16dp" />
 
         <TextView
@@ -165,7 +164,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvKINaCLMG"
+            android:id="@+id/tvKIVFNaCLMG"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -188,7 +187,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="NaCl innhold \n (ppm NaCl)"
+            android:text="NaCl innhold \n ( ppm NaCl )"
             android:textSize="16dp" />
 
         <TextView
@@ -200,7 +199,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvKINaPPM"
+            android:id="@+id/tvKIVFNaPPM"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -217,13 +216,13 @@
         android:paddingTop="5dp" >
 
         <Button
-            android:id="@+id/bKIUpdate"
+            android:id="@+id/bKIVFUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update" />
 
         <Button
-            android:id="@+id/bKIClear"
+            android:id="@+id/bKIVFClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Clear" />
