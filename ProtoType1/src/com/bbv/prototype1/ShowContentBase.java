@@ -32,22 +32,24 @@ public abstract class ShowContentBase extends Activity implements
 	protected CharSequence _title;
 	protected CharSequence _activity_title;
 	protected WebViewBase _nWVB;
-	protected int _currentIndex = 0,_PriorityIndex;
+	protected int _currentIndex = 0, _PriorityIndex;
 	protected Button _bPrevious, _bNext;
 	protected FragmentManager _fragManag;
 	protected AssetManager _assetManag;
 	protected InputStream _InputStream;
 	protected StringBuffer _StringBuffer;
 	protected BufferedReader _BufferedReader;
-	protected boolean _bTitle, _bNextOrLast, _bList;
-	protected String _filePath;
+	protected boolean _bTitle, _bNextOrLast, _bList, _bReferenceList,
+			_bListFound;
+	protected String _filePath, _currentFoundReferenceList;
 	protected Bundle _currentBundle, _nextBundle, _previousBundle;
-	protected ArrayList<String> _StringArray;
+	protected ArrayList<String> _StringArray, _ReferenceArray;
+	protected ArrayList<NavigationDrawerItemContent> _NavigatorItemContentList;
 
 	public final static String KEY_PRIORITY_INDEX = "PriorityIndex";
 	public final static String KEY_LIST_ARRAY = "ListArray";
 	public final static String KEY_CURRENT_INDEX = "CurrentIndex";
-	
+
 	public final static String KEY_OVING = "SOving";
 	public final static String KEY_PROS_TEORI = "BProsTeori";
 
@@ -87,7 +89,9 @@ public abstract class ShowContentBase extends Activity implements
 		newBundle.putString(KEY_CHAPTER, filePathDevided[0]);
 		newBundle.putString(KEY_CHAPTERPART1, null);
 		newBundle.putString(KEY_CHAPTERPART2, null);
-		if (filePathDevided.length > 1) {//maybe also check if the content in the presiding indexes aren't empty
+		if (filePathDevided.length > 1) {// maybe also check if the content in
+											// the presiding indexes aren't
+											// empty
 			newBundle.putString(KEY_CHAPTERPART1, filePathDevided[1]);
 			if (filePathDevided.length > 2) {
 				newBundle.putString(KEY_CHAPTERPART2, filePathDevided[2]);
@@ -178,6 +182,30 @@ public abstract class ShowContentBase extends Activity implements
 		_nextBundle = aBundle;
 	}
 
+	/**
+	 * Will set the content of the NavigatorDrawer with a list of
+	 * NavigatorDrawerItemContents
+	 * 
+	 * @param list
+	 */
+	public void setNavigationDrawerContent(
+			ArrayList<NavigationDrawerItemContent> list) {
+		ArrayList<NavigationDrawerItemContent> aList=new ArrayList<NavigationDrawerItemContent>();
+		if (list != null) {
+			aList=list;
+		}else{
+			NavigationDrawerItemContent item = new NavigationDrawerItemContent();
+			item.setTitle("No data");
+			aList.add(item);
+		}
+		_listView.setAdapter(new NavigationDrawerAdapter(this, aList, null));
+	}
+
+	/**
+	 * will set the content of the NavigatorDrawer with a stringList
+	 * 
+	 * @param list
+	 */
 	public void setListViewArray(String[] list) {
 		_listView.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
 				list));

@@ -68,7 +68,6 @@ public class DatabaseCustomAdapter extends BaseAdapter implements
 		public TextView Chapter;
 		public TextView ChapterPart1;
 		public TextView ChapterPart2;
-		public TextView FileName;
 
 	}
 
@@ -89,7 +88,6 @@ public class DatabaseCustomAdapter extends BaseAdapter implements
 			holder.Chapter = (TextView) vi.findViewById(R.id.DLIChapter);
 			holder.ChapterPart1 = (TextView) vi.findViewById(R.id.DLIChapterPart1);
 			holder.ChapterPart2 = (TextView) vi.findViewById(R.id.DLIChapterPart2);
-			holder.FileName = (TextView)vi.findViewById(R.id.DLIFileName);
 			/************ Set holder with LayoutInflater ************/
 			vi.setTag(holder);
 		} else
@@ -108,7 +106,6 @@ public class DatabaseCustomAdapter extends BaseAdapter implements
 			holder.Chapter.setText(tempValues.getChapter());
 			holder.ChapterPart1.setText(tempValues.getChapterPart1());
 			holder.ChapterPart2.setText(tempValues.getChapterPart2());
-			holder.FileName.setText(tempValues.getFileName());
 			
 //			setImageResource(res.getIdentifier(
 //					"com.androidexample.customlistview:drawable/"

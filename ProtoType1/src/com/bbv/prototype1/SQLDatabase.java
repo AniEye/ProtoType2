@@ -21,7 +21,7 @@ public class SQLDatabase {
 	public static final String KEY_CHAPTER = "chapter";
 	public static final String KEY_CHAPTERPART1 = "chapter_part1";
 	public static final String KEY_CHAPTERPART2 = "chapter_part2";
-	public static final String KEY_FILENAME = "filename";
+
 	
 	public static final String KEY_OVING = "oving";
 
@@ -48,8 +48,7 @@ public class SQLDatabase {
 			// TODO Auto-generated method stub
 			db.execSQL("CREATE TABLE " + DATABASE_TABLE_TEORI + " (" + KEY_CHAPTER
 					+ " TEXT NOT NULL, " + KEY_CHAPTERPART1 + " TEXT, "
-					+ KEY_CHAPTERPART2 + " TEXT, " + KEY_FILENAME
-					+ " TEXT NOT NULL);");
+					+ KEY_CHAPTERPART2 + " TEXT);");
 
 			// might need to create a new thread to take care of this
 			// in case the existing database is to big
@@ -63,7 +62,7 @@ public class SQLDatabase {
 					while ((str = reader.readLine()) != null) {
 						if (!str.contains("#"))
 							if (!str.isEmpty()) {
-								db.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES "
+								db.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2) VALUES "
 										+ str);
 							}
 					}
@@ -132,7 +131,7 @@ public class SQLDatabase {
 					if (!str.contains("#"))
 						if (!str.isEmpty()) {
 							ourDatabase
-									.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2,filename) VALUES "
+									.execSQL("INSERT INTO TeoriTable (chapter,chapter_part1,chapter_part2) VALUES "
 											+ str);
 						}
 				}
@@ -180,7 +179,6 @@ public class SQLDatabase {
 		cv.put(KEY_CHAPTER, chapter);
 		cv.put(KEY_CHAPTERPART1, chapterPart1);
 		cv.put(KEY_CHAPTERPART2, chapterPart2);
-		cv.put(KEY_FILENAME, filename);
 		// check out the null if that's the reason that it doesn't
 		return ourDatabase.insert(DATABASE_TABLE_TEORI, null, cv);
 
@@ -188,7 +186,7 @@ public class SQLDatabase {
 
 	public DatabaseContent[] getData() {
 		String[] columns = new String[] { KEY_CHAPTER, KEY_CHAPTERPART1,
-				KEY_CHAPTERPART2, KEY_FILENAME };
+				KEY_CHAPTERPART2};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_TEORI, columns, null, null, null,
 				null, null);
 
@@ -196,7 +194,6 @@ public class SQLDatabase {
 		int iChapter = c.getColumnIndex(KEY_CHAPTER);
 		int iChapterPart1 = c.getColumnIndex(KEY_CHAPTERPART1);
 		int iChapterPart2 = c.getColumnIndex(KEY_CHAPTERPART2);
-		int iFilename = c.getColumnIndex(KEY_FILENAME);
 
 		int currentRow = 0;
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
@@ -204,7 +201,6 @@ public class SQLDatabase {
 			content[currentRow].setChapter(c.getString(iChapter));
 			content[currentRow].setChapterPart1(c.getString(iChapterPart1));
 			content[currentRow].setChapterPart2(c.getString(iChapterPart2));
-			content[currentRow].setFileName(c.getString(iFilename));
 			currentRow++;
 
 		}
@@ -252,9 +248,7 @@ public class SQLDatabase {
 				content[0] = "Choose partition";//the first index 
 			else if (groupedBy.contentEquals(KEY_CHAPTERPART2))
 				content[0] = "Choose partition";
-			else {
-				content[0] = "Choose file";
-			}
+
 
 		}
 		int iChapter = c.getColumnIndex(groupedBy);//get the index of the column of the column you want to have
@@ -268,45 +262,9 @@ public class SQLDatabase {
 		return content;
 	}
 
-	public String[] getFileName(String Chapter, String ChapterPart1,
-			String ChapterPart2) {
-
-		String where = KEY_FILENAME + " != '' ";
-		if (Chapter != null) {
-			where = where + " and " + KEY_CHAPTER + " = '" + Chapter + "' ";
-
-			if (ChapterPart1 != null) {
-				where = where + " and " + KEY_CHAPTERPART1 + " = '"
-						+ ChapterPart1 + "' ";
-
-				if (ChapterPart2 != null) {
-					where = where + " and " + KEY_CHAPTERPART2 + " = '"
-							+ ChapterPart2 + "' ";
-
-				}
-			}
-		}
-		String[] column = new String[] { KEY_FILENAME };
-
-		Cursor c = ourDatabase.query(DATABASE_TABLE_TEORI, column, where, null, null,
-				null, null);
-
-		String[] content = new String[c.getCount() + 1];
-		content[0] = "Choose file";
-		int iFilename = c.getColumnIndex(KEY_FILENAME);
-
-		int currentRow = 1;
-		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-
-			content[currentRow] = c.getString(iFilename);
-			currentRow++;
-		}
-		return content;
-	}
-
 	public DatabaseContent[] getFileData(String Chapter, String ChapterPart1,
 			String ChapterPart2) {
-		String where = KEY_FILENAME + " != '' ";
+		String where = "";
 		if (Chapter != null) {
 			where = where + " and " + KEY_CHAPTER + " = '" + Chapter + "' ";
 
@@ -321,7 +279,7 @@ public class SQLDatabase {
 			}
 		}
 		String[] columns = new String[] { KEY_CHAPTER, KEY_CHAPTERPART1,
-				KEY_CHAPTERPART2, KEY_FILENAME };
+				KEY_CHAPTERPART2};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_TEORI, columns, where, null,
 				null, null, null);
 
@@ -330,7 +288,6 @@ public class SQLDatabase {
 		int iChapter = c.getColumnIndex(KEY_CHAPTER);
 		int iChapterPart1 = c.getColumnIndex(KEY_CHAPTERPART1);
 		int iChapterPart2 = c.getColumnIndex(KEY_CHAPTERPART2);
-		int iFilename = c.getColumnIndex(KEY_FILENAME);
 
 		int currentRow = 1;
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
@@ -338,7 +295,6 @@ public class SQLDatabase {
 			content[currentRow].setChapter(c.getString(iChapter));
 			content[currentRow].setChapterPart1(c.getString(iChapterPart1));
 			content[currentRow].setChapterPart2(c.getString(iChapterPart2));
-			content[currentRow].setFileName(c.getString(iFilename));
 			currentRow++;
 		}
 

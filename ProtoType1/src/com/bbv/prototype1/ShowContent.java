@@ -37,13 +37,6 @@ public class ShowContent extends ShowContentBase {
 			Log.i(KEY_LOGCAT, "PriorityIndex is: " + getPriorityIndex());
 			Log.i(KEY_LOGCAT, "CurrentIndex is: " + getCurrentIndex());
 
-			// try {
-			// setListViewArray(getListArray());
-			// Log.e(KEY_LOGCAT, "Managed to retrive listarray");
-			// } catch (Exception e) {
-			// Log.e(KEY_LOGCAT, "Failed to retrive listarray");
-			// }
-
 		}
 
 		Initialize();
@@ -88,6 +81,7 @@ public class ShowContent extends ShowContentBase {
 		} else if (getCurrentIndex() == 1) {
 			_filePath = getFilePathFromOvingBundle(getOvingBundle());
 		}
+
 		decodeDataDocument();
 
 		_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
@@ -116,12 +110,16 @@ public class ShowContent extends ShowContentBase {
 			setTheoryBundle(_currentBundle);
 			_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
 			_nWVB.Reload(getTheoryBundle());
+
 			decodeDataDocument();
+
 		} else if (getCurrentIndex() == 1) {
 			setOvingBundle(_currentBundle);
 			_filePath = getFilePathFromOvingBundle(getOvingBundle());
 			_nWVB.Reload(getOvingBundle());
+
 			decodeDataDocument();
+
 		}
 
 		Log.i(KEY_LOGCAT, "Finishing onClick");
@@ -131,7 +129,7 @@ public class ShowContent extends ShowContentBase {
 	public void decodeDataDocument() {
 		try {
 			String str = "";
-			_bTitle = _bNextOrLast = false;
+			_bTitle = _bNextOrLast = _bReferenceList = _bListFound = false;
 			setAssetManager();
 			setInputStream(_filePath + "_.txt");
 			setBufferedReader(_InputStream);
@@ -181,67 +179,79 @@ public class ShowContent extends ShowContentBase {
 						// this is where i left off
 						if (getCurrentIndex() == getPriorityIndex()) {
 							if (str.contains("<list>")) {
-								// make sure that this priority thing works
 								_bList = true;
 								_StringArray = new ArrayList<String>();
+								_NavigatorItemContentList = new ArrayList<NavigationDrawerItemContent>();
 								continue;
 							} else if (str.contains("</list>")) {
 								_bList = false;
 								if (!_StringArray.isEmpty()) {
 									String[] stringarray = arrayListToStringArray(_StringArray);
-									setListViewArray(stringarray);
+									// setListViewArray(stringarray);
 									Log.i(KEY_LOGCAT,
 											"Length of stored string: "
 													+ stringarray.length);
+									for (int i = 0; i < stringarray.length; i++) {
+										NavigationDrawerItemContent item = new NavigationDrawerItemContent();
+										item.setTitle(stringarray[i]);
+										_NavigatorItemContentList.add(item);
+									}
+									_bListFound = true;
 									setListArray(stringarray);
 								}
 								continue;
+							} else {
+								if (_bListFound) {
+									if (_StringArray.size() != 0) {
+										for (int i = 0; i < _StringArray.size(); i++) {
+											if (str.contains("<"
+													+ _StringArray.get(i) + ">")) {
+												_bReferenceList = true;
+												_ReferenceArray = new ArrayList<String>();
+												_currentFoundReferenceList="<"+_StringArray.get(i)+">";
+												break;
+											}
+											if (str.contains("</"
+													+ _StringArray.get(i) + ">")) {
+
+												_NavigatorItemContentList
+														.get(i)
+														.setStringList(
+																arrayListToStringArray(_ReferenceArray));
+												_currentFoundReferenceList="</"+_StringArray.get(i)+">";
+												break;
+											}
+										}
+									}
+								}
 							}
 						}
 					}
 
 					if (_bTitle || _bNextOrLast) {
 						_StringBuffer.append(str);
-					} else if (_bList) {
+					}
+					else if (_bList) {
 						if (!str.isEmpty()) {
-							if (str.contains("#")) {
-								String[] SplitString = str.split("#");
-								_StringArray.add(SplitString[0]);
-								if (SplitString.length > 1) {
-									SplitString = SplitString[1].split("/");
-									newStringBuffer();
-									if (SplitString[0]
-											.contentEquals("pros_og_teori_text")) {
-										for (int i = 1; i < SplitString.length - 1; i++) {
-											_StringBuffer.append(SplitString[i]
-													+ "/");
-										}
-										_StringBuffer
-												.append(SplitString[SplitString.length - 1]);
-										setTheoryBundle(createNewTeoriBundle(_StringBuffer
-												.toString()));
-									} else if (SplitString[0]
-											.contentEquals("Ovinger")) {
-										for (int i = 1; i < SplitString.length - 1; i++) {
-											_StringBuffer.append(SplitString[i]
-													+ "/");
-										}
-										_StringBuffer
-												.append(SplitString[SplitString.length - 1]);
-										setOvingBundle(createNewOvingBundle(_StringBuffer
-												.toString()));
-									}
-								}
-							} else {
-								_StringArray.add(str);
-							}
+							_StringArray.add(str);
+						}
+					} else if (_bReferenceList && !str.contains(_currentFoundReferenceList)) {
+						if (!str.isEmpty()) {
+							_ReferenceArray.add(str);
 						}
 					}
 				}
+				// setting the list after reading the hole file looking for all
+				// the references
+				setNavigationDrawerContent(_NavigatorItemContentList);
+
 			}
 			_InputStream.close();
 		} catch (IOException e) {
-			Log.e(KEY_LOGCAT, "Didn't open or find _.txt");
+			Toast.makeText(this, "File does not exist", Toast.LENGTH_LONG)
+					.show();
+			Log.e(KEY_LOGCAT,
+					"Didn't open or find _.txt, wrong database reference");
 		}
 		Log.i(KEY_LOGCAT, "Finishing decodeDataDocument");
 		Log.i(KEY_LOGCAT, "  ");
@@ -254,11 +264,6 @@ public class ShowContent extends ShowContentBase {
 		_listView = (ListView) findViewById(R.id.lvVis_Teori);
 		_bNext = (Button) findViewById(R.id.bNext);
 		_bPrevious = (Button) findViewById(R.id.bPrevious);
-
-		// this can later be removed
-		_testArray = getResources().getStringArray(R.array.test_array);
-		setListViewArray(_testArray);
-		//
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
@@ -347,19 +352,30 @@ public class ShowContent extends ShowContentBase {
 
 	// setter and getter for listarray
 	// maybe remove this later if found out that it's useless
-	protected void setListArray(String[] anArray) {
-		this.getIntent().putExtra(KEY_LIST_ARRAY, anArray);
+	/**
+	 * Will set/store the array in the intent
+	 * 
+	 * @param
+	 */
+	protected void setListArray(String[] aStringArray) {
+		this.getIntent().putExtra(KEY_LIST_ARRAY, aStringArray);
 		Log.i(KEY_LOGCAT, "Finishing storeCurrentIndex");
 		Log.i(KEY_LOGCAT, "  ");
 	}
 
+	/**
+	 * Will return the array from the intent
+	 * 
+	 * @return String[]
+	 * @throws Exception
+	 */
 	protected String[] getListArray() throws Exception {
 		return this.getIntent().getStringArrayExtra(KEY_LIST_ARRAY);
 	}
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(outState);
-	}
+	// @Override
+	// protected void onSaveInstanceState(Bundle outState) {
+	// // TODO Auto-generated method stub
+	// super.onSaveInstanceState(outState);
+	// }
 }

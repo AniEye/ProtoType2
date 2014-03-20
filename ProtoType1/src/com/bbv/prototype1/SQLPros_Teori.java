@@ -25,9 +25,8 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 
 	Button _add, _view, _fileView,_delAll,_delEnt,_dbrecreate;
 	EditText _filename, _chapter, _chapterpart1, _chapterpart2;
-	Spinner _sChapter, _sChapterPart1, _sChapterPart2, _sFileName;
-	ArrayAdapter<CharSequence> _AAChapter, _AAChapterPart1, _AAChapterPart2,
-			_AAFileName;
+	Spinner _sChapter, _sChapterPart1, _sChapterPart2;
+	ArrayAdapter<CharSequence> _AAChapter, _AAChapterPart1, _AAChapterPart2;
 
 	int spinnerLayout = R.layout.custom_spinner;
 	int SpinnerItemLayout = R.layout.custom_spinner_item;
@@ -70,7 +69,7 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		_sChapter = (Spinner) findViewById(R.id.sSQLChapter);
 		_sChapterPart1 = (Spinner) findViewById(R.id.sSQLChapterPart1);
 		_sChapterPart2 = (Spinner) findViewById(R.id.sSQLChapterPart2);
-		_sFileName = (Spinner) findViewById(R.id.sSQLFileName);
+
 
 		_add.setOnClickListener(this);
 		_view.setOnClickListener(this);
@@ -82,7 +81,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		_sChapter.setOnItemSelectedListener(this);
 		_sChapterPart1.setOnItemSelectedListener(this);
 		_sChapterPart2.setOnItemSelectedListener(this);
-		_sFileName.setOnItemSelectedListener(this);
 		
 
 		/**
@@ -109,24 +107,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 				array);
 		_AAChapterPart2.setDropDownViewResource(SpinnerItemLayout);
 		_sChapterPart2.setAdapter(_AAChapterPart2);
-	}
-
-	private void ChangeFileNameSpinner() {
-		SQLDatabase getFileName = new SQLDatabase(this);
-		getFileName.open();
-
-		String[] gotFileNames = getFileName.getFileName(_ContentIndexChapter,
-				_ContentIndexChapterPart1, _ContentIndexChapterPart2);
-
-		DBContent = getFileName.getFileData(_ContentIndexChapter,
-				_ContentIndexChapterPart1, _ContentIndexChapterPart2);
-
-		getFileName.close();
-		_AAFileName = new ArrayAdapter<CharSequence>(this, spinnerLayout,
-				gotFileNames);
-
-		_AAFileName.setDropDownViewResource(SpinnerItemLayout);
-		_sFileName.setAdapter(_AAFileName);
 	}
 
 	/**
@@ -224,7 +204,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 							+ "/";
 			}
 		}
-		filename = filename + DBContent[index].getFileName();
 		return filename;
 	}
 
@@ -256,7 +235,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 				ChangeChapterPart1Spinner(getPartition1s);
 				_sChapterPart1.setVisibility(android.view.View.VISIBLE);
 			}
-			ChangeFileNameSpinner();
 			break;
 
 		case R.id.sSQLChapterPart1:
@@ -279,7 +257,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 				ChangeChapterPart2Spinner(getPartition1s);
 				_sChapterPart2.setVisibility(android.view.View.VISIBLE);
 			}
-			ChangeFileNameSpinner();
 			break;
 
 		case R.id.sSQLChapterPart2:
@@ -290,11 +267,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 						.getText().toString();
 				_ContentIndexChapterPart2 = where;
 			}
-			ChangeFileNameSpinner();
-			break;
-
-		case R.id.sSQLFileName:
-			_FileNameSpinnerCurrentIndex = index;
 			break;
 		}
 	}

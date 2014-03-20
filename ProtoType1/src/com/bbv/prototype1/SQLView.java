@@ -21,15 +21,14 @@ public class SQLView extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sqlview);
 
-
 		/******** Take some data in Arraylist ( CustomListViewValuesArr ) ***********/
 		setListData();
 
-		list = (ListView) findViewById(R.id.SQLListView); 
+		list = (ListView) findViewById(R.id.SQLListView);
 
 		/**************** Create Custom Adapter *********/
-		adapter = new DatabaseCustomAdapter(this,
-				CustomListViewValuesArr, getResources());
+		adapter = new DatabaseCustomAdapter(this, CustomListViewValuesArr,
+				getResources());
 		list.setAdapter(adapter);
 	}
 
@@ -50,7 +49,6 @@ public class SQLView extends Activity {
 			sched.setChapter(data[i].getChapter());
 			sched.setChapterPart1(data[i].getChapterPart1());
 			sched.setChapterPart2(data[i].getChapterPart2());
-			sched.setFileName(data[i].getFileName());
 
 			/******** Take Model Object in ArrayList **********/
 			CustomListViewValuesArr.add(sched);
@@ -69,7 +67,7 @@ public class SQLView extends Activity {
 				this,
 				"Chapter: " + tempValues.getChapter() + " ChapterPart1: "
 						+ tempValues.getChapterPart1() + " ChapterPart2: "
-						+ tempValues.getChapterPart2() + " FileName: "
-						+ tempValues.getFileName(), Toast.LENGTH_LONG).show();
+						+ tempValues.getChapterPart2() + " FileName: ",
+				Toast.LENGTH_LONG).show();
 	}
 }

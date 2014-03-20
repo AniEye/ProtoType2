@@ -15,12 +15,21 @@
 1. Leire og vektmaterialer
 </title>
 
+###########the references have to come after the list################ 
 <list>
-Teori#pros_og_teori_text/1. Leire og vektmaterialer/1.1 Introduksjon
-Øvinger
+Teori
+Øvingen
 Utstyr
 Kalkulator
-Test
-I
-Øving 1
 </list>
+
+<Teori>
+pros_og_teori_text/1. Leire og vektmaterialer/1.1 Introduksjon
+pros_og_teori_text/1. Leire og vektmaterialer
+pros_og_teori_text/2. Reologi og filtertap/2.2 Kontroll av filtertap og vannbaserte boreslam
+</Teori>
+
+<Øvingen>
+Ovinger/1. Leire og vektmaterialer
+</Øvingen>
+

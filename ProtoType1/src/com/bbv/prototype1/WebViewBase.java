@@ -23,8 +23,9 @@ public abstract class WebViewBase extends Fragment {
 	protected abstract void Initialize();
 
 	protected void setWebView() {
-		_WebView = (WebView) _rootView.findViewById(R.id.WVTest);
-		_WebView.getSettings().setBuiltInZoomControls(true);
+		_WebView = (WebView) _rootView.findViewById(R.id.WVTest);	
+		_WebView.getSettings().setBuiltInZoomControls(true);	
+		_WebView.getSettings().setJavaScriptEnabled(true);
 	}
 
 	protected void setRootView(int Layout, LayoutInflater inflater,

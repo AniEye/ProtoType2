@@ -1,7 +1,7 @@
 package com.bbv.prototype1;
 
 public class DatabaseContent {
-	private String _Chapter, _ChapterPart1, _ChapterPart2, _FileName;
+	private String _Chapter, _ChapterPart1, _ChapterPart2;
 
 	public String getChapter() {
 		return _Chapter;
@@ -25,14 +25,6 @@ public class DatabaseContent {
 
 	public void setChapterPart2(String _ChapterPart2) {
 		this._ChapterPart2 = _ChapterPart2;
-	}
-
-	public String getFileName() {
-		return _FileName;
-	}
-
-	public void setFileName(String _FileName) {
-		this._FileName = _FileName;
 	}
 
 }
