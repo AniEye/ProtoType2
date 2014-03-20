@@ -47,6 +47,9 @@ public class TotalHardhet extends Basic_Calc {
 			R.id.etTotHardHideThis, //Textfield - Will be disabled
 			};
 
+	/**
+	 * This is the only value that should be calculated in this calculator
+	 */
 	public final static int KEY_INDEX = 3; //Only index value should be calculated
 
 	public TotalHardhet(Context context) {

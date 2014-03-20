@@ -29,6 +29,9 @@ public class Spess_tetthet extends Basic_Calc {
 			R.id.etSpessTettPm, R.id.etSpessTettPo, R.id.etSpessTettVv,
 			R.id.etSpessTettVo, R.id.etSpessTettFw, R.id.etSpessTettVfs };
 
+	/**
+	 * Pp_INDEX is the only variable to be calculated in this calculator
+	 */
 	public final static int Pp_INDEX = 0;
 
 	public Spess_tetthet(Context context) {
