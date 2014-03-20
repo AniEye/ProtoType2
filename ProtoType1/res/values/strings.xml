@@ -23,7 +23,7 @@
     <string name="P2">P<sub><small>2</small></sub> = Tetthet til slammet V<sub><small>2</small></sub></string>
     <string name="P1">P<sub><small>1</small></sub> = Tetthet til slammet V<sub><small>1</small></sub></string>
     <string name="Pv">P<sub><small>v</small></sub> = Tetthet til slammet V<sub><small>v</small></sub></string>
-    <string name="KlorinnholdCl">Klorinnhold, Cl<sup>-</sup></string>
+    <string name="KlorinnholdCl">Kloridinnhold, Cl<sup>-</sup></string>
     <string name="Pm">P<sub>m</sub> = spesifikk tetthet til boreslammet</string>
     <string name="Po">P<sub>o</sub> = spesifikk tetthet til oljen</string>
     <string name="SpessTettVv">V<sub>v</sub> = vann fra retorte</string>
@@ -37,8 +37,8 @@
     <string name="AgNO3">V<sub>AgNO3</sub> - Volum av sølvnitrat forbrukt</string>
     <string name="Fv">F<sub>v</sub> - fraksjonen av vann i det oljebaserte slammet</string>
     <string name="Vfiltrat">V<sub>filtrat</sub> - Volum filtrat utpipettèrt</string>
-    <string name="KlCLmg">Klorid Innhold \n ( mg/l Cl<sup>-</sup> )</string>
-    <string name="KlCLppm">Klorid Innhold \n ( ppm Cl<sup>-</sup> )</string>
+    <string name="KlCLmg">Konsentrasjon av kloridioner i filtratet [mg/l Cl<sup>-</sup>]</string>
+    <string name="KlCLppm">Konsentrasjon av kloridioner i filtratet [ppm Cl<sup>-</sup>]</string>
     <string name="bentonitt">bentonitt \n[kg/m<sup><small>3</small></sup>]</string>
     <string name="CaOH">Ca (OH)<sub>2</sub></string>
     <string name="CaOHInnhold">Ca (OH)<sup>-</sup> Innhold</string>
