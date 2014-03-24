@@ -3,6 +3,8 @@ package com.bbv.prototype1.Kalkulatorer;
 import java.lang.reflect.Field;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bbv.prototype1.R;
+import com.bbv.prototype1.R.color;
 
 public class Alkalitet extends Basic_Calc {
 
@@ -102,11 +105,13 @@ public class Alkalitet extends Basic_Calc {
 
 				TextView tableItem = (TextView) findViewById(ID);
 
-				// Find better way to deal with this!
-				tableItem.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.table_item_with_border));
+//				// Find better way to deal with this!
+//				tableItem.setBackgroundDrawable(getResources().getDrawable(
+//						R.drawable.table_item_with_border));
 
 				tableItem.setText(table.getInitialRows()[i - 1][j - 1]);
+				
+				tableItem.setTextColor(Color.BLACK);
 
 			}
 		}
@@ -127,11 +132,14 @@ public class Alkalitet extends Basic_Calc {
 
 			TextView tableItem = (TextView) findViewById(ID);
 
-			// Find better way to deal with this!
-			tableItem.setBackgroundDrawable(getResources().getDrawable(
-					R.drawable.table_item_with_border_selected));
+//			// Find better way to deal with this!
+//			tableItem.setBackgroundDrawable(getResources().getDrawable(
+//					R.drawable.table_item_with_border_selected));
 
 			showResults(tableItem, calculatedRow, i);
+			
+			tableItem.setTextColor(Color.RED);
+
 
 		}
 

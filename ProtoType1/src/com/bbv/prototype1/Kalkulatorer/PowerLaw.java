@@ -61,7 +61,7 @@ public class PowerLaw extends Basic_Calc {
 			break;
 		case N_INDEX:
 			
-			if (checkForNullValues(T6,T1) == false || checkForNegativeValues(T6,T1))
+			if (checkForNullValues(T6,T1) == false || checkForNegativeValues(T6,T1) == false)
 				return "";
 
 			N = calcN(T1, T6);
@@ -120,8 +120,6 @@ public class PowerLaw extends Basic_Calc {
 
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		textFields[2].setVisibility(GONE);
 
 		tvN = (TextView) findViewById(R.id.tvPLN);
  		K_PA = (TextView) findViewById(R.id.tvPLPA);

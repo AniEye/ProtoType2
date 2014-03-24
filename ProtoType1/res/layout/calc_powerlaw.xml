@@ -17,8 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/theta100" 
-        android:lineSpacingExtra="4dp"/>
+        android:lineSpacingExtra="4dp"
+        android:text="@string/theta100" />
 
     <EditText
         android:id="@+id/etPowerLawT100"
@@ -34,8 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/theta600" 
-        android:lineSpacingExtra="4dp"/>
+        android:lineSpacingExtra="4dp"
+        android:text="@string/theta600" />
 
     <EditText
         android:id="@+id/etPowerLaw600"
@@ -52,8 +52,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="n"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,7 +88,7 @@
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
