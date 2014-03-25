@@ -288,13 +288,13 @@
             android:id="@+id/bSpessTettUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update" />
+            android:text="@string/CalcButtonUpdate"  />
 
         <Button
             android:id="@+id/bSpessTettClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clear" />
+            android:text="@string/CalcButtonClear" />
     </LinearLayout>
 
 </LinearLayout>

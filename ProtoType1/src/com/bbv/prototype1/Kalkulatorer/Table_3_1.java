@@ -1,13 +1,15 @@
 package com.bbv.prototype1.Kalkulatorer;
 
+import android.util.Log;
+
 public class Table_3_1 {
 
-	private float[] Cl_values = { 5000f, 10000f, 20000f, 30000f, 40000f,
+	private float[] Cl_values = { 0f, 5000f, 10000f, 20000f, 30000f, 40000f,
 			60000f, 80000f, 100000f, 120000f, 140000f, 160000f, 180000f,
 			186650f };
-	private float[] Vsf_values = { 0.3f, 0.6f, 1.2f, 1.8f, 2.3f, 3.4f, 4.5f,
-			5.7f, 7.0f, 8.2f, 9.5f, 10.8f, 11.4f };
-	private float[] Pf_values = { 1.004f, 1.010f, 1.021f, 1.032f, 1.043f,
+	private float[] Vsf_values = { 0f, 0.3f, 0.6f, 1.2f, 1.8f, 2.3f, 3.4f,
+			4.5f, 5.7f, 7.0f, 8.2f, 9.5f, 10.8f, 11.4f };
+	private float[] Pf_values = { 1f, 1.004f, 1.010f, 1.021f, 1.032f, 1.043f,
 			1.065f, 1.082f, 1.098f, 1.129f, 1.149f, 1.170f, 1.194f, 1.197f };
 
 	private float[] calculatedPfAndVsf;
@@ -18,18 +20,23 @@ public class Table_3_1 {
 
 	}
 
+	/**
+	 * Calculates Pf and Vsf in table 3.1 using Cl-value 
+	 * Returns Pf and Vsf
+	 * values as float[] Returns -1,-1 if out of bounds
+	 * 
+	 * @param cl - Value of KloridInnhold 
+	 * @return Float array with Vsf in place 0 and Pf in place 1
+	 */
 	private float[] calcCl(float cl) {
-		/**
-		 * Calculates Pf and Vsf in table 3.1 using Cl-value
-		 * Returns Pf and Vsf values as float[]
-		 * Returns -1,-1 if out of bounds
-		 */
+
 		float Pf = 0;
 		float Vsf = 0;
-		
-		if(cl < Cl_values[0] || cl > Cl_values[Cl_values.length-1]){
-			//Returns -1 and -1 if out of bounds
-			return new float[] {-1,-1};
+
+		if (cl < Cl_values[0] || cl > Cl_values[Cl_values.length - 1]) {
+			// Returns -1 and -1 if out of bounds
+			Log.println(Log.ERROR, "calc", "Cl was out of bounds! It was " + cl);
+			return new float[] { -1, -1 };
 		}
 
 		for (int i = 0; i < Cl_values.length; i++) {
@@ -52,19 +59,23 @@ public class Table_3_1 {
 
 		}
 
-		if (Pf == 0 || Vsf == 0)
-			throw new Error("Something went severly wrong in Table3.1");
-
-		return new float[] {Vsf, Pf};
+		return new float[] { Vsf, Pf };
 	}
-	
+
+	/**
+	 * Returns calculated Vsf
+	 * @return Vsf
+	 */
 	public float getVsf() {
 		return calculatedPfAndVsf[0];
 	}
 
+	/**
+	 * Returns calculated Pf
+	 * @return Pf
+	 */
 	public float getPf() {
 		return calculatedPfAndVsf[1];
 	}
-
 
 }

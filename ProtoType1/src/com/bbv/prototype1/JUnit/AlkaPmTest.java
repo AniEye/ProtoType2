@@ -25,6 +25,8 @@ public class AlkaPmTest extends AndroidTestCase {
 		//Testing that calculator returns correct string
 		calc = new AlkaPm(getContext());
 		ca = (float) 0.742*(5 - 4*2);
+		if(ca <0)
+			ca = 0;
 		String _Ca = String.format("%.3f", ca);
 		assertEquals(_Ca, calc.calculation(3, 5,4,2));
 		
@@ -36,6 +38,8 @@ public class AlkaPmTest extends AndroidTestCase {
 		calc = new AlkaPm(getContext());
 		calc.calculation(3, 5,4,2);
 		ca = (float) 0.742*(5 - 4*2);
+		if(ca <0)
+			ca = 0;
 		assertEquals(ca, calc.getCa());
 		
 	}

@@ -14,23 +14,24 @@ public class ModPowerLawTest extends AndroidTestCase {
 	}
 
 	public void testCalculation() {
-
+		float n;
+		float Ty;
+		float t0;
+		float K;
+		
+		
 		//Testing Theta0 to calculate successfully
-		assertEquals(2.00f,test.calcT0(4.0f, 3.0f),epsilon);
+		t0 = (2*3 -5 );
+		assertEquals(t0,test.calcT0(5, 3),epsilon);
 		//Testing that Ty calculates successfully
-		assertEquals(0.511f*200, test.calcTy(200),epsilon);
+		Ty = 0.511f * t0;
+		assertEquals(Ty, test.calcTy(t0),epsilon);
 		// Testing n to successfully calculate
-		float N = (float) (3.32f*Math.log10((400-200)/(300-200)));
-		assertEquals(N, test.calcN(400, 300, 200),epsilon);
+		n= (float) (3.32f * Math.log10((300 - t0)/(200 - t0)));
+		assertEquals(n, test.calcN(300, 200, t0), 0.001);
 		// Testing K to successfully calculate
-		float K = (float) (0.511f * ((400-200)/Math.pow(1022, 2)));
-		assertEquals(K, test.calcK(400,200,2),epsilon);
-		// Testing Y successfully calculates
-		float Y = (float) (600*1.7023);
-		assertEquals(Y, test.calcY(600),epsilon);
-		// Testing t successfully calculates
-		float T = (float) (100 + 200*Math.pow(20, 4));
-		assertEquals(T, test.calcT(100,200,20,4),epsilon);
+		K = (float) (0.511f * ((400-t0)/Math.pow(600*1.7033, n)));
+		assertEquals(K, test.calcK(400,t0,n),epsilon);
 
 	}
 

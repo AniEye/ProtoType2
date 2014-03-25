@@ -22,7 +22,6 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 	final int layout = R.layout.calc_klorid_innhold_i_vannfasen;
 
 	// Variables used for calculation
-	float Cl;
 	float V_AgNO3;
 	float Fv;
 	float AgNO3 = 0.282f;
@@ -37,17 +36,17 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 	final int[] textviewIDs = { R.id.tvKIVFKIMG, R.id.tvKIVFKIPPM,
 			R.id.tvKIVFNaCLMG, R.id.tvKIVFNaPPM };
 
-	final int[] IDs = { R.id.etKIVFCl, // Textfield of Cl
+	final int[] IDs = {
 			R.id.etKIVFVAgNO3, // Textfield of AgNO3
 			R.id.etKIVFFv, // Textfield of filtrat
 			R.id.etKIVFCCl // Textfield of CCl - Will be disabled for input
 	};
 
 	/**
-	 * Calculator will only calculate CCl_index = 3
+	 * Calculator will only calculate CCl_index
 	 */
-	public final static int Cl_index = 0, AgNO3_index = 1, VFiltrat_index = 2,
-			CCl_index = 3;
+	public final static int AgNO3_index = 0, VFiltrat_index = 1,
+			CCl_index = 2;
 
 	public KloridInnholdIVannfasen(Context context) {
 		super(context);
@@ -58,15 +57,14 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		Cl = fieldStatuses[0];
-		V_AgNO3 = fieldStatuses[1];
-		Fv = fieldStatuses[2];
+		V_AgNO3 = fieldStatuses[0];
+		Fv = fieldStatuses[1];
 
 		switch (variableToCalculate) {
 
-		case Cl_index:
+		default:
 			Log.println(Log.ERROR, "calc",
-					"Tried to calculate Cl, and this should not happen!");
+					"Tried to calculate anything other than Key value, and this should not happen!");
 			break;
 		case AgNO3_index:
 			Log.println(Log.ERROR, "calc",
@@ -74,31 +72,22 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 			break;
 		case VFiltrat_index:
 			Log.println(Log.ERROR, "calc",
-					"Tried to calculate volume of Fv, and this should not happen!");
+					"Tried to calculate volume of VFiltrat, and this should not happen!");
 			break;
 		case CCl_index:
 
-			if (Cl < 5000) {
-				String message = "Klor innhold kan ikke være mindre enn 5000!";
-				showToast(message);
-				return "";
-			} else if (Cl > 188650) {
-				String message = "Klor innhold kan ikke være mer enn 188650!";
-				showToast(message);
-				return "";
-			}
+			CCl = ((AgNO3 * V_AgNO3 * MCl * 1000) / Fv);
 
-			Table_3_1 table = new Table_3_1(Cl);
+			Log.println(Log.DEBUG, "calc", "Value of CCl: " + CCl);
+			Table_3_1 table = new Table_3_1(CCl);
 
 			if (table.getPf() != -1)
 				Pf = table.getPf();
 			else {
-				Log.println(Log.ERROR, "calc",
-						"Somehow there was an error with tables in KlorInnhold");
+				showToast("Somehow there was an error with tables in KlorInnhold");
 				return "";
 			}
 
-			CCl = ((AgNO3 * V_AgNO3 * MCl * 1000) / Fv);
 			ClPPM = CCl / Pf;
 			NaClMG = ((AgNO3 * V_AgNO3 * MNaCl * 1000) / Fv);
 			NaClPPM = NaClMG / Pf;
@@ -110,17 +99,21 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 			if (checkForDivisionErrors(testFloats) == false)
 				return "";
 
-			String _KloridMG = String.format("%.3f", CCl);
-			String _KloridPPM = String.format("%.3f", ClPPM);
-			String _NaClMG = String.format("%.3f", NaClMG);
-			String _NaClPPM = String.format("%.3f", NaClPPM);
+			String _KloridMG = String.format(NO_DECIMALS, CCl)
+					+ " " + getResources().getString(R.string.ClmgL);
+			String _KloridPPM = String.format(NO_DECIMALS, ClPPM)
+					+ " " + getResources().getString(R.string.Clppm);
+			String _NaClMG = String.format(NO_DECIMALS, NaClMG)
+					+ " " + getResources().getString(R.string.NaClmgL);
+			String _NaClPPM = String.format(NO_DECIMALS, NaClPPM)
+					+ " " + getResources().getString(R.string.NaClppm);
 
 			textviews[0].setText(_KloridMG);
 			textviews[1].setText(_KloridPPM);
 			textviews[2].setText(_NaClMG);
 			textviews[3].setText(_NaClPPM);
 
-			return String.format("%.3f", CCl);
+			return String.format(NO_DECIMALS, CCl);
 
 		}
 
@@ -136,10 +129,11 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 		textviews = new TextView[textviewIDs.length];
 		_textFieldsStatus = new int[IDs.length];
 
-		for (int i = 0; i < IDs.length; i++){
+		for (int i = 0; i < IDs.length; i++) 
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
+		for (int i = 0; i < textviewIDs.length; i++) 
 			textviews[i] = (TextView) findViewById(textviewIDs[i]);
-		}
+		
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -221,10 +215,6 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 				break;
 			}
 		}
-	}
-
-	public float getCl() {
-		return Cl;
 	}
 
 	public float getV_AgNO3() {

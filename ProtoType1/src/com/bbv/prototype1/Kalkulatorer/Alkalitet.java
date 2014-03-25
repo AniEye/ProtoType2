@@ -60,10 +60,6 @@ public class Alkalitet extends Basic_Calc {
 			break;
 		case KEY_INDEX:
 
-			if (checkForNegativeValues(Pf, Mf) == false
-					|| checkForNullValues(Pf, Mf) == false)
-				return "";
-
 			Table_3_3 table = new Table_3_3(Pf, Mf);
 
 			if (table.getCalculatedRow() == -1) {
@@ -72,6 +68,10 @@ public class Alkalitet extends Basic_Calc {
 				showToast("Something went wrong with the calculation!");
 				return "";
 			}
+			
+			if (checkForNegativeValues(Pf, Mf) == false
+					|| checkForNullValues(Pf, Mf) == false)
+				return "";
 
 			OH = table.getOH();
 			HCO = table.getHCO();
@@ -105,9 +105,9 @@ public class Alkalitet extends Basic_Calc {
 
 				TextView tableItem = (TextView) findViewById(ID);
 
-//				// Find better way to deal with this!
-//				tableItem.setBackgroundDrawable(getResources().getDrawable(
-//						R.drawable.table_item_with_border));
+				// Find better way to deal with this!
+				tableItem.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.table_item_with_border));
 
 				tableItem.setText(table.getInitialRows()[i - 1][j - 1]);
 				
@@ -132,13 +132,13 @@ public class Alkalitet extends Basic_Calc {
 
 			TextView tableItem = (TextView) findViewById(ID);
 
-//			// Find better way to deal with this!
-//			tableItem.setBackgroundDrawable(getResources().getDrawable(
-//					R.drawable.table_item_with_border_selected));
+			// Find better way to deal with this!
+			tableItem.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.table_item_with_border_selected));
 
 			showResults(tableItem, calculatedRow, i);
 			
-			tableItem.setTextColor(Color.RED);
+			tableItem.setTextColor(Color.WHITE);
 
 
 		}
@@ -150,27 +150,27 @@ public class Alkalitet extends Basic_Calc {
 		switch (row) {
 		case 1:
 			if (column == 3)
-				tableItem.setText(String.format("%.3f", HCO));
+				tableItem.setText(String.format(NO_DECIMALS, HCO));
 			break;
 		case 2:
 			if (column == 2)
-				tableItem.setText(String.format("%.3f", CO));
+				tableItem.setText(String.format(NO_DECIMALS, CO));
 			if (column == 3)
-				tableItem.setText(String.format("%.3f", HCO));
+				tableItem.setText(String.format(NO_DECIMALS, HCO));
 			break;
 		case 3:
 			if (column == 2)
-				tableItem.setText(String.format("%.3f", CO));
+				tableItem.setText(String.format(NO_DECIMALS, CO));
 			break;
 		case 4:
 			if (column == 1)
-				tableItem.setText(String.format("%.3f", OH));
+				tableItem.setText(String.format(NO_DECIMALS, OH));
 			if (column == 2)
-				tableItem.setText(String.format("%.3f", CO));
+				tableItem.setText(String.format(NO_DECIMALS, CO));
 			break;
 		case 5:
 			if (column == 1)
-				tableItem.setText(String.format("%.3f", OH));
+				tableItem.setText(String.format(NO_DECIMALS, OH));
 			break;
 
 		default:

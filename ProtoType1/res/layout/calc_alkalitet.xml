@@ -208,13 +208,13 @@
             android:id="@+id/bAlkalitetUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update" />
+            android:text="@string/CalcButtonUpdate" />
 
         <Button
             android:id="@+id/bAlkalitetClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clear" />
+            android:text="@string/CalcButtonClear" />
     </LinearLayout>
 
 </LinearLayout>

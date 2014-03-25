@@ -4,9 +4,11 @@
     <string name="theta600">\u03B8<sub>600</sub></string>
     <string name="theta300">\u03B8<sub>300</sub></string>
     <string name="theta100">\u03B8<sub>100</sub></string>
+    <string name="theta6">\u03B8<sub>6</sub></string>
+    <string name="theta3">\u03B8<sub>3</sub></string>
     <string name="theta0">\u03B8<sub>0</sub></string>
     <string name="eksponent">\u03C4</string>
-    <string name="eksponentY">\u03C4<sub>y</sub></string>
+    <string name="eksponentY">\u03C4<sub><small>y</small></sub></string>
     <string name="theta">\u03B8<sub>rpm</sub></string>
     <string name="skjaerhastighetTegn">\u03B3</string>
     <string name="skjaerhastighet">\u03B3 = Skjæringshastighet</string>

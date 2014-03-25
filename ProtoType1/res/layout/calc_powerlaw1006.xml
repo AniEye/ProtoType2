@@ -10,22 +10,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="20sp"
-        android:src="@drawable/mod_powerlaw_icon" />
+        android:src="@drawable/powerlaw_icon_100_6" />
 
     <TextView
         android:id="@+id/tvm1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/theta600" 
-        android:lineSpacingExtra="4dp"/>
+        android:lineSpacingExtra="4dp"
+        android:text="@string/theta100" />
 
     <EditText
-        android:id="@+id/etModPowerLawT600"
+        android:id="@+id/etPowerLawT100"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/theta600"
+        android:hint="@string/theta100"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -34,59 +34,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/theta300" 
-        android:lineSpacingExtra="4dp"/>
+        android:lineSpacingExtra="4dp"
+        android:text="@string/theta6" />
 
     <EditText
-        android:id="@+id/etModPowerLawT300"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/theta300"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/theta6" 
-        android:lineSpacingExtra="4dp"/>
-
-    <EditText
-        android:id="@+id/etModPowerLawT6"
+        android:id="@+id/etPowerLaw6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/theta6"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/theta3" 
-        android:lineSpacingExtra="4dp"/>
 
     <EditText
-        android:id="@+id/etModPowerLawT3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/theta3"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
-
-    <EditText
-        android:id="@+id/etMODPowerLawN"
+        android:id="@+id/etPowerLawN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="n"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
-     <LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -95,7 +63,7 @@
         android:weightSum="2" >
 
         <TextView
-            android:id="@+id/tvm6"
+            android:id="@+id/tvm3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -112,7 +80,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvMPLN"
+            android:id="@+id/tvPLN"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -120,8 +88,8 @@
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
-    
-     <LinearLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -135,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="K [Pa * s^n]"
+            android:text="K [lbs/100 ft^2/s]"
             android:textSize="16dp" />
 
         <TextView
@@ -147,7 +115,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvMPLK"
+            android:id="@+id/tvPLNOTPA"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -155,44 +123,6 @@
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
-    
-     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:weightSum="2" >
-
-        <TextView
-            android:id="@+id/tvm6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="@string/theta0"
-            android:textSize="16dp" 
-            android:lineSpacingExtra="4dp"/>
-
-        <TextView
-            android:id="@+id/tvm6"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text=" = "
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/tvMPLT0"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="left|center_vertical"
-            android:text=""
-            android:textSize="16dp" />
-    </LinearLayout>
-    
-    
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -208,8 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/eksponentY"
-            android:lineSpacingExtra="4dp"
+            android:text="K [Pa]"
             android:textSize="16dp" />
 
         <TextView
@@ -221,7 +150,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/tvMPLEksY"
+            android:id="@+id/tvPLPA"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -229,7 +158,6 @@
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -239,13 +167,13 @@
         android:paddingTop="5dp" >
 
         <Button
-            android:id="@+id/bMPLUpdate"
+            android:id="@+id/bPLUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/CalcButtonUpdate"  />
 
         <Button
-            android:id="@+id/bMPLClear"
+            android:id="@+id/bPLClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/CalcButtonClear"  />

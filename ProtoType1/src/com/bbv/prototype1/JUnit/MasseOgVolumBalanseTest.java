@@ -6,11 +6,11 @@ import android.test.AndroidTestCase;
 public class MasseOgVolumBalanseTest extends AndroidTestCase {
 
 	MasseOgVolumBalanse test;
-	float[] variables1 = { 5, 10, 20, 10, 40 };
-	float[] variables2 = { 5, 0, 20, 10, 40 };
-	float[] variables3 = { 5, 10, 0, 10, 40 };
-	float[] variables4 = { 5, 10, 20, 0, 40 };
-	float[] variables5 = { 5, 10, 20, 10, 0 };
+	float[] variables1 = { 0, 10, 20, 10, 40 };
+	float[] variables2 = { 20, 0, 20, 10, 40 };
+	float[] variables3 = { 20, 10, 0, 10, 40 };
+	float[] variables4 = { 20, 10, 20, 0, 40 };
+	float[] variables5 = { 20, 10, 20, 10, 0 };
 	
 	float[] variablesDivideBy0 = {5, 10, 50, 50, 50};
 
@@ -26,7 +26,7 @@ public class MasseOgVolumBalanseTest extends AndroidTestCase {
 	public void testCalculationIntFloatFloat() {
 
 		// Testing that the calculator gets the right answer
-		assertEquals("5.000", test.calculation(0, variables1));
+		assertEquals("20.000", test.calculation(0, variables1));
 		assertEquals("10.000", test.calculation(1, variables2));
 		assertEquals("20.000", test.calculation(2, variables3));
 		assertEquals("10.000", test.calculation(3, variables4));

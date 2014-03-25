@@ -1,5 +1,7 @@
 package com.bbv.prototype1.Kalkulatorer;
 
+import com.bbv.prototype1.R;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,8 @@ public abstract class Basic_Calc extends LinearLayout {
 	TextView[] textviews;
 	Context cont;
 	LinearLayout _linLay;
+	final String THREE_DECIMALS = "%.3f";
+	final String NO_DECIMALS = "%.0f";
 
 	public Basic_Calc(Context context) {
 		super(context);

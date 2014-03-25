@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spannable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,9 +67,16 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		 * a listview if the device is in a horizontal position
 		 */
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.custom_spinner, getResources().getStringArray(
-						R.array.calculator));
+		ArrayAdapter<Spannable> adapter = new ArrayAdapter<Spannable>(this,
+				R.layout.custom_spinner);
+		
+		Spannable[] array = new Spannable[getResources().getStringArray(R.array.calculator).length];
+		
+		for(int i=0; i<array.length;i++){
+			array[i] = (Spannable) Html.fromHtml(getResources().getStringArray(R.array.calculator)[i]);
+			adapter.insert(array[i], i);
+		}
+		
 		adapter.setDropDownViewResource(SpinnerItemLayout);
 
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -78,6 +87,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			// Adds the custom look for the spinner
 
 			lLayout = (LinearLayout) findViewById(R.id.lInSVKalkVertical);
+			
 			valg_vertical.setOnItemSelectedListener(this);
 			valg_vertical.setSelection(lastChoice); // Chooses which item the
 													// spinner starts at
@@ -132,36 +142,39 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			calc = new Flytegrense(lLayout.getContext());
 			break;
 		case 4:
-			calc = new PowerLaw(lLayout.getContext());
+			calc = new PowerLaw600300(lLayout.getContext());
 			break;
 		case 5:
-			calc = new Herch_Law(lLayout.getContext());
+			calc = new PowerLaw1006(lLayout.getContext());
 			break;
 		case 6:
-			calc = new Spess_tetthet(lLayout.getContext());
+			calc = new Herch_Law(lLayout.getContext());
 			break;
 		case 7:
-			calc = new KloridInnhold(lLayout.getContext());
+			calc = new Spess_tetthet(lLayout.getContext());
 			break;
 		case 8:
-			calc = new TotalHardhet(lLayout.getContext());
+			calc = new KloridInnhold(lLayout.getContext());
 			break;
 		case 9:
-			calc = new CEC(lLayout.getContext());
+			calc = new TotalHardhet(lLayout.getContext());
 			break;
 		case 10:
+			calc = new CEC(lLayout.getContext());
+			break;
+		case 11:
 			calc = new AlkaPm(lLayout.getContext());
 			break;
-		case 11: 
+		case 12:
 			calc = new Alkalitet(lLayout.getContext());
 			break;
-		case 12: 
+		case 13:
 			calc = new OljeVann(lLayout.getContext());
 			break;
-		case 13: 
+		case 14:
 			calc = new CaOHInnhold(lLayout.getContext());
 			break;
-		case 14: 
+		case 15:
 			calc = new KloridInnholdIVannfasen(lLayout.getContext());
 			break;
 		}
@@ -177,10 +190,13 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		saveLC(index); // Saves the current index here
 	}
 
+	/**
+	 * Loads previous choice in either the spinner or the listview
+	 * 
+	 * @return int - previous choice
+	 */
 	private int loadLC() {
-		/**
-		 * Loads previous choice in either the spinner or the listview
-		 */
+
 		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 		int restoredInt = prefs.getInt(lastChoiceMadeKey, 0);
 
@@ -188,11 +204,16 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 
 	}
 
+	/**
+	 * Saves the current position of the selected item in either the spinner or
+	 * the listview
+	 * 
+	 * @param index
+	 *            - int index
+	 */
+
 	private void saveLC(int index) {
-		/**
-		 * Saves the current position of the selected item in either the spinner
-		 * or the listview
-		 */
+
 		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
 		editor.putInt(lastChoiceMadeKey, index);
 		editor.commit();

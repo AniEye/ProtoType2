@@ -61,23 +61,19 @@ public class AlkaPm extends Basic_Calc {
 			break;
 		case Ca_INDEX:
 
-			if (Pm == 0 || Fw == 0 || Pf == 0){
-				showToast("Du kan ikke bruke 0-verdier!");
+			if (Fw == 0) {
+				showToast("Fw kan ikke være null!");
 				return "";
 			}
-			
+
 			Ca = 0.742f * (Pm - Fw * Pf);
 
 			float[] testFloats = { Ca, Pm, Fw, Pf };
-			for (int i = 0; i < testFloats.length; i++) {
-				// Displays a toast saying that there was an error if any value
-				// returned NaN or infinity
-				if (checkForDivisionErrors(testFloats[i]) == false) {
-					Log.println(Log.DEBUG, "calc", "Dividing with 0 error in "
-							+ this.getClass().getName());
-					return "";
-				}
-			}
+			if (checkForDivisionErrors(testFloats) == false)
+				return "";
+
+			if (Ca < 0)
+				Ca = 0;
 
 			String _Ca = String.format("%.3f", Ca);
 
@@ -161,7 +157,7 @@ public class AlkaPm extends Basic_Calc {
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-					
+
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);
@@ -175,6 +171,7 @@ public class AlkaPm extends Basic_Calc {
 			}
 		}
 	}
+
 	@Override
 	protected void updateRelevantResult() {
 		for (int i = 0; i < _textFieldsStatus.length; i++) {

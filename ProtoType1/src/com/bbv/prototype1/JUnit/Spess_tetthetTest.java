@@ -30,7 +30,8 @@ public class Spess_tetthetTest extends AndroidTestCase {
 		assertEquals("", test.calculation(7, variablesForPp));
 
 		// Testing that Pp catches dividing by 0 error and displays a Toast
-		//By putting Cl as 5000, Vs will be 0.3, and when Vsf = Vs (0.3), there will be 
+		// By putting Cl as 5000, Vs will be 0.3, and when Vsf = Vs (0.3), there
+		// will be
 		// a dividing with 0 error!
 		float[] variablesForPpWithError = { 0, 5000f, 0.245f, 5f, 2f, 2f, 1f,
 				0.3f };
@@ -72,10 +73,10 @@ public class Spess_tetthetTest extends AndroidTestCase {
 			assertEquals(Pf_values[i], test.calcPfOrVsf(Cl_values[i])[1]);
 		}
 
-		// Testing that values of Cl below 5000 and over 186650 will return
+		// Testing that values of Cl below 0 and over 186650 will return
 		// values of 0 using edge testing
-		assertEquals(0.0f, test.calcPfOrVsf(4999)[0]);
-		assertEquals(0.0f, test.calcPfOrVsf(4999)[1]);
+		assertEquals(0.0f, test.calcPfOrVsf(-1)[0]);
+		assertEquals(0.0f, test.calcPfOrVsf(-1)[1]);
 		assertEquals(0.0f, test.calcPfOrVsf(186651)[0]);
 		assertEquals(0.0f, test.calcPfOrVsf(186651)[1]);
 
@@ -88,6 +89,19 @@ public class Spess_tetthetTest extends AndroidTestCase {
 		float Vsf;
 		float Pf;
 		float Cl;
+
+		// Testing Cl between 0 and 5000 using edge
+		Cl = 1;
+		Vsf = (0f + (0.3f - 0f) * ((Cl - 0) / (5000 - 0)));
+		Pf = (1 + (1.004f - 1) * ((Cl - 0) / (5000 - 0)));
+		assertEquals(Vsf, test.calcPfOrVsf(Cl)[0]);
+		assertEquals(Pf, test.calcPfOrVsf(Cl)[1]);
+
+		Cl = 4999;
+		Vsf = (0f + (0.3f - 0f) * ((Cl - 0) / (5000 - 0)));
+		Pf = (1 + (1.004f - 1) * ((Cl - 0) / (5000 - 0)));
+		assertEquals(Vsf, test.calcPfOrVsf(Cl)[0]);
+		assertEquals(Pf, test.calcPfOrVsf(Cl)[1]);
 
 		// Testing Cl between 5000 and 10000 using edge
 		Cl = 5001;
@@ -199,7 +213,7 @@ public class Spess_tetthetTest extends AndroidTestCase {
 		Pf = (1.129f + (1.149f - 1.129f) * ((Cl - 120000f) / (140000 - 120000)));
 		assertEquals(Vsf, test.calcPfOrVsf(Cl)[0]);
 		assertEquals(Pf, test.calcPfOrVsf(Cl)[1]);
-		
+
 		Cl = 139999;
 		Vsf = (7.0f + (8.2f - 7.0f) * ((Cl - 120000f) / (140000 - 120000)));
 		Pf = (1.129f + (1.149f - 1.129f) * ((Cl - 120000f) / (140000 - 120000)));

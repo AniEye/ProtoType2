@@ -1,7 +1,6 @@
 package com.bbv.prototype1.Kalkulatorer;
 
 import android.content.Context;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,38 +11,23 @@ import android.widget.Toast;
 
 import com.bbv.prototype1.R;
 
-public class CEC extends Basic_Calc {
+public class PowerLaw1006 extends Basic_Calc {
 
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	final int clearButtonID = R.id.bCECClear;
-	final int updateButtonID = R.id.bCECUpdate;
-	final int layout = R.layout.calc_cec;
+	final int clearButtonID = R.id.bPLClear;
+	final int updateButtonID = R.id.bPLUpdate;
+	final int layout = R.layout.calc_powerlaw1006;
 
-	TextView tvbentPPM;
-	TextView tvbentKG;
+	final int[] textViewIDs = { R.id.tvPLN, R.id.tvPLNOTPA, R.id.tvPLPA };
 
-	// Variables used for calculation
-	float CEC;
-	float BentPPM;
-	float BentKG;
-	float V_mbl;
-	float V_boreslam = 1;
+	final int[] IDs = { R.id.etPowerLawT100, R.id.etPowerLaw6, R.id.etPowerLawN };
 
-	final int[] IDs = { R.id.etCECVmbl, // Textfield of V metylenblått-løsning
-			R.id.etCECCEC, // Textfield of CEC - Will be disabled
-	};
+	public final static int T100_INDEX = 0, T6_INDEX = 1, N_INDEX = 2;
 
-	/**
-	 * Only CEC_INDEX will get calculated
-	 */
-	public final static int V_mbl_INDEX = 0,
-			CEC_INDEX = 1; // Only used for error catching. Only CEC_INDEX
-							// should ever be used
-
-	public CEC(Context context) {
+	public PowerLaw1006(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -52,39 +36,60 @@ public class CEC extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		V_mbl = fieldStatuses[0];
-		
+		float T100 = fieldStatuses[0];
+		float T6 = fieldStatuses[1];
+		float N;
+		float K;
+
+
+		float theAnswer = 0;
 		switch (variableToCalculate) {
 
-		default:
+		case T100_INDEX:
 			Log.println(Log.ERROR, "calc",
-					"Tried to calculate anything other than CEC, and this should not happen!");
+					"Tried to calculate T1, and this should not happen!");
 			break;
-		case CEC_INDEX:
+		case T6_INDEX:
+			Log.println(Log.ERROR, "calc",
+					"Tried to calculate T6, and this should not happen!");
+			break;
+		case N_INDEX:
 
-			if (checkForNullValues(V_mbl, V_boreslam) == false || checkForNegativeValues(V_mbl) == false)
+			if (checkForNullValues(T6, T100) == false
+					|| checkForNegativeValues(T6, T100) == false)
 				return "";
 
-			CEC = V_mbl / V_boreslam;
-			BentPPM = 5 * CEC;
-			BentKG = 14.25f * CEC;
+			N = calcN(T100, T6);
+			K = calcK(T6, N);
 
-			float[] testFloats = { CEC, BentKG, BentPPM };
+			float[] testFloats = { N, K };
 			if (checkForDivisionErrors(testFloats) == false)
 				return "";
 
-			String _BentPPM = String.format(THREE_DECIMALS, BentPPM) + " " + "[ppm]";
-			String _BentKG = String.format(THREE_DECIMALS, BentKG);
+			Log.println(Log.INFO, "calc", "Setting textviews in Powerlaw!");
 
-			tvbentPPM.setText(_BentPPM);
-			tvbentKG.setText(Html.fromHtml(_BentKG + " [kg/m<sup><small>3</small></sup>]"));
+			String _N = String.format(THREE_DECIMALS, N);
+			String _K = String.format(THREE_DECIMALS, K);
+			String _KPA = String.format(THREE_DECIMALS, K * 0.511f);
+			
+			textviews[0].setText(_N);
+			textviews[1].setText(_K);
+			textviews[2].setText(_KPA);
 
-			return String.format(THREE_DECIMALS, CEC);
+			return String.format(THREE_DECIMALS, N);
 
 		}
 
 		return "";
 
+	}
+
+	public float calcN(float T100, float T6) {
+		return (float) (Math.log10(T100 / T6) / Math.log10(100*1.7033/ 6*1.7033));
+	}
+
+	public float calcK(float T6, float n) {
+		return (float) (T6 / Math.pow(6*1.7033, n));
 	}
 
 	@Override
@@ -93,13 +98,12 @@ public class CEC extends Basic_Calc {
 
 		textFields = new EditText[IDs.length];
 		_textFieldsStatus = new int[IDs.length];
+		textviews = new TextView[textViewIDs.length];
 
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-
-		tvbentKG = (TextView) findViewById(R.id.tvCECbentKG);
-		tvbentPPM = (TextView) findViewById(R.id.tvCECbentPPM);
+		for (int i = 0; i < textViewIDs.length; i++)
+			textviews[i] = (TextView) findViewById(textViewIDs[i]);
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -115,10 +119,7 @@ public class CEC extends Basic_Calc {
 				switch (v.getId()) {
 				case clearButtonID:
 					ResetFields(textFields);
-
-					tvbentKG.setText("");
-					tvbentPPM.setText("");
-
+					ResetTextViews();
 					_textFieldsStatus = new int[IDs.length];
 					break;
 				case updateButtonID:
@@ -158,7 +159,7 @@ public class CEC extends Basic_Calc {
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-					
+
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);
@@ -184,18 +185,6 @@ public class CEC extends Basic_Calc {
 				break;
 			}
 		}
-	}
-
-	public float getCEC() {
-		return CEC;
-	}
-
-	public float getBentPPM() {
-		return BentPPM;
-	}
-
-	public float getBentKG() {
-		return BentKG;
 	}
 
 }

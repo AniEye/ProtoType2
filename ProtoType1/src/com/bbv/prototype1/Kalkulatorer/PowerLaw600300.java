@@ -11,28 +11,23 @@ import android.widget.Toast;
 
 import com.bbv.prototype1.R;
 
-public class PowerLaw extends Basic_Calc {
+public class PowerLaw600300 extends Basic_Calc {
 
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	final int clearButtonID = R.id.bPLClear;
-	final int updateButtonID = R.id.bPLUpdate;
-	final int layout = R.layout.calc_powerlaw;
+	final int clearButtonID = R.id.bPL600300Clear;
+	final int updateButtonID = R.id.bPL600300Update;
+	final int layout = R.layout.calc_powerlaw600300;
 
-	TextView tvN;
-	TextView K_notPA;
-	TextView K_PA;
-	TextView tvskj;
-	TextView tvEksponent;
+	final int[] TextViewIDs = { R.id.tvPL600300N, R.id.tvPL600300NOTPA, R.id.tvPL600300PA };
 
-	final int[] IDs = { R.id.etPowerLawT100, R.id.etPowerLaw600,
-			R.id.etPowerLawN };
+	final int[] IDs = { R.id.etPL600300T600, R.id.etPL600300T300, R.id.etPL600300N };
 
-	public final static int T1_INDEX = 0, T6_INDEX = 1, N_INDEX = 2;
+	public final static int T600_INDEX = 0, T300_INDEX = 1, N_INDEX = 2;
 
-	public PowerLaw(Context context) {
+	public PowerLaw600300(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -41,53 +36,47 @@ public class PowerLaw extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		float T1 = fieldStatuses[0];
-		float T6 = fieldStatuses[1];
+		float T600 = fieldStatuses[0];
+		float T300 = fieldStatuses[1];
 		float N;
 		float K;
-		float Y;
-		float T;
+
 
 		float theAnswer = 0;
 		switch (variableToCalculate) {
 
-		case T1_INDEX:
+		case T600_INDEX:
 			Log.println(Log.ERROR, "calc",
-					"Tried to calculate T1, and this should not happen!");
+					"Tried to calculate T600, and this should not happen!");
 			break;
-		case T6_INDEX:
+		case T300_INDEX:
 			Log.println(Log.ERROR, "calc",
-					"Tried to calculate T6, and this should not happen!");
+					"Tried to calculate T300, and this should not happen!");
 			break;
 		case N_INDEX:
-			
-			if (checkForNullValues(T6,T1) == false || checkForNegativeValues(T6,T1) == false)
+
+			if (checkForNullValues(T300, T600) == false
+					|| checkForNegativeValues(T300, T600) == false)
 				return "";
 
-			N = calcN(T1, T6);
-			K = calcK(T6, N);
-			Y = calcY(T6);
-			T = calcT(K, Y, N);
+			N = calcN(T600, T300);
+			K = calcK(T600, N);
 
-			float[] testFloats = {N, K, Y, T };
+			float[] testFloats = { N, K };
 			if (checkForDivisionErrors(testFloats) == false)
 				return "";
 
 			Log.println(Log.INFO, "calc", "Setting textviews in Powerlaw!");
 
-			String _N = String.format("%.3f", N);
-			String _K = String.format("%.3f", K);
-			String _KPA = String.format("%.3f", K*0.511f);
-			String _Y = String.format("%.3f", Y);
-			String _T = String.format("%.3f", T);
+			String _N = String.format(THREE_DECIMALS, N);
+			String _K = String.format(THREE_DECIMALS, K);
+			String _KPA = String.format(THREE_DECIMALS, K * 0.511f);
 			
-			tvN.setText(_N);
-			K_notPA.setText(_K);
-			tvskj.setText(_Y);
-			K_PA.setText(_KPA);
-			tvEksponent.setText(_T);
+			textviews[0].setText(_N);
+			textviews[1].setText(_K);
+			textviews[2].setText(_KPA);
 
-			return String.format("%.3f", N);
+			return String.format(THREE_DECIMALS, N);
 
 		}
 
@@ -95,20 +84,12 @@ public class PowerLaw extends Basic_Calc {
 
 	}
 
-	public float calcN(float T100, float T6) {
-		return (float) (Math.log10(T100/T6)/Math.log10(170/10));
+	public float calcN(float T600, float T300) {
+		return (float) (Math.log10(T600 / T300) / Math.log10(600*1.7033/ 300*1.7033));
 	}
 
-	public float calcY(float T6) {
-		return T6 * 1.7023f;
-	}
-
-	public float calcT(float K, float Y, float N) {
-		return (float) (K*Math.pow(Y, N));
-	}
-
-	public float calcK(float T6, float n) {
-		return (float) (T6 / Math.pow(10, n));
+	public float calcK(float T600, float n) {
+		return (float) (T600 / Math.pow(600*1.7033, n));
 	}
 
 	@Override
@@ -117,15 +98,12 @@ public class PowerLaw extends Basic_Calc {
 
 		textFields = new EditText[IDs.length];
 		_textFieldsStatus = new int[IDs.length];
+		textviews = new TextView[TextViewIDs.length];
 
-		for (int i = 0; i < IDs.length; i++)
+		for (int i = 0; i < IDs.length; i++){
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		tvN = (TextView) findViewById(R.id.tvPLN);
- 		K_PA = (TextView) findViewById(R.id.tvPLPA);
-		K_notPA = (TextView) findViewById(R.id.tvPLNOTPA);
-		tvEksponent = (TextView) findViewById(R.id.tvPLEks);
-		tvskj = (TextView) findViewById(R.id.tvPLskj);
+			textviews[i] = (TextView) findViewById(TextViewIDs[i]);
+		}
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -141,13 +119,7 @@ public class PowerLaw extends Basic_Calc {
 				switch (v.getId()) {
 				case clearButtonID:
 					ResetFields(textFields);
-
-					tvN.setText("");
-					K_PA.setText("");
-					K_notPA.setText("");
-					tvEksponent.setText("");
-					tvskj.setText("");
-
+					ResetTextViews();
 					_textFieldsStatus = new int[IDs.length];
 					break;
 				case updateButtonID:
@@ -187,7 +159,7 @@ public class PowerLaw extends Basic_Calc {
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-					
+
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);

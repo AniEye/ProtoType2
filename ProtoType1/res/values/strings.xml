@@ -15,14 +15,17 @@
     <string name="drawer_close">Godbye clsing</string>
 
     <!-- Strings used by calculator using chemistry notation -->
+    <string name="OutOfBounds">Ute av rekkevidde for tabellen!</string>
+    <string name="CalcButtonUpdate">Regn ut</string>
+    <string name="CalcButtonClear">Tøm felt</string>
     <string name="OH">OH<sup>-</sup>, [mg/l]</string>
     <string name="CO23">CO<sup>2-<sub>3</sub></sup>, [mg/l]</string>
     <string name="HCO3">HCO<sup>-<sub>3</sub></sup>, [mg/l]</string>
     <string name="Vv">V<sub><small>v</small></sub> = volum av tilsatt vektmateriale</string>
     <string name="V1">V<sub><small>1</small></sub> = volum av slam før tilsetting</string>
-    <string name="P2">P<sub><small>2</small></sub> = Tetthet til slammet V<sub><small>2</small></sub></string>
-    <string name="P1">P<sub><small>1</small></sub> = Tetthet til slammet V<sub><small>1</small></sub></string>
-    <string name="Pv">P<sub><small>v</small></sub> = Tetthet til slammet V<sub><small>v</small></sub></string>
+    <string name="P2">\u03C1<sub><small>2</small></sub> = Tetthet til slammet V<sub><small>2</small></sub></string>
+    <string name="P1">\u03C1<sub><small>1</small></sub> = Tetthet til slammet V<sub><small>1</small></sub></string>
+    <string name="Pv">\u03C1<sub><small>v</small></sub> = Tetthet til slammet V<sub><small>v</small></sub></string>
     <string name="KlorinnholdCl">Kloridinnhold, Cl<sup>-</sup></string>
     <string name="Pm">P<sub>m</sub> = spesifikk tetthet til boreslammet</string>
     <string name="Po">P<sub>o</sub> = spesifikk tetthet til oljen</string>
@@ -34,14 +37,17 @@
     <string name="Pf">P<sub>f</sub> (spesifikk tetthet til filtratet)</string>
     <string name="Vs">V<sub>s</sub> (oppløst vann i slammet, [volum%])</string>
     <string name="Vsf">V<sub>sf</sub> (salt i filtratet, [volum%]) </string>
-    <string name="AgNO3">V<sub>AgNO3</sub> - Volum av sølvnitrat forbrukt</string>
-    <string name="Fv">F<sub>v</sub> - fraksjonen av vann i det oljebaserte slammet</string>
+    <string name="AgNO3">V<sub><small>AgNO</small><sub><small>3</small></sub></sub> - Volum av sølvnitrat forbrukt</string>
+    <string name="AgNO3Clean">AgNO<sub>3</sub></string>
+    <string name="Fv">F<sub>w</sub> - fraksjonen av vann i det oljebaserte slammet</string>
     <string name="Vfiltrat">V<sub>filtrat</sub> - Volum filtrat utpipettèrt</string>
-    <string name="KlCLmg">Konsentrasjon av kloridioner i filtratet [mg/l Cl<sup>-</sup>]</string>
-    <string name="KlCLppm">Konsentrasjon av kloridioner i filtratet [ppm Cl<sup>-</sup>]</string>
-    <string name="bentonitt">bentonitt \n[kg/m<sup><small>3</small></sup>]</string>
-    <string name="CaOH">Ca (OH)<sub>2</sub></string>
-    <string name="CaOHInnhold">Ca (OH)<sup>-</sup> Innhold</string>
+    <string name="KlCL">Klorid Innhold </string>
+    <string name="ClmgL">[mg/l]</string>
+    <string name="NaClmgL">[mg/l]</string>
+    <string name="Clppm">[ppm]</string>
+    <string name="NaClppm">[ppm]</string>
+    <string name="CaOH2">Ca (OH)<sub>2</sub></string>
+    <string name="bentonitt">bentonitt</string>
     <string name="AlkaPm">P<sub>m</sub> - ml 0.01 M H<sub><small>2</small></sub>SO<sub><small>4</small></sub> \nforbrukt pr ml slam</string>
     <string name="AlkaMf">M<sub>f</sub> - ml 0.01 M H<sub><small>2</small></sub>SO<sub><small>4</small></sub> \nforbrukt pr ml slam</string>
     <string name="AlkaPf">P<sub>f</sub> - ml 0.01 M H<sub><small>2</small></sub>SO<sub><small>4</small></sub> \nforbrukt pr ml filtrat</string>
@@ -49,13 +55,12 @@
     <string name="Rvann">R<sub>vann</sub> - Volum vann fra retorte</string>
     <string name="Mp">M<sub>p</sub> = antall ml 0.05 \nH<sub><small>2</small></sub>SO<sub><small>4</small></sub> forbrukt pr. ml slam</string>
     <string name="CaOHValue">[Ca (OH)<sub><small>2</small></sub>]</string>
-    <string name="CaClVannfase">CaCl<sub>2</sub> i vannfasen</string>
     <string name="TotHardVEDTACaCO3">V<sub>EDTA CaCO<sub><small>3</small></sub></sub></string>
     <string name="TotHardVEDTACa2">V<sub>EDTA Ca<sup><small>2+</small></sup></sub></string>
     <string name="TotHardVF">V<sub><small>filtrat</small></sub> - Volum filtrat</string>
-    <string name="TotHardCaCO3mgl">Total hardhet \n[mg/l CaCO<sub><small>3</small></sub>]</string>
-    <string name="TotHardKalsium">Kalsium hardhet \n[mg/l Ca<sup><small>2+</small></sup>]</string>
-    <string name="TotHardMagnesium">Magnesium hardhet \n[mg/l Mg<sup><small>2+</small></sup>]</string>
+    <string name="TotHardCaCO3mgl">Total hardhet \n(CaCO<sub><small>3</small></sub>)</string>
+    <string name="TotHardKalsium">Kalsium hardhet \n(Ca<sup><small>2+</small></sup>)</string>
+    <string name="TotHardMagnesium">Magnesium hardhet \n(Mg<sup><small>2+</small></sup>)</string>
     <!-- Strings used by calculator using chemistry notation -->
 
     <string-array name="ovinger">
@@ -71,18 +76,19 @@
         <item>Tilsynelatende viskositet (TV)</item>
         <item>Plastisk viskositet (PV)</item>
         <item>Flytegrense (FG)</item>
-        <item>Eksponent modellen (Power law)</item>
+        <item>Eksponent modellen (Power law) 600 og 300</item>
+        <item>Eksponent modellen (Power law) 100 og 6</item>
         <item>Herchel Burkley-modellen</item>
         <item>Spesifikk tetthet</item>
         <item>Klorid innhold</item>
         <item>Total hardhet</item>
         <item>Caution Exchange Capasity</item>
-        <item>@string/CaOH</item>
+        <item><htlm>Ca (OH)<sub>2</sub></htlm></item>
         <item>Alkalitet</item>
         <item>Olje/vann forhold</item>
-        <item>@string/CaOHInnhold</item>
+        <item><html>Ca (OH)<sup>-</sup> Innhold</html></item>
         <item>Klorid innhold i vannfasen</item>
-        <item>@string/CaClVannfase</item>
+        <item><html>CaCl<sub>2</sub> i vannfasen</html></item>
     </string-array>
 
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>

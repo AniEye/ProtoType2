@@ -48,7 +48,7 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 				return "";
 
 			Log.println(Log.DEBUG, "calc", "P1 = " + p1 + "\nP2 = " + p2);
-			theAnswer = v1 * ((p2 - pv) / (p1 - p2));
+			theAnswer = v1 * ((p2 - p1) / (pv - p2));
 			Log.println(Log.DEBUG, "calc", "The answer = " + theAnswer);
 			break;
 		case V1_INDEX:
@@ -56,28 +56,28 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 			if (checkForNullValues(vv, p2, pv, p1) == false)
 				return "";
 
-			theAnswer = vv / ((p2 - pv) / (p1 - p2));
+			theAnswer = vv / ((p2 - p1) / (pv - p2));
 			break;
 		case p2_INDEX:
 
 			if (checkForNullValues(v1, vv, pv, p1) == false)
 				return "";
 
-			theAnswer = (((vv * p1) / v1) + pv) / (1 + (vv / v1));
+			theAnswer = (((vv * pv) / v1) + p1) / (1 + (vv / v1));
 			break;
 		case p1_INDEX:
 
 			if (checkForNullValues(v1, p2, pv, vv) == false)
 				return "";
+			theAnswer = p2 - (vv * (pv - p2) / v1);
 
-			theAnswer = ((v1 * (p2 - pv) / vv) + p2);
 			break;
 		case Pv_INDEX:
 
 			if (checkForNullValues(v1, p2, vv, p1) == false)
 				return "";
+			theAnswer = ((v1 * (p2 - p1) / vv) + p2);
 
-			theAnswer = p2 - (vv * (p1 - p2) / v1);
 			break;
 		}
 
@@ -145,9 +145,11 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 
 		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
 			if (focusStatus == false && !_fieldsString.contentEquals("")) {
-				
-				Log.println(Log.DEBUG, "calc", "Sum: " + theSum(_textFieldsStatus));
-				Log.println(Log.DEBUG, "calc", "Length of _textfieldStatus: " + (_textFieldsStatus.length-1));
+
+				Log.println(Log.DEBUG, "calc", "Sum: "
+						+ theSum(_textFieldsStatus));
+				Log.println(Log.DEBUG, "calc", "Length of _textfieldStatus: "
+						+ (_textFieldsStatus.length - 1));
 				_textFieldsStatus[indexOfCurrentField] = 1;
 
 			}

@@ -71,23 +71,16 @@ public class Spess_tetthet extends Basic_Calc {
 			Log.println(Log.DEBUG, "calc", "Spesstetthet calculated Vs to be "
 					+ Vs);
 
-			if (checkForNullValues(Vsf, Pf, Vs) == false) {
-				Log.println(Log.INFO, "calc",
-						"SpessTetthet got a value of Cl not between 5000 and 186650");
-				return "";
-			}
-
-			tvPf.setText(String.format("%.3f", Pf));
-			tvVsf.setText(String.format("%.3f", Vsf));
-			tvVs.setText(String.format("%.3f", Vs));
+			tvPf.setText(String.format(THREE_DECIMALS, Pf));
+			tvVsf.setText(String.format(THREE_DECIMALS, Vsf));
+			tvVs.setText(String.format(THREE_DECIMALS, Vs));
 
 			theAnswer = ((100f * Pm) - (Pf * (Vv + Vsf) + Po * Vo))
 					/ (Vfs - Vs);
 
 			if (checkForDivisionErrors(theAnswer) == false)
 				return "";
-			
-			
+
 			Log.println(Log.INFO, "calc",
 					"SpessTetthet calculated an answer! It was " + theAnswer);
 
@@ -100,26 +93,34 @@ public class Spess_tetthet extends Basic_Calc {
 		}
 
 		if (theAnswer != 0) {
-			tvPp.setText(String.format("%.3f", theAnswer));
-			return String.format("%.3f", theAnswer);
+			tvPp.setText(String.format(THREE_DECIMALS, theAnswer));
+			return String.format(THREE_DECIMALS, theAnswer);
 		}
 
 		else
 			return "";
 	}
 
+	/**
+	 * Calculates the Pf and Vsf variables based on table 3.1 in
+	 * "Øvinger i Bore- og brønnteknikk"
+	 * 
+	 * If cl is out of bounds for the table, a toast will be displayed, and Vfs
+	 * and Pf will be set to 0
+	 * 
+	 * @param cl - Value of KloridInnhold
+	 * @return float array with Vsf in place 0, and Pf in place 1
+	 */
 	public float[] calcPfOrVsf(float cl) {
-		/**
-		 * Calculates the Pf variable based on table 3.1 in
-		 * "Øvinger i Bore- og brønnteknikk"
-		 */
+
 		Table_3_1 table = new Table_3_1(cl);
 		float Pf = table.getPf();
 		float Vsf = table.getVsf();
 
 		if (Pf == -1 || Vsf == -1) {
 			// Catches out of bounds exception
-			showToast("Cl must be over 5000 and less than 186650!");
+			String message = getResources().getString(R.string.OutOfBounds);
+			showToast(message);
 			return new float[] { 0, 0 };
 		} else {
 			return new float[] { Vsf, Pf };

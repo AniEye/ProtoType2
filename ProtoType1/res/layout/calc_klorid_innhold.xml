@@ -13,28 +13,12 @@
         android:src="@drawable/klorinnhold_icon" />
 
     <TextView
-        android:id="@+id/tvm1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/KlorinnholdCl" />
-
-    <EditText
-        android:id="@+id/etKICl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="[mg/l]"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/AgNO3" 
-        android:lineSpacingExtra="5dp"/>
+        android:lineSpacingExtra="6dp"
+        android:text="@string/AgNO3"/>
 
     <EditText
         android:id="@+id/etKIVAgNO3"
@@ -50,8 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/Vfiltrat"
-        android:lineSpacingExtra="4dp" />
+        android:lineSpacingExtra="4dp"
+        android:text="@string/Vfiltrat" />
 
     <EditText
         android:id="@+id/etKIVF"
@@ -67,9 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[ml/l]"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/KlCLmg"
+            android:text="@string/KlCL"
             android:textSize="16dp" />
 
         <TextView
@@ -105,7 +87,7 @@
             android:text=""
             android:textSize="16dp" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/KlCLppm"
+            android:text="@string/KlCL"
             android:textSize="16dp" />
 
         <TextView
@@ -155,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="NaCl innhold \n ( mg/l NaCl )"
+            android:text="NaCl innhold"
             android:textSize="16dp" />
 
         <TextView
@@ -190,7 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="NaCl innhold \n ( ppm NaCl )"
+            android:text="NaCl innhold"
             android:textSize="16dp" />
 
         <TextView
@@ -216,19 +198,55 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/AgNO3Clean"
+            android:textSize="16dp" 
+            android:lineSpacingExtra="4dp"/>
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text=" = "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tvK5637"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="0,0282 mol/L"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
         android:paddingTop="5dp" >
 
         <Button
             android:id="@+id/bKIUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update" />
+            android:text="@string/CalcButtonUpdate" />
 
         <Button
             android:id="@+id/bKIClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clear" />
+            android:text="@string/CalcButtonClear" />
     </LinearLayout>
 
 </LinearLayout>

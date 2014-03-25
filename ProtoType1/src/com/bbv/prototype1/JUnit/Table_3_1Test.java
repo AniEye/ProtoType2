@@ -16,11 +16,11 @@ public class Table_3_1Test extends AndroidTestCase {
 	}
 
 	public void testGetPf() {
-		
-		float[] Cl_values = { 5000, 10000, 20000, 30000, 40000, 60000, 80000,
-				100000, 120000, 140000, 160000, 180000, 186650 };
-		float[] Pf_values = { 1.004f, 1.010f, 1.021f, 1.032f, 1.043f, 1.065f,
-				1.082f, 1.098f, 1.129f, 1.149f, 1.170f, 1.194f, 1.197f };
+
+		float[] Cl_values = { 0, 5000, 10000, 20000, 30000, 40000, 60000,
+				80000, 100000, 120000, 140000, 160000, 180000, 186650 };
+		float[] Pf_values = { 1, 1.004f, 1.010f, 1.021f, 1.032f, 1.043f,
+				1.065f, 1.082f, 1.098f, 1.129f, 1.149f, 1.170f, 1.194f, 1.197f };
 
 		// Testing that values of Cl that match any Cl table value will work
 		for (int i = 0; i < Cl_values.length; i++) {
@@ -28,13 +28,24 @@ public class Table_3_1Test extends AndroidTestCase {
 			assertEquals(Pf_values[i], table.getPf());
 		}
 
-		// Testing that values of Cl below 5000 and over 186650 will return
+		// Testing that values of Cl below 0 and over 186650 will return
 		// values of 0 using edge testing
-		table = new Table_3_1(4999);
+		table = new Table_3_1(-1);
 		assertEquals(-1f, table.getPf());
 		table = new Table_3_1(186651);
-		assertEquals(-1f, table.getPf());		
-		
+		assertEquals(-1f, table.getPf());
+
+		// Testing Cl between 0 and 5000 using edge
+		Cl = 1;
+		Pf = (1 + (1.004f - 1) * ((Cl - 0) / (5000 - 0)));
+		table = new Table_3_1(Cl);
+		assertEquals(Pf, table.getPf());
+
+		Cl = 4999;
+		Pf = (1 + (1.004f - 1) * ((Cl - 0) / (5000 - 0)));
+		table = new Table_3_1(Cl);
+		assertEquals(Pf, table.getPf());
+
 		// Testing Cl between 5000 and 10000 using edge
 		Cl = 5001;
 		Pf = (1.004f + (1.010f - 1.004f) * ((Cl - 5000f) / (10000f - 5000f)));
@@ -169,11 +180,11 @@ public class Table_3_1Test extends AndroidTestCase {
 	}
 
 	public void testGetVsf() {
-		
-		float[] Cl_values = { 5000, 10000, 20000, 30000, 40000, 60000, 80000,
-				100000, 120000, 140000, 160000, 180000, 186650 };
-		float[] Vsf_values = { 0.3f, 0.6f, 1.2f, 1.8f, 2.3f, 3.4f, 4.5f, 5.7f,
-				7.0f, 8.2f, 9.5f, 10.8f, 11.4f };
+
+		float[] Cl_values = { 0, 5000, 10000, 20000, 30000, 40000, 60000,
+				80000, 100000, 120000, 140000, 160000, 180000, 186650 };
+		float[] Vsf_values = { 0, 0.3f, 0.6f, 1.2f, 1.8f, 2.3f, 3.4f, 4.5f,
+				5.7f, 7.0f, 8.2f, 9.5f, 10.8f, 11.4f };
 
 		// Testing that values of Cl that match any Cl table value will work
 		for (int i = 0; i < Cl_values.length; i++) {
@@ -183,11 +194,22 @@ public class Table_3_1Test extends AndroidTestCase {
 
 		// Testing that values of Cl below 5000 and over 186650 will return
 		// values of 0 using edge testing
-		table = new Table_3_1(4999);
+		table = new Table_3_1(-1);
 		assertEquals(-1f, table.getVsf());
 		table = new Table_3_1(186651);
-		assertEquals(-1f, table.getVsf());		
-		
+		assertEquals(-1f, table.getVsf());
+
+		// Testing Cl between 0 and 5000 using edge
+		Cl = 1;
+		Vsf = (0f + (0.3f - 0f) * ((Cl - 0) / (5000 - 0)));
+		table = new Table_3_1(Cl);
+		assertEquals(Vsf, table.getVsf());
+
+		Cl = 4999;
+		Vsf = (0f + (0.3f - 0f) * ((Cl - 0) / (5000 - 0)));
+		table = new Table_3_1(Cl);
+		assertEquals(Vsf, table.getVsf());
+
 		// Testing Cl between 5000 and 10000 using edge
 		Cl = 5001;
 		Vsf = (0.3f + (0.6f - 0.3f) * ((Cl - 5000f) / (10000f - 5000f)));
