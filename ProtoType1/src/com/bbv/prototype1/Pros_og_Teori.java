@@ -236,8 +236,17 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 
 		Intent is = new Intent(ShowContent.KEY_SHOWCONTENT);
 		 is.putExtra(ShowContentBase.KEY_PROS_TEORI, newBundle);
-		startActivity(is);
+		startActivityForResult(is, 2);
 
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode==2){
+			finish();
+		}
 	}
 
 	@Override

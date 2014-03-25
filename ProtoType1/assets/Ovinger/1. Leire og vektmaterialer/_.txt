@@ -29,7 +29,10 @@ pros_og_teori_text/1. Leire og vektmaterialer
 pros_og_teori_text/2. Reologi og filtertap/2.2 Kontroll av filtertap og vannbaserte boreslam
 </Teori>
 
-<Øvingen>
+<Øvinger>
 Ovinger/1. Leire og vektmaterialer
-</Øvingen>
+</Øvinger>
 
+<Kalkulatorer>
+Kalkulator/En kalkulator
+</Kalkulatorer>

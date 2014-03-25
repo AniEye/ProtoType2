@@ -12,10 +12,11 @@
 1.1 Introduksjon
 </title>
 
-<list>
-Teori
-Øvinger
-Utstyr
-Kalkulator
-</list>
+<Øvinger>
+Ovinger/1. Leire og vektmaterialer
+</Øvinger>
+
+<Teori>
+pros_og_teori_text/1. Leire og vektmaterialer/1.1 Introduksjon
+</Teori>
 

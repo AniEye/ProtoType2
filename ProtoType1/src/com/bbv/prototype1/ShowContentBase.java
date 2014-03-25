@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public abstract class ShowContentBase extends Activity implements
 		OnClickListener {
@@ -35,8 +36,10 @@ public abstract class ShowContentBase extends Activity implements
 	protected int _currentIndex = 0, _PriorityIndex;
 	protected Button _bPrevious, _bNext;
 	protected FragmentManager _fragManag;
+	protected Toast _Toast;
 	protected AssetManager _assetManag;
 	protected InputStream _InputStream;
+	protected String[] _DrawerMenyList;
 	protected StringBuffer _StringBuffer;
 	protected BufferedReader _BufferedReader;
 	protected boolean _bTitle, _bNextOrLast, _bList, _bReferenceList,
@@ -58,6 +61,10 @@ public abstract class ShowContentBase extends Activity implements
 	public final static String KEY_CHAPTERPART2 = "Teori_ChapterPart2";
 
 	public final static String KEY_SHOWCONTENT = "com.bbv.prototype1.SHOWCONTENT";
+
+	public static enum _DrawerMenuListIndex {
+		MainMenu, Theory, Exercise,Calculator
+	};
 
 	protected final static String KEY_LOGCAT = "ShowContent";
 
@@ -190,39 +197,16 @@ public abstract class ShowContentBase extends Activity implements
 	 */
 	public void setNavigationDrawerContent(
 			ArrayList<NavigationDrawerItemContent> list) {
-		ArrayList<NavigationDrawerItemContent> aList=new ArrayList<NavigationDrawerItemContent>();
+		ArrayList<NavigationDrawerItemContent> aList = new ArrayList<NavigationDrawerItemContent>();
 		if (list != null) {
-			aList=list;
-		}else{
+			aList = list;
+		} else {
 			NavigationDrawerItemContent item = new NavigationDrawerItemContent();
 			item.setTitle("No data");
 			aList.add(item);
 		}
 		_listView.setAdapter(new NavigationDrawerAdapter(this, aList, null));
 	}
-
-	/**
-	 * will set the content of the NavigatorDrawer with a stringList
-	 * 
-	 * @param list
-	 */
-	public void setListViewArray(String[] list) {
-		_listView.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
-				list));
-		_listView.setOnItemClickListener(new DrawerItemClickListener());
-	}
-
-	/* The click listener for ListView in the navigation drawer */
-	protected class DrawerItemClickListener implements
-			ListView.OnItemClickListener {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			selectItem(position);
-		}
-	}
-
-	protected abstract void selectItem(int position);
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -261,5 +245,32 @@ public abstract class ShowContentBase extends Activity implements
 			array[i] = list.get(i);
 		}
 		return array;
+	}
+
+	/**
+	 * Shows a toast on the device with the message from parameter message. Also
+	 * prints a logcat with info.
+	 * 
+	 * @param message
+	 *            - The message displayed by the toast
+	 */
+	protected void showToast(String message) {
+		try {
+			_Toast.getView().isShown(); // true if visible
+			_Toast.setText(message);
+		} catch (Exception e) { // invisible if exception
+			_Toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+		}
+		Log.println(Log.DEBUG, "calc", "Displayed toast saying: " + message);
+		_Toast.show();
+	}
+
+	protected void newDrawerContentList() {		
+		_NavigatorItemContentList = new ArrayList<NavigationDrawerItemContent>();
+		for (int i = 0; i < _DrawerMenyList.length; i++) {
+			NavigationDrawerItemContent item = new NavigationDrawerItemContent();
+			item.setTitle(_DrawerMenyList[i]);
+			_NavigatorItemContentList.add(item);
+		}
 	}
 }

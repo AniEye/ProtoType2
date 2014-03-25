@@ -1,9 +1,6 @@
 package com.bbv.prototype1;
 
 import java.util.ArrayList;
-
-import com.bbv.prototype1.ShowContentBase.DrawerItemClickListener;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -125,26 +122,32 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 			@Override
 			public void onClick(View v) {
 				int thePosition = (Integer) v.getTag();
-				if (_ContentArray.get(thePosition).getStringList() != null
-						&& _ContentArray.get(thePosition).getStringList().length != 0) {
-
-					if (_TableList.get(thePosition).getVisibility() == android.view.View.GONE) {
-						_TableList.get(thePosition).setVisibility(
-								android.view.View.VISIBLE);
-					} else {
-						_TableList.get(thePosition).setVisibility(
-								android.view.View.GONE);
-					}
+				if (thePosition == ShowContentBase._DrawerMenuListIndex.MainMenu
+						.ordinal()) {
+					Log.e(KEY_LOGCAT, "Hovedmeny is pressed");
+					_Activity.setResult(2);
+					_Activity.finish();
 
 				} else {
-					Toast.makeText(_Activity, "No references",
-							Toast.LENGTH_LONG).show();
-				}
-				Log.e(KEY_LOGCAT,
-						"Length of textview list is: " + _TableList.size());
-				for (int i = 0; i < _ContentArray.size(); i++) {
-					if (i != thePosition) {
-						_TableList.get(i).setVisibility(android.view.View.GONE);
+					if (_ContentArray.get(thePosition).getStringList() != null
+							&& _ContentArray.get(thePosition).getStringList().length != 0) {
+
+						if (_TableList.get(thePosition).getVisibility() == android.view.View.GONE) {
+							_TableList.get(thePosition).setVisibility(
+									android.view.View.VISIBLE);
+						} else {
+							_TableList.get(thePosition).setVisibility(
+									android.view.View.GONE);
+						}
+
+					} else {
+						_Activity.showToast("No references");
+					}
+					for (int i = 0; i < _ContentArray.size(); i++) {
+						if (i != thePosition) {
+							_TableList.get(i).setVisibility(
+									android.view.View.GONE);
+						}
 					}
 				}
 			}
@@ -192,7 +195,10 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 			}
 
 			_Activity.setTheoryBundle(newBundle);
-			_Activity.setCurrentIndex(0);
+			_Activity
+					.setCurrentIndex(ShowContentBase._DrawerMenuListIndex.Theory
+							.ordinal());
+
 			try {
 				_Activity._nWVB = new WebViewTeori();
 				_Activity._nWVB.setArguments(_Activity.getTheoryBundle());
@@ -202,20 +208,25 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 
 				_Activity._fragManag.beginTransaction()
 						.replace(R.id.flViskos, _Activity._nWVB).commit();
-				// _Activity._listView.setItemChecked(position, true);
 
 				_Activity._drawerLayout.closeDrawer(_Activity._listView);
 
+//				_TableList.get(
+//						ShowContentBase._DrawerMenuListIndex.Theory.ordinal())
+//						.setVisibility(android.view.View.GONE);
+
 			} catch (Exception e) {
-				Toast.makeText(_Activity, "The file does not exist",
-						Toast.LENGTH_LONG);
+				_Activity.showToast("The file does not exist");
 			}
-		} else if (splitted[0].contentEquals("Ovinger") && splitted.length>1) {
+		} else if (splitted[0].contentEquals("Ovinger") && splitted.length > 1) {
 			Bundle newBundle = new Bundle();
 			newBundle.putString(ShowContentBase.KEY_OVING, splitted[1].trim());
-			
+
 			_Activity.setOvingBundle(newBundle);
-			_Activity.setCurrentIndex(1);
+			_Activity
+					.setCurrentIndex(ShowContentBase._DrawerMenuListIndex.Exercise
+							.ordinal());
+
 			try {
 				_Activity._nWVB = new WebViewOving();
 				_Activity._nWVB.setArguments(_Activity.getOvingBundle());
@@ -225,19 +236,20 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 
 				_Activity._fragManag.beginTransaction()
 						.replace(R.id.flViskos, _Activity._nWVB).commit();
-				// _Activity._listView.setItemChecked(position, true);
 
 				_Activity._drawerLayout.closeDrawer(_Activity._listView);
+//				_TableList
+//						.get(ShowContentBase._DrawerMenuListIndex.Exercise
+//								.ordinal()).setVisibility(
+//								android.view.View.GONE);
 
 			} catch (Exception e) {
-				Toast.makeText(_Activity, "The file does not exist",
-						Toast.LENGTH_LONG);
+				_Activity.showToast("The file does not exist");
 			}
 		}
 
 		else {
-			Toast.makeText(_Activity, "This will not open anything",
-					Toast.LENGTH_LONG).show();
+			_Activity.showToast("This will not open anything");
 		}
 	}
 }

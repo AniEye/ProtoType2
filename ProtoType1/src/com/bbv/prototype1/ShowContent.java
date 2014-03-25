@@ -20,78 +20,64 @@ public class ShowContent extends ShowContentBase {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showcontent);
 
+		Initialize();
+		StartFirstDocument(savedInstanceState);
+	}
+
+	private void StartFirstDocument(Bundle savedInstanceState) {
+
 		if (savedInstanceState == null) {
 			Log.i(KEY_LOGCAT,
 					"Start doing what is needed when savedInstace = null");
 			if (getTheoryBundle() != null) {
-				setPriorityIndex(0);
-				setCurrentIndex(0);
+				setPriorityIndex(_DrawerMenuListIndex.Theory.ordinal());
+				setCurrentIndex(_DrawerMenuListIndex.Theory.ordinal());
+				_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
+				_nWVB = new WebViewTeori();
+				_nWVB.setArguments(getTheoryBundle());
 			} else if (getOvingBundle() != null) {
-				setPriorityIndex(1);
-				setCurrentIndex(1);
+				setPriorityIndex(_DrawerMenuListIndex.Exercise.ordinal());
+				setCurrentIndex(_DrawerMenuListIndex.Exercise.ordinal());
+				_filePath = getFilePathFromOvingBundle(getOvingBundle());
+				_nWVB = new WebViewOving();
+				_nWVB.setArguments(getOvingBundle());
 			}
 		} else {
 			Log.i(KEY_LOGCAT,
 					"Start doing what is needed when savedInstace != null");
-
-			Log.i(KEY_LOGCAT, "PriorityIndex is: " + getPriorityIndex());
-			Log.i(KEY_LOGCAT, "CurrentIndex is: " + getCurrentIndex());
-
-		}
-
-		Initialize();
-
-	}
-
-	@Override
-	protected void selectItem(int position) {
-
-		Log.i(KEY_LOGCAT, "Running selectItem");
-		_fragManag = getFragmentManager();
-		Log.i(KEY_LOGCAT, "got fragment manager");
-
-		switch (position) {
-		case 0:
-			if (getTheoryBundle() != null) {
-				setCurrentIndex(0);
+			if (getCurrentIndex() == _DrawerMenuListIndex.Theory.ordinal()) {
+				_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
 				_nWVB = new WebViewTeori();
-				Log.i(KEY_LOGCAT, "created new instance of webViewTeori");
 				_nWVB.setArguments(getTheoryBundle());
-				Log.i(KEY_LOGCAT, "gave it the arguments needed");
-			} else {
-				Toast.makeText(this, "Ingen teori lagt til som referanse",
-						Toast.LENGTH_LONG).show();
-			}
-			break;
-		case 1:
-			if (getOvingBundle() != null) {
-				setCurrentIndex(1);
+			} else if (getCurrentIndex() == _DrawerMenuListIndex.Exercise
+					.ordinal()) {
+				_filePath = getFilePathFromOvingBundle(getOvingBundle());
 				_nWVB = new WebViewOving();
-				Log.i(KEY_LOGCAT, "created new instance of webViewOving");
 				_nWVB.setArguments(getOvingBundle());
-				Log.i(KEY_LOGCAT, "gave it the arguments needed");
-			} else {
-				Toast.makeText(this, "Ingen øving lagt til som referanse",
-						Toast.LENGTH_LONG).show();
 			}
-			break;
-		}
-		if (getCurrentIndex() == 0) {
-			_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
-		} else if (getCurrentIndex() == 1) {
-			_filePath = getFilePathFromOvingBundle(getOvingBundle());
-		}
+			retriveDrawer();
 
+		}
 		decodeDataDocument();
 
 		_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
 		Log.i(KEY_LOGCAT, "replacing the fragment with fragment manager");
-		_listView.setItemChecked(position, true);
+		_listView.setItemChecked(getCurrentIndex(), true);
 
 		_drawerLayout.closeDrawer(_listView);
+	}
 
-		Log.i(KEY_LOGCAT, "Finishing selectItem");
-		Log.i(KEY_LOGCAT, "  ");
+	private void retriveDrawer() {
+		newDrawerContentList();
+		for (int i = 0; i < _DrawerMenyList.length; i++) {
+			if (this.getIntent().getStringArrayExtra(_DrawerMenyList[i]) != null) {
+				_NavigatorItemContentList.get(i).setStringList(
+						this.getIntent()
+								.getStringArrayExtra(_DrawerMenyList[i]));
+			}
+		}
+		setNavigationDrawerContent(_NavigatorItemContentList);
+
 	}
 
 	@Override
@@ -106,20 +92,19 @@ public class ShowContent extends ShowContentBase {
 			Log.i(KEY_LOGCAT, "Previous Button Presset");
 			break;
 		}
-		if (getCurrentIndex() == 0) {
+		if (getCurrentIndex() == _DrawerMenuListIndex.Theory.ordinal()) {
 			setTheoryBundle(_currentBundle);
 			_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
 			_nWVB.Reload(getTheoryBundle());
 
 			decodeDataDocument();
 
-		} else if (getCurrentIndex() == 1) {
+		} else if (getCurrentIndex() == _DrawerMenuListIndex.Exercise.ordinal()) {
 			setOvingBundle(_currentBundle);
 			_filePath = getFilePathFromOvingBundle(getOvingBundle());
 			_nWVB.Reload(getOvingBundle());
 
 			decodeDataDocument();
-
 		}
 
 		Log.i(KEY_LOGCAT, "Finishing onClick");
@@ -131,7 +116,9 @@ public class ShowContent extends ShowContentBase {
 			String str = "";
 			_bTitle = _bNextOrLast = _bReferenceList = _bListFound = false;
 			setAssetManager();
+			newDrawerContentList();
 			setInputStream(_filePath + "_.txt");
+			Log.e(KEY_LOGCAT, "found file");
 			setBufferedReader(_InputStream);
 			newStringBuffer();
 
@@ -153,10 +140,12 @@ public class ShowContent extends ShowContentBase {
 						continue;
 					} else if (str.contains("</next>")) {
 						_bNextOrLast = false;
-						if (getCurrentIndex() == 0) {
+						if (getCurrentIndex() == _DrawerMenuListIndex.Theory
+								.ordinal()) {
 							setNextBundle(createNewTeoriBundle(_StringBuffer
 									.toString()));
-						} else if (getCurrentIndex() == 1) {
+						} else if (getCurrentIndex() == _DrawerMenuListIndex.Exercise
+								.ordinal()) {
 							setNextBundle(createNewOvingBundle(_StringBuffer
 									.toString()));
 						}
@@ -165,10 +154,12 @@ public class ShowContent extends ShowContentBase {
 						continue;
 					} else if (str.contains("</last>")) {
 						_bNextOrLast = false;
-						if (getCurrentIndex() == 0) {
+						if (getCurrentIndex() == _DrawerMenuListIndex.Theory
+								.ordinal()) {
 							setPreviousBundle(createNewTeoriBundle(_StringBuffer
 									.toString()));
-						} else if (getCurrentIndex() == 1) {
+						} else if (getCurrentIndex() == _DrawerMenuListIndex.Exercise
+								.ordinal()) {
 							setPreviousBundle(createNewOvingBundle(_StringBuffer
 									.toString()));
 						}
@@ -178,64 +169,38 @@ public class ShowContent extends ShowContentBase {
 					} else {
 						// this is where i left off
 						if (getCurrentIndex() == getPriorityIndex()) {
-							if (str.contains("<list>")) {
-								_bList = true;
-								_StringArray = new ArrayList<String>();
-								_NavigatorItemContentList = new ArrayList<NavigationDrawerItemContent>();
-								continue;
-							} else if (str.contains("</list>")) {
-								_bList = false;
-								if (!_StringArray.isEmpty()) {
-									String[] stringarray = arrayListToStringArray(_StringArray);
-									// setListViewArray(stringarray);
-									Log.i(KEY_LOGCAT,
-											"Length of stored string: "
-													+ stringarray.length);
-									for (int i = 0; i < stringarray.length; i++) {
-										NavigationDrawerItemContent item = new NavigationDrawerItemContent();
-										item.setTitle(stringarray[i]);
-										_NavigatorItemContentList.add(item);
-									}
-									_bListFound = true;
-									setListArray(stringarray);
-								}
-								continue;
-							} else {
-								if (_bListFound) {
-									if (_StringArray.size() != 0) {
-										for (int i = 0; i < _StringArray.size(); i++) {
-											if (str.contains("<"
-													+ _StringArray.get(i) + ">")) {
-												_bReferenceList = true;
-												_ReferenceArray = new ArrayList<String>();
-												_currentFoundReferenceList="<"+_StringArray.get(i)+">";
-												break;
-											}
-											if (str.contains("</"
-													+ _StringArray.get(i) + ">")) {
 
-												_NavigatorItemContentList
-														.get(i)
-														.setStringList(
-																arrayListToStringArray(_ReferenceArray));
-												_currentFoundReferenceList="</"+_StringArray.get(i)+">";
-												break;
-											}
-										}
-									}
+							for (int i = 0; i < _DrawerMenyList.length; i++) {
+
+								if (str.contains("<" + _DrawerMenyList[i] + ">")) {
+									_bReferenceList = true;
+									_ReferenceArray = new ArrayList<String>();
+									_currentFoundReferenceList = "<"
+											+ _DrawerMenyList[i] + ">";
+									break;
+								} else if (str.contains("</"
+										+ _DrawerMenyList[i] + ">")) {
+									_bReferenceList = false;
+									_NavigatorItemContentList
+											.get(i)
+											.setStringList(
+													arrayListToStringArray(_ReferenceArray));
+									_currentFoundReferenceList = "</"
+											+ _DrawerMenyList[i] + ">";
+									break;
 								}
 							}
 						}
 					}
-
+					// if(!str.isEmpty()){
 					if (_bTitle || _bNextOrLast) {
 						_StringBuffer.append(str);
-					}
-					else if (_bList) {
+					} else if (_bList) {
 						if (!str.isEmpty()) {
 							_StringArray.add(str);
 						}
-					} else if (_bReferenceList && !str.contains(_currentFoundReferenceList)) {
+					} else if (_bReferenceList
+							&& !str.contains(_currentFoundReferenceList)) {
 						if (!str.isEmpty()) {
 							_ReferenceArray.add(str);
 						}
@@ -243,18 +208,30 @@ public class ShowContent extends ShowContentBase {
 				}
 				// setting the list after reading the hole file looking for all
 				// the references
-				setNavigationDrawerContent(_NavigatorItemContentList);
+				if (getCurrentIndex() == getPriorityIndex()) {
+					setNavigationDrawerContent(_NavigatorItemContentList);
+					saveDrawerContent();
+				}
 
 			}
 			_InputStream.close();
 		} catch (IOException e) {
-			Toast.makeText(this, "File does not exist", Toast.LENGTH_LONG)
-					.show();
+			showToast("File does not exist");
 			Log.e(KEY_LOGCAT,
 					"Didn't open or find _.txt, wrong database reference");
 		}
 		Log.i(KEY_LOGCAT, "Finishing decodeDataDocument");
 		Log.i(KEY_LOGCAT, "  ");
+	}
+
+	private void saveDrawerContent() {
+		for (int i = 0; i < _NavigatorItemContentList.size(); i++) {
+			if (_NavigatorItemContentList.get(i).getStringList() != null) {
+				this.getIntent().putExtra(_DrawerMenyList[i],
+						_NavigatorItemContentList.get(i).getStringList());
+			}
+		}
+
 	}
 
 	private void Initialize() {
@@ -286,7 +263,8 @@ public class ShowContent extends ShowContentBase {
 		_bNext.setOnClickListener(this);
 		_bPrevious.setOnClickListener(this);
 
-		selectItem(getCurrentIndex());
+		_DrawerMenyList = getResources().getStringArray(R.array.DrawerMenuList);
+		_fragManag = getFragmentManager();
 
 	}
 
@@ -349,33 +327,4 @@ public class ShowContent extends ShowContentBase {
 		Log.i(KEY_LOGCAT, "Finishing setCurrentIndex");
 		Log.i(KEY_LOGCAT, "  ");
 	}
-
-	// setter and getter for listarray
-	// maybe remove this later if found out that it's useless
-	/**
-	 * Will set/store the array in the intent
-	 * 
-	 * @param
-	 */
-	protected void setListArray(String[] aStringArray) {
-		this.getIntent().putExtra(KEY_LIST_ARRAY, aStringArray);
-		Log.i(KEY_LOGCAT, "Finishing storeCurrentIndex");
-		Log.i(KEY_LOGCAT, "  ");
-	}
-
-	/**
-	 * Will return the array from the intent
-	 * 
-	 * @return String[]
-	 * @throws Exception
-	 */
-	protected String[] getListArray() throws Exception {
-		return this.getIntent().getStringArrayExtra(KEY_LIST_ARRAY);
-	}
-
-	// @Override
-	// protected void onSaveInstanceState(Bundle outState) {
-	// // TODO Auto-generated method stub
-	// super.onSaveInstanceState(outState);
-	// }
 }
