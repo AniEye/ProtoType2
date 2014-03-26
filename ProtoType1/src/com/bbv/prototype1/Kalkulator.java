@@ -1,7 +1,6 @@
 package com.bbv.prototype1;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -17,7 +16,25 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
-import com.bbv.prototype1.Kalkulatorer.*;
+import android.widget.TextView;
+
+import com.bbv.prototype1.Kalkulatorer.AlkaPm;
+import com.bbv.prototype1.Kalkulatorer.Alkalitet;
+import com.bbv.prototype1.Kalkulatorer.Basic_Calc;
+import com.bbv.prototype1.Kalkulatorer.CEC;
+import com.bbv.prototype1.Kalkulatorer.CaOHInnhold;
+import com.bbv.prototype1.Kalkulatorer.Flytegrense;
+import com.bbv.prototype1.Kalkulatorer.Herch_Law;
+import com.bbv.prototype1.Kalkulatorer.KloridInnhold;
+import com.bbv.prototype1.Kalkulatorer.KloridInnholdIVannfasen;
+import com.bbv.prototype1.Kalkulatorer.MasseOgVolumBalanse;
+import com.bbv.prototype1.Kalkulatorer.OljeVann;
+import com.bbv.prototype1.Kalkulatorer.Plast_Viskos;
+import com.bbv.prototype1.Kalkulatorer.PowerLaw1006;
+import com.bbv.prototype1.Kalkulatorer.PowerLaw600300;
+import com.bbv.prototype1.Kalkulatorer.Spess_tetthet;
+import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
+import com.bbv.prototype1.Kalkulatorer.TotalHardhet;
 
 public class Kalkulator extends Activity implements OnItemSelectedListener,
 		OnItemClickListener {
@@ -67,14 +84,18 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		 * a listview if the device is in a horizontal position
 		 */
 
-		ArrayAdapter<Spannable> adapter = new ArrayAdapter<Spannable>(this,
-				R.layout.custom_spinner);
+		ArrayAdapter<Spannable> adapter = new ArrayAdapter<Spannable>(this, R.layout.custom_spinner);
 		
-		Spannable[] array = new Spannable[getResources().getStringArray(R.array.calculator).length];
+		for(int i=0; i<getResources().getStringArray(R.array.calculator).length; i++){
+			String text = getResources().getStringArray(R.array.calculator)[i];
+			adapter.add((Spannable) Html.fromHtml(text));
+		}
 		
-		for(int i=0; i<array.length;i++){
-			array[i] = (Spannable) Html.fromHtml(getResources().getStringArray(R.array.calculator)[i]);
-			adapter.insert(array[i], i);
+		try {
+ 
+		} catch (Exception e) {
+			// TODO: handle exception
+			Log.e("TryCatch", "Failed to cast and change text");
 		}
 		
 		adapter.setDropDownViewResource(SpinnerItemLayout);

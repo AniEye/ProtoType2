@@ -71,6 +71,8 @@
         <item>Øving 4: Modifikasjon av boreslam</item>
         <item>Øving 5: Boreslam</item>
     </string-array>
+
+    <!-- To get HTML markup read, the opening "<" must be replaced with "&lt;" -->
     <string-array name="calculator">
         <item>Masse- og Volumbalanse</item>
         <item>Tilsynelatende viskositet (TV)</item>
@@ -83,12 +85,12 @@
         <item>Klorid innhold</item>
         <item>Total hardhet</item>
         <item>Caution Exchange Capasity</item>
-        <item><htlm>Ca (OH)<sub>2</sub></htlm></item>
+        <item>Ca (OH)&lt;sub>&lt;small>2&lt;/small>&lt;/sub></item>
         <item>Alkalitet</item>
         <item>Olje/vann forhold</item>
-        <item><html>Ca (OH)<sup>-</sup> Innhold</html></item>
+        <item>Ca (OH)&lt;sup>&lt;small>-&lt;/small>&lt;/sup> Innhold</item>
         <item>Klorid innhold i vannfasen</item>
-        <item><html>CaCl<sub>2</sub> i vannfasen</html></item>
+        <item>CaCl&lt;sub>&lt;small>2&lt;/small>&lt;/sub> i vannfasen</item>
     </string-array>
 
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>
