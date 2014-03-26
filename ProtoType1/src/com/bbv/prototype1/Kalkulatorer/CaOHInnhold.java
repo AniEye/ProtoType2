@@ -50,7 +50,7 @@ public class CaOHInnhold extends Basic_Calc {
 			if (checkForNullValues(CaOH2) == false || checkForNegativeValues(CaOH2) == false)
 				return "";
 			Mp = CaOH2 / 1.3f;
-			return String.format("%.03f", Mp);
+			return String.format(THREE_DECIMALS, Mp);
 
 		case CaOH_INDEX:
 			
@@ -58,7 +58,7 @@ public class CaOHInnhold extends Basic_Calc {
 				return "";
 
 			CaOH2 = Mp * 1.3f;
-			return String.format("%.03f", CaOH2);
+			return String.format(THREE_DECIMALS, CaOH2);
 		}
 		Log.println(Log.ERROR, "calc", "Something went very wrong in " + getClass().getName());
 		return "";

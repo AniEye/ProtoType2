@@ -1,6 +1,7 @@
 package com.bbv.prototype1.Kalkulatorer;
 
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -78,9 +79,9 @@ public class Herch_Law extends Basic_Calc {
 			String _K = String.format(THREE_DECIMALS, K);
 
 			textviews[0].setText(_N);
-			textviews[1].setText(_T0);
-			textviews[2].setText(_ty);
-			textviews[3].setText(_K);
+			textviews[1].setText(Html.fromHtml(_K+" [Pa * s<sup><small>n</small></sup>]"));
+			textviews[2].setText(_T0);
+			textviews[3].setText(_ty);
 			
 			return String.format(THREE_DECIMALS, N);
 

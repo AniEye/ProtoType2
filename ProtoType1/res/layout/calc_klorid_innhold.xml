@@ -225,7 +225,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="left|center_vertical"
-            android:text="0,0282 mol/L"
+            android:text="0,0282 [mol/l]"
             android:textSize="16dp" />
     </LinearLayout>
 

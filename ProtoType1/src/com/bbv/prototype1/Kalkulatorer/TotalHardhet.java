@@ -91,11 +91,11 @@ public class TotalHardhet extends Basic_Calc {
 			if(checkForDivisionErrors(totHardCa2,totHardCaCo3,totHardMg2) == false)
 				return "";
 			
-			textviews[0].setText(String.format("%.3f", totHardCaCo3) + " " + "mg/l");
-			textviews[1].setText(String.format("%.3f", totHardCa2) + " " + "mg/l");
-			textviews[2].setText(String.format("%.3f", totHardMg2) + " " + "mg/l");
+			textviews[0].setText(String.format(THREE_DECIMALS, totHardCaCo3) + " " + "[mg/l]");
+			textviews[1].setText(String.format(THREE_DECIMALS, totHardCa2) + " " + "[mg/l]");
+			textviews[2].setText(String.format(THREE_DECIMALS, totHardMg2) + " " + "[mg/l]");
 			
-			return String.format("%.3f",totHardCaCo3);
+			return String.format(THREE_DECIMALS,totHardCaCo3);
 			
 		}
 

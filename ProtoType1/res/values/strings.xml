@@ -27,16 +27,16 @@
     <string name="P1">\u03C1<sub><small>1</small></sub> = Tetthet til slammet V<sub><small>1</small></sub></string>
     <string name="Pv">\u03C1<sub><small>v</small></sub> = Tetthet til slammet V<sub><small>v</small></sub></string>
     <string name="KlorinnholdCl">Kloridinnhold, Cl<sup>-</sup></string>
-    <string name="Pm">P<sub>m</sub> = spesifikk tetthet til boreslammet</string>
-    <string name="Po">P<sub>o</sub> = spesifikk tetthet til oljen</string>
+    <string name="Pm">\u03C1<sub>m</sub> = spesifikk tetthet til boreslammet</string>
+    <string name="Po">\u03C1<sub>o</sub> = spesifikk tetthet til oljen</string>
     <string name="SpessTettVv">V<sub>v</sub> = vann fra retorte</string>
     <string name="Vo">V<sub>o</sub> = olje fra retorte</string>
     <string name="SpessTettFw">F<sub>w</sub> - Volumfraksjon av vann \ni slammet, fra retorte</string>
     <string name="Vfs">V<sub>fs</sub> = fast stoff fra retorte (salt + faste partikler)</string>
-    <string name="Pp">P<sub>p</sub> = spesifikk tetthet (gjennomsnittlig) av suspenderte partikler</string>
-    <string name="Pf">P<sub>f</sub> (spesifikk tetthet til filtratet)</string>
-    <string name="Vs">V<sub>s</sub> (oppløst vann i slammet, [volum%])</string>
-    <string name="Vsf">V<sub>sf</sub> (salt i filtratet, [volum%]) </string>
+    <string name="Pp">\u03C1<sub><small>p</small></sub> - spesifikk tetthet (gjennomsnittlig) av suspenderte partikler</string>
+    <string name="Pf">\u03C1<sub><small>f</small></sub> (spesifikk tetthet til filtratet)</string>
+    <string name="Vs">V<sub><small>s</small></sub> (oppløst vann i slammet)</string>
+    <string name="Vsf">V<sub><small>sf</small></sub> (salt i filtratet) </string>
     <string name="AgNO3">V<sub><small>AgNO</small><sub><small>3</small></sub></sub> - Volum av sølvnitrat forbrukt</string>
     <string name="AgNO3Clean">AgNO<sub>3</sub></string>
     <string name="Fv">F<sub>w</sub> - fraksjonen av vann i det oljebaserte slammet</string>
@@ -58,9 +58,9 @@
     <string name="TotHardVEDTACaCO3">V<sub>EDTA CaCO<sub><small>3</small></sub></sub></string>
     <string name="TotHardVEDTACa2">V<sub>EDTA Ca<sup><small>2+</small></sup></sub></string>
     <string name="TotHardVF">V<sub><small>filtrat</small></sub> - Volum filtrat</string>
-    <string name="TotHardCaCO3mgl">Total hardhet \n(CaCO<sub><small>3</small></sub>)</string>
-    <string name="TotHardKalsium">Kalsium hardhet \n(Ca<sup><small>2+</small></sup>)</string>
-    <string name="TotHardMagnesium">Magnesium hardhet \n(Mg<sup><small>2+</small></sup>)</string>
+    <string name="TotHardCaCO3mgl">Total hardhet \n[CaCO<sub><small>3</small></sub>]</string>
+    <string name="TotHardKalsium">Kalsium hardhet \n[Ca<sup><small>2+</small></sup>]</string>
+    <string name="TotHardMagnesium">Magnesium hardhet \n[Mg<sup><small>2+</small></sup>]</string>
     <!-- Strings used by calculator using chemistry notation -->
 
     <string-array name="ovinger">

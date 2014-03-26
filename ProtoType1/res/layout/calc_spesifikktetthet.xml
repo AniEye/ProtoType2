@@ -258,7 +258,8 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="@string/Vsf"
-            android:textSize="16dp" />
+            android:textSize="16dp" 
+            android:lineSpacingExtra="4dp"/>
 
         <TextView
             android:id="@+id/tvm6"
@@ -275,7 +276,8 @@
             android:layout_weight="1"
             android:gravity="left|center_vertical"
             android:text=""
-            android:textSize="16dp" />
+            android:textSize="16dp" 
+            android:lineSpacingExtra="4dp"/>
     </LinearLayout>
 
     <LinearLayout

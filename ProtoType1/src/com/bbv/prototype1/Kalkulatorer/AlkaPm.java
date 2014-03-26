@@ -1,6 +1,7 @@
 package com.bbv.prototype1.Kalkulatorer;
 
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -75,9 +76,9 @@ public class AlkaPm extends Basic_Calc {
 			if (Ca < 0)
 				Ca = 0;
 
-			String _Ca = String.format("%.3f", Ca);
+			String _Ca = String.format(THREE_DECIMALS, Ca);
 
-			tvCa.setText(_Ca);
+			tvCa.setText(Html.fromHtml(_Ca + " [kg/m<sup><small>3</small></sup>]"));
 
 			return _Ca;
 

@@ -102,8 +102,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="right"
-            android:text="K [lbs/100 ft^2/s]"
+            android:gravity="right|center_vertical"
+            android:text="K"
             android:textSize="16dp" />
 
         <TextView
@@ -121,7 +121,7 @@
             android:layout_weight="1"
             android:gravity="left|center_vertical"
             android:text=""
-            android:textSize="16dp" />
+            android:textSize="15.5dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -137,8 +137,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="right"
-            android:text="K [Pa]"
+            android:gravity="right|center_vertical"
+            android:text="K"
             android:textSize="16dp" />
 
         <TextView
@@ -152,11 +152,11 @@
         <TextView
             android:id="@+id/tvPL600300PA"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="left|center_vertical"
             android:text=""
-            android:textSize="16dp" />
+            android:textSize="15dp" />
     </LinearLayout>
 
     <LinearLayout

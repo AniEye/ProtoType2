@@ -2,6 +2,7 @@ package com.bbv.prototype1.Kalkulatorer;
 
 import junit.framework.Assert;
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -72,8 +73,8 @@ public class Spess_tetthet extends Basic_Calc {
 					+ Vs);
 
 			tvPf.setText(String.format(THREE_DECIMALS, Pf));
-			tvVsf.setText(String.format(THREE_DECIMALS, Vsf));
-			tvVs.setText(String.format(THREE_DECIMALS, Vs));
+			tvVsf.setText(String.format(THREE_DECIMALS, Vsf) + " [volum%]");
+			tvVs.setText(String.format(THREE_DECIMALS, Vs) + " [volum%]");
 
 			theAnswer = ((100f * Pm) - (Pf * (Vv + Vsf) + Po * Vo))
 					/ (Vfs - Vs);

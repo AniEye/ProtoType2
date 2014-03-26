@@ -1,6 +1,7 @@
 package com.bbv.prototype1.Kalkulatorer;
 
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -73,8 +74,8 @@ public class PowerLaw1006 extends Basic_Calc {
 			String _KPA = String.format(THREE_DECIMALS, K * 0.511f);
 			
 			textviews[0].setText(_N);
-			textviews[1].setText(_K);
-			textviews[2].setText(_KPA);
+			textviews[1].setText(Html.fromHtml(_K + " [lbs/100 ft<sup><small>2</small></sup>/s]"));
+			textviews[2].setText(_KPA + " [Pa]");
 
 			return String.format(THREE_DECIMALS, N);
 
