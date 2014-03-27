@@ -11,3 +11,7 @@
 <title>
 1.6 Bentonitt
 </title>
+
+<Teori>
+pros_og_teori_text/1. Leire og vektmaterialer/1.6 Bentonitt
+</Teori>

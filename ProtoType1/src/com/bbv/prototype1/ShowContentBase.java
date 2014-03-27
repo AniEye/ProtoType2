@@ -34,6 +34,7 @@ public abstract class ShowContentBase extends Activity implements
 	protected CharSequence _activity_title;
 	protected WebViewBase _nWVB;
 	protected int _currentIndex = 0, _PriorityIndex;
+	protected ShowCalculator _nSCalc;
 	protected Button _bPrevious, _bNext;
 	protected FragmentManager _fragManag;
 	protected Toast _Toast;
@@ -52,9 +53,11 @@ public abstract class ShowContentBase extends Activity implements
 	public final static String KEY_PRIORITY_INDEX = "PriorityIndex";
 	public final static String KEY_LIST_ARRAY = "ListArray";
 	public final static String KEY_CURRENT_INDEX = "CurrentIndex";
+	public final static String KEY_DRAWERLOADEDNUMBER = "DrawerLoadedNumber";
 
 	public final static String KEY_OVING = "SOving";
 	public final static String KEY_PROS_TEORI = "BProsTeori";
+	public static final String KEY_CHOSENCALC = "TheChoosenCalc";
 
 	public final static String KEY_CHAPTER = "Teori_Chapter";
 	public final static String KEY_CHAPTERPART1 = "Teori_ChapterPart1";
@@ -271,6 +274,15 @@ public abstract class ShowContentBase extends Activity implements
 			NavigationDrawerItemContent item = new NavigationDrawerItemContent();
 			item.setTitle(_DrawerMenyList[i]);
 			_NavigatorItemContentList.add(item);
+		}
+	}
+	protected void displayNextLast(boolean show){
+		if(show){
+		_bNext.setVisibility(android.view.View.VISIBLE);
+		_bPrevious.setVisibility(android.view.View.VISIBLE);
+		}else{
+			_bNext.setVisibility(android.view.View.INVISIBLE);
+			_bPrevious.setVisibility(android.view.View.INVISIBLE);
 		}
 	}
 }

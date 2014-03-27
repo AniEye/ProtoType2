@@ -1,6 +1,9 @@
 package com.bbv.prototype1;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -79,7 +82,6 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-
 		View _view = convertView;
 		ViewHolder _holder;
 
@@ -107,70 +109,74 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 		// _holder._Title.setText("No Data");
 		//
 		// } else {
-		/***** Get each Model object from Arraylist ********/
-		_tempItemContent = null;
-		_tempItemContent = _ContentArray.get(position);
+		if (_Activity.getItemInDrawerLoaded() < _ContentArray.size()) {
+			/***** Get each Model object from Arraylist ********/
+			_tempItemContent = null;
+			_tempItemContent = _ContentArray.get(position);
 
-		/************ Set Model values in Holder elements ***********/
-		SpannableString span = new SpannableString(_tempItemContent.getTitle());
-		span.setSpan(new UnderlineSpan(), 0, span.length(), 0);
-		_holder._Title.setText(span);
-		Log.e(KEY_LOGCAT, "_tableList.size() is: " + _TableList.size());
-		_holder._Title.setTag(position);
-		_holder._Title.setOnClickListener(new OnClickListener() {
+			/************ Set Model values in Holder elements ***********/
+			SpannableString span = new SpannableString(
+					_tempItemContent.getTitle());
+			span.setSpan(new UnderlineSpan(), 0, span.length(), 0);
+			_holder._Title.setText(span);
+			Log.e(KEY_LOGCAT, "_tableList.size() is: " + _TableList.size());
+			_holder._Title.setTag(position);
+			_holder._Title.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				int thePosition = (Integer) v.getTag();
-				if (thePosition == ShowContentBase._DrawerMenuListIndex.MainMenu
-						.ordinal()) {
-					Log.e(KEY_LOGCAT, "Hovedmeny is pressed");
-					_Activity.setResult(2);
-					_Activity.finish();
-
-				} else {
-					if (_ContentArray.get(thePosition).getStringList() != null
-							&& _ContentArray.get(thePosition).getStringList().length != 0) {
-
-						if (_TableList.get(thePosition).getVisibility() == android.view.View.GONE) {
-							_TableList.get(thePosition).setVisibility(
-									android.view.View.VISIBLE);
-						} else {
-							_TableList.get(thePosition).setVisibility(
-									android.view.View.GONE);
-						}
+				@Override
+				public void onClick(View v) {
+					int thePosition = (Integer) v.getTag();
+					if (thePosition == ShowContentBase._DrawerMenuListIndex.MainMenu
+							.ordinal()) {
+						Log.e(KEY_LOGCAT, "Hovedmeny is pressed");
+						_Activity.setResult(2);
+						_Activity.finish();
 
 					} else {
-						_Activity.showToast("No references");
-					}
-					for (int i = 0; i < _ContentArray.size(); i++) {
-						if (i != thePosition) {
-							_TableList.get(i).setVisibility(
-									android.view.View.GONE);
+						if (_ContentArray.get(thePosition).getStringList() != null
+								&& _ContentArray.get(thePosition)
+										.getStringList().length != 0) {
+
+							if (_TableList.get(thePosition).getVisibility() == android.view.View.GONE) {
+								_TableList.get(thePosition).setVisibility(
+										android.view.View.VISIBLE);
+							} else {
+								_TableList.get(thePosition).setVisibility(
+										android.view.View.GONE);
+							}
+
+						} else {
+							_Activity.showToast("No references");
+						}
+						for (int i = 0; i < _ContentArray.size(); i++) {
+							if (i != thePosition) {
+								_TableList.get(i).setVisibility(
+										android.view.View.GONE);
+							}
 						}
 					}
 				}
-			}
-		});
+			});
 
-		if (_tempItemContent.getStringList() != null) {
-			if (_tempItemContent.getStringList().length != 0) {
-				for (int i = 0; i < _tempItemContent.getStringList().length; i++) {
-					TextView textView = (TextView) View.inflate(_Activity,
-							R.layout.list_item, null);
-					String[] splitting = _tempItemContent.getStringList()[i]
-							.split("/");
+			if (_tempItemContent.getStringList() != null) {
+				if (_tempItemContent.getStringList().length != 0) {
+					for (int i = 0; i < _tempItemContent.getStringList().length; i++) {
+						TextView textView = (TextView) View.inflate(_Activity,
+								R.layout.drawer_item, null);
+						String[] splitting = _tempItemContent.getStringList()[i]
+								.split("/");
 
-					textView.setTag(_tempItemContent.getStringList()[i]);
-					textView.setText(splitting[splitting.length - 1]);
-					textView.setOnClickListener(this);
-					_holder._Table.addView(textView);
+						textView.setTag(_tempItemContent.getStringList()[i]);
+						textView.setText(splitting[splitting.length - 1]);
+						textView.setOnClickListener(this);
+						_holder._Table.addView(textView);
+					}
 				}
 			}
+			_Activity.setItemInDrawerLoaded(_Activity.getItemInDrawerLoaded()+1);
 		}
-		// }
-
 		return _view;
+
 	}
 
 	// ***************listeners**************************
@@ -180,8 +186,10 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 		String textReference = (String) v.getTag();
 		Log.v(KEY_LOGCAT, "Item pressed had tag: " + textReference);
 		String[] splitted = textReference.split("/");
+		_Activity.displayNextLast(true);
 		if (splitted[0].contentEquals("pros_og_teori_text")
 				&& splitted.length > 1) {
+
 			Bundle newBundle = new Bundle();
 
 			newBundle.putString(ShowContentBase.KEY_CHAPTER, splitted[1]);
@@ -211,14 +219,15 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 
 				_Activity._drawerLayout.closeDrawer(_Activity._listView);
 
-//				_TableList.get(
-//						ShowContentBase._DrawerMenuListIndex.Theory.ordinal())
-//						.setVisibility(android.view.View.GONE);
+				_TableList.get(
+						ShowContentBase._DrawerMenuListIndex.Theory.ordinal())
+						.setVisibility(android.view.View.GONE);
 
 			} catch (Exception e) {
 				_Activity.showToast("The file does not exist");
 			}
 		} else if (splitted[0].contentEquals("Ovinger") && splitted.length > 1) {
+
 			Bundle newBundle = new Bundle();
 			newBundle.putString(ShowContentBase.KEY_OVING, splitted[1].trim());
 
@@ -238,14 +247,37 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 						.replace(R.id.flViskos, _Activity._nWVB).commit();
 
 				_Activity._drawerLayout.closeDrawer(_Activity._listView);
-//				_TableList
-//						.get(ShowContentBase._DrawerMenuListIndex.Exercise
-//								.ordinal()).setVisibility(
-//								android.view.View.GONE);
+				_TableList
+						.get(ShowContentBase._DrawerMenuListIndex.Exercise
+								.ordinal()).setVisibility(
+								android.view.View.GONE);
 
 			} catch (Exception e) {
 				_Activity.showToast("The file does not exist");
 			}
+		} else if (Arrays.asList(ShowCalculator._calcList)
+				.contains(splitted[0])) {
+
+			Bundle newBundle = new Bundle();
+			newBundle.putString(ShowContentBase.KEY_CHOSENCALC, splitted[0]);
+			_Activity.setCalculatorBundle(newBundle);
+			_Activity.displayNextLast(false);
+			_Activity.setTitle("Kalkulator");
+
+			_Activity
+					.setCurrentIndex(ShowContentBase._DrawerMenuListIndex.Calculator
+							.ordinal());
+
+			_Activity._nSCalc = new ShowCalculator();
+			_Activity._nSCalc.setArguments(_Activity.getCalculatorBundle());
+
+			_Activity._fragManag.beginTransaction()
+					.replace(R.id.flViskos, _Activity._nSCalc).commit();
+
+			_Activity._drawerLayout.closeDrawer(_Activity._listView);
+			_TableList.get(
+					ShowContentBase._DrawerMenuListIndex.Calculator.ordinal())
+					.setVisibility(android.view.View.GONE);
 		}
 
 		else {

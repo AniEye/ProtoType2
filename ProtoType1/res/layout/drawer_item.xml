@@ -2,11 +2,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:minHeight="50dp"
-    android:textSize="20sp"
+    android:textSize="15sp"
     android:typeface="sans"    
+    android:paddingBottom="5dp"
     android:textColor="@android:color/white" 
     />
+<!-- i have changed the textsize from 20sp to 15sp -->
 <!--
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     this is commented out

@@ -12,3 +12,6 @@
 2.3 Viskositet og filtertapskontrollerende stoff
 </title>
 
+<Teori>
+pros_og_teori_text/2. Reologi og filtertap/2.3 Viskositet og filtertapskontrollerende stoff
+</Teori>

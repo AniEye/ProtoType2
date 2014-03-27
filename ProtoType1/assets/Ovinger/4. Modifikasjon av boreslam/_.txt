@@ -12,3 +12,6 @@
 4. Modifikasjon av boreslam
 </title>
 
+<Øvinger>
+Ovinger/4. Modifikasjon av boreslam
+</Øvinger>

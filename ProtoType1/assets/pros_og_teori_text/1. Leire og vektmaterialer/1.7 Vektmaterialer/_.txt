@@ -11,3 +11,7 @@
 <title>
 1.7 Vektmaterialer
 </title>
+
+<Teori>
+pros_og_teori_text/1. Leire og vektmaterialer/1.7 Vektmaterialer
+</Teori>

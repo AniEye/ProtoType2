@@ -11,3 +11,7 @@
 <title>
 1.8 Masse- og volumbalanse
 </title>
+
+<Teori>
+pros_og_teori_text/1. Leire og vektmaterialer/1.8 Masse- og volumbalanse
+</Teori>

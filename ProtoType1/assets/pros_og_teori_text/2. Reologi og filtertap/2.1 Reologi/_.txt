@@ -11,3 +11,7 @@
 <title>
 2.1 Reologi
 </title>
+
+<Teori>
+pros_og_teori_text/2. Reologi og filtertap/2.1 Reologi
+</Teori>

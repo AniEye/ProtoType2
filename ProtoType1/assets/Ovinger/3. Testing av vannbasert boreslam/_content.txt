@@ -1,7 +1,0 @@
-﻿<text><h3>
-1.2 Oppbygging av leirpartikler
-</text>
-
-<text><h1>
-if not then that sucks
-</text>

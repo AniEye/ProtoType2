@@ -15,13 +15,6 @@
 1. Leire og vektmaterialer
 </title>
 
-###########the references have to come after the list################ 
-<list>
-Teori
-Øvingen
-Utstyr
-Kalkulator
-</list>
 
 <Teori>
 pros_og_teori_text/1. Leire og vektmaterialer/1.1 Introduksjon
@@ -34,5 +27,6 @@ Ovinger/1. Leire og vektmaterialer
 </Øvinger>
 
 <Kalkulatorer>
-Kalkulator/En kalkulator
+Alkalitet/En kalkulator
+CaOHInnhold
 </Kalkulatorer>

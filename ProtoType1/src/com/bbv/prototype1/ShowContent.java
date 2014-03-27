@@ -2,6 +2,8 @@ package com.bbv.prototype1;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -35,12 +37,18 @@ public class ShowContent extends ShowContentBase {
 				_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
 				_nWVB = new WebViewTeori();
 				_nWVB.setArguments(getTheoryBundle());
+				decodeDataDocument();
+
+				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
 			} else if (getOvingBundle() != null) {
 				setPriorityIndex(_DrawerMenuListIndex.Exercise.ordinal());
 				setCurrentIndex(_DrawerMenuListIndex.Exercise.ordinal());
 				_filePath = getFilePathFromOvingBundle(getOvingBundle());
 				_nWVB = new WebViewOving();
 				_nWVB.setArguments(getOvingBundle());
+				decodeDataDocument();
+
+				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
 			}
 		} else {
 			Log.i(KEY_LOGCAT,
@@ -49,20 +57,28 @@ public class ShowContent extends ShowContentBase {
 				_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
 				_nWVB = new WebViewTeori();
 				_nWVB.setArguments(getTheoryBundle());
+				decodeDataDocument();
+
+				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
 			} else if (getCurrentIndex() == _DrawerMenuListIndex.Exercise
 					.ordinal()) {
 				_filePath = getFilePathFromOvingBundle(getOvingBundle());
 				_nWVB = new WebViewOving();
 				_nWVB.setArguments(getOvingBundle());
+				decodeDataDocument();
+
+				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
+			}else if(getCurrentIndex() == _DrawerMenuListIndex.Calculator.ordinal()){
+				_nSCalc = new ShowCalculator();
+				_nSCalc.setArguments(getCalculatorBundle());
+				setTitle("Kalkulator");
 			}
 			retriveDrawer();
 
 		}
-		decodeDataDocument();
-
-		_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
+		
 		Log.i(KEY_LOGCAT, "replacing the fragment with fragment manager");
-		_listView.setItemChecked(getCurrentIndex(), true);
+//		_listView.setItemChecked(getCurrentIndex(), true);
 
 		_drawerLayout.closeDrawer(_listView);
 	}
@@ -92,6 +108,7 @@ public class ShowContent extends ShowContentBase {
 			Log.i(KEY_LOGCAT, "Previous Button Presset");
 			break;
 		}
+		
 		if (getCurrentIndex() == _DrawerMenuListIndex.Theory.ordinal()) {
 			setTheoryBundle(_currentBundle);
 			_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
@@ -209,6 +226,7 @@ public class ShowContent extends ShowContentBase {
 				// setting the list after reading the hole file looking for all
 				// the references
 				if (getCurrentIndex() == getPriorityIndex()) {
+					setItemInDrawerLoaded(0);
 					setNavigationDrawerContent(_NavigatorItemContentList);
 					saveDrawerContent();
 				}
@@ -267,6 +285,20 @@ public class ShowContent extends ShowContentBase {
 		_fragManag = getFragmentManager();
 
 	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	    super.onConfigurationChanged(newConfig);
+
+	    // Checks whether a hardware or on-screen keyboard is available
+	    if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_NO) {
+	    	Log.e(KEY_LOGCAT, "The keyboard is not hidden");
+	        Toast.makeText(this, "Keyboard visible", Toast.LENGTH_SHORT).show();
+	    } else if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_YES) {
+	        Toast.makeText(this, "Keyboard hidden", Toast.LENGTH_SHORT).show();
+	        Log.e(KEY_LOGCAT, "The keyboard is hidden");
+	    }
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -297,6 +329,9 @@ public class ShowContent extends ShowContentBase {
 		Log.i(KEY_LOGCAT, "Finishing setOvingBundle");
 		Log.i(KEY_LOGCAT, "  ");
 	}
+	protected void setCalculatorBundle(Bundle abundle){
+		this.getIntent().putExtra(KEY_CHOSENCALC, abundle);
+	}
 
 	protected Bundle getTheoryBundle() {
 		return this.getIntent().getBundleExtra(KEY_PROS_TEORI);
@@ -304,6 +339,10 @@ public class ShowContent extends ShowContentBase {
 
 	protected Bundle getOvingBundle() {
 		return this.getIntent().getBundleExtra(KEY_OVING);
+	}
+	
+	protected Bundle getCalculatorBundle(){
+		return this.getIntent().getBundleExtra(KEY_CHOSENCALC);
 	}
 
 	// setter and getter for priorityindex
@@ -326,5 +365,13 @@ public class ShowContent extends ShowContentBase {
 		this.getIntent().putExtra(KEY_CURRENT_INDEX, index);
 		Log.i(KEY_LOGCAT, "Finishing setCurrentIndex");
 		Log.i(KEY_LOGCAT, "  ");
+	}
+	
+	protected void setItemInDrawerLoaded(int number){
+		this.getIntent().putExtra(KEY_DRAWERLOADEDNUMBER, number);
+	}
+	
+	protected int getItemInDrawerLoaded(){
+		return this.getIntent().getIntExtra(KEY_DRAWERLOADEDNUMBER, 0);
 	}
 }

@@ -13,3 +13,6 @@
 </title>
 
 
+<Teori>
+pros_og_teori_text/3. Testing av vannbasert boreslam
+</Teori>

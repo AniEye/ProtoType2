@@ -12,3 +12,6 @@
 4.1 Vannbaserte boreslam
 </title>
 
+<Teori>
+pros_og_teori_text/4. Boreslam/4.1 Vannbaserte boreslam
+</Teori>
