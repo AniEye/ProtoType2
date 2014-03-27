@@ -155,6 +155,23 @@ public abstract class Basic_Calc extends LinearLayout {
 	}
 	
 	/**
+	 * Shows a toast on the device with the message from parameter message and length of toast
+	 * Also prints a logcat with info.
+	 * @param message - The message displayed by the toast
+	 * @param lengthOfToast - Length of toast, based on the Toast-class
+	 */
+	protected void showToast(String message, int lengthOfToast) {
+		try {
+			toast.getView().isShown(); // true if visible
+			toast.setText(message);
+		} catch (Exception e) { // invisible if exception
+			toast = Toast.makeText(getContext(), message, lengthOfToast);
+		}
+		Log.println(Log.DEBUG, "calc", "Displayed toast saying: " + message);
+		toast.show();
+	}
+	
+	/**
 	 * Use this method to check for values of 0 if the calculation does not support it.
 	 * Only one variable should be 0, and that is the variable that is being calculated.
 	 * Will display a toast and logcat message. 

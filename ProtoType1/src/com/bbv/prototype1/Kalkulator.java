@@ -27,6 +27,7 @@ import com.bbv.prototype1.Kalkulatorer.Flytegrense;
 import com.bbv.prototype1.Kalkulatorer.Herch_Law;
 import com.bbv.prototype1.Kalkulatorer.KloridInnhold;
 import com.bbv.prototype1.Kalkulatorer.KloridInnholdIVannfasen;
+import com.bbv.prototype1.Kalkulatorer.KonverterM3;
 import com.bbv.prototype1.Kalkulatorer.MasseOgVolumBalanse;
 import com.bbv.prototype1.Kalkulatorer.OljeVann;
 import com.bbv.prototype1.Kalkulatorer.Plast_Viskos;
@@ -197,6 +198,11 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			break;
 		case 15:
 			calc = new KloridInnholdIVannfasen(lLayout.getContext());
+			break;
+		case 16:
+			//Legg inn CaCl i vannfasen her
+		case 17:
+			calc = new KonverterM3(lLayout.getContext());
 			break;
 		}
 

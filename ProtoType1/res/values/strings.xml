@@ -91,6 +91,7 @@
         <item>Ca (OH)&lt;sup>&lt;small>-&lt;/small>&lt;/sup> Innhold</item>
         <item>Klorid innhold i vannfasen</item>
         <item>CaCl&lt;sub>&lt;small>2&lt;/small>&lt;/sub> i vannfasen</item>
+        <item>Konverter til m&lt;sup>&lt;small>3&lt;/small>&lt;/sup></item>
     </string-array>
 
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>
