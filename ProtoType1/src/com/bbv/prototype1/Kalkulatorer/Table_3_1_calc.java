@@ -59,11 +59,13 @@ public class Table_3_1_calc extends Basic_Calc {
 
 			Table_3_1 table = new Table_3_1(Cl);
 
+			if (checkForNegativeValues(table.getPf(), table.getVsf()) == false) {
+				showToast("Verdien for Cl var utenfor tabellen!");
+				return "";
+			}
+
 			Vsf = table.getVsf();
 			Pf = table.getPf();
-
-			if (checkForNegativeValues(Pf, Vsf, table.getCalculatedRow()) == false)
-				return "";
 
 			Log.i(LogCat_RegularMessage, "Cl = " + Cl);
 			Log.i(LogCat_RegularMessage, "Vsf = " + Vsf);
@@ -141,7 +143,7 @@ public class Table_3_1_calc extends Basic_Calc {
 		Table_3_1 table = new Table_3_1(Cl);
 
 		for (int i = 1; i <= 3; i++) {
-			String String_ID = "tvTabell" + String.valueOf(calculatedRow+1)
+			String String_ID = "tvTabell" + String.valueOf(calculatedRow + 1)
 					+ String.valueOf(i);
 			Log.println(Log.DEBUG, "calc", "ID inserting: " + String_ID);
 
@@ -184,7 +186,7 @@ public class Table_3_1_calc extends Basic_Calc {
 				tableItem.setBackgroundDrawable(getResources().getDrawable(
 						R.drawable.table_item_with_border));
 
-				tableItem.setText(table.getInitialRows()[i-2][j - 1]);
+				tableItem.setText(table.getInitialRows()[i - 2][j - 1]);
 
 				tableItem.setTextColor(Color.BLACK);
 
