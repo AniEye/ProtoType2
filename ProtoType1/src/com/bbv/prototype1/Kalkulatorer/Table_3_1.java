@@ -111,6 +111,11 @@ public class Table_3_1 {
 		return calculatedPfAndVsf[1];
 	}
 
+	/**
+	 * Returns which row was used to calculate results.
+	 * If not exact Cl value, then the calculated row is the row above
+	 * @return Value between 0 and 14
+	 */
 	public int getCalculatedRow() {
 		return calculatedRow;
 	}
