@@ -54,10 +54,18 @@ public class KonverterM3 extends Basic_Calc {
 		
 		switch (variableToCalculate) {
 		case GRAM_INDEX:
+			
+			if(checkForNegativeValues(ml, slamvolum) == false || checkForNullValues(ml, slamvolum) == false)
+				return "";
+			
 			calcAnswer = String.format(NO_DECIMALS, (ml/slamvolum)*30*Math.pow(10, 3));
 			theAnswer = (Spannable) Html.fromHtml(calcAnswer + " L per 30 m<sup><small>3</small></sup>");
 			break;
 		case ML_INDEX:
+			
+			if(checkForNegativeValues(gram, slamvolum) == false || checkForNullValues(gram, slamvolum) == false)
+				return "";
+			
 			calcAnswer = String.format(NO_DECIMALS, (gram/slamvolum)*30*Math.pow(10, 3));
 			theAnswer = (Spannable) Html.fromHtml(calcAnswer + " kg per 30 m<sup><small>3</small></sup>");
 			break;

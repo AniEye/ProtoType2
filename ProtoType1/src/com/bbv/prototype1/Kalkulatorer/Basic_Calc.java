@@ -22,6 +22,8 @@ public abstract class Basic_Calc extends LinearLayout {
 	LinearLayout _linLay;
 	final String THREE_DECIMALS = "%.3f";
 	final String NO_DECIMALS = "%.0f";
+	final String LogCat_TryCatch = "TryCatch";
+	final String LogCat_RegularMessage = "calc";
 
 	public Basic_Calc(Context context) {
 		super(context);

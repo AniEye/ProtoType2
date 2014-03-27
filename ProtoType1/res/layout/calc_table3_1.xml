@@ -1,0 +1,327 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ViewWithSpinners"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ButtonAndSpinnerBackgroundColor" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:paddingBottom="10dp">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3" >
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="@string/KlorinnholdCl" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="@string/Saltinnhold" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="@string/SpesifikkTetthet" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell11"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell12"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell13"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell21"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell22"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell23"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell31"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell32"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell33"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell41"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell42"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell43"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell51"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell52"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell53"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell61"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell62"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell63"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell71"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell72"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell73"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell81"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell82"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell83"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell91"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell92"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell93"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell101"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell102"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell103"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell111"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell112"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell113"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell121"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell122"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell123"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell131"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell132"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell133"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvTabell141"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell142"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvTabell143"
+                style="@style/CustomTableItem" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Klorid Innhold" />
+
+    <EditText
+        android:id="@+id/etT31Cl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[ml]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <EditText
+        android:id="@+id/etTable3_1_HideThis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="5dp" >
+
+        <Button
+            android:id="@+id/bKloridInnholdUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/CalcButtonUpdate" />
+
+        <Button
+            android:id="@+id/bKloridInnholdClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/CalcButtonClear" />
+    </LinearLayout>
+
+</LinearLayout>

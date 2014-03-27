@@ -34,6 +34,7 @@ import com.bbv.prototype1.Kalkulatorer.Plast_Viskos;
 import com.bbv.prototype1.Kalkulatorer.PowerLaw1006;
 import com.bbv.prototype1.Kalkulatorer.PowerLaw600300;
 import com.bbv.prototype1.Kalkulatorer.Spess_tetthet;
+import com.bbv.prototype1.Kalkulatorer.Table_3_1_calc;
 import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
 import com.bbv.prototype1.Kalkulatorer.TotalHardhet;
 
@@ -204,6 +205,8 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		case 17:
 			calc = new KonverterM3(lLayout.getContext());
 			break;
+		case 18:
+			calc = new Table_3_1_calc(lLayout.getContext());
 		}
 
 		try {

@@ -1,5 +1,7 @@
 package com.bbv.prototype1.Kalkulatorer;
 
+import com.bbv.prototype1.R.string;
+
 import android.util.Log;
 
 public class Table_3_1 {
@@ -12,20 +14,43 @@ public class Table_3_1 {
 	private float[] Pf_values = { 1f, 1.004f, 1.010f, 1.021f, 1.032f, 1.043f,
 			1.065f, 1.082f, 1.098f, 1.129f, 1.149f, 1.170f, 1.194f, 1.197f };
 
+	private String[] column1, column2, column3;
+	private String[][] rows;
+
+	private int calculatedRow;
+
 	private float[] calculatedPfAndVsf;
 
 	public Table_3_1(float Cl) {
 
 		calculatedPfAndVsf = calcCl(Cl);
 
+		column1 = new String[Cl_values.length];
+		column2 = new String[Vsf_values.length];
+		column3 = new String[Pf_values.length];
+		rows = new String[Cl_values.length][3];
+
+		for (int i = 0; i < Cl_values.length; i++) {
+
+			column1[i] = String.format("%.0f", Cl_values[i]);
+			column2[i] = String.valueOf(Vsf_values[i]);
+			column3[i] = String.format("%.3f", Pf_values[i]);
+			
+			rows[i][0] = column1[i];
+			rows[i][1] = column2[i];
+			rows[i][2] = column3[i];
+
+		}
+		
+
 	}
 
 	/**
-	 * Calculates Pf and Vsf in table 3.1 using Cl-value 
-	 * Returns Pf and Vsf
+	 * Calculates Pf and Vsf in table 3.1 using Cl-value Returns Pf and Vsf
 	 * values as float[] Returns -1,-1 if out of bounds
 	 * 
-	 * @param cl - Value of KloridInnhold 
+	 * @param cl
+	 *            - Value of KloridInnhold
 	 * @return Float array with Vsf in place 0 and Pf in place 1
 	 */
 	private float[] calcCl(float cl) {
@@ -42,10 +67,13 @@ public class Table_3_1 {
 		for (int i = 0; i < Cl_values.length; i++) {
 
 			if (cl == Cl_values[i]) {
+				calculatedRow = i;
 				Pf = Pf_values[i];
 				Vsf = Vsf_values[i];
 				break; // Found values, no need to continue
 			} else if (cl < Cl_values[i]) {
+
+				calculatedRow = i;
 
 				Pf = Pf_values[i - 1]
 						+ ((Pf_values[i] - Pf_values[i - 1]) * ((cl - Cl_values[i - 1]) / (Cl_values[i] - Cl_values[i - 1])));
@@ -64,6 +92,10 @@ public class Table_3_1 {
 
 	/**
 	 * Returns calculated Vsf
+	 * 
+	 * If something went wrong, then Vsf is -1.
+	 * 
+	 * 
 	 * @return Vsf
 	 */
 	public float getVsf() {
@@ -71,11 +103,26 @@ public class Table_3_1 {
 	}
 
 	/**
-	 * Returns calculated Pf
+	 * Returns calculated Pf. If something went wrong, then Pf is -1.
+	 * 
 	 * @return Pf
 	 */
 	public float getPf() {
 		return calculatedPfAndVsf[1];
+	}
+
+	public int getCalculatedRow() {
+		return calculatedRow;
+	}
+
+	/**
+	 * Returns initial rows
+	 * 
+	 * @return rows
+	 */
+	public String[][] getInitialRows() {
+
+		return rows;
 	}
 
 }

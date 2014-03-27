@@ -3,44 +3,40 @@ package com.bbv.prototype1.Kalkulatorer;
 import java.lang.reflect.Field;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bbv.prototype1.R;
-import com.bbv.prototype1.R.color;
 
-public class Alkalitet extends Basic_Calc {
+public class Table_3_1_calc extends Basic_Calc {
 
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	final int clearButtonID = R.id.bAlkalitetClear;
-	final int updateButtonID = R.id.bAlkalitetUpdate;
-	final int layout = R.layout.calc_alkalitet;
-
-	// Variables used for calculations
+	final int clearButtonID = R.id.bKloridInnholdClear;
+	final int updateButtonID = R.id.bKloridInnholdUpdate;
+	final int layout = R.layout.calc_table3_1;
+	
+	float Cl;
+	float Vsf;
 	float Pf;
-	float Mf;
-	float OH;
-	float CO;
-	float HCO;
 
-	final int[] IDs = { R.id.etAlkalitetPf, // Edittext of Mf
-			R.id.etAlkalitetMf, // Edittext of Fw
-			R.id.etAlkalitetHideThis // Edittext of nothing - Will be disabled
+	
+	final int[] IDs = { R.id.etT31Cl,
+			R.id.etTable3_1_HideThis, // Textfield - Will be disabled
 	};
 
-	public final static int KEY_INDEX = 2; // Only used for error catching when
-											// calculating. Only
-											// Key_INDEX should ever be used
+	public final static int KEY_INDEX = 1; // Only used for error catching. Only KEY_INDEX
+							// should ever be used
 
-	public Alkalitet(Context context) {
+	public Table_3_1_calc(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -49,37 +45,27 @@ public class Alkalitet extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		Pf = fieldStatuses[0];
-		Mf = fieldStatuses[1];
+		Cl = fieldStatuses[0];
 
 		switch (variableToCalculate) {
 
 		default:
-			Log.println(Log.ERROR, "calc",
+			Log.e(LogCat_RegularMessage,
 					"Tried to calculate wrong value, and this should not happen!");
 			break;
 		case KEY_INDEX:
 
-			Table_3_3 table = new Table_3_3(Pf, Mf);
-
-			if (table.getCalculatedRow() == -1) {
-				Log.println(Log.ERROR, "calc", "Something went wrong in "
-						+ this.getClass().getName());
-				showToast("Something went wrong with the calculation!");
-				return "";
-			}
+			Table_3_1 table = new Table_3_1(Cl);
 			
-			if (checkForNegativeValues(Pf, Mf) == false
-					|| checkForNullValues(Pf, Mf) == false)
+			Vsf = table.getVsf();
+			Pf = table.getPf();
+			
+			if (checkForNegativeValues(Pf, Vsf, table.getCalculatedRow()) == false)
 				return "";
 
-			OH = table.getOH();
-			HCO = table.getHCO();
-			CO = table.getCO();
-
-			Log.println(Log.INFO, "calc", "OH = " + table.getOH());
-			Log.println(Log.INFO, "calc", "CO = " + table.getCO());
-			Log.println(Log.INFO, "calc", "HCO = " + table.getHCO());
+			Log.i(LogCat_RegularMessage, "Cl = " + Cl);
+			Log.i(LogCat_RegularMessage, "Vsf = " + table.getVsf());
+			Log.i(LogCat_RegularMessage, "Pf = " + table.getPf());
 
 			lightUpRow(table.getCalculatedRow());
 
@@ -88,16 +74,16 @@ public class Alkalitet extends Basic_Calc {
 		return "";
 
 	}
-
+	
 	private void resetTableItems() {
 
-		Table_3_3 table = new Table_3_3(0, 0);
+		Table_3_1 table = new Table_3_1(0);
 
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i <= 14; i++) {
 
 			for (int j = 1; j <= 3; j++) {
 
-				String String_ID = "tvAlkalitet" + String.valueOf(i)
+				String String_ID = "tvTabell" + String.valueOf(i)
 						+ String.valueOf(j);
 				Log.println(Log.DEBUG, "calc", "ID resetTableItems: " + String_ID);
 
@@ -108,7 +94,7 @@ public class Alkalitet extends Basic_Calc {
 				// Find better way to deal with this!
 				tableItem.setBackgroundDrawable(getResources().getDrawable(
 						R.drawable.table_item_with_border));
-
+				
 				tableItem.setText(table.getInitialRows()[i - 1][j - 1]);
 				
 				tableItem.setTextColor(Color.BLACK);
@@ -124,7 +110,7 @@ public class Alkalitet extends Basic_Calc {
 
 		for (int i = 1; i <= 3; i++) {
 
-			String String_ID = "tvAlkalitet" + String.valueOf(calculatedRow)
+			String String_ID = "tvTabell" + String.valueOf(calculatedRow)
 					+ String.valueOf(i);
 			Log.println(Log.DEBUG, "calc", "ID lightupRow: " + String_ID);
 
@@ -145,40 +131,24 @@ public class Alkalitet extends Basic_Calc {
 
 	}
 
-	private void showResults(TextView tableItem, int row, int column) {
+	private void showResults(TextView tableItem, int calculatedRow, int column) {
 
-		switch (row) {
+		switch (column) {
+		case 0:
+			
+			break;
 		case 1:
-			if (column == 3)
-				tableItem.setText(String.format(NO_DECIMALS, HCO));
+			
 			break;
 		case 2:
-			if (column == 2)
-				tableItem.setText(String.format(NO_DECIMALS, CO));
-			if (column == 3)
-				tableItem.setText(String.format(NO_DECIMALS, HCO));
-			break;
-		case 3:
-			if (column == 2)
-				tableItem.setText(String.format(NO_DECIMALS, CO));
-			break;
-		case 4:
-			if (column == 1)
-				tableItem.setText(String.format(NO_DECIMALS, OH));
-			if (column == 2)
-				tableItem.setText(String.format(NO_DECIMALS, CO));
-			break;
-		case 5:
-			if (column == 1)
-				tableItem.setText(String.format(NO_DECIMALS, OH));
+			
 			break;
 
 		default:
-			Log.println(Log.ERROR, "calc",
-					"A row value not between 1 and 5 was chosen in Alkalitet");
+			Log.e(LogCat_RegularMessage, "Somehow a column not between 0 and 2 was chosen");
 			break;
 		}
-
+		
 	}
 
 	private int returnIDFromString(String String_ID) {
@@ -207,7 +177,7 @@ public class Alkalitet extends Basic_Calc {
 		}
 		return id;
 	}
-
+	
 	@Override
 	protected void Initialize() {
 		_linLay = setAndGetLinearLayout(layout);
@@ -217,6 +187,8 @@ public class Alkalitet extends Basic_Calc {
 
 		for (int i = 0; i < IDs.length; i++)
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
+		
+		resetTableItems();
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -232,8 +204,8 @@ public class Alkalitet extends Basic_Calc {
 				switch (v.getId()) {
 				case clearButtonID:
 					ResetFields(textFields);
+
 					_textFieldsStatus = new int[IDs.length];
-					resetTableItems();
 					break;
 				case updateButtonID:
 					for (int i = 0; i < textFields.length; i++) {
@@ -272,7 +244,7 @@ public class Alkalitet extends Basic_Calc {
 		} else {
 			if (_textFieldsStatus[indexOfCurrentField] == 1) {
 				if (focusStatus == false) {
-
+					
 					if (_fieldsString.contentEquals("")) {
 						_textFieldsStatus[indexOfCurrentField] = 0;
 						Enabeling(textFields);
@@ -299,5 +271,7 @@ public class Alkalitet extends Basic_Calc {
 			}
 		}
 	}
+
+	
 
 }
