@@ -27,6 +27,8 @@
     <string name="P1">\u03C1<sub><small>1</small></sub> = Tetthet til slammet V<sub><small>1</small></sub></string>
     <string name="Pv">\u03C1<sub><small>v</small></sub> = Tetthet til slammet V<sub><small>v</small></sub></string>
     <string name="KlorinnholdCl">Kloridinnhold, Cl<sup>-</sup></string>
+    <string name="CaCl2">CaCl<sub><small>2</small></sub> [vekt%]</string>
+    <string name="ClMgL">Cl<sup><small>-</small></sup> [mg/l]</string>
     <string name="Saltinnhold">Saltinnhold \nV<sub><small>sf</small></sub> [Vol%]</string>
     <string name="SpesifikkTetthet">Spesifikk tetthet \n\u03C1<sub><small>f</small></sub></string>
     <string name="Pm">\u03C1<sub>m</sub> = spesifikk tetthet til boreslammet</string>
@@ -95,6 +97,7 @@
         <item>CaCl&lt;sub>&lt;small>2&lt;/small>&lt;/sub> i vannfasen</item>
         <item>Konverter til m&lt;sup>&lt;small>3&lt;/small>&lt;/sup></item>
         <item>Tabell 3.1</item>
+        <item>Tabell 9.4</item>
     </string-array>
 
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>

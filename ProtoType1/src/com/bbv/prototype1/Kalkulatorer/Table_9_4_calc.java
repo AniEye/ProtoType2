@@ -14,22 +14,32 @@ import android.widget.Toast;
 
 import com.bbv.prototype1.R;
 import com.bbv.prototype1.Tables.Table_3_1;
+import com.bbv.prototype1.Tables.Table_9_4;
 
-public class Table_3_1_calc extends Basic_Calc {
+public class Table_9_4_calc extends Basic_Calc {
 
 	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
-	final int clearButtonID = R.id.bKloridInnholdClear;
-	final int updateButtonID = R.id.bKloridInnholdUpdate;
-	final int layout = R.layout.calc_table3_1;
+	final int clearButtonID = R.id.bCaCl2Clear;
+	final int updateButtonID = R.id.bCaCl2Update;
+	final int layout = R.layout.calc_table9_4;
+
+	/**
+	 * Sets the number of vertical table items to show for the table
+	 */
+	private final int numberOfTableItemsToShow = 5;
 
 	float Cl;
-	float Vsf;
-	float Pf;
+	float CaCl2;
+	float Corf;
+	/**
+	 * The middle of numberOfTableItemsToShow
+	 */
+	int half;
 
-	final int[] IDs = { R.id.etT31Cl, R.id.etTable3_1_HideThis, // Textfield -
+	final int[] IDs = { R.id.etCaCl2Cl, R.id.etCaCl2_HideThis, // Textfield -
 																// Will be
 																// disabled
 	};
@@ -39,7 +49,7 @@ public class Table_3_1_calc extends Basic_Calc {
 
 	// should ever be used
 
-	public Table_3_1_calc(Context context) {
+	public Table_9_4_calc(Context context) {
 		super(context);
 		CreateListeners();
 		Initialize();
@@ -58,21 +68,23 @@ public class Table_3_1_calc extends Basic_Calc {
 			break;
 		case KEY_INDEX:
 
-			Table_3_1 table = new Table_3_1(Cl);
+			Table_9_4 table = new Table_9_4(Cl);
 
-			if (checkForNegativeValues(table.getPf(), table.getVsf()) == false) {
+			Log.i("calc", "Correct calculation");
+
+			if (checkForNegativeValues(table.getCaCl(), table.getCaCl()) == false) {
 				showToast("Verdien for Cl var utenfor tabellen!");
 				return "";
 			}
 
-			Vsf = table.getVsf();
-			Pf = table.getPf();
+			CaCl2 = table.getCaCl();
+			Corf = table.getCorf();
+			half = numberOfTableItemsToShow/2 + 1 ;
 
-			Log.i(LogCat_RegularMessage, "Cl = " + Cl);
-			Log.i(LogCat_RegularMessage, "Vsf = " + Vsf);
-			Log.i(LogCat_RegularMessage, "Pf = " + Pf);
+			Log.i(LogCat_RegularMessage, "Corf = " + Corf);
+			Log.i(LogCat_RegularMessage, "CaCl2 = " + CaCl2);
 
-			lightUpRow(table.getCalculatedRow());
+			insertNewTableItem(table.getCalculatedRow());
 
 		}
 
@@ -82,13 +94,11 @@ public class Table_3_1_calc extends Basic_Calc {
 
 	private void resetTableItems() {
 
-		Table_3_1 table = new Table_3_1(0);
-
-		for (int i = 1; i <= 15; i++) {
+		for (int i = 1; i <= numberOfTableItemsToShow; i++) {
 
 			for (int j = 1; j <= 3; j++) {
 
-				String String_ID = "tvTabell" + String.valueOf(i)
+				String String_ID = "tvCaCl2Tabell" + String.valueOf(i)
 						+ String.valueOf(j);
 				Log.println(Log.DEBUG, "calc", "ID resetTableItems: "
 						+ String_ID);
@@ -97,104 +107,81 @@ public class Table_3_1_calc extends Basic_Calc {
 
 				TextView tableItem = (TextView) findViewById(ID);
 
-				// Find better way to deal with this!
-				tableItem.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.table_item_with_border));
+				if (i == half) {
+					// Find better way to deal with this!
+					tableItem.setBackgroundDrawable(getResources().getDrawable(
+							R.drawable.table_item_with_border_selected));
 
-				if (i == 15) {
-					tableItem.setVisibility(GONE);
+					tableItem.setTextColor(Color.WHITE);
 				} else {
-					tableItem.setText(table.getInitialRows()[i - 1][j - 1]);
+					// Find better way to deal with this!
+					tableItem.setBackgroundDrawable(getResources().getDrawable(
+							R.drawable.table_item_with_border));
 
 					tableItem.setTextColor(Color.BLACK);
 				}
 
+				tableItem.setVisibility(GONE);
+
 			}
-		}
-
-	}
-
-	private void lightUpRow(int calculatedRow) {
-		// TODO Auto-generated method stub
-
-		resetTableItems();
-		insertNewTableItem(calculatedRow);
-
-		for (int i = 1; i <= 3; i++) {
-
-			String String_ID = "tvTabell" + String.valueOf(calculatedRow + 1)
-					+ String.valueOf(i);
-			Log.println(Log.DEBUG, "calc", "ID lightupRow: " + String_ID);
-
-			int ID = returnIDFromString(String_ID);
-
-			TextView tableItem = (TextView) findViewById(ID);
-
-			// Find better way to deal with this!
-			tableItem.setBackgroundDrawable(getResources().getDrawable(
-					R.drawable.table_item_with_border_selected));
-
-			tableItem.setTextColor(Color.WHITE);
-
 		}
 
 	}
 
 	private void insertNewTableItem(int calculatedRow) {
-		Table_3_1 table = new Table_3_1(Cl);
+		resetTableItems();
+		Table_9_4 table = new Table_9_4(Cl);
 
-		for (int i = 1; i <= 3; i++) {
-			String String_ID = "tvTabell" + String.valueOf(calculatedRow + 1)
-					+ String.valueOf(i);
-			Log.println(Log.DEBUG, "calc", "ID inserting: " + String_ID);
+		for (int k = 1; k <= numberOfTableItemsToShow; k++) {
 
-			int ID = returnIDFromString(String_ID);
+			for (int i = 1; i <= 3; i++) {
 
-			TextView tableItem = (TextView) findViewById(ID);
-
-			switch (i) {
-			case 1:
-				tableItem.setText(String.format("%.0f", Cl));
-				break;
-			case 2:
-				tableItem.setText(String.format("%.3f", Vsf));
-				break;
-			case 3:
-				tableItem.setText(String.format("%.3f", Pf));
-				break;
-			default:
-				Log.e(LogCat_RegularMessage,
-						"Error when inserting new tableitem!");
-				break;
-			}
-
-		}
-
-		for (int i = calculatedRow + 2; i <= 15; i++) {
-
-			for (int j = 1; j <= 3; j++) {
-
-				String String_ID = "tvTabell" + String.valueOf(i)
-						+ String.valueOf(j);
-				Log.println(Log.DEBUG, "calc", "ID setting rest of tables: "
-						+ String_ID);
+				String String_ID = "tvCaCl2Tabell" + String.valueOf(k)
+						+ String.valueOf(i);
+				Log.println(Log.DEBUG, "calc", "ID inserting: " + String_ID);
 
 				int ID = returnIDFromString(String_ID);
 
 				TextView tableItem = (TextView) findViewById(ID);
 
-				// Find better way to deal with this!
-				tableItem.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.table_item_with_border));
-
-				tableItem.setText(table.getInitialRows()[i - 2][j - 1]);
-
-				tableItem.setTextColor(Color.BLACK);
-
-				if (i == 15)
+				if (k < half
+						&& (calculatedRow - half+k) >= 0) {
+					Log.i("calc", "Calculated row = " + calculatedRow);
+					Log.i("calc", "Calculated row - half = "
+							+ (calculatedRow - half));
+					tableItem.setText(table.getInitialRows()[ (calculatedRow
+							- half +k)][i - 1]);
 					tableItem.setVisibility(VISIBLE);
 
+				} else if (k == half) {
+					Log.i(LogCat_RegularMessage, "Inserting calculated values");
+					switch (i) {
+					case 1:
+						tableItem.setText(String.format("%.0f", Cl));
+						break;
+					case 2:
+						tableItem.setText(String.format("%.3f", Corf));
+						break;
+					case 3:
+						tableItem.setText(String.format("%.2f", CaCl2));
+						break;
+					default:
+						Log.e(LogCat_RegularMessage,
+								"Error when inserting new tableitem!");
+						break;
+					}
+					tableItem.setVisibility(VISIBLE);
+
+				} else if (k > half && calculatedRow
+						+ (k-half-1) < 41) {
+					tableItem.setText(table.getInitialRows()[calculatedRow
+							+ (k-half-1)][i - 1]);
+					tableItem.setVisibility(VISIBLE);
+
+				}
+
 			}
+
 		}
 
 	}
@@ -256,6 +243,7 @@ public class Table_3_1_calc extends Basic_Calc {
 					_textFieldsStatus = new int[IDs.length];
 					break;
 				case updateButtonID:
+					Log.i("calc", "Updatebutton pressed!");
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);
 					}

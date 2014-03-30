@@ -1,0 +1,170 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ViewWithSpinners"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ButtonAndSpinnerBackgroundColor" >
+
+     <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ClMgL" />
+
+    <EditText
+        android:id="@+id/etCaCl2Cl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[ml]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+    
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3" >
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="@string/ClMgL" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="Corf" />
+
+            <TextView
+                style="@style/CustomTableItem"
+                android:text="@string/CaCl2" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell11"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell12"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell13"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell21"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell22"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell23"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell31"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell32"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell33"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell41"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell42"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell43"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell51"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell52"
+                style="@style/CustomTableItem" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell53"
+                style="@style/CustomTableItem" />
+        </TableRow>
+
+        
+    </TableLayout>
+
+   
+
+    <EditText
+        android:id="@+id/etCaCl2_HideThis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="5dp" >
+
+        <Button
+            android:id="@+id/bCaCl2Update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/CalcButtonUpdate" />
+
+        <Button
+            android:id="@+id/bCaCl2Clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/CalcButtonClear" />
+    </LinearLayout>
+
+</LinearLayout>

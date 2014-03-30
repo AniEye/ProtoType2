@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bbv.prototype1.R;
+import com.bbv.prototype1.Tables.Table_3_1;
 
 public class KloridInnhold extends Basic_Calc {
 

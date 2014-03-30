@@ -1,6 +1,6 @@
 package com.bbv.prototype1.JUnit;
 
-import com.bbv.prototype1.Kalkulatorer.Table_3_1;
+import com.bbv.prototype1.Tables.Table_3_1;
 
 import android.test.AndroidTestCase;
 

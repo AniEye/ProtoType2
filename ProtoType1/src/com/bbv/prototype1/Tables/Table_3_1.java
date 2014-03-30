@@ -1,4 +1,4 @@
-package com.bbv.prototype1.Kalkulatorer;
+package com.bbv.prototype1.Tables;
 
 import com.bbv.prototype1.R.string;
 
