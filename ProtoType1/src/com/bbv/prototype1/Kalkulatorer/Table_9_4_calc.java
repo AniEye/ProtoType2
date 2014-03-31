@@ -3,7 +3,9 @@ package com.bbv.prototype1.Kalkulatorer;
 import java.lang.reflect.Field;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,7 +31,7 @@ public class Table_9_4_calc extends Basic_Calc {
 	/**
 	 * Sets the number of vertical table items to show for the table
 	 */
-	private final int maxNumberOfTableItemsToShow = 15;
+	private int numberOfTableItemsToShow = 15;
 
 	float Cl;
 	float CaCl2;
@@ -79,7 +81,7 @@ public class Table_9_4_calc extends Basic_Calc {
 
 			CaCl2 = table.getCaCl();
 			Corf = table.getCorf();
-			half = maxNumberOfTableItemsToShow/2 + 1 ;
+			half = numberOfTableItemsToShow/2 + 1 ;
 
 			Log.i(LogCat_RegularMessage, "Corf = " + Corf);
 			Log.i(LogCat_RegularMessage, "CaCl2 = " + CaCl2);
@@ -94,7 +96,7 @@ public class Table_9_4_calc extends Basic_Calc {
 
 	private void resetTableItems() {
 
-		for (int i = 1; i <= maxNumberOfTableItemsToShow; i++) {
+		for (int i = 1; i <= numberOfTableItemsToShow; i++) {
 
 			for (int j = 1; j <= 3; j++) {
 
@@ -132,7 +134,7 @@ public class Table_9_4_calc extends Basic_Calc {
 		resetTableItems();
 		Table_9_4 table = new Table_9_4(Cl);
 
-		for (int k = 1; k <= maxNumberOfTableItemsToShow; k++) {
+		for (int k = 1; k <= numberOfTableItemsToShow; k++) {
 
 			for (int i = 1; i <= 3; i++) {
 
@@ -224,9 +226,18 @@ public class Table_9_4_calc extends Basic_Calc {
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 
 		resetTableItems();
+		
+		loadNumberOfTableItemsToShow();
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
+	}
+
+	private void loadNumberOfTableItemsToShow() {
+		SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+		String values = getPrefs.getString("table9_4_list", "3");
+		Log.i("calc", "String = " + values);
+		numberOfTableItemsToShow = Integer.parseInt(values);
 	}
 
 	@Override
@@ -240,9 +251,11 @@ public class Table_9_4_calc extends Basic_Calc {
 				case clearButtonID:
 					ResetFields(textFields);
 					resetTableItems();
+					loadNumberOfTableItemsToShow();
 					_textFieldsStatus = new int[IDs.length];
 					break;
 				case updateButtonID:
+					loadNumberOfTableItemsToShow();
 					Log.i("calc", "Updatebutton pressed!");
 					for (int i = 0; i < textFields.length; i++) {
 						FocusChange(i, false);

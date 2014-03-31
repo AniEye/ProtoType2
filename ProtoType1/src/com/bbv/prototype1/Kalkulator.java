@@ -1,12 +1,16 @@
 package com.bbv.prototype1;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spannable;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -76,9 +80,22 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		case android.R.id.home:
 			this.finish();
 			return true;
+		case R.id.aboutUs:
+			Intent i = new Intent("com.bbv.prototype1.ABOUT");
+			startActivity(i);
+			break;
+		case R.id.calcSettings:
+			Intent p = new Intent("com.bbv.prototype1.SETCALCPREFS");
+			startActivity(p);
+			break;
+		case R.id.exit:
+			finish();
+			break;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+		return false;
+
 	}
 
 	private void initialize() {
@@ -87,20 +104,21 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 		 * a listview if the device is in a horizontal position
 		 */
 
-		ArrayAdapter<Spannable> adapter = new ArrayAdapter<Spannable>(this, R.layout.custom_spinner);
-		
-		for(int i=0; i<getResources().getStringArray(R.array.calculator).length; i++){
+		ArrayAdapter<Spannable> adapter = new ArrayAdapter<Spannable>(this,
+				R.layout.custom_spinner);
+
+		for (int i = 0; i < getResources().getStringArray(R.array.calculator).length; i++) {
 			String text = getResources().getStringArray(R.array.calculator)[i];
 			adapter.add((Spannable) Html.fromHtml(text));
 		}
-		
+
 		try {
- 
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			Log.e("TryCatch", "Failed to cast and change text");
 		}
-		
+
 		adapter.setDropDownViewResource(SpinnerItemLayout);
 
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -111,7 +129,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			// Adds the custom look for the spinner
 
 			lLayout = (LinearLayout) findViewById(R.id.lInSVKalkVertical);
-			
+
 			valg_vertical.setOnItemSelectedListener(this);
 			valg_vertical.setSelection(lastChoice); // Chooses which item the
 													// spinner starts at
@@ -255,6 +273,15 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		super.onCreateOptionsMenu(menu);
+		MenuInflater blowup = getMenuInflater();
+		blowup.inflate(R.menu.settings_menu, menu);
+		return true;
 	}
 
 }
