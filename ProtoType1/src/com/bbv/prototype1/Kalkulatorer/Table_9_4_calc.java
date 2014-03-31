@@ -32,6 +32,11 @@ public class Table_9_4_calc extends Basic_Calc {
 	 * Sets the number of vertical table items to show for the table
 	 */
 	private int numberOfTableItemsToShow = 15;
+	
+	/**
+	 * Sets the number of vertical table items to show for the table
+	 */
+	private final int MAX_numberOfTableItemsToShow = 15;
 
 	float Cl;
 	float CaCl2;
@@ -96,7 +101,7 @@ public class Table_9_4_calc extends Basic_Calc {
 
 	private void resetTableItems() {
 
-		for (int i = 1; i <= numberOfTableItemsToShow; i++) {
+		for (int i = 1; i <= MAX_numberOfTableItemsToShow; i++) {
 
 			for (int j = 1; j <= 3; j++) {
 
