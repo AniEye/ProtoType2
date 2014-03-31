@@ -29,7 +29,7 @@ public class Table_9_4_calc extends Basic_Calc {
 	/**
 	 * Sets the number of vertical table items to show for the table
 	 */
-	private final int numberOfTableItemsToShow = 7;
+	private final int maxNumberOfTableItemsToShow = 15;
 
 	float Cl;
 	float CaCl2;
@@ -79,7 +79,7 @@ public class Table_9_4_calc extends Basic_Calc {
 
 			CaCl2 = table.getCaCl();
 			Corf = table.getCorf();
-			half = numberOfTableItemsToShow/2 + 1 ;
+			half = maxNumberOfTableItemsToShow/2 + 1 ;
 
 			Log.i(LogCat_RegularMessage, "Corf = " + Corf);
 			Log.i(LogCat_RegularMessage, "CaCl2 = " + CaCl2);
@@ -94,7 +94,7 @@ public class Table_9_4_calc extends Basic_Calc {
 
 	private void resetTableItems() {
 
-		for (int i = 1; i <= numberOfTableItemsToShow; i++) {
+		for (int i = 1; i <= maxNumberOfTableItemsToShow; i++) {
 
 			for (int j = 1; j <= 3; j++) {
 
@@ -132,7 +132,7 @@ public class Table_9_4_calc extends Basic_Calc {
 		resetTableItems();
 		Table_9_4 table = new Table_9_4(Cl);
 
-		for (int k = 1; k <= numberOfTableItemsToShow; k++) {
+		for (int k = 1; k <= maxNumberOfTableItemsToShow; k++) {
 
 			for (int i = 1; i <= 3; i++) {
 

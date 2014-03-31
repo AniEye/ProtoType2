@@ -192,6 +192,174 @@
                 style="@style/CustomTableItem"
                 android:visibility="gone" />
         </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell81"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell82"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell83"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell91"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell92"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell93"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell101"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell102"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell103"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell111"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell112"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell113"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell121"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell122"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell123"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell131"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell132"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell133"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell141"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell142"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell143"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell151"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell152"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell153"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+        </TableRow>
     </TableLayout>
 
     <EditText
