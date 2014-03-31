@@ -67,6 +67,24 @@
     <string name="TotHardMagnesium">Magnesium hardhet \n[Mg<sup><small>2+</small></sup>]</string>
     <!-- Strings used by calculator using chemistry notation -->
 
+    <string-array name="table9_4_items">
+        <item>1 celle</item>
+        <item>3 celler</item>
+        <item>5 celler</item>
+        <item>7 celler</item>
+        <item>9 celler</item>
+        <item>12 celler</item>
+        <item>15 celler</item>
+    </string-array>
+    <string-array name="table9_4_items_values">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>7</item>
+        <item>9</item>
+        <item>12</item>
+        <item>15</item>
+    </string-array>
     <string-array name="ovinger">
         <item>Velg Øving</item>
         <item>Øving 1: Leire og vektmaterialer</item>
@@ -98,10 +116,9 @@
         <item>Konverter til m&lt;sup>&lt;small>3&lt;/small>&lt;/sup></item>
         <item>Tabell 3.1</item>
     </string-array>
-    
+
     <string name="CalcSettings">Kalkulator Innstillinger</string>
     <string name="AboutUs">Info om oss</string>
-    
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>
 
     <string-array name="test_array">

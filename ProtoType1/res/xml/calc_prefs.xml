@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <ListPreference
+        android:entries="@array/table9_4_items"
+        android:entryValues="@array/table9_4_items_values"
+        android:defaultValue="5"
+        android:key="table9_4_list"
+        android:summary="Definerer hvor mange celler som skal vises i tabell 9.4. For eksempel: Er 5 celler valgt vil utregnet svar bli vist i midten, med 2 celler over og 2 celler under."
+        android:title="Antall tabell celler for tabell 9.4" />
+
+</PreferenceScreen>

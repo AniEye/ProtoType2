@@ -65,6 +65,25 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Menus.AboutUs"
+            android:label="@string/AboutUs"
+            android:theme="@android:style/Theme.Dialog" >
+            <intent-filter>
+                <action android:name="com.bbv.prototype1.ABOUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Menus.SetCalcPrefs"
+            android:label="@string/CalcSettings" >
+            <intent-filter>
+                <action android:name="com.bbv.prototype1.SETCALCPREFS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SQLView"
             android:label="View" >
             <intent-filter>

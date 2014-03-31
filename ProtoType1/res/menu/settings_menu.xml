@@ -10,6 +10,11 @@
         android:id="@+id/calcSettings"
         android:numericShortcut="2"
         android:alphabeticShortcut="b"/>
+    <item 
+        android:title="Avslutt program"
+        android:id="@+id/exit"
+        android:numericShortcut="3"
+        android:alphabeticShortcut="c"/>
 
     
     
