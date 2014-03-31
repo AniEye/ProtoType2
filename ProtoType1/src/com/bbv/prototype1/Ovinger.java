@@ -37,7 +37,7 @@ public class Ovinger extends Activity implements OnClickListener {
 	}
 
 	private void InitializeSpinnerAdapter() {
-		SQLDatabase ovingTable = new SQLDatabase(Ovinger.this);
+		Database ovingTable = new Database(Ovinger.this);
 		ovingTable.open();
 		String[] ovinger = ovingTable.getOvingTableRows();
 		ovingTable.close();

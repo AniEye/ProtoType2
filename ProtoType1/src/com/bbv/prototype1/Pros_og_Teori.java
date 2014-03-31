@@ -111,11 +111,11 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 	}
 
 	private void InitializingChapterSpinner() {
-		SQLDatabase chapter = new SQLDatabase(Pros_og_Teori.this);
+		Database chapter = new Database(Pros_og_Teori.this);
 		chapter.open();
 		String[] chapters = chapter.getColumnGrouped(
-				new String[] { SQLDatabase.KEY_CHAPTER },
-				SQLDatabase.KEY_CHAPTER, null);
+				new String[] { Database.KEY_CHAPTER },
+				Database.KEY_CHAPTER, null);
 		chapter.close();
 		ChapterAdapter(chapters);
 	}
@@ -130,15 +130,15 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 	public void settingUpChapterPart1() {
 		Log.e("WhatEver", "SettingUpChapterPart1 is run");
 
-		String where = SQLDatabase.KEY_CHAPTERPART1 + " != ''";
-		where = SQLDatabase.KEY_CHAPTER + " = '"
+		String where = Database.KEY_CHAPTERPART1 + " != ''";
+		where = Database.KEY_CHAPTER + " = '"
 				+ getStringOfSelected(_sChapter) + "' and " + where;
 
-		SQLDatabase getPartition1 = new SQLDatabase(this);
+		Database getPartition1 = new Database(this);
 		getPartition1.open();
 		String[] getPartition1s = getPartition1.getColumnGrouped(
-				new String[] { SQLDatabase.KEY_CHAPTERPART1 },
-				SQLDatabase.KEY_CHAPTERPART1, where);
+				new String[] { Database.KEY_CHAPTERPART1 },
+				Database.KEY_CHAPTERPART1, where);
 		getPartition1.close();
 		if (getPartition1s.length > 1) {
 			ChapterPart1Adapter(getPartition1s);
@@ -157,15 +157,15 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 		String where;
 		switch (parent.getId()) {
 		case R.id.sKapittel:
-			where = SQLDatabase.KEY_CHAPTERPART1 + " != ''";
-			where = SQLDatabase.KEY_CHAPTER + " = '"
+			where = Database.KEY_CHAPTERPART1 + " != ''";
+			where = Database.KEY_CHAPTER + " = '"
 					+ getStringOfSelected(_sChapter) + "' and " + where;
 
-			SQLDatabase getPartition1 = new SQLDatabase(this);
+			Database getPartition1 = new Database(this);
 			getPartition1.open();
 			String[] getPartition1s = getPartition1.getColumnGrouped(
-					new String[] { SQLDatabase.KEY_CHAPTERPART1 },
-					SQLDatabase.KEY_CHAPTERPART1, where);
+					new String[] { Database.KEY_CHAPTERPART1 },
+					Database.KEY_CHAPTERPART1, where);
 			getPartition1.close();
 			if (getPartition1s.length > 1) {
 				ChapterPart1Adapter(getPartition1s);
@@ -181,18 +181,18 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 			if (index == 0) {
 				_sChapterPart2.setVisibility(android.view.View.GONE);
 			} else {
-				where = SQLDatabase.KEY_CHAPTERPART2 + " != '' ";
-				where = SQLDatabase.KEY_CHAPTERPART1 + " = '"
+				where = Database.KEY_CHAPTERPART2 + " != '' ";
+				where = Database.KEY_CHAPTERPART1 + " = '"
 						+ getStringOfSelected(_sChapterPart1) + "' and "
 						+ where;
-				where = SQLDatabase.KEY_CHAPTER + " = '"
+				where = Database.KEY_CHAPTER + " = '"
 						+ getStringOfSelected(_sChapter) + "' and " + where;
 
-				SQLDatabase getPartition2 = new SQLDatabase(this);
+				Database getPartition2 = new Database(this);
 				getPartition2.open();
 				String[] getPartition2s = getPartition2.getColumnGrouped(
-						new String[] { SQLDatabase.KEY_CHAPTERPART2 },
-						SQLDatabase.KEY_CHAPTERPART2, where);
+						new String[] { Database.KEY_CHAPTERPART2 },
+						Database.KEY_CHAPTERPART2, where);
 				getPartition2.close();
 				if (getPartition2s.length > 1) {
 					ChapterPart2Adapter(getPartition2s);

@@ -126,7 +126,7 @@ public abstract class ShowContentBase extends Activity implements
 	 * @return string
 	 */
 	protected String getFilePathFromTeoriBundle(Bundle incommingBundle) {
-		String filepath = "pros_og_teori_text/";
+		String filepath = "Pros_og_Teori/";
 		Log.i(KEY_LOGCAT, "Running getFilePathFromTeoriBundle");
 
 		if (incommingBundle.getString(KEY_CHAPTER) != null) {

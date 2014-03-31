@@ -27,48 +27,53 @@ public class ShowContent extends ShowContentBase {
 	}
 
 	private void StartFirstDocument(Bundle savedInstanceState) {
-
+		_nWVB = new WebView();
 		if (savedInstanceState == null) {
 			Log.i(KEY_LOGCAT,
 					"Start doing what is needed when savedInstace = null");
-			if (getTheoryBundle() != null) {
+
+			if (getTheoryBundle() != null) {// if coming from Pros_og_Teori.java
 				setPriorityIndex(_DrawerMenuListIndex.Theory.ordinal());
 				setCurrentIndex(_DrawerMenuListIndex.Theory.ordinal());
 				_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
-				_nWVB = new WebViewTeori();
+
 				_nWVB.setArguments(getTheoryBundle());
 				decodeDataDocument();
+				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
+						.commit();
 
-				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
-			} else if (getOvingBundle() != null) {
+			} else if (getOvingBundle() != null) {// if coming from Ovinger.java
 				setPriorityIndex(_DrawerMenuListIndex.Exercise.ordinal());
 				setCurrentIndex(_DrawerMenuListIndex.Exercise.ordinal());
 				_filePath = getFilePathFromOvingBundle(getOvingBundle());
-				_nWVB = new WebViewOving();
 				_nWVB.setArguments(getOvingBundle());
 				decodeDataDocument();
 
-				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
+				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
+						.commit();
 			}
 		} else {
 			Log.i(KEY_LOGCAT,
 					"Start doing what is needed when savedInstace != null");
 			if (getCurrentIndex() == _DrawerMenuListIndex.Theory.ordinal()) {
 				_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
-				_nWVB = new WebViewTeori();
+
 				_nWVB.setArguments(getTheoryBundle());
 				decodeDataDocument();
 
-				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
+				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
+						.commit();
 			} else if (getCurrentIndex() == _DrawerMenuListIndex.Exercise
 					.ordinal()) {
 				_filePath = getFilePathFromOvingBundle(getOvingBundle());
-				_nWVB = new WebViewOving();
+
 				_nWVB.setArguments(getOvingBundle());
 				decodeDataDocument();
 
-				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB).commit();
-			}else if(getCurrentIndex() == _DrawerMenuListIndex.Calculator.ordinal()){
+				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
+						.commit();
+			} else if (getCurrentIndex() == _DrawerMenuListIndex.Calculator
+					.ordinal()) {
 				_nSCalc = new ShowCalculator();
 				_nSCalc.setArguments(getCalculatorBundle());
 				setTitle("Kalkulator");
@@ -76,9 +81,9 @@ public class ShowContent extends ShowContentBase {
 			retriveDrawer();
 
 		}
-		
+
 		Log.i(KEY_LOGCAT, "replacing the fragment with fragment manager");
-//		_listView.setItemChecked(getCurrentIndex(), true);
+		// _listView.setItemChecked(getCurrentIndex(), true);
 
 		_drawerLayout.closeDrawer(_listView);
 	}
@@ -108,7 +113,7 @@ public class ShowContent extends ShowContentBase {
 			Log.i(KEY_LOGCAT, "Previous Button Presset");
 			break;
 		}
-		
+
 		if (getCurrentIndex() == _DrawerMenuListIndex.Theory.ordinal()) {
 			setTheoryBundle(_currentBundle);
 			_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
@@ -254,7 +259,7 @@ public class ShowContent extends ShowContentBase {
 
 	private void Initialize() {
 		// _activity_title = getTitle();
-		setActivityTitle("Menyen >.<");
+		setActivityTitle("Meny");
 		_drawerLayout = (DrawerLayout) findViewById(R.id.dlVis_Teori);
 		_listView = (ListView) findViewById(R.id.lvVis_Teori);
 		_bNext = (Button) findViewById(R.id.bNext);
@@ -285,19 +290,19 @@ public class ShowContent extends ShowContentBase {
 		_fragManag = getFragmentManager();
 
 	}
-	
+
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
-	    super.onConfigurationChanged(newConfig);
+		super.onConfigurationChanged(newConfig);
 
-	    // Checks whether a hardware or on-screen keyboard is available
-	    if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_NO) {
-	    	Log.e(KEY_LOGCAT, "The keyboard is not hidden");
-	        Toast.makeText(this, "Keyboard visible", Toast.LENGTH_SHORT).show();
-	    } else if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_YES) {
-	        Toast.makeText(this, "Keyboard hidden", Toast.LENGTH_SHORT).show();
-	        Log.e(KEY_LOGCAT, "The keyboard is hidden");
-	    }
+		// Checks whether a hardware or on-screen keyboard is available
+		if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_NO) {
+			Log.e(KEY_LOGCAT, "The keyboard is not hidden");
+			Toast.makeText(this, "Keyboard visible", Toast.LENGTH_SHORT).show();
+		} else if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_YES) {
+			Toast.makeText(this, "Keyboard hidden", Toast.LENGTH_SHORT).show();
+			Log.e(KEY_LOGCAT, "The keyboard is hidden");
+		}
 	}
 
 	@Override
@@ -329,7 +334,8 @@ public class ShowContent extends ShowContentBase {
 		Log.i(KEY_LOGCAT, "Finishing setOvingBundle");
 		Log.i(KEY_LOGCAT, "  ");
 	}
-	protected void setCalculatorBundle(Bundle abundle){
+
+	protected void setCalculatorBundle(Bundle abundle) {
 		this.getIntent().putExtra(KEY_CHOSENCALC, abundle);
 	}
 
@@ -340,8 +346,8 @@ public class ShowContent extends ShowContentBase {
 	protected Bundle getOvingBundle() {
 		return this.getIntent().getBundleExtra(KEY_OVING);
 	}
-	
-	protected Bundle getCalculatorBundle(){
+
+	protected Bundle getCalculatorBundle() {
 		return this.getIntent().getBundleExtra(KEY_CHOSENCALC);
 	}
 
@@ -366,12 +372,12 @@ public class ShowContent extends ShowContentBase {
 		Log.i(KEY_LOGCAT, "Finishing setCurrentIndex");
 		Log.i(KEY_LOGCAT, "  ");
 	}
-	
-	protected void setItemInDrawerLoaded(int number){
+
+	protected void setItemInDrawerLoaded(int number) {
 		this.getIntent().putExtra(KEY_DRAWERLOADEDNUMBER, number);
 	}
-	
-	protected int getItemInDrawerLoaded(){
+
+	protected int getItemInDrawerLoaded() {
 		return this.getIntent().getIntExtra(KEY_DRAWERLOADEDNUMBER, 0);
 	}
 }

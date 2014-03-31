@@ -23,8 +23,8 @@ public abstract class WebViewBase extends Fragment {
 	protected abstract void Initialize();
 
 	protected void setWebView() {
-		_WebView = (WebView) _rootView.findViewById(R.id.WVTest);	
-		_WebView.getSettings().setBuiltInZoomControls(true);	
+		_WebView = (WebView) _rootView.findViewById(R.id.WVTest);
+		_WebView.getSettings().setBuiltInZoomControls(true);
 		_WebView.getSettings().setJavaScriptEnabled(true);
 	}
 
@@ -45,7 +45,7 @@ public abstract class WebViewBase extends Fragment {
 	 * @return string
 	 */
 	protected String getFilePathFromTeoriBundle(Bundle incommingBundle) {
-		String filepath = "pros_og_teori_text/";
+		String filepath = "Pros_og_Teori/";
 		Log.i(KEY_LOGCAT, "Running getFilePathFromTeoriBundle");
 
 		if (incommingBundle.getString(ShowContentBase.KEY_CHAPTER) != null) {
@@ -76,6 +76,8 @@ public abstract class WebViewBase extends Fragment {
 											.getString(ShowContentBase.KEY_CHAPTERPART2));
 				}
 			}
+		} else {
+			filepath = null;
 		}
 
 		Log.i(KEY_LOGCAT, "Finishing getFilePathFromTeoriBundle with: "
@@ -84,7 +86,11 @@ public abstract class WebViewBase extends Fragment {
 	}
 
 	protected String getFilePathFromOvingBundle(Bundle aBundle) {
-		return "Ovinger/" + aBundle.getString(ShowContentBase.KEY_OVING)+ "/";
+		if (aBundle.getString(ShowContentBase.KEY_OVING) != null) {
+			return "Ovinger/" + aBundle.getString(ShowContentBase.KEY_OVING)
+					+ "/";
+		} else
+			return null;
 	}
 
 	public abstract void Reload(Bundle aBundle);

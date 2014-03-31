@@ -15,7 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class SQLDatabase {
+public class Database {
 
 	// public static final String KEY_ROWID = "_id";
 	public static final String KEY_CHAPTER = "chapter";
@@ -105,11 +105,11 @@ public class SQLDatabase {
 
 	}
 
-	public SQLDatabase(Context c) {
+	public Database(Context c) {
 		ourContext = c;
 	}
 
-	public SQLDatabase open() throws SQLException {
+	public Database open() throws SQLException {
 		ourHelper = new DBHelper(ourContext);
 		ourDatabase = ourHelper.getWritableDatabase();
 		return this;

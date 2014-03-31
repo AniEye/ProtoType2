@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class WebViewOving extends WebViewBase {
+public class WebView extends WebViewBase {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,7 +25,11 @@ public class WebViewOving extends WebViewBase {
 	@Override
 	public void Reload(Bundle aBundle) {
 		//only difference between this one and theory, check this out later
-		_filePath = getFilePathFromOvingBundle(aBundle);
+		if(getFilePathFromOvingBundle(aBundle)!=null){
+			_filePath = getFilePathFromOvingBundle(aBundle);
+		}else if (getFilePathFromTeoriBundle(aBundle)!=null){
+			_filePath = getFilePathFromTeoriBundle(aBundle);
+		}		
 		loadFile("file:///android_asset/" + _filePath + "_.html");
 
 		Log.i(KEY_LOGCAT, "Finishing Reload");

@@ -115,12 +115,12 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 	 */
 	private void InitializeChapterSpinner() {
 
-		SQLDatabase entry = new SQLDatabase(SQLPros_Teori.this);
+		Database entry = new Database(SQLPros_Teori.this);
 		entry.open();
 
 		String[] chapters = entry.getColumnGrouped(
-				new String[] { SQLDatabase.KEY_CHAPTER },
-				SQLDatabase.KEY_CHAPTER, null);
+				new String[] { Database.KEY_CHAPTER },
+				Database.KEY_CHAPTER, null);
 		entry.close();
 
 		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(
@@ -145,7 +145,7 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 				String chapterPart2 = _chapterpart2.getText().toString();
 				String filename = _filename.getText().toString();
 
-				SQLDatabase entry = new SQLDatabase(SQLPros_Teori.this);
+				Database entry = new Database(SQLPros_Teori.this);
 				entry.open();
 				entry.createEntry(chapter, chapterPart1, chapterPart2, filename);
 				entry.close();
@@ -174,7 +174,7 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 			startActivity(i);
 			break;
 		case R.id.bSQLPoTDelAll:
-			SQLDatabase dbs = new SQLDatabase(SQLPros_Teori.this);
+			Database dbs = new Database(SQLPros_Teori.this);
 			dbs.open();
 			dbs.deleteTableContent(null);
 			InitializeChapterSpinner();
@@ -183,7 +183,7 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		case R.id.bSQLPoTDelEnt:
 			break;
 		case R.id.bSQLPoTRecreate:
-			SQLDatabase DBrec = new SQLDatabase(SQLPros_Teori.this);
+			Database DBrec = new Database(SQLPros_Teori.this);
 			DBrec.open();
 			DBrec.createFromExisting();
 			DBrec.close();
@@ -223,14 +223,14 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 				String where = ((TextView) _sChapter.getSelectedView())
 						.getText().toString();
 				_ContentIndexChapter = where;
-				where = SQLDatabase.KEY_CHAPTER + " = '" + where + "' ";
-				where = SQLDatabase.KEY_CHAPTERPART1 + " != '' and " + where;
+				where = Database.KEY_CHAPTER + " = '" + where + "' ";
+				where = Database.KEY_CHAPTERPART1 + " != '' and " + where;
 
-				SQLDatabase getPartition1 = new SQLDatabase(this);
+				Database getPartition1 = new Database(this);
 				getPartition1.open();
 				String[] getPartition1s = getPartition1.getColumnGrouped(
-						new String[] { SQLDatabase.KEY_CHAPTERPART1 },
-						SQLDatabase.KEY_CHAPTERPART1, where);
+						new String[] { Database.KEY_CHAPTERPART1 },
+						Database.KEY_CHAPTERPART1, where);
 				getPartition1.close();
 				ChangeChapterPart1Spinner(getPartition1s);
 				_sChapterPart1.setVisibility(android.view.View.VISIBLE);
@@ -245,14 +245,14 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 				String where = ((TextView) _sChapterPart1.getSelectedView())
 						.getText().toString();
 				_ContentIndexChapterPart1 = where;
-				where = SQLDatabase.KEY_CHAPTERPART1 + " = '" + where + "' ";
-				where = SQLDatabase.KEY_CHAPTERPART2 + " != '' and " + where;
+				where = Database.KEY_CHAPTERPART1 + " = '" + where + "' ";
+				where = Database.KEY_CHAPTERPART2 + " != '' and " + where;
 
-				SQLDatabase getPartition1 = new SQLDatabase(this);
+				Database getPartition1 = new Database(this);
 				getPartition1.open();
 				String[] getPartition1s = getPartition1.getColumnGrouped(
-						new String[] { SQLDatabase.KEY_CHAPTERPART2 },
-						SQLDatabase.KEY_CHAPTERPART2, where);
+						new String[] { Database.KEY_CHAPTERPART2 },
+						Database.KEY_CHAPTERPART2, where);
 				getPartition1.close();
 				ChangeChapterPart2Spinner(getPartition1s);
 				_sChapterPart2.setVisibility(android.view.View.VISIBLE);

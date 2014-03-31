@@ -35,7 +35,7 @@ public class SQLView extends Activity {
 	/****** Function to set data in ArrayList *************/
 	public void setListData() {
 
-		SQLDatabase info = new SQLDatabase(this);
+		Database info = new Database(this);
 		info.open();
 		// String data = info.getData();
 		DatabaseContent[] data = info.getData();

@@ -16,3 +16,10 @@
 <Øvinger>
 Ovinger/3. Testing av vannbasert boreslam
 </Øvinger>
+
+<Teori>
+pros_og_teori_text/2. Reologi og filtertap/2.2 Kontroll av filtertap og vannbaserte boreslam
+</Teori>
+
+<Kalkulatorer>
+</Kalkulatorer>

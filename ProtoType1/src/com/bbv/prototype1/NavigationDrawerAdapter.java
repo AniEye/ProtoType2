@@ -1,30 +1,20 @@
 package com.bbv.prototype1;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class NavigationDrawerAdapter extends BaseAdapter implements
 		OnClickListener {
@@ -36,7 +26,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 	private NavigationDrawerItemContent _tempItemContent = null;
 	private ArrayList<TableLayout> _TableList = new ArrayList<TableLayout>();
 
-	private static final String KEY_LOGCAT = "NavigationDrawerAdapter";
+	private static final String KEY_LOGCAT = "NavigationDrawerAdapter";//if needed
 
 	public NavigationDrawerAdapter(Activity activity,
 			ArrayList<NavigationDrawerItemContent> contentArray,
@@ -119,7 +109,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 					_tempItemContent.getTitle());
 			span.setSpan(new UnderlineSpan(), 0, span.length(), 0);
 			_holder._Title.setText(span);
-			Log.e(KEY_LOGCAT, "_tableList.size() is: " + _TableList.size());
+
 			_holder._Title.setTag(position);
 			_holder._Title.setOnClickListener(new OnClickListener() {
 
@@ -128,7 +118,6 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 					int thePosition = (Integer) v.getTag();
 					if (thePosition == ShowContentBase._DrawerMenuListIndex.MainMenu
 							.ordinal()) {
-						Log.e(KEY_LOGCAT, "Hovedmeny is pressed");
 						_Activity.setResult(2);
 						_Activity.finish();
 
@@ -173,7 +162,8 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 					}
 				}
 			}
-			_Activity.setItemInDrawerLoaded(_Activity.getItemInDrawerLoaded()+1);
+			_Activity
+					.setItemInDrawerLoaded(_Activity.getItemInDrawerLoaded() + 1);
 		}
 		return _view;
 
@@ -184,7 +174,6 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 	public void onClick(View v) {
 
 		String textReference = (String) v.getTag();
-		Log.v(KEY_LOGCAT, "Item pressed had tag: " + textReference);
 		String[] splitted = textReference.split("/");
 		_Activity.displayNextLast(true);
 		if (splitted[0].contentEquals("pros_og_teori_text")
@@ -208,8 +197,8 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 							.ordinal());
 
 			try {
-				_Activity._nWVB = new WebViewTeori();
-				_Activity._nWVB.setArguments(_Activity.getTheoryBundle());
+				_Activity._nWVB.Reload(_Activity.getTheoryBundle());
+				
 				_Activity._filePath = _Activity
 						.getFilePathFromTeoriBundle(_Activity.getTheoryBundle());
 				_Activity.decodeDataDocument();
@@ -237,8 +226,8 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 							.ordinal());
 
 			try {
-				_Activity._nWVB = new WebViewOving();
-				_Activity._nWVB.setArguments(_Activity.getOvingBundle());
+				_Activity._nWVB.Reload(_Activity.getOvingBundle());
+
 				_Activity._filePath = _Activity
 						.getFilePathFromOvingBundle(_Activity.getOvingBundle());
 				_Activity.decodeDataDocument();
