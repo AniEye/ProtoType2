@@ -75,6 +75,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Menus.Calc_info"
+            android:label="Informasjon om kalkulatorne"
+            android:theme="@android:style/Theme.Dialog" >
+            <intent-filter>
+                <action android:name="com.bbv.prototype1.SHOWCALCINFO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Menus.SetCalcPrefs"
             android:label="@string/CalcSettings" >
             <intent-filter>

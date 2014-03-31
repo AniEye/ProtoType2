@@ -75,22 +75,22 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
+		Intent i;
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			this.finish();
 			return true;
-		case R.id.aboutUs:
-			Intent i = new Intent("com.bbv.prototype1.ABOUT");
+		case R.id.calc_info:
+			i = new Intent("com.bbv.prototype1.SHOWCALCINFO");
 			startActivity(i);
 			break;
 		case R.id.calcSettings:
-			Intent p = new Intent("com.bbv.prototype1.SETCALCPREFS");
-			startActivity(p);
+			i = new Intent("com.bbv.prototype1.SETCALCPREFS");
+			startActivity(i);
 			break;
-		case R.id.exit:
+		case R.id.goBackHome:
 			finish();
-			break;
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -277,10 +277,9 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// TODO Auto-generated method stub
 		super.onCreateOptionsMenu(menu);
 		MenuInflater blowup = getMenuInflater();
-		blowup.inflate(R.menu.settings_menu, menu);
+		blowup.inflate(R.menu.settings_menu_calc, menu);
 		return true;
 	}
 
