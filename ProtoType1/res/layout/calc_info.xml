@@ -7,11 +7,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="For å bruke kalkulatorne fylles tekstfeltene ut med verdier fra lab. \n\n
-        Dersom det ikke er mer enn èn verdi som skal regnes ut 
-        (dette kan sees ved at det er flere felt under tekstfeltene som skal få innsatte verdier) 
-        fylles alle feltene bortsett fra det feltet som skal regnes ut. \n\n
-       	
-       	Trykk på 'Regn ut'-knappen for å oppdatere feltene, og trykk på 'Tøm felt' for å fjerne innsatte verdier." />
+        android:text="For å bruke kalkulatorne fylles tekstfeltene ut med verdier fra lab.\n\nDersom det ikke er mer enn èn verdi som skal regnes ut (dette kan sees ved at det er flere felt under tekstfeltene som skal få innsatte verdier) fylles alle feltene bortsett fra det feltet som skal regnes ut.\n\nTrykk på 'Regn ut'-knappen for å oppdatere feltene, og trykk på 'Tøm felt' for å fjerne innsatte verdier." />
 
 </LinearLayout>
