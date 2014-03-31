@@ -36,11 +36,6 @@
                 android:id="@+id/bSQLDatabase"
                 style="@style/CustomButton"
                 android:text="Database" />
-            
-            <Button
-                android:id="@+id/bTNLA"
-                style="@style/CustomButton"
-                android:text="Test new listAdapter" />
         </LinearLayout>
     </ScrollView>
 
