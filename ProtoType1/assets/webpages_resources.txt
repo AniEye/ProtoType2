@@ -28,3 +28,12 @@ http://stackoverflow.com/questions/18973550/load-images-from-assets-folder
 
 html tags for special symbols
 http://rabbit.eng.miami.edu/info/htmlchars.html
+
+for zooming:
+http://stackoverflow.com/questions/9390367/how-to-apply-pinch-zoom-on-gallery-in-android
+
+resources:
+http://stackoverflow.com/questions/4623508/how-to-set-the-font-style-to-bold-italic-and-underlined-in-an-android-textview
+http://stackoverflow.com/questions/10129953/create-textview-from-template-xml-file
+http://stackoverflow.com/questions/18786232/set-width-dynamically-of-textview
+http://stackoverflow.com/questions/5168691/fit-the-content-of-a-webview-on-screen-with-zoom-suport

@@ -19,6 +19,7 @@ import com.bbv.prototype1.Kalkulatorer.Flytegrense;
 import com.bbv.prototype1.Kalkulatorer.Herch_Law;
 import com.bbv.prototype1.Kalkulatorer.KloridInnhold;
 import com.bbv.prototype1.Kalkulatorer.KloridInnholdIVannfasen;
+import com.bbv.prototype1.Kalkulatorer.KonverterM3;
 import com.bbv.prototype1.Kalkulatorer.MasseOgVolumBalanse;
 import com.bbv.prototype1.Kalkulatorer.OljeVann;
 import com.bbv.prototype1.Kalkulatorer.Plast_Viskos;
@@ -26,6 +27,8 @@ import com.bbv.prototype1.Kalkulatorer.PowerLaw1006;
 import com.bbv.prototype1.Kalkulatorer.PowerLaw600300;
 import com.bbv.prototype1.Kalkulatorer.Skjaerhastighet;
 import com.bbv.prototype1.Kalkulatorer.Spess_tetthet;
+import com.bbv.prototype1.Kalkulatorer.Table_3_1_calc;
+import com.bbv.prototype1.Kalkulatorer.Table_9_4_calc;
 import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
 import com.bbv.prototype1.Kalkulatorer.TotalHardhet;
 
@@ -35,9 +38,11 @@ public class ShowCalculator extends Fragment {
 	private Basic_Calc _basicCalc;
 	public static String[] _calcList = { "Alkalitet", "AlkaPm", "CaOHInnhold",
 			"CEC", "Flytegrense", "Herch_Law", "KloridInnhold",
-			"KloridInnholdVannfasen", "MasseOgVolumBalanse", "OljeVann",
-			"Plast_Viskos", "PowerLaw1006", "PowerLaw600300",
-			"Skjaerhastighet", "Spess_tetthet", "Til_Viskos", "TotalHardhet" };
+			"KloridInnholdVannfasen", "KonverterM3", "MasseOgVolumBalanse",
+			"OljeVann", "Plast_Viskos", "PowerLaw1006", "PowerLaw600300",
+			"Skjaerhastighet", "Spess_tetthet", "Table_3_1_calc",
+			"Table_9_4_calc", "Til_Viskos", "TotalHardhet" };
+
 	private String _ChoosenCalc;
 
 	private static final String KEY_LOGCAT = "ShowCalculator";
@@ -50,7 +55,7 @@ public class ShowCalculator extends Fragment {
 		_ChoosenCalc = getArguments().getString(ShowContentBase.KEY_CHOSENCALC);
 		initializeBasicCalc();
 		_LinearLayout.addView(_basicCalc);
-		
+
 		return _rootView;
 	}
 
@@ -72,37 +77,45 @@ public class ShowCalculator extends Fragment {
 		} else if (_ChoosenCalc.contentEquals(_calcList[7])) {
 			_basicCalc = new KloridInnholdIVannfasen(_LinearLayout.getContext());
 		} else if (_ChoosenCalc.contentEquals(_calcList[8])) {
-			_basicCalc = new MasseOgVolumBalanse(_LinearLayout.getContext());
+			_basicCalc = new KonverterM3(_LinearLayout.getContext());
 		} else if (_ChoosenCalc.contentEquals(_calcList[9])) {
+			_basicCalc = new MasseOgVolumBalanse(_LinearLayout.getContext());
+		} else if (_ChoosenCalc.contentEquals(_calcList[10])) {
 			_basicCalc = new OljeVann(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[10])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[11])) {
 			_basicCalc = new Plast_Viskos(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[10])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[12])) {
 			_basicCalc = new PowerLaw1006(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[10])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[13])) {
 			_basicCalc = new PowerLaw600300(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[10])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[14])) {
 			_basicCalc = new Skjaerhastighet(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[10])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[15])) {
 			_basicCalc = new Spess_tetthet(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[10])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[16])) {
+			_basicCalc = new Table_3_1_calc(_LinearLayout.getContext());
+		} else if (_ChoosenCalc.contentEquals(_calcList[17])) {
+			_basicCalc = new Table_9_4_calc(_LinearLayout.getContext());
+		} else if (_ChoosenCalc.contentEquals(_calcList[18])) {
 			_basicCalc = new Til_Viskos(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[10])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[19])) {
 			_basicCalc = new TotalHardhet(_LinearLayout.getContext());
 		}
 	}
-	
+
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
-	    super.onConfigurationChanged(newConfig);
+		super.onConfigurationChanged(newConfig);
 
-	    // Checks whether a hardware or on-screen keyboard is available
-	    if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_NO) {
-	    	Log.e(KEY_LOGCAT, "The keyboard is not hidden");
-	        Toast.makeText(getActivity(), "Keyboard visible", Toast.LENGTH_SHORT).show();
-	    } else if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_YES) {
-	        Toast.makeText(getActivity(), "Keyboard hidden", Toast.LENGTH_SHORT).show();
-	        Log.e(KEY_LOGCAT, "The keyboard is hidden");
-	    }
+		// Checks whether a hardware or on-screen keyboard is available
+		if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_NO) {
+			Log.e(KEY_LOGCAT, "The keyboard is not hidden");
+			Toast.makeText(getActivity(), "Keyboard visible",
+					Toast.LENGTH_SHORT).show();
+		} else if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_YES) {
+			Toast.makeText(getActivity(), "Keyboard hidden", Toast.LENGTH_SHORT)
+					.show();
+			Log.e(KEY_LOGCAT, "The keyboard is hidden");
+		}
 	}
 }

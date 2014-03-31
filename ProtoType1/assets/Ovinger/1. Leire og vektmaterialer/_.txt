@@ -27,6 +27,6 @@ Ovinger/1. Leire og vektmaterialer
 </Øvinger>
 
 <Kalkulatorer>
-Alkalitet/En kalkulator
-CaOHInnhold
+Alkalitet
+CaOHInnhold/CaOH Innhold
 </Kalkulatorer>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -102,6 +103,9 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 		_sChapterPart1.setOnItemSelectedListener(this);
 
 		gVidere.setOnClickListener(this);
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);
 
 		InitializingChapterSpinner();
 	}
@@ -269,6 +273,15 @@ public class Pros_og_Teori extends Activity implements OnItemSelectedListener,
 		} else {
 			outState.putString(ShowContentBase.KEY_CHAPTERPART2, null);
 		}
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId()==android.R.id.home){
+			this.finish();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 }

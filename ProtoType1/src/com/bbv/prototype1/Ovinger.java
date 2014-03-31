@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -48,6 +49,9 @@ public class Ovinger extends Activity implements OnClickListener {
 		_gVidere = (Button) findViewById(R.id.bVidere_Oving);
 
 		_gVidere.setOnClickListener(this);
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);
 	}
 
 	@Override
@@ -78,5 +82,14 @@ public class Ovinger extends Activity implements OnClickListener {
 		if (resultCode == 2) {
 			finish();
 		}
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId()==android.R.id.home){
+			this.finish();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }
