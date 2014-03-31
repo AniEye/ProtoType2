@@ -202,15 +202,13 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			calc = new KloridInnholdIVannfasen(lLayout.getContext());
 			break;
 		case 16:
-			//Legg inn CaCl i vannfasen her
+			calc = new Table_9_4_calc(lLayout.getContext());
+			break;
 		case 17:
 			calc = new KonverterM3(lLayout.getContext());
 			break;
 		case 18:
 			calc = new Table_3_1_calc(lLayout.getContext());
-			break;
-		case 19:
-			calc = new Table_9_4_calc(lLayout.getContext());
 			break;
 		}
 

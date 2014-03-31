@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/ButtonAndSpinnerBackgroundColor" >
 
-     <TextView
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,12 +20,12 @@
         android:hint="[ml]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
-    
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp" >
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -53,15 +53,18 @@
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell11"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell12"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell13"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
         </TableRow>
 
         <TableRow
@@ -71,15 +74,18 @@
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell21"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell22"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell23"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
         </TableRow>
 
         <TableRow
@@ -89,15 +95,18 @@
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell31"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell32"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell33"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
         </TableRow>
 
         <TableRow
@@ -107,15 +116,18 @@
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell41"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell42"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell43"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
         </TableRow>
 
         <TableRow
@@ -125,21 +137,62 @@
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell51"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell52"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvCaCl2Tabell53"
-                style="@style/CustomTableItem" />
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
         </TableRow>
 
-        
-    </TableLayout>
+        <TableRow
+            android:id="@+id/tableRow7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-   
+            <TextView
+                android:id="@+id/tvCaCl2Tabell61"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell62"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell63"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell71"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell72"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCaCl2Tabell73"
+                style="@style/CustomTableItem"
+                android:visibility="gone" />
+        </TableRow>
+    </TableLayout>
 
     <EditText
         android:id="@+id/etCaCl2_HideThis"

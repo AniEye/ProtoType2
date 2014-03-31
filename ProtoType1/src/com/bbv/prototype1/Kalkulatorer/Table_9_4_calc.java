@@ -29,7 +29,7 @@ public class Table_9_4_calc extends Basic_Calc {
 	/**
 	 * Sets the number of vertical table items to show for the table
 	 */
-	private final int numberOfTableItemsToShow = 5;
+	private final int numberOfTableItemsToShow = 7;
 
 	float Cl;
 	float CaCl2;
