@@ -114,13 +114,13 @@
         android:paddingTop="5dp" >
 
         <Button
-            android:id="@+id/bCECUpdate"
+            android:id="@+id/bUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/CalcButtonUpdate" />
 
         <Button
-            android:id="@+id/bCECClear"
+            android:id="@+id/bClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/CalcButtonClear" />

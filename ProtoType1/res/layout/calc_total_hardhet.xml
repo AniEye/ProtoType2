@@ -182,13 +182,13 @@
         android:paddingTop="5dp" >
 
         <Button
-            android:id="@+id/bTotHardUpdate"
+            android:id="@+id/bUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/CalcButtonUpdate"  />
 
         <Button
-            android:id="@+id/bTotHardClear"
+            android:id="@+id/bClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/CalcButtonClear"  />
