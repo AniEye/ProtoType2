@@ -91,6 +91,12 @@ public abstract class Basic_Calc extends LinearLayout {
 	public abstract String calculation(int editTextIndex,
 			float... fieldStatuses);
 
+	/**
+	 * This method sums every int in an integer array, and returns this sum.
+	 * 
+	 * @param fieldStatuses - Integer array
+	 * @return the sum of all integers in an integer-array
+	 */
 	protected int theSum(int... fieldStatuses) {
 		int sumOfEditedFields = 0;
 		for (int i = 0; i < fieldStatuses.length; i++) {
@@ -214,6 +220,9 @@ public abstract class Basic_Calc extends LinearLayout {
 		return true;
 	}
 	
+	/**
+	 * Use this method to hide the soft keyboard 
+	 */
 	protected void hideSoftKeyboard(){
 		InputMethodManager imm = (InputMethodManager)getContext().getSystemService(
 				Context.INPUT_METHOD_SERVICE);
