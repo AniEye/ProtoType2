@@ -11,6 +11,6 @@ public class Calc_info extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.calc_info);
+		setContentView(R.layout.info_calc);
 	}
 }

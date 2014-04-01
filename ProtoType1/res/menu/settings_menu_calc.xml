@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item 
-        android:title="Hvordan bruke kalkulatoren?"
+        android:title="@string/HowToUseCalcTitle"
         android:id="@+id/calc_info"/>
     <item 
-        android:title="@string/CalcSettings"
+        android:title="@string/CalcSettingsLabel"
         android:id="@+id/calcSettings"/>
     <item 
-        android:title="Tilbake til hovedmeny"
+        android:title="@string/backToMainMenu"
         android:id="@+id/goBackHome"/>
 
     
