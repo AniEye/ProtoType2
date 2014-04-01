@@ -1,8 +1,10 @@
-package com.bbv.prototype1.Database;
+package com.bbv.prototype1;
 
 import java.util.ArrayList;
 
 import com.bbv.prototype1.R;
+import com.bbv.prototype1.Database.Database;
+import com.bbv.prototype1.Database.DatabaseContent;
 import com.bbv.prototype1.R.id;
 import com.bbv.prototype1.R.layout;
 
@@ -27,8 +29,7 @@ import android.widget.TextView;
 public class SQLPros_Teori extends Activity implements OnClickListener,
 		OnItemSelectedListener {
 
-	Button _add, _view, _fileView,_delAll,_delEnt,_dbrecreate;
-	EditText _filename, _chapter, _chapterpart1, _chapterpart2;
+	Button _view, _dbrecreate;
 	Spinner _sChapter, _sChapterPart1, _sChapterPart2;
 	ArrayAdapter<CharSequence> _AAChapter, _AAChapterPart1, _AAChapterPart2;
 
@@ -58,34 +59,19 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 	 */
 	private void Initialize() {
 		// TODO Auto-generated method stub
-		_add = (Button) findViewById(R.id.bSQLPoTAdd);
 		_view = (Button) findViewById(R.id.bSQLPoTViewDatabase);
-		_fileView = (Button) findViewById(R.id.bSQLPoTViewFile);
-		_delAll = (Button)findViewById(R.id.bSQLPoTDelAll);
-		_delEnt = (Button)findViewById(R.id.bSQLPoTDelEnt);
-		_dbrecreate = (Button)findViewById(R.id.bSQLPoTRecreate);
-
-		_filename = (EditText) findViewById(R.id.etSQLPoTFileNameAdd);
-		_chapter = (EditText) findViewById(R.id.etSQLPoTChapter);
-		_chapterpart1 = (EditText) findViewById(R.id.etSQLPoTChapterPart1);
-		_chapterpart2 = (EditText) findViewById(R.id.etSQLPoTChapterPart2);
+		_dbrecreate = (Button) findViewById(R.id.bSQLPoTRecreate);
 
 		_sChapter = (Spinner) findViewById(R.id.sSQLChapter);
 		_sChapterPart1 = (Spinner) findViewById(R.id.sSQLChapterPart1);
 		_sChapterPart2 = (Spinner) findViewById(R.id.sSQLChapterPart2);
 
-
-		_add.setOnClickListener(this);
 		_view.setOnClickListener(this);
-		_fileView.setOnClickListener(this);
-		_delAll.setOnClickListener(this);
-		_delEnt.setOnClickListener(this);
 		_dbrecreate.setOnClickListener(this);
 
 		_sChapter.setOnItemSelectedListener(this);
 		_sChapterPart1.setOnItemSelectedListener(this);
 		_sChapterPart2.setOnItemSelectedListener(this);
-		
 
 		/**
 		 * this method will set up the chapter spinner based on the relevant
@@ -123,8 +109,8 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 		entry.open();
 
 		String[] chapters = entry.getColumnGrouped(
-				new String[] { Database.KEY_CHAPTER },
-				Database.KEY_CHAPTER, null);
+				new String[] { Database.KEY_CHAPTER }, Database.KEY_CHAPTER,
+				null);
 		entry.close();
 
 		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(
@@ -141,50 +127,10 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.bSQLPoTAdd:
-			boolean didItWork = true;
-			try {
-				String chapter = _chapter.getText().toString();
-				String chapterPart1 = _chapterpart1.getText().toString();
-				String chapterPart2 = _chapterpart2.getText().toString();
-				String filename = _filename.getText().toString();
 
-				Database entry = new Database(SQLPros_Teori.this);
-				entry.open();
-				entry.createEntry(chapter, chapterPart1, chapterPart2, filename);
-				entry.close();
-			} catch (Exception e) {
-				didItWork = false;
-				String error = e.toString();
-				Dialog d = new Dialog(this);
-				d.setTitle("Dop!!");
-				TextView tv = new TextView(this);
-				tv.setText(error);
-				d.setContentView(tv);
-				d.show();
-			} finally {
-				if (didItWork) {
-					Dialog d = new Dialog(this);
-					d.setTitle("Heck Yea!");
-					TextView tv = new TextView(this);
-					tv.setText("Success");
-					d.setContentView(tv);
-					d.show();
-				}
-			}
-			break;
 		case R.id.bSQLPoTViewDatabase:
 			Intent i = new Intent("com.bbv.prototype1.SQLVIEW");
 			startActivity(i);
-			break;
-		case R.id.bSQLPoTDelAll:
-			Database dbs = new Database(SQLPros_Teori.this);
-			dbs.open();
-			dbs.deleteTableContent(null);
-			InitializeChapterSpinner();
-			dbs.close();
-			break;
-		case R.id.bSQLPoTDelEnt:
 			break;
 		case R.id.bSQLPoTRecreate:
 			Database DBrec = new Database(SQLPros_Teori.this);
@@ -195,20 +141,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 			break;
 		}
 
-	}
-
-	private String makeFileName(int index) {
-		String filename = "";
-		if (!DBContent[index].getChapter().isEmpty()) {
-			filename = DBContent[index].getChapter() + "/";
-			if (!DBContent[index].getChapterPart1().isEmpty()) {
-				filename = filename + DBContent[index].getChapterPart1() + "/";
-				if (!DBContent[index].getChapterPart2().isEmpty())
-					filename = filename + DBContent[index].getChapterPart2()
-							+ "/";
-			}
-		}
-		return filename;
 	}
 
 	/**

@@ -44,115 +44,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"      
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/bSQLPoTViewFile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="10dp"
-                android:text="View File" />
-
-            <Button
-                android:id="@+id/bSQLPoTDelEnt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10dp"
-                android:layout_weight="1"
-                android:text="Delete entry" />
-             <Button
-                android:id="@+id/bSQLPoTDelAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10dp"
-                android:layout_weight="1"
-                android:text="Delete all" />
-              <Button
-                android:id="@+id/bSQLPoTRecreate"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textSize="10dp"
-                android:text="Recreate" />
-        </LinearLayout>
-
-        <!-- Creating entry -->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Creating entry"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Chapter" />
-
-        <EditText
-            android:id="@+id/etSQLPoTChapter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Chapter part 1" />
-
-        <EditText
-            android:id="@+id/etSQLPoTChapterPart1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Chapter part 2" />
-
-        <EditText
-            android:id="@+id/etSQLPoTChapterPart2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="File name" />
-
-        <EditText
-            android:id="@+id/etSQLPoTFileNameAdd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="File name" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/bSQLPoTAdd"
+                android:id="@+id/bSQLPoTRecreate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Add entry" />
+                android:layout_weight="1"
+                android:text="Recreate"
+                android:textSize="10dp" />
 
             <Button
                 android:id="@+id/bSQLPoTViewDatabase"

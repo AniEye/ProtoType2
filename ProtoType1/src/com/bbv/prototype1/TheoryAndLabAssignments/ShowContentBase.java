@@ -1,4 +1,4 @@
-package com.bbv.prototype1;
+package com.bbv.prototype1.TheoryAndLabAssignments;
 
 import java.io.BufferedReader;
 import java.io.IOException;

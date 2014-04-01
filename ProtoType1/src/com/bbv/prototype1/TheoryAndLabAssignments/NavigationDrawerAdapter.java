@@ -1,7 +1,12 @@
-package com.bbv.prototype1;
+package com.bbv.prototype1.TheoryAndLabAssignments;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.bbv.prototype1.R;
+import com.bbv.prototype1.R.id;
+import com.bbv.prototype1.R.layout;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;

@@ -1,4 +1,7 @@
-package com.bbv.prototype1;
+package com.bbv.prototype1.TheoryAndLabAssignments;
+
+import com.bbv.prototype1.R;
+import com.bbv.prototype1.R.id;
 
 import android.app.Fragment;
 import android.os.Bundle;

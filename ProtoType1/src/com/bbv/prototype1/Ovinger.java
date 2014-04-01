@@ -1,6 +1,7 @@
 package com.bbv.prototype1;
 
 import com.bbv.prototype1.Database.Database;
+import com.bbv.prototype1.TheoryAndLabAssignments.ShowContentBase;
 
 import android.app.Activity;
 import android.content.Intent;

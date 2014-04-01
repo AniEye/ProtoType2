@@ -42,7 +42,7 @@ public class SQLView extends Activity {
 		Database info = new Database(this);
 		info.open();
 		// String data = info.getData();
-		DatabaseContent[] data = info.getData();
+		DatabaseContent[] data = info.getTheoryData();
 		info.close();
 
 		for (int i = 0; i < data.length; i++) {

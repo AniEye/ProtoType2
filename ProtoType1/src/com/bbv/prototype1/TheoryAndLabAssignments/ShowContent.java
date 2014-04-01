@@ -1,7 +1,15 @@
-package com.bbv.prototype1;
+package com.bbv.prototype1.TheoryAndLabAssignments;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import com.bbv.prototype1.R;
+import com.bbv.prototype1.R.array;
+import com.bbv.prototype1.R.drawable;
+import com.bbv.prototype1.R.id;
+import com.bbv.prototype1.R.layout;
+import com.bbv.prototype1.R.menu;
+import com.bbv.prototype1.R.string;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

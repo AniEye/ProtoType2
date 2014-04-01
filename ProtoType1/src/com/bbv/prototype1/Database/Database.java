@@ -169,22 +169,7 @@ public class Database {
 		ourHelper.close();
 	}
 
-	public void deleteTableContent(String where) {
-		ourDatabase.delete(DATABASE_TABLE_TEORI, where, null);
-	}
-
-	public long createEntry(String chapter, String chapterPart1,
-			String chapterPart2, String filename) {
-		ContentValues cv = new ContentValues();
-		cv.put(KEY_CHAPTER, chapter);
-		cv.put(KEY_CHAPTERPART1, chapterPart1);
-		cv.put(KEY_CHAPTERPART2, chapterPart2);
-		// check out the null if that's the reason that it doesn't
-		return ourDatabase.insert(DATABASE_TABLE_TEORI, null, cv);
-
-	}
-
-	public DatabaseContent[] getData() {
+	public DatabaseContent[] getTheoryData() {
 		String[] columns = new String[] { KEY_CHAPTER, KEY_CHAPTERPART1,
 				KEY_CHAPTERPART2};
 		Cursor c = ourDatabase.query(DATABASE_TABLE_TEORI, columns, null, null, null,
@@ -204,7 +189,6 @@ public class Database {
 			currentRow++;
 
 		}
-
 		return content;
 	}
 	

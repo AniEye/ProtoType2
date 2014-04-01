@@ -1,4 +1,4 @@
-package com.bbv.prototype1;
+package com.bbv.prototype1.TheoryAndLabAssignments;
 
 import android.app.Fragment;
 import android.content.res.Configuration;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bbv.prototype1.R;
 import com.bbv.prototype1.Kalkulatorer.AlkaPm;
 import com.bbv.prototype1.Kalkulatorer.Alkalitet;
 import com.bbv.prototype1.Kalkulatorer.Basic_Calc;
@@ -31,6 +32,8 @@ import com.bbv.prototype1.Kalkulatorer.Table_3_1_calc;
 import com.bbv.prototype1.Kalkulatorer.Table_9_4_calc;
 import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
 import com.bbv.prototype1.Kalkulatorer.TotalHardhet;
+import com.bbv.prototype1.R.id;
+import com.bbv.prototype1.R.layout;
 
 public class ShowCalculator extends Fragment {
 	private View _rootView;

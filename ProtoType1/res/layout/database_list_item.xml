@@ -2,39 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-     >
+    android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/DLIChapter"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
-        android:background="@color/aero_blue" />
+        android:background="@color/aero_blue"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/DLIChapterPart1"
         android:layout_width="0dp"
-        android:gravity="center"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/light_blue" />
+        android:background="@color/light_blue"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/DLIChapterPart2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_weight="1"
-        android:background="@color/aero_blue" />
-
-    <TextView
-        android:id="@+id/DLIFileName"
-        android:layout_width="0dp"
-        android:gravity="center"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@color/light_blue" />
+        android:background="@color/aero_blue"
+        android:gravity="center" />
 
 </LinearLayout>
