@@ -14,7 +14,6 @@ import com.bbv.prototype1.R;
 
 public class PowerLaw1006 extends Basic_Calc {
 
-	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
@@ -145,47 +144,6 @@ public class PowerLaw1006 extends Basic_Calc {
 
 			}
 		};
-	}
-
-	protected void FocusChange(int indexOfCurrentField, boolean focusStatus) {
-		String _fieldsString = textFields[indexOfCurrentField].getText()
-				.toString();
-
-		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
-			if (focusStatus == false && !_fieldsString.contentEquals("")) {
-
-				_textFieldsStatus[indexOfCurrentField] = 1;
-
-			}
-		} else {
-			if (_textFieldsStatus[indexOfCurrentField] == 1) {
-				if (focusStatus == false) {
-
-					if (_fieldsString.contentEquals("")) {
-						_textFieldsStatus[indexOfCurrentField] = 0;
-						Enabeling(textFields);
-					} else if (!_fieldsString.contentEquals("")) {
-						updateRelevantResult();
-					}
-				}
-			} else {
-				updateRelevantResult();
-				textFields[indexOfCurrentField].setEnabled(false);
-			}
-		}
-	}
-
-	@Override
-	protected void updateRelevantResult() {
-		for (int i = 0; i < _textFieldsStatus.length; i++) {
-			if (_textFieldsStatus[i] == 0) {
-
-				textFields[i].setText(calculation(i,
-						getFloatVariables(textFields)));
-				textFields[i].setEnabled(false);
-				break;
-			}
-		}
 	}
 
 }

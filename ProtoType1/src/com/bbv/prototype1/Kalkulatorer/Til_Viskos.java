@@ -13,8 +13,6 @@ import android.widget.Toast;
 
 public class Til_Viskos extends Basic_Calc {
 
-	Toast toast;
-	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
@@ -22,7 +20,7 @@ public class Til_Viskos extends Basic_Calc {
 	final int updateButtonID = R.id.bViskosUpdate;
 	final int layout = R.layout.calc_viskositet_tilsynelatende;
 
-	final int[] IDs = { R.id.etViskosTil, R.id.etRPM, R.id.etRPM };
+	final int[] IDs = { R.id.etViskosTil, R.id.etTheta, R.id.etRPM };
 
 	public final static int THETA_INDEX = 0, RPM_INDEX = 1, TIL_VISK_INDEX = 2;
 
@@ -124,45 +122,6 @@ public class Til_Viskos extends Basic_Calc {
 		};
 	}
 
-	protected void FocusChange(int indexOfCurrentField, boolean focusStatus) {
-		String _fieldsString = textFields[indexOfCurrentField].getText()
-				.toString();
 
-		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
-			if (focusStatus == false && !_fieldsString.contentEquals("")) {
-
-				_textFieldsStatus[indexOfCurrentField] = 1;
-
-			}
-		} else {
-			if (_textFieldsStatus[indexOfCurrentField] == 1) {
-				if (focusStatus == false) {
-
-					if (_fieldsString.contentEquals("")) {
-						_textFieldsStatus[indexOfCurrentField] = 0;
-						Enabeling(textFields);
-					} else if (!_fieldsString.contentEquals("")) {
-						updateRelevantResult();
-					}
-				}
-			} else {
-				updateRelevantResult();
-				textFields[indexOfCurrentField].setEnabled(false);
-			}
-		}
-	}
-
-	@Override
-	protected void updateRelevantResult() {
-		for (int i = 0; i < _textFieldsStatus.length; i++) {
-			if (_textFieldsStatus[i] == 0) {
-
-				textFields[i].setText(calculation(i,
-						getFloatVariables(textFields)));
-				textFields[i].setEnabled(false);
-				break;
-			}
-		}
-	}
 
 }

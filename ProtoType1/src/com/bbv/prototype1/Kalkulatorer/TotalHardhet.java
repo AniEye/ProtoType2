@@ -20,8 +20,8 @@ public class TotalHardhet extends Basic_Calc {
 	final int clearButtonID = R.id.bTotHardClear;
 	final int updateButtonID = R.id.bTotHardUpdate;
 	final int layout = R.layout.calc_total_hardhet;
-	
-	//Variables used for calculation
+
+	// Variables used for calculation
 	float totHardCaCo3;
 	float totHardCa2;
 	float totHardMg2;
@@ -33,24 +33,23 @@ public class TotalHardhet extends Basic_Calc {
 	float M_CaCO3 = 100.0869f;
 	float M_Ca2 = 40.78f;
 	float M_Mg2 = 24.3050f;
-	
-	final int[] textViewIDs = {
-			R.id.tvTotHardCaCo, //textview of Total hardhet
-			R.id.tvTotHardCa2, //textview of Kalsium hardhet
-			R.id.tvTotHardMg2 //textview of Magnesium hardhet
+
+	final int[] textViewIDs = { R.id.tvTotHardCaCo, // textview of Total hardhet
+			R.id.tvTotHardCa2, // textview of Kalsium hardhet
+			R.id.tvTotHardMg2 // textview of Magnesium hardhet
 	};
 
-	final int[] editTextIDs = { 
-			R.id.etTotHardVEDTACaCO3, //Textfield of V EDTA
-			R.id.etTotHardVCa2, //Textfield of V filtrat
-			R.id.etTotHardVF, //Textfield of Volum filtrat
-			R.id.etTotHardHideThis, //Textfield - Will be disabled
-			};
+	final int[] editTextIDs = { R.id.etTotHardVEDTACaCO3, // Textfield of V EDTA
+			R.id.etTotHardVCa2, // Textfield of V filtrat
+			R.id.etTotHardVF, // Textfield of Volum filtrat
+			R.id.etTotHardHideThis, // Textfield - Will be disabled
+	};
 
 	/**
 	 * This is the only value that should be calculated in this calculator
 	 */
-	public final static int KEY_INDEX = 3; //Only index value should be calculated
+	public final static int KEY_INDEX = 3; // Only index value should be
+											// calculated
 
 	public TotalHardhet(Context context) {
 		super(context);
@@ -67,36 +66,44 @@ public class TotalHardhet extends Basic_Calc {
 
 		switch (variableToCalculate) {
 
-		default: 
-			Log.println(Log.ERROR, "calc",
-					"Tried to calculate anything other than the key value, and this should not happen! " + this.getClass().getName());
+		default:
+			Log.println(
+					Log.ERROR,
+					"calc",
+					"Tried to calculate anything other than the key value, and this should not happen! "
+							+ this.getClass().getName());
 			break;
 		case KEY_INDEX:
 
-			Log.println(Log.INFO, "calc", "Setting textviews in " + this.getClass().getName() + "!");
-			
-			float[] valuesToCheck = {V_EDTA_CaCO3, V_EDTA_Ca2,V_filtrat};
-			if(checkForNullValues(valuesToCheck) == false || checkForNegativeValues(valuesToCheck) == false)
-					return "";			
+			Log.println(Log.INFO, "calc", "Setting textviews in "
+					+ this.getClass().getName() + "!");
+
+			float[] valuesToCheck = { V_EDTA_CaCO3, V_EDTA_Ca2, V_filtrat };
+			if (checkForNullValues(valuesToCheck) == false
+					|| checkForNegativeValues(valuesToCheck) == false)
+				return "";
 
 			V_EDTA = V_EDTA_CaCO3 - V_EDTA_Ca2;
-			totHardCaCo3 = (EDTA*V_EDTA*M_CaCO3*1000)/V_filtrat;
-			totHardCa2 = (EDTA*V_EDTA*M_Ca2*1000)/V_filtrat;
-			
-			if(V_EDTA < 0)
+			totHardCaCo3 = (EDTA * V_EDTA * M_CaCO3 * 1000) / V_filtrat;
+			totHardCa2 = (EDTA * V_EDTA * M_Ca2 * 1000) / V_filtrat;
+
+			if (V_EDTA < 0)
 				totHardMg2 = 0;
 			else
-				totHardMg2 = (EDTA*V_EDTA*M_Mg2*1000)/V_filtrat;
+				totHardMg2 = (EDTA * V_EDTA * M_Mg2 * 1000) / V_filtrat;
 
-			if(checkForDivisionErrors(totHardCa2,totHardCaCo3,totHardMg2) == false)
+			if (checkForDivisionErrors(totHardCa2, totHardCaCo3, totHardMg2) == false)
 				return "";
-			
-			textviews[0].setText(String.format(THREE_DECIMALS, totHardCaCo3) + " " + "[mg/l]");
-			textviews[1].setText(String.format(THREE_DECIMALS, totHardCa2) + " " + "[mg/l]");
-			textviews[2].setText(String.format(THREE_DECIMALS, totHardMg2) + " " + "[mg/l]");
-			
-			return String.format(THREE_DECIMALS,totHardCaCo3);
-			
+
+			textviews[0].setText(String.format(THREE_DECIMALS, totHardCaCo3)
+					+ " " + "[mg/l]");
+			textviews[1].setText(String.format(THREE_DECIMALS, totHardCa2)
+					+ " " + "[mg/l]");
+			textviews[2].setText(String.format(THREE_DECIMALS, totHardMg2)
+					+ " " + "[mg/l]");
+
+			return String.format(THREE_DECIMALS, totHardCaCo3);
+
 		}
 
 		return "";
@@ -115,7 +122,7 @@ public class TotalHardhet extends Basic_Calc {
 			textFields[i] = FindAndReturnEditText(editTextIDs[i], focChan);
 		for (int i = 0; i < textViewIDs.length; i++)
 			textviews[i] = (TextView) findViewById(textViewIDs[i]);
-		
+
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
@@ -157,60 +164,37 @@ public class TotalHardhet extends Basic_Calc {
 		};
 	}
 
-	protected void FocusChange(int indexOfCurrentField, boolean focusStatus) {
-		String _fieldsString = textFields[indexOfCurrentField].getText()
-				.toString();
 
-		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
-			if (focusStatus == false && !_fieldsString.contentEquals("")) {
-
-				_textFieldsStatus[indexOfCurrentField] = 1;
-
-			}
-		} else {
-			if (_textFieldsStatus[indexOfCurrentField] == 1) {
-				if (focusStatus == false) {
-					
-					if (_fieldsString.contentEquals("")) {
-						_textFieldsStatus[indexOfCurrentField] = 0;
-						Enabeling(textFields);
-					} else if (!_fieldsString.contentEquals("")) {
-						updateRelevantResult();
-					}
-				}
-			} else {
-				updateRelevantResult();
-				textFields[indexOfCurrentField].setEnabled(false);
-			}
-		}
-	}
-
-	@Override
-	protected void updateRelevantResult() {
-		for (int i = 0; i < _textFieldsStatus.length; i++) {
-			if (_textFieldsStatus[i] == 0) {
-
-				textFields[i].setText(calculation(i,
-						getFloatVariables(textFields)));
-				textFields[i].setEnabled(false);
-				break;
-			}
-		}
-	}
-
+	/**
+	 * 
+	 * @return Returns the calculated value of CaCo3
+	 */
 	public float getTotHardCaCo3() {
 		return totHardCaCo3;
 	}
 
+	/**
+	 * 
+	 * @return Returns the calculated value of Ca2
+	 */
 	public float getTotHardCa2() {
 		return totHardCa2;
 	}
 
+	/**
+	 * 
+	 * @return Returns the calculated value of Mg2
+	 */
 	public float getTotHardMg2() {
 		return totHardMg2;
 	}
-	public float getVEDTA(){
+
+	/**
+	 * 
+	 * @return Returns the calculated value of VEDTA
+	 */
+	public float getVEDTA() {
 		return V_EDTA;
 	}
-	
+
 }

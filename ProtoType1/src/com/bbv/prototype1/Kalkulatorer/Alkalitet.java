@@ -69,7 +69,7 @@ public class Alkalitet extends Basic_Calc {
 				showToast("Something went wrong with the calculation!");
 				return "";
 			}
-			
+
 			if (checkForNegativeValues(Pf, Mf) == false
 					|| checkForNullValues(Pf, Mf) == false)
 				return "";
@@ -90,6 +90,11 @@ public class Alkalitet extends Basic_Calc {
 
 	}
 
+	/**
+	 * This method resets the table items to the original string values in the
+	 * original table. Also set the text color back to black, and the background
+	 * to a difined color in the resources.
+	 */
 	private void resetTableItems() {
 
 		Table_3_3 table = new Table_3_3(0, 0);
@@ -100,7 +105,8 @@ public class Alkalitet extends Basic_Calc {
 
 				String String_ID = "tvAlkalitet" + String.valueOf(i)
 						+ String.valueOf(j);
-				Log.println(Log.DEBUG, "calc", "ID resetTableItems: " + String_ID);
+				Log.println(Log.DEBUG, "calc", "ID resetTableItems: "
+						+ String_ID);
 
 				int ID = returnIDFromString(String_ID);
 
@@ -111,13 +117,20 @@ public class Alkalitet extends Basic_Calc {
 						R.drawable.table_item_with_border));
 
 				tableItem.setText(table.getInitialRows()[i - 1][j - 1]);
-				
+
 				tableItem.setTextColor(Color.BLACK);
 
 			}
 		}
 	}
 
+	/**
+	 * This method will change the selected row to a different background and
+	 * text color. Also calls resetTableItems().
+	 * 
+	 * @param calculatedRow
+	 *            - the row to light up
+	 */
 	private void lightUpRow(int calculatedRow) {
 		// TODO Auto-generated method stub
 
@@ -138,14 +151,22 @@ public class Alkalitet extends Basic_Calc {
 					R.drawable.table_item_with_border_selected));
 
 			showResults(tableItem, calculatedRow, i);
-			
-			tableItem.setTextColor(Color.WHITE);
 
+			tableItem.setTextColor(Color.WHITE);
 
 		}
 
 	}
 
+	/**
+	 * This method is used to show the result for the relevant table item. The
+	 * row and column is used to locate the table item, as it is dependent on
+	 * the original table if the text should change or stay 0. 
+	 * 
+	 * @param tableItem - the table item to change
+	 * @param row - the row of the table item
+	 * @param column - the column of the table item
+	 */
 	private void showResults(TextView tableItem, int row, int column) {
 
 		switch (row) {
@@ -182,6 +203,15 @@ public class Alkalitet extends Basic_Calc {
 
 	}
 
+	/**
+	 * This method uses a string ID to return an integer ID from R.id using
+	 * classes and fields. Will also catch any error messages and display a
+	 * logCat message.
+	 * 
+	 * @param String_ID
+	 *            - The string ID to find
+	 * @return integer ID
+	 */
 	private int returnIDFromString(String String_ID) {
 		Class clazz = R.id.class;
 		Field f = null;
@@ -258,47 +288,6 @@ public class Alkalitet extends Basic_Calc {
 
 			}
 		};
-	}
-
-	protected void FocusChange(int indexOfCurrentField, boolean focusStatus) {
-		String _fieldsString = textFields[indexOfCurrentField].getText()
-				.toString();
-
-		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
-			if (focusStatus == false && !_fieldsString.contentEquals("")) {
-
-				_textFieldsStatus[indexOfCurrentField] = 1;
-
-			}
-		} else {
-			if (_textFieldsStatus[indexOfCurrentField] == 1) {
-				if (focusStatus == false) {
-
-					if (_fieldsString.contentEquals("")) {
-						_textFieldsStatus[indexOfCurrentField] = 0;
-						Enabeling(textFields);
-					} else if (!_fieldsString.contentEquals("")) {
-						updateRelevantResult();
-					}
-				}
-			} else {
-				updateRelevantResult();
-				textFields[indexOfCurrentField].setEnabled(false);
-			}
-		}
-	}
-
-	@Override
-	protected void updateRelevantResult() {
-		for (int i = 0; i < _textFieldsStatus.length; i++) {
-			if (_textFieldsStatus[i] == 0) {
-
-				textFields[i].setText(calculation(i,
-						getFloatVariables(textFields)));
-				textFields[i].setEnabled(false);
-				break;
-			}
-		}
 	}
 
 }

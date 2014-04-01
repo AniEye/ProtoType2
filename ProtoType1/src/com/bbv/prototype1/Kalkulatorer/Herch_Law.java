@@ -14,7 +14,6 @@ import com.bbv.prototype1.R;
 
 public class Herch_Law extends Basic_Calc {
 
-	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
@@ -54,11 +53,11 @@ public class Herch_Law extends Basic_Calc {
 			Log.println(Log.ERROR, "calc",
 					"Tried to calculate wrong value, and this should not happen!");
 			break;
-		
+
 		case N_INDEX:
 
-			if (checkForNullValues(T600, T300,T6,T3) == false
-					|| checkForNegativeValues(T600, T300,T6,T3) == false)
+			if (checkForNullValues(T600, T300, T6, T3) == false
+					|| checkForNegativeValues(T600, T300, T6, T3) == false)
 				return "";
 
 			T0 = calcT0(T6, T3);
@@ -66,7 +65,12 @@ public class Herch_Law extends Basic_Calc {
 			N = calcN(T600, T300, T0);
 			K = calcK(T600, T0, N);
 
-			float[] testFloats = { T0, ty, N, K};
+			Log.i(LogCat_RegularMessage, "Var" + 0 + " = " + T0);
+			Log.i(LogCat_RegularMessage, "Var" + 1 + " = " + ty);
+			Log.i(LogCat_RegularMessage, "Var" + 2 + " = " + N);
+			Log.i(LogCat_RegularMessage, "Var" + 3 + " = " + K);
+
+			float[] testFloats = { T0, ty, N, K };
 
 			if (checkForDivisionErrors(testFloats) == false)
 				return "";
@@ -79,10 +83,11 @@ public class Herch_Law extends Basic_Calc {
 			String _K = String.format(THREE_DECIMALS, K);
 
 			textviews[0].setText(_N);
-			textviews[1].setText(Html.fromHtml(_K+" [Pa * s<sup><small>n</small></sup>]"));
+			textviews[1].setText(Html.fromHtml(_K
+					+ " [Pa * s<sup><small>n</small></sup>]"));
 			textviews[2].setText(_T0);
 			textviews[3].setText(_ty);
-			
+
 			return String.format(THREE_DECIMALS, N);
 
 		}
@@ -99,13 +104,15 @@ public class Herch_Law extends Basic_Calc {
 	}
 
 	public float calcN(float t600, float t300, float t0) {
-		return (float) (Math.log10((t600-t0)/(t300-t0)) / Math.log10((600*1.7033)/(300*1.7033)));
+		
+		return (float) (Math.log10((t600 - t0) / (t300 - t0)) / Math
+				.log10((600 * 1.7033) / (300 * 1.7033)));
 	}
 
 	public float calcK(float t600, float t0, float n) {
-		return (float) (0.511f*((t600-t0)/Math.pow(600*1.7033, n)));
+		return (float) (0.511f * ((t600 - t0) / Math.pow(600 * 1.7033, n)));
 	}
-	
+
 	@Override
 	protected void Initialize() {
 		_linLay = setAndGetLinearLayout(layout);
@@ -118,7 +125,6 @@ public class Herch_Law extends Basic_Calc {
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 		for (int i = 0; i < textViewIDs.length; i++)
 			textviews[i] = (TextView) findViewById(textViewIDs[i]);
-		
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
@@ -159,47 +165,6 @@ public class Herch_Law extends Basic_Calc {
 
 			}
 		};
-	}
-
-	protected void FocusChange(int indexOfCurrentField, boolean focusStatus) {
-		String _fieldsString = textFields[indexOfCurrentField].getText()
-				.toString();
-
-		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
-			if (focusStatus == false && !_fieldsString.contentEquals("")) {
-
-				_textFieldsStatus[indexOfCurrentField] = 1;
-
-			}
-		} else {
-			if (_textFieldsStatus[indexOfCurrentField] == 1) {
-				if (focusStatus == false) {
-
-					if (_fieldsString.contentEquals("")) {
-						_textFieldsStatus[indexOfCurrentField] = 0;
-						Enabeling(textFields);
-					} else if (!_fieldsString.contentEquals("")) {
-						updateRelevantResult();
-					}
-				}
-			} else {
-				updateRelevantResult();
-				textFields[indexOfCurrentField].setEnabled(false);
-			}
-		}
-	}
-
-	@Override
-	protected void updateRelevantResult() {
-		for (int i = 0; i < _textFieldsStatus.length; i++) {
-			if (_textFieldsStatus[i] == 0) {
-
-				textFields[i].setText(calculation(i,
-						getFloatVariables(textFields)));
-				textFields[i].setEnabled(false);
-				break;
-			}
-		}
 	}
 
 }

@@ -20,7 +20,6 @@ import com.bbv.prototype1.Tables.Table_9_4;
 
 public class Table_9_4_calc extends Basic_Calc {
 
-	int[] _textFieldsStatus;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
 
@@ -32,7 +31,7 @@ public class Table_9_4_calc extends Basic_Calc {
 	 * Sets the number of vertical table items to show for the table
 	 */
 	private int numberOfTableItemsToShow = 15;
-	
+
 	/**
 	 * Sets the number of vertical table items to show for the table
 	 */
@@ -46,15 +45,16 @@ public class Table_9_4_calc extends Basic_Calc {
 	 */
 	int half;
 
-	final int[] IDs = { R.id.etCaCl2Cl, R.id.etCaCl2_HideThis, // Textfield -
-																// Will be
-																// disabled
+	/**
+	 * Values for the textfields. Use KEY_INDEX to choose which one to calculate.
+	 */
+	final int[] IDs = { R.id.etCaCl2Cl, R.id.etCaCl2_HideThis, 
 	};
 
-	public final static int KEY_INDEX = 1; // Only used for error catching. Only
-											// KEY_INDEX
-
-	// should ever be used
+	/**
+	 * As there is only one field to be calculated in this calculator, only this KEY_INDEX should be used.
+	 */
+	public final static int KEY_INDEX = 1; 
 
 	public Table_9_4_calc(Context context) {
 		super(context);
@@ -86,7 +86,7 @@ public class Table_9_4_calc extends Basic_Calc {
 
 			CaCl2 = table.getCaCl();
 			Corf = table.getCorf();
-			half = numberOfTableItemsToShow/2 + 1 ;
+			half = numberOfTableItemsToShow / 2 + 1;
 
 			Log.i(LogCat_RegularMessage, "Corf = " + Corf);
 			Log.i(LogCat_RegularMessage, "CaCl2 = " + CaCl2);
@@ -99,6 +99,13 @@ public class Table_9_4_calc extends Basic_Calc {
 
 	}
 
+	/**
+	 * This method resets the table items using the variable
+	 * MAX_numberOfTableItemsToShow. This variable is set after how many
+	 * textfields have been defined in the XML-layout of this calculator. This
+	 * method will therefore always reset every single table item, despite how
+	 * many are currently showing.
+	 */
 	private void resetTableItems() {
 
 		for (int i = 1; i <= MAX_numberOfTableItemsToShow; i++) {
@@ -135,6 +142,20 @@ public class Table_9_4_calc extends Basic_Calc {
 
 	}
 
+	/**
+	 * This method inserts new table items, based on the variable
+	 * numberOfTableItemsToShow. It will start to display items based on the
+	 * parameter calculatedRow, which is where in the table the calculated
+	 * variable is located in the initial tables. If the variable
+	 * numberOfTableItemsToShow is 5, the variable half is set to be 3, which
+	 * means that this method will insert 2 table items first, then the
+	 * calculated variable, and then 2 more table items. Also calls the
+	 * resetTableItems() method.
+	 * 
+	 * @param calculatedRow
+	 *            - where the calculated variable is inserted, and then
+	 *            surrounded with values from the initial tables.
+	 */
 	private void insertNewTableItem(int calculatedRow) {
 		resetTableItems();
 		Table_9_4 table = new Table_9_4(Cl);
@@ -151,13 +172,12 @@ public class Table_9_4_calc extends Basic_Calc {
 
 				TextView tableItem = (TextView) findViewById(ID);
 
-				if (k < half
-						&& (calculatedRow - half+k) >= 0) {
+				if (k < half && (calculatedRow - half + k) >= 0) {
 					Log.i("calc", "Calculated row = " + calculatedRow);
 					Log.i("calc", "Calculated row - half = "
 							+ (calculatedRow - half));
-					tableItem.setText(table.getInitialRows()[ (calculatedRow
-							- half +k)][i - 1]);
+					tableItem.setText(table.getInitialRows()[(calculatedRow
+							- half + k)][i - 1]);
 					tableItem.setVisibility(VISIBLE);
 
 				} else if (k == half) {
@@ -179,10 +199,9 @@ public class Table_9_4_calc extends Basic_Calc {
 					}
 					tableItem.setVisibility(VISIBLE);
 
-				} else if (k > half && calculatedRow
-						+ (k-half-1) < 41) {
+				} else if (k > half && calculatedRow + (k - half - 1) < 41) {
 					tableItem.setText(table.getInitialRows()[calculatedRow
-							+ (k-half-1)][i - 1]);
+							+ (k - half - 1)][i - 1]);
 					tableItem.setVisibility(VISIBLE);
 
 				}
@@ -193,6 +212,15 @@ public class Table_9_4_calc extends Basic_Calc {
 
 	}
 
+	/**
+	 * This method uses a string ID to return an integer ID from R.id using
+	 * classes and fields. Will also catch any error messages and display a
+	 * logCat message.
+	 * 
+	 * @param String_ID
+	 *            - The string ID to find
+	 * @return integer ID
+	 */
 	private int returnIDFromString(String String_ID) {
 		Class clazz = R.id.class;
 		Field f = null;
@@ -231,17 +259,21 @@ public class Table_9_4_calc extends Basic_Calc {
 			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
 
 		resetTableItems();
-		
+
 		loadNumberOfTableItemsToShow();
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
+	/**
+	 * This method used SharedPreferences to load the selected number of table items to show from the settings for calculators.
+	 */
 	private void loadNumberOfTableItemsToShow() {
-		SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+		SharedPreferences getPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getContext());
 		String values = getPrefs.getString("table9_4_list", "3");
-		Log.i("calc", "String = " + values);
+		Log.i(LogCat_RegularMessage, "String = " + values);
 		numberOfTableItemsToShow = Integer.parseInt(values);
 	}
 
@@ -283,47 +315,6 @@ public class Table_9_4_calc extends Basic_Calc {
 
 			}
 		};
-	}
-
-	protected void FocusChange(int indexOfCurrentField, boolean focusStatus) {
-		String _fieldsString = textFields[indexOfCurrentField].getText()
-				.toString();
-
-		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
-			if (focusStatus == false && !_fieldsString.contentEquals("")) {
-
-				_textFieldsStatus[indexOfCurrentField] = 1;
-
-			}
-		} else {
-			if (_textFieldsStatus[indexOfCurrentField] == 1) {
-				if (focusStatus == false) {
-
-					if (_fieldsString.contentEquals("")) {
-						_textFieldsStatus[indexOfCurrentField] = 0;
-						Enabeling(textFields);
-					} else if (!_fieldsString.contentEquals("")) {
-						updateRelevantResult();
-					}
-				}
-			} else {
-				updateRelevantResult();
-				textFields[indexOfCurrentField].setEnabled(false);
-			}
-		}
-	}
-
-	@Override
-	protected void updateRelevantResult() {
-		for (int i = 0; i < _textFieldsStatus.length; i++) {
-			if (_textFieldsStatus[i] == 0) {
-
-				textFields[i].setText(calculation(i,
-						getFloatVariables(textFields)));
-				textFields[i].setEnabled(false);
-				break;
-			}
-		}
 	}
 
 }
