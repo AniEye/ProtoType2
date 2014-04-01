@@ -17,20 +17,16 @@ import com.bbv.prototype1.Tables.Table_3_1;
 
 public class Table_3_1_calc extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bKloridInnholdClear;
-	final int updateButtonID = R.id.bKloridInnholdUpdate;
 	final int layout = R.layout.calc_table3_1;
 
 	float Cl;
 	float Vsf;
 	float Pf;
 
-	final int[] IDs = { R.id.etT31Cl, R.id.etTable3_1_HideThis, // Textfield -
-																// Will be
-																// disabled
+	final static int[] IDs = { R.id.etT31Cl, R.id.etTable3_1_HideThis, // Textfield
+																		// -
+	// Will be
+	// disabled
 	};
 
 	public final static int KEY_INDEX = 1; // Only used for error catching. Only
@@ -39,7 +35,7 @@ public class Table_3_1_calc extends Basic_Calc {
 	// should ever be used
 
 	public Table_3_1_calc(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -242,40 +238,10 @@ public class Table_3_1_calc extends Basic_Calc {
 	}
 
 	@Override
-	protected void CreateListeners() {
+	protected void clearButtonMethod() {
+		// TODO Auto-generated method stub
+		resetTableItems();
+		super.clearButtonMethod();
 
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					resetTableItems();
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
 	}
-
 }

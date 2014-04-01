@@ -14,11 +14,6 @@ import com.bbv.prototype1.Tables.Table_3_1;
 
 public class KloridInnholdIVannfasen extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bKIVFClear;
-	final int updateButtonID = R.id.bKIVFUpdate;
 	final int layout = R.layout.calc_klorid_innhold_i_vannfasen;
 
 	// Variables used for calculation
@@ -33,10 +28,10 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 	float NaClMG;
 	float NaClPPM;
 
-	final int[] textviewIDs = { R.id.tvKIVFKIMG, R.id.tvKIVFKIPPM,
+	final static int[] textviewIDs = { R.id.tvKIVFKIMG, R.id.tvKIVFKIPPM,
 			R.id.tvKIVFNaCLMG, R.id.tvKIVFNaPPM };
 
-	final int[] IDs = {
+	final static int[] IDs = {
 			R.id.etKIVFVAgNO3, // Textfield of AgNO3
 			R.id.etKIVFFv, // Textfield of filtrat
 			R.id.etKIVFCCl // Textfield of CCl - Will be disabled for input
@@ -49,7 +44,7 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 			CCl_index = 2;
 
 	public KloridInnholdIVannfasen(Context context) {
-		super(context);
+		super(context, IDs, textviewIDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -137,43 +132,6 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
-	}
-
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					_textFieldsStatus = new int[IDs.length];
-					ResetTextViews();
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
 	}
 
 	public float getV_AgNO3() {

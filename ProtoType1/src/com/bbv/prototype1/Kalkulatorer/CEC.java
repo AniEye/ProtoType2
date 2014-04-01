@@ -14,11 +14,6 @@ import com.bbv.prototype1.R;
 
 public class CEC extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bCECClear;
-	final int updateButtonID = R.id.bCECUpdate;
 	final int layout = R.layout.calc_cec;
 
 	TextView tvbentPPM;
@@ -31,7 +26,7 @@ public class CEC extends Basic_Calc {
 	float V_mbl;
 	float V_boreslam = 1;
 
-	final int[] IDs = { R.id.etCECVmbl, // Textfield of V metylenblått-løsning
+	final static int[] IDs = { R.id.etCECVmbl, // Textfield of V metylenblått-løsning
 			R.id.etCECCEC, // Textfield of CEC - Will be disabled
 	};
 
@@ -43,7 +38,7 @@ public class CEC extends Basic_Calc {
 							// should ever be used
 
 	public CEC(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -104,48 +99,7 @@ public class CEC extends Basic_Calc {
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-
-					tvbentKG.setText("");
-					tvbentPPM.setText("");
-
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
-	}
-
-
-
+	
 	public float getCEC() {
 		return CEC;
 	}

@@ -12,20 +12,15 @@ import android.widget.LinearLayout;
 
 public class Plast_Viskos extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bPlasViskosClear;
-	final int updateButtonID = R.id.bPlasViskosUpdate;
 	final int layout = R.layout.calc_viskositet_plastisk;
 
-	final int[] IDs = { R.id.etViskosPlas, R.id.etPlasViskTheta600,
+	final static int[] IDs = { R.id.etViskosPlas, R.id.etPlasViskTheta600,
 			R.id.etPlasviskTheta300 };
 
 	public final static int PV_INDEX = 0, T6_INDEX = 1, T3_INDEX = 2;
 
 	public Plast_Viskos(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -75,40 +70,5 @@ public class Plast_Viskos extends Basic_Calc {
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
-	}
-
+	
 }

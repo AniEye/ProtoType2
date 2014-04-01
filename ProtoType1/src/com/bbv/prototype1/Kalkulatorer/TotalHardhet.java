@@ -13,12 +13,6 @@ import com.bbv.prototype1.R;
 
 public class TotalHardhet extends Basic_Calc {
 
-	int[] _textFieldsStatus;
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bTotHardClear;
-	final int updateButtonID = R.id.bTotHardUpdate;
 	final int layout = R.layout.calc_total_hardhet;
 
 	// Variables used for calculation
@@ -34,12 +28,12 @@ public class TotalHardhet extends Basic_Calc {
 	float M_Ca2 = 40.78f;
 	float M_Mg2 = 24.3050f;
 
-	final int[] textViewIDs = { R.id.tvTotHardCaCo, // textview of Total hardhet
+	final static int[] textViewIDs = { R.id.tvTotHardCaCo, // textview of Total hardhet
 			R.id.tvTotHardCa2, // textview of Kalsium hardhet
 			R.id.tvTotHardMg2 // textview of Magnesium hardhet
 	};
 
-	final int[] editTextIDs = { R.id.etTotHardVEDTACaCO3, // Textfield of V EDTA
+	final static int[] editTextIDs = { R.id.etTotHardVEDTACaCO3, // Textfield of V EDTA
 			R.id.etTotHardVCa2, // Textfield of V filtrat
 			R.id.etTotHardVF, // Textfield of Volum filtrat
 			R.id.etTotHardHideThis, // Textfield - Will be disabled
@@ -52,7 +46,7 @@ public class TotalHardhet extends Basic_Calc {
 											// calculated
 
 	public TotalHardhet(Context context) {
-		super(context);
+		super(context, editTextIDs, textViewIDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -125,43 +119,6 @@ public class TotalHardhet extends Basic_Calc {
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
-	}
-
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					ResetTextViews();
-					_textFieldsStatus = new int[editTextIDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < editTextIDs.length; i++) {
-					if (v.getId() == editTextIDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
 	}
 
 

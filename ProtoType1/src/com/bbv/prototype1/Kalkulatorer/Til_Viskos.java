@@ -13,19 +13,14 @@ import android.widget.Toast;
 
 public class Til_Viskos extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bViskosClear;
-	final int updateButtonID = R.id.bViskosUpdate;
 	final int layout = R.layout.calc_viskositet_tilsynelatende;
 
-	final int[] IDs = { R.id.etViskosTil, R.id.etTheta, R.id.etRPM };
+	static int[] IDs = { R.id.etViskosTil, R.id.etTheta, R.id.etRPM };
 
 	public final static int THETA_INDEX = 0, RPM_INDEX = 1, TIL_VISK_INDEX = 2;
 
 	public Til_Viskos(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -85,43 +80,6 @@ public class Til_Viskos extends Basic_Calc {
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
-
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
-	}
-
 
 
 }

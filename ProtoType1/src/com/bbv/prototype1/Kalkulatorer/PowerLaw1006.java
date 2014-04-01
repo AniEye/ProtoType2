@@ -14,21 +14,16 @@ import com.bbv.prototype1.R;
 
 public class PowerLaw1006 extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bPLClear;
-	final int updateButtonID = R.id.bPLUpdate;
 	final int layout = R.layout.calc_powerlaw1006;
 
-	final int[] textViewIDs = { R.id.tvPLN, R.id.tvPLNOTPA, R.id.tvPLPA };
+	final static int[] textViewIDs = { R.id.tvPLN, R.id.tvPLNOTPA, R.id.tvPLPA };
 
-	final int[] IDs = { R.id.etPowerLawT100, R.id.etPowerLaw6, R.id.etPowerLawN };
+	final static int[] IDs = { R.id.etPowerLawT100, R.id.etPowerLaw6, R.id.etPowerLawN };
 
 	public final static int T100_INDEX = 0, T6_INDEX = 1, N_INDEX = 2;
 
 	public PowerLaw1006(Context context) {
-		super(context);
+		super(context, IDs, textViewIDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -107,43 +102,6 @@ public class PowerLaw1006 extends Basic_Calc {
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
-	}
-
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					ResetTextViews();
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
 	}
 
 }

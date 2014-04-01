@@ -13,11 +13,6 @@ import com.bbv.prototype1.R;
 
 public class OljeVann extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bOVClear;
-	final int updateButtonID = R.id.bOVUpdate;
 	final int layout = R.layout.calc_olje_vann;
 
 	TextView tvO;
@@ -30,7 +25,7 @@ public class OljeVann extends Basic_Calc {
 	float O;
 	float W;
 	
-	final int[] IDs = { R.id.etOVRO, // Textfield of R olje
+	final static int[] IDs = { R.id.etOVRO, // Textfield of R olje
 			R.id.etOVRV, // Textfield of R vann
 			R.id.etOVHideThis, // Textfield - Will be disabled
 	};
@@ -39,7 +34,7 @@ public class OljeVann extends Basic_Calc {
 							// should ever be used
 
 	public OljeVann(Context context) {
-		super(context);
+		super(context,IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -102,48 +97,6 @@ public class OljeVann extends Basic_Calc {
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
-
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-
-					tvO.setText("");
-					tvW.setText("");
-					tvOW.setText("");
-
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
-	}
-
 
 	public float getO() {
 		return O;

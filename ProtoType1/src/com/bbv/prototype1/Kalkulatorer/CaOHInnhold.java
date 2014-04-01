@@ -13,25 +13,20 @@ import com.bbv.prototype1.R;
 
 public class CaOHInnhold extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bCaOHClear;
-	final int updateButtonID = R.id.bCaOHUpdate;
 	final int layout = R.layout.calc_caoh_innhold;
 
 	// Variables used for calculation
 	float Mp;
 	float CaOH2;
 	
-	final int[] IDs = { R.id.etCaOHMp, // Textfield of R olje
+	final static int[] IDs = { R.id.etCaOHMp, // Textfield of R olje
 			R.id.etCaOHCaOH // Textfield of CaOH2
 	};
 
 	public final static int Mp_INDEX = 0, CaOH_INDEX=1; //Mp_INDEX is used for calculating Mp, and CaOH_INDEX is used to calculate CaOH
 
 	public CaOHInnhold(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -76,43 +71,6 @@ public class CaOHInnhold extends Basic_Calc {
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
-	}
-
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
 	}
 
 

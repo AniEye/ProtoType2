@@ -11,19 +11,14 @@ import android.widget.Toast;
 
 public class Flytegrense extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bFGClear;
-	final int updateButtonID = R.id.bFGUpdate;
 	final int layout = R.layout.calc_flytegrense;
 
-	final int[] IDs = { R.id.etFG, R.id.etFGTheta300, R.id.etFGTheta600 };
+	final static int[] IDs = { R.id.etFG, R.id.etFGTheta300, R.id.etFGTheta600 };
 
 	public final static int FG_INDEX = 0, T3_INDEX = 1, T6_INDEX = 2;
 
 	public Flytegrense(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -78,42 +73,6 @@ public class Flytegrense extends Basic_Calc {
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
-	}
-
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
 	}
 
 }

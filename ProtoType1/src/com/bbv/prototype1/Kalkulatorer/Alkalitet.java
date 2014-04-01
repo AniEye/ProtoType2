@@ -17,12 +17,6 @@ import com.bbv.prototype1.Tables.Table_3_3;
 
 public class Alkalitet extends Basic_Calc {
 
-	int[] _textFieldsStatus;
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bAlkalitetClear;
-	final int updateButtonID = R.id.bAlkalitetUpdate;
 	final int layout = R.layout.calc_alkalitet;
 
 	// Variables used for calculations
@@ -32,7 +26,7 @@ public class Alkalitet extends Basic_Calc {
 	float CO;
 	float HCO;
 
-	final int[] IDs = { R.id.etAlkalitetPf, // Edittext of Mf
+	final static int[] IDs = { R.id.etAlkalitetPf, // Edittext of Mf
 			R.id.etAlkalitetMf, // Edittext of Fw
 			R.id.etAlkalitetHideThis // Edittext of nothing - Will be disabled
 	};
@@ -42,7 +36,7 @@ public class Alkalitet extends Basic_Calc {
 											// Key_INDEX should ever be used
 
 	public Alkalitet(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -254,40 +248,9 @@ public class Alkalitet extends Basic_Calc {
 	}
 
 	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					_textFieldsStatus = new int[IDs.length];
-					resetTableItems();
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
+	protected void clearButtonMethod() {
+		// TODO Auto-generated method stub
+		resetTableItems();
+		super.clearButtonMethod();
 	}
-
 }

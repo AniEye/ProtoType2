@@ -14,22 +14,17 @@ import com.bbv.prototype1.R;
 
 public class Herch_Law extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bMPLClear;
-	final int updateButtonID = R.id.bMPLUpdate;
 	final int layout = R.layout.calc_modpowerlaw;
 
-	final int[] textViewIDs = { R.id.tvMPLN, R.id.tvMPLK, R.id.tvMPLT0,
+	final static int[] textViewIDs = { R.id.tvMPLN, R.id.tvMPLK, R.id.tvMPLT0,
 			R.id.tvMPLEksY };
-	final int[] IDs = { R.id.etModPowerLawT600, R.id.etModPowerLawT300,
+	final static int[] IDs = { R.id.etModPowerLawT600, R.id.etModPowerLawT300,
 			R.id.etModPowerLawT6, R.id.etModPowerLawT3, R.id.etMODPowerLawN };
 
 	public final static int T6_INDEX = 0, T3_INDEX = 1, N_INDEX = 4;
 
 	public Herch_Law(Context context) {
-		super(context);
+		super(context, IDs, textViewIDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -128,43 +123,6 @@ public class Herch_Law extends Basic_Calc {
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
-	}
-
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					ResetTextViews();
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
 	}
 
 }

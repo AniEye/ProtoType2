@@ -14,11 +14,6 @@ import com.bbv.prototype1.Tables.Table_3_1;
 
 public class Spess_tetthet extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bSpessTettClear;
-	final int updateButtonID = R.id.bSpessTettUpdate;
 	final int layout = R.layout.calc_spesifikktetthet;
 
 	TextView tvPp;
@@ -26,7 +21,7 @@ public class Spess_tetthet extends Basic_Calc {
 	TextView tvVs;
 	TextView tvVsf;
 
-	final int[] IDs = { R.id.etSpessTettPp, R.id.etSpessTettCL,
+	final static int[] IDs = { R.id.etSpessTettPp, R.id.etSpessTettCL,
 			R.id.etSpessTettPm, R.id.etSpessTettPo, R.id.etSpessTettVv,
 			R.id.etSpessTettVo, R.id.etSpessTettFw, R.id.etSpessTettVfs };
 
@@ -36,7 +31,7 @@ public class Spess_tetthet extends Basic_Calc {
 	public final static int Pp_INDEX = 0;
 
 	public Spess_tetthet(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -151,47 +146,5 @@ public class Spess_tetthet extends Basic_Calc {
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
-
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					tvPp.setText("");
-					tvVs.setText("");
-					tvVsf.setText("");
-					tvPf.setText("");
-
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
-	}
-
 
 }

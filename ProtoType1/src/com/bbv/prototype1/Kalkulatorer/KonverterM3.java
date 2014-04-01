@@ -15,16 +15,11 @@ import com.bbv.prototype1.R;
 
 public class KonverterM3 extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bKMClear;
-	final int updateButtonID = R.id.bKMUpdate;
 	final int layout = R.layout.calc_kvadratmeter;
 
 	TextView tvKonvertert;
 
-	final int[] IDs = { R.id.etKMgram, R.id.etKMml, R.id.etKMslamvolum };
+	final static int[] IDs = { R.id.etKMgram, R.id.etKMml, R.id.etKMslamvolum };
 
 	/**
 	 * ML_INDEX called when ml-field is left blank, which means that gram and
@@ -36,7 +31,7 @@ public class KonverterM3 extends Basic_Calc {
 	public final static int GRAM_INDEX = 0, ML_INDEX = 1, SLAMVOLUM_INDEX = 2;
 
 	public KonverterM3(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -99,43 +94,5 @@ public class KonverterM3 extends Basic_Calc {
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-
-					tvKonvertert.setText("");
-
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
-	}
 
 }

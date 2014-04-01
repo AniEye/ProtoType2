@@ -20,11 +20,6 @@ import com.bbv.prototype1.Tables.Table_9_4;
 
 public class Table_9_4_calc extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bCaCl2Clear;
-	final int updateButtonID = R.id.bCaCl2Update;
 	final int layout = R.layout.calc_table9_4;
 
 	/**
@@ -46,18 +41,19 @@ public class Table_9_4_calc extends Basic_Calc {
 	int half;
 
 	/**
-	 * Values for the textfields. Use KEY_INDEX to choose which one to calculate.
+	 * Values for the textfields. Use KEY_INDEX to choose which one to
+	 * calculate.
 	 */
-	final int[] IDs = { R.id.etCaCl2Cl, R.id.etCaCl2_HideThis, 
-	};
+	final static int[] IDs = { R.id.etCaCl2Cl, R.id.etCaCl2_HideThis, };
 
 	/**
-	 * As there is only one field to be calculated in this calculator, only this KEY_INDEX should be used.
+	 * As there is only one field to be calculated in this calculator, only this
+	 * KEY_INDEX should be used.
 	 */
-	public final static int KEY_INDEX = 1; 
+	public final static int KEY_INDEX = 1;
 
 	public Table_9_4_calc(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -267,7 +263,8 @@ public class Table_9_4_calc extends Basic_Calc {
 	}
 
 	/**
-	 * This method used SharedPreferences to load the selected number of table items to show from the settings for calculators.
+	 * This method used SharedPreferences to load the selected number of table
+	 * items to show from the settings for calculators.
 	 */
 	private void loadNumberOfTableItemsToShow() {
 		SharedPreferences getPrefs = PreferenceManager
@@ -278,43 +275,19 @@ public class Table_9_4_calc extends Basic_Calc {
 	}
 
 	@Override
-	protected void CreateListeners() {
+	protected void updateButtonMethod() {
+		// TODO Auto-generated method stub
+		resetTableItems();
+		loadNumberOfTableItemsToShow();
+		super.updateButtonMethod();
 
-		cliLis = new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					resetTableItems();
-					loadNumberOfTableItemsToShow();
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					loadNumberOfTableItemsToShow();
-					Log.i("calc", "Updatebutton pressed!");
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
 	}
-
+	
+	@Override
+	protected void clearButtonMethod() {
+		// TODO Auto-generated method stub
+		super.clearButtonMethod();
+		resetTableItems();
+	}
 }

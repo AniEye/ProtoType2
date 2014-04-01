@@ -14,11 +14,6 @@ import com.bbv.prototype1.R;
 
 public class AlkaPm extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bAlkaClear;
-	final int updateButtonID = R.id.bAlkaUpdate;
 	final int layout = R.layout.calc_alkalitet_pm;
 
 	TextView tvCa;
@@ -29,7 +24,7 @@ public class AlkaPm extends Basic_Calc {
 	float Fw;
 	float Pf;
 
-	final int[] IDs = { R.id.etAlkaPm, // Textfield of Pm
+	final static int[] IDs = { R.id.etAlkaPm, // Textfield of Pm
 			R.id.etAlkaFw, // Textfield of Fw
 			R.id.etAlkaPf, // Textfield of Pf
 			R.id.etAlkaCa // Textfield of Ca (OH)2 - Will be disabled
@@ -41,7 +36,7 @@ public class AlkaPm extends Basic_Calc {
 	// should ever be used
 
 	public AlkaPm(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -103,45 +98,6 @@ public class AlkaPm extends Basic_Calc {
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
-	}
-
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-
-					tvCa.setText("");
-
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
 	}
 
 

@@ -5,6 +5,9 @@ import com.bbv.prototype1.R;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,11 +17,18 @@ import android.widget.Toast;
 
 public abstract class Basic_Calc extends LinearLayout {
 
+	final int clearButtonID = R.id.bClear;
+	final int updateButtonID = R.id.bUpdate;
+	int[] IDs;
+	int[] textViewIDs;
+	OnFocusChangeListener focChan;
+	OnClickListener cliLis;
 	int[] _textFieldsStatus;
 	Toast toast;
 	Button _clear, _update;
 	EditText[] textFields;
 	TextView[] textviews;
+
 	Context cont;
 	LinearLayout _linLay;
 	final String THREE_DECIMALS = "%.3f";
@@ -32,10 +42,22 @@ public abstract class Basic_Calc extends LinearLayout {
 	 * 
 	 * @param context
 	 */
-	public Basic_Calc(Context context) {
+	public Basic_Calc(Context context, int[] IDs) {
 		super(context);
 		cont = context;
+		Initialize();
+		CreateListeners();
+		this.IDs = IDs;
 
+	}
+
+	public Basic_Calc(Context context, int[] editTextIDs, int[] textViewIDs) {
+		super(context);
+		cont = context;
+		Initialize();
+		CreateListeners();
+		this.IDs = editTextIDs;
+		this.textViewIDs = textViewIDs;
 	}
 
 	/**
@@ -49,7 +71,58 @@ public abstract class Basic_Calc extends LinearLayout {
 	 * sub-classes organized. This class should contain all the listeners that
 	 * are used in the sub-classes.
 	 */
-	protected abstract void CreateListeners();
+	protected void CreateListeners() {
+
+		cliLis = new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				switch (v.getId()) {
+				case clearButtonID:
+					clearButtonMethod();
+					break;
+				case updateButtonID:
+					updateButtonMethod();
+					break;
+				}
+			}
+		};
+
+		focChan = new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+
+				for (int i = 0; i < IDs.length; i++) {
+					if (v.getId() == IDs[i])
+						FocusChange(i, hasFocus);
+				}
+
+			}
+		};
+	}
+
+	/**
+	 * This method is called whenever the update Button is pressed. 
+	 * First calls ResetFields, and then resets _textFieldStatus
+	 * 
+	 * Override and pass super() method to add features to the button.
+	 */
+	protected void updateButtonMethod() {
+		for (int i = 0; i < textFields.length; i++) {
+			FocusChange(i, false);
+		}
+		hideSoftKeyboard();
+	}
+
+	/**
+	 * This method is called whenever the clear Button is pressed. Override and
+	 * pass super() method to add features to the button
+	 */
+	protected void clearButtonMethod() {
+		ResetFields(textFields);
+		_textFieldsStatus = new int[IDs.length];
+	}
 
 	/**
 	 * This method is used to inflate linearlayout that is used. This method
@@ -219,12 +292,14 @@ public abstract class Basic_Calc extends LinearLayout {
 		for (int i = 0; i < x.length; i++) {
 
 			if (Float.isInfinite(x[i])) {
-				Log.println(Log.ERROR, "calc", "Var. "+ i +" caused dividing with 0 error in "
+				Log.println(Log.ERROR, "calc", "Var. " + i
+						+ " caused dividing with 0 error in "
 						+ this.getClass().getName());
 				showToast("Verdier ble delt på null!");
 				return false;
-			} else if ( Float.isNaN(x[i])) {
-				Log.println(Log.ERROR, "calc", "Var. "+ i +" caused Log(-x) error in "
+			} else if (Float.isNaN(x[i])) {
+				Log.println(Log.ERROR, "calc", "Var. " + i
+						+ " caused Log(-x) error in "
 						+ this.getClass().getName());
 				showToast("En Log utregnelse ble uekte!");
 				return false;
@@ -324,8 +399,8 @@ public abstract class Basic_Calc extends LinearLayout {
 		for (int i = 0; i < x.length; i++) {
 
 			if (x[i] == 0.0f) {
-				Log.println(Log.ERROR, "calc", "Division with 0 error! Var.: " + i
-						+ getClass().getName());
+				Log.println(Log.ERROR, "calc", "Division with 0 error! Var.: "
+						+ i + getClass().getName());
 				showToast("Du kan ikke bruke 0 verdier!");
 				return false;
 			}

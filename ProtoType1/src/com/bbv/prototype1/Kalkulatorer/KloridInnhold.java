@@ -14,11 +14,6 @@ import com.bbv.prototype1.Tables.Table_3_1;
 
 public class KloridInnhold extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bKIClear;
-	final int updateButtonID = R.id.bKIUpdate;
 	final int layout = R.layout.calc_klorid_innhold;
 
 	TextView tvKloridML;
@@ -38,7 +33,7 @@ public class KloridInnhold extends Basic_Calc {
 	float NaClMG;
 	float NaClPPM;
 
-	final int[] IDs = { R.id.etKIVAgNO3, // Textfield of AgNO3
+	final static int[] IDs = { R.id.etKIVAgNO3, // Textfield of AgNO3
 			R.id.etKIVF, // Textfield of filtrat
 			R.id.etKICCl // Textfield of CCl - Will be disabled for input
 	};
@@ -46,7 +41,7 @@ public class KloridInnhold extends Basic_Calc {
 	public final static int AgNO3_index = 0, VFiltrat_index = 1, CCl_index = 2;
 
 	public KloridInnhold(Context context) {
-		super(context);
+		super(context, IDs);
 		CreateListeners();
 		Initialize();
 	}
@@ -136,48 +131,7 @@ public class KloridInnhold extends Basic_Calc {
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-
-					tvKloridML.setText("");
-					tvKloridPPM.setText("");
-					tvNaClMG.setText("");
-					tvNaClPPM.setText("");
-
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
-	}
-
+	
 	public float getV_AgNO3() {
 		return V_AgNO3;
 	}

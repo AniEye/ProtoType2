@@ -13,23 +13,16 @@ import android.widget.Toast;
 
 public class MasseOgVolumBalanse extends Basic_Calc {
 
-	OnFocusChangeListener focChan;
-	OnClickListener cliLis;
-
-	final int clearButtonID = R.id.bMOVBClear;
-	final int updateButtonID = R.id.bMOVBUpdate;
 	final int layout = R.layout.calc_masseogvolumbalanse;
 
 	public final static int Vv_INDEX = 0, V1_INDEX = 1, p2_INDEX = 2,
 			Pv_INDEX = 3, p1_INDEX = 4;
 
-	final int[] IDs = { R.id.etMOVBVv, R.id.etMOVBV1, R.id.etMOVBP2,
+	final static int[] IDs = { R.id.etMOVBVv, R.id.etMOVBV1, R.id.etMOVBP2,
 			R.id.etMOVBPV, R.id.etMOVBP1 };
 
 	public MasseOgVolumBalanse(Context context) {
-		super(context);
-		CreateListeners();
-		Initialize();
+		super(context, IDs);
 	}
 
 	@Override
@@ -102,41 +95,5 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
-	@Override
-	protected void CreateListeners() {
-
-		cliLis = new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				switch (v.getId()) {
-				case clearButtonID:
-					ResetFields(textFields);
-					_textFieldsStatus = new int[IDs.length];
-					break;
-				case updateButtonID:
-					for (int i = 0; i < textFields.length; i++) {
-						FocusChange(i, false);
-					}
-					hideSoftKeyboard();
-					break;
-				}
-			}
-		};
-
-		focChan = new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
-						FocusChange(i, hasFocus);
-				}
-
-			}
-		};
-	}
-
-
+	
 }
