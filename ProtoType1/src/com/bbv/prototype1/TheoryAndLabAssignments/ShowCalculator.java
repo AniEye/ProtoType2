@@ -63,9 +63,9 @@ public class ShowCalculator extends Fragment {
 	}
 
 	private void initializeBasicCalc() {
-		if (_ChoosenCalc.contentEquals(_calcList[0])) {
+		if (_ChoosenCalc.contentEquals(_calcList[0])) {// Alkalitet
 			_basicCalc = new Alkalitet(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[1])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[1])) {// AlkaPm
 			_basicCalc = new AlkaPm(_LinearLayout.getContext());
 		} else if (_ChoosenCalc.contentEquals(_calcList[2])) {
 			_basicCalc = new CaOHInnhold(_LinearLayout.getContext());
