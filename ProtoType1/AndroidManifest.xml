@@ -27,15 +27,7 @@
             android:name="com.bbv.prototype1.Pros_og_Teori"
             android:label="@string/prosedyrer_og_teori" >
         </activity>
-        <activity
-            android:name="com.bbv.prototype1.TestNewListAdapter"
-            android:label="@string/prosedyrer_og_teori" >
-            <intent-filter>
-                <action android:name="com.bbv.prototype1.TESTNEWLISTADAPTER" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity
             android:name="com.bbv.prototype1.Ovinger"
             android:label="@string/title_tests" >
@@ -48,25 +40,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.bbv.prototype1.WebViewTest"
-            android:label="@string/title_tests" >
-        </activity>
-        <activity
-            android:name="com.bbv.prototype1.SQLPros_Teori"
+            android:name="com.bbv.prototype1.Database.SQLPros_Teori"
             android:label="Database" >
         </activity>
         <activity
-            android:name=".FileView"
-            android:label="Viewing file" >
-            <intent-filter>
-                <action android:name="com.bbv.prototype1.FILEVIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".Menus.AboutUs"
-            android:label="@string/AboutUs"
+            android:label="@string/AboutUsLabel"
             android:theme="@android:style/Theme.Dialog" >
             <intent-filter>
                 <action android:name="com.bbv.prototype1.ABOUT" />
@@ -76,7 +55,7 @@
         </activity>
         <activity
             android:name=".Menus.Calc_info"
-            android:label="Informasjon om kalkulatorne"
+            android:label="@string/CalcSettingsInfoLabel"
             android:theme="@android:style/Theme.Dialog" >
             <intent-filter>
                 <action android:name="com.bbv.prototype1.SHOWCALCINFO" />
@@ -86,7 +65,7 @@
         </activity>
         <activity
             android:name=".Menus.SetCalcPrefs"
-            android:label="@string/CalcSettings" >
+            android:label="@string/CalcSettingsLabel" >
             <intent-filter>
                 <action android:name="com.bbv.prototype1.SETCALCPREFS" />
 
@@ -94,7 +73,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SQLView"
+            android:name=".Database.SQLView"
             android:label="View" >
             <intent-filter>
                 <action android:name="com.bbv.prototype1.SQLVIEW" />

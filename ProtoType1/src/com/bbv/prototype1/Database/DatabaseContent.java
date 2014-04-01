@@ -1,4 +1,4 @@
-package com.bbv.prototype1;
+package com.bbv.prototype1.Database;
 
 public class DatabaseContent {
 	private String _Chapter, _ChapterPart1, _ChapterPart2;

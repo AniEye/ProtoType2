@@ -1,6 +1,10 @@
-package com.bbv.prototype1;
+package com.bbv.prototype1.Database;
 
 import java.util.ArrayList;
+
+import com.bbv.prototype1.R;
+import com.bbv.prototype1.R.id;
+import com.bbv.prototype1.R.layout;
 
 import android.app.Activity;
 import android.content.res.Resources;
