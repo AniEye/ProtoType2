@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.bbv.prototype1.R;
 import com.bbv.prototype1.Kalkulatorer.AlkaPm;
 import com.bbv.prototype1.Kalkulatorer.Alkalitet;
@@ -26,7 +25,6 @@ import com.bbv.prototype1.Kalkulatorer.OljeVann;
 import com.bbv.prototype1.Kalkulatorer.Plast_Viskos;
 import com.bbv.prototype1.Kalkulatorer.PowerLaw1006;
 import com.bbv.prototype1.Kalkulatorer.PowerLaw600300;
-import com.bbv.prototype1.Kalkulatorer.Skjaerhastighet;
 import com.bbv.prototype1.Kalkulatorer.Spess_tetthet;
 import com.bbv.prototype1.Kalkulatorer.Table_3_1_calc;
 import com.bbv.prototype1.Kalkulatorer.Table_9_4_calc;
@@ -43,8 +41,8 @@ public class ShowCalculator extends Fragment {
 			"CEC", "Flytegrense", "Herch_Law", "KloridInnhold",
 			"KloridInnholdVannfasen", "KonverterM3", "MasseOgVolumBalanse",
 			"OljeVann", "Plast_Viskos", "PowerLaw1006", "PowerLaw600300",
-			"Skjaerhastighet", "Spess_tetthet", "Table_3_1_calc",
-			"Table_9_4_calc", "Til_Viskos", "TotalHardhet" };
+			"Spess_tetthet", "Table_3_1_calc", "Table_9_4_calc", "Til_Viskos",
+			"TotalHardhet" };
 
 	private String _ChoosenCalc;
 
@@ -92,16 +90,14 @@ public class ShowCalculator extends Fragment {
 		} else if (_ChoosenCalc.contentEquals(_calcList[13])) {
 			_basicCalc = new PowerLaw600300(_LinearLayout.getContext());
 		} else if (_ChoosenCalc.contentEquals(_calcList[14])) {
-			_basicCalc = new Skjaerhastighet(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[15])) {
 			_basicCalc = new Spess_tetthet(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[16])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[15])) {
 			_basicCalc = new Table_3_1_calc(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[17])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[16])) {
 			_basicCalc = new Table_9_4_calc(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[18])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[17])) {
 			_basicCalc = new Til_Viskos(_LinearLayout.getContext());
-		} else if (_ChoosenCalc.contentEquals(_calcList[19])) {
+		} else if (_ChoosenCalc.contentEquals(_calcList[18])) {
 			_basicCalc = new TotalHardhet(_LinearLayout.getContext());
 		}
 	}
