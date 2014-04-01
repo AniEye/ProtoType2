@@ -24,23 +24,54 @@ public abstract class Basic_Calc extends LinearLayout {
 	final String NO_DECIMALS = "%.0f";
 	final String LogCat_TryCatch = "TryCatch";
 	final String LogCat_RegularMessage = "calc";
-
+	
+	
+	/**
+	 * The linearlayout needs a context to witch it can reference the main context
+	 * this is needed so it knows where to inflate it self 
+	 * @param context
+	 */
 	public Basic_Calc(Context context) {
 		super(context);
 		cont = context;
 		
 	}
 
+	/**
+	 * This is a method that is used only for the purpose of keeping the
+	 * sub-classes organized
+	 */
 	protected abstract void Initialize();
 
+	/**
+	 * This is a method that is used only for the purpose of keeping the
+	 * sub-classes organized.
+	 * This class should contain all the listeners that are used in the 
+	 * sub-classes.
+	 */
 	protected abstract void CreateListeners();
 
+	/**
+	 * This method is used to inflate linearlayout that is used.
+	 * This method takes as a parameter the id of the linearlayout that 
+	 * the user want's to inflate.
+	 * @param layoutID
+	 * @return
+	 */
 	protected LinearLayout setAndGetLinearLayout(int layoutID) {
 		_linLay = (LinearLayout) LayoutInflater.from(cont).inflate(layoutID,
 				this);
 		return _linLay;
 	}
 
+	
+	/**
+	 * It is used to initialize an EditText in the linear layout of the sub-classes.
+	 * The purpose of this method is to cut down code in the sub-classes.
+	 * @param id
+	 * @param aListener(OnFocusChangeListener)
+	 * @return the initialized EditText
+	 */
 	protected EditText FindAndReturnEditText(int id,
 			OnFocusChangeListener aListener) {
 	
@@ -50,12 +81,24 @@ public abstract class Basic_Calc extends LinearLayout {
 		return aField;
 	}
 
+	/**
+	 * It is used to initialize an Button in the linear layout of the sub-classes.
+	 * The purpose of this method is to cut down code in the sub-classes.
+	 * @param id
+	 * @param aListener(OnClickListener)
+	 * @return the initialized Button
+	 */
 	protected Button FindAndReturnButton(int id, OnClickListener aListener) {
 		Button aButton = (Button) _linLay.findViewById(id);
 		aButton.setOnClickListener(aListener);
 		return aButton;
 	}
 
+	/**
+	 * This method will reset all the EditTexts in the array by
+	 * making them enabled and emptying the fields.
+	 * @param _theEditTextFields (EditText-Array)
+	 */
 	protected void Enabeling(EditText... _theEditTextFields) {
 		for (int i = 0; i < _theEditTextFields.length; i++) {
 			if (!_theEditTextFields[i].isEnabled()) {
@@ -65,6 +108,12 @@ public abstract class Basic_Calc extends LinearLayout {
 		}
 	}
 
+	/**
+	 * A method that the sub-classes should have to find the field that has not
+	 * been filled and do the calculation relevant to that field.
+	 * This is to be done only when all but one field has been entered.
+	 * This can be modified to be done differently.
+	 */
 	protected abstract void updateRelevantResult();
 
 	protected float[] getFloatVariables(EditText... fieldStatuses) {
