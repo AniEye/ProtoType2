@@ -46,8 +46,14 @@ public class ShowCalculator extends Fragment {
 
 	private String _ChoosenCalc;
 
+	/**
+	 * Used for the LogCat in this class, makes it easier to reference the same string-key
+	 */
 	private static final String KEY_LOGCAT = "ShowCalculator";
 
+	/**
+	 * The method that will return the view of the calculator
+	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -60,6 +66,10 @@ public class ShowCalculator extends Fragment {
 		return _rootView;
 	}
 
+	/**
+	 * this is a big if statement used to find out based on an incoming string 
+	 * what calculator that the user wants to use
+	 */
 	private void initializeBasicCalc() {
 		if (_ChoosenCalc.contentEquals(_calcList[0])) {// Alkalitet
 			_basicCalc = new Alkalitet(_LinearLayout.getContext());
@@ -99,22 +109,6 @@ public class ShowCalculator extends Fragment {
 			_basicCalc = new Til_Viskos(_LinearLayout.getContext());
 		} else if (_ChoosenCalc.contentEquals(_calcList[18])) {
 			_basicCalc = new TotalHardhet(_LinearLayout.getContext());
-		}
-	}
-
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-
-		// Checks whether a hardware or on-screen keyboard is available
-		if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_NO) {
-			Log.e(KEY_LOGCAT, "The keyboard is not hidden");
-			Toast.makeText(getActivity(), "Keyboard visible",
-					Toast.LENGTH_SHORT).show();
-		} else if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_YES) {
-			Toast.makeText(getActivity(), "Keyboard hidden", Toast.LENGTH_SHORT)
-					.show();
-			Log.e(KEY_LOGCAT, "The keyboard is hidden");
 		}
 	}
 }

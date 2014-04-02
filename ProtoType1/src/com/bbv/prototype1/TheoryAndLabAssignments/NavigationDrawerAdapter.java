@@ -31,8 +31,18 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 	private NavigationDrawerItemContent _tempItemContent = null;
 	private ArrayList<TableLayout> _TableList = new ArrayList<TableLayout>();
 
-	private static final String KEY_LOGCAT = "NavigationDrawerAdapter";//if needed
+	private static final String KEY_LOGCAT = "NavigationDrawerAdapter";// if
+																		// needed
 
+	/**
+	 * The constructor takes in parameters for referencing the main activity and
+	 * it's content.
+	 * 
+	 * @param activity
+	 * @param contentArray
+	 *            (NavigationDrawerItemContent)
+	 * @param resources
+	 */
 	public NavigationDrawerAdapter(Activity activity,
 			ArrayList<NavigationDrawerItemContent> contentArray,
 			Resources resources) {
@@ -42,19 +52,22 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 		_ContentArray = contentArray;
 		_res = resources;
 
-		/*********** Layout inflator to call external xml layout () ***********/
+		/** Layout inflator to call external xml layout () */
 		_inflater = (LayoutInflater) _Activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
-	/********* Create a holder Class to contain inflated xml file elements *********/
+	/** Create a holder Class to contain inflated xml file elements */
 	public static class ViewHolder {
 
 		public TextView _Title;
 		public TableLayout _Table;
 	}
 
-	// ****************getters****************
+	// These getters aren't used at all
+	/**
+	 * Returns the Size of the array with the NavigationDrawerItemContent
+	 */
 	@Override
 	public int getCount() {
 		if (_ContentArray.size() <= 0) {
@@ -75,6 +88,9 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 		return 0;
 	}
 
+	/**
+	 * setting up every item in the NavigationDrawer
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View _view = convertView;
@@ -99,11 +115,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 
 		} else
 			_holder = (ViewHolder) _view.getTag();
-
-		// if (_ContentArray.size() <= 0) {
-		// _holder._Title.setText("No Data");
-		//
-		// } else {
+		
 		if (_Activity.getItemInDrawerLoaded() < _ContentArray.size()) {
 			/***** Get each Model object from Arraylist ********/
 			_tempItemContent = null;
@@ -175,6 +187,9 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 	}
 
 	// ***************listeners**************************
+	/**
+	 * This on click listener is used by all the reference items
+	 */
 	@Override
 	public void onClick(View v) {
 
@@ -203,7 +218,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 
 			try {
 				_Activity._nWVB.Reload(_Activity.getTheoryBundle());
-				
+
 				_Activity._filePath = _Activity
 						.getFilePathFromTeoriBundle(_Activity.getTheoryBundle());
 				_Activity.decodeDataDocument();
@@ -264,7 +279,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 
 			_Activity._nSCalc = new ShowCalculator();
 			_Activity._nSCalc.setArguments(_Activity.getCalculatorBundle());
-
+			
 			_Activity._fragManag.beginTransaction()
 					.replace(R.id.flViskos, _Activity._nSCalc).commit();
 

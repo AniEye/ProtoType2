@@ -3,7 +3,12 @@ h1{
 }
 
 h2{
-	color:red;
+	color:red;	
+	margin:0px;
+	margin-bottom:1px;
+	width:100%;
+	padding:5px;
+	background-color:#7CB9E8;
 }
 
 h3{
@@ -27,5 +32,8 @@ img{
 
 li{
 	color:white;
+}
+div{
+	display:none;
 }
 

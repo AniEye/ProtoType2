@@ -66,7 +66,7 @@ public abstract class ShowContentBase extends Activity implements
 	public final static String KEY_SHOWCONTENT = "com.bbv.prototype1.SHOWCONTENT";
 
 	public static enum _DrawerMenuListIndex {
-		MainMenu, Theory, Exercise,Calculator
+		MainMenu, Theory, Exercise, Calculator
 	};
 
 	protected final static String KEY_LOGCAT = "ShowContent";
@@ -78,6 +78,12 @@ public abstract class ShowContentBase extends Activity implements
 		_StringBuffer = new StringBuffer();
 	}
 
+	/**
+	 * Creates a new inputstream reference using a filepath
+	 * 
+	 * @param filepath
+	 * @throws IOException
+	 */
 	public void setInputStream(String filepath) throws IOException {
 		_InputStream = _assetManag.open(filepath);
 	}
@@ -92,6 +98,12 @@ public abstract class ShowContentBase extends Activity implements
 		_BufferedReader = new BufferedReader(new InputStreamReader(input));
 	}
 
+	/**
+	 * Used to create a new TheoryBundle based on a filepath
+	 * 
+	 * @param filepath
+	 * @return a new TheoryBundle
+	 */
 	protected Bundle createNewTeoriBundle(String filepath) {
 		Bundle newBundle = new Bundle();
 		filepath = filepath.trim();
@@ -110,6 +122,12 @@ public abstract class ShowContentBase extends Activity implements
 		return newBundle;
 	}
 
+	/**
+	 * Using a string(filepath) creates a new OvingBundle
+	 * 
+	 * @param newfilepath
+	 * @return a new OvingBundle
+	 */
 	protected Bundle createNewOvingBundle(String newfilepath) {
 		Bundle newBundle = new Bundle();
 		newfilepath = newfilepath.trim();
@@ -154,10 +172,19 @@ public abstract class ShowContentBase extends Activity implements
 		return filepath;
 	}
 
+	/**
+	 * used to retrive
+	 * 
+	 * @param aBundle
+	 * @return
+	 */
 	protected String getFilePathFromOvingBundle(Bundle aBundle) {
 		return "Ovinger/" + aBundle.getString(ShowContentBase.KEY_OVING) + "/";
 	}
 
+	/**
+	 * Used to initialize the AssetMananger
+	 */
 	protected void setAssetManager() {
 		_assetManag = this.getAssets();
 	}
@@ -230,17 +257,25 @@ public abstract class ShowContentBase extends Activity implements
 		if (_actionDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
-		// Handle action buttons
-		switch (item.getItemId()) {
-		default:
-			return super.onOptionsItemSelected(item);
-		}
+
+		return super.onOptionsItemSelected(item);
+
 	}
 
+	/**
+	 * Setting the title of the actionbar
+	 * 
+	 * @param title
+	 */
 	protected void setActivityTitle(CharSequence title) {
 		_activity_title = title;
 	}
 
+	/**
+	 * Takes in an ArrayList and returns it inform of a String-Array
+	 * @param ArrayList-String
+	 * @return String-Array
+	 */
 	protected String[] arrayListToStringArray(ArrayList<String> list) {
 		int length = list.size();
 		String[] array = new String[length];
@@ -268,7 +303,12 @@ public abstract class ShowContentBase extends Activity implements
 		_Toast.show();
 	}
 
-	protected void newDrawerContentList() {		
+	/**
+	 * Creates a new Instance of an arrayList containing NavigationDrawerItemContent
+	 * where it at the same time adds all the titles of the items
+	 * that are going to be shown in the NavigationDrawer
+	 */
+	protected void newDrawerContentList() {
 		_NavigatorItemContentList = new ArrayList<NavigationDrawerItemContent>();
 		for (int i = 0; i < _DrawerMenyList.length; i++) {
 			NavigationDrawerItemContent item = new NavigationDrawerItemContent();
@@ -276,11 +316,17 @@ public abstract class ShowContentBase extends Activity implements
 			_NavigatorItemContentList.add(item);
 		}
 	}
-	protected void displayNextLast(boolean show){
-		if(show){
-		_bNext.setVisibility(android.view.View.VISIBLE);
-		_bPrevious.setVisibility(android.view.View.VISIBLE);
-		}else{
+
+	/**
+	 * This will hide the buttons next and last
+	 * Used when the user enters and returns from ShowCalculator
+	 * @param show
+	 */
+	protected void displayNextLast(boolean show) {
+		if (show) {
+			_bNext.setVisibility(android.view.View.VISIBLE);
+			_bPrevious.setVisibility(android.view.View.VISIBLE);
+		} else {
 			_bNext.setVisibility(android.view.View.INVISIBLE);
 			_bPrevious.setVisibility(android.view.View.INVISIBLE);
 		}

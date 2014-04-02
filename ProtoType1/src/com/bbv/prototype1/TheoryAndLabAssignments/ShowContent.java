@@ -34,6 +34,13 @@ public class ShowContent extends ShowContentBase {
 		StartFirstDocument(savedInstanceState);
 	}
 
+	/**
+	 * Method for checking if there is something already stored in the intent or
+	 * if this is the first time running this class, so it will either create a
+	 * layout from a previous action or create a new one.
+	 * 
+	 * @param savedInstanceState
+	 */
 	private void StartFirstDocument(Bundle savedInstanceState) {
 		_nWVB = new WebView();
 		if (savedInstanceState == null) {
@@ -96,6 +103,9 @@ public class ShowContent extends ShowContentBase {
 		_drawerLayout.closeDrawer(_listView);
 	}
 
+	/**
+	 * Restores the previous drawer from the stored drawer in the intance
+	 */
 	private void retriveDrawer() {
 		newDrawerContentList();
 		for (int i = 0; i < _DrawerMenyList.length; i++) {
@@ -109,6 +119,11 @@ public class ShowContent extends ShowContentBase {
 
 	}
 
+	/**
+	 * the on click listener for the buttons next and previous this will simply
+	 * set the currentbundle to that of the created bundles for either the next
+	 * or previous page
+	 */
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -141,6 +156,10 @@ public class ShowContent extends ShowContentBase {
 		Log.i(KEY_LOGCAT, "  ");
 	}
 
+	/**
+	 * Used to retrieve the data stored in a text file in the current directory
+	 * in the database where the user currently is
+	 */
 	public void decodeDataDocument() {
 		try {
 			String str = "";
@@ -255,6 +274,9 @@ public class ShowContent extends ShowContentBase {
 		Log.i(KEY_LOGCAT, "  ");
 	}
 
+	/**
+	 * this will save the current drawer in the instance
+	 */
 	private void saveDrawerContent() {
 		for (int i = 0; i < _NavigatorItemContentList.size(); i++) {
 			if (_NavigatorItemContentList.get(i).getStringList() != null) {
@@ -262,9 +284,11 @@ public class ShowContent extends ShowContentBase {
 						_NavigatorItemContentList.get(i).getStringList());
 			}
 		}
-
 	}
 
+	/**
+	 * Create the references and initialize the drawerlistener
+	 */
 	private void Initialize() {
 		// _activity_title = getTitle();
 		setActivityTitle("Meny");
@@ -300,20 +324,6 @@ public class ShowContent extends ShowContentBase {
 	}
 
 	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-
-		// Checks whether a hardware or on-screen keyboard is available
-		if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_NO) {
-			Log.e(KEY_LOGCAT, "The keyboard is not hidden");
-			Toast.makeText(this, "Keyboard visible", Toast.LENGTH_SHORT).show();
-		} else if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_YES) {
-			Toast.makeText(this, "Keyboard hidden", Toast.LENGTH_SHORT).show();
-			Log.e(KEY_LOGCAT, "The keyboard is hidden");
-		}
-	}
-
-	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
@@ -323,68 +333,128 @@ public class ShowContent extends ShowContentBase {
 	/* Called whenever we call invalidateOptionsMenu() */
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		// If the nav drawer is open, hide action items related to the content
-		// view
-		// boolean drawerOpen = _drawerLayout.isDrawerOpen(_listView);
-		// menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
 	// setter and getter for the theory and oving bundles
+	/**
+	 * Saves the TheoryBundle in the instance
+	 * 
+	 * @param a
+	 *            TheoryBundle
+	 */
 	protected void setTheoryBundle(Bundle aBundle) {
 		this.getIntent().putExtra(KEY_PROS_TEORI, aBundle);
 		Log.i(KEY_LOGCAT, "Finishing setTheoryBundle");
 		Log.i(KEY_LOGCAT, "  ");
 	}
 
+	/**
+	 * Saves the OvingBundle in the instance
+	 * 
+	 * @param a
+	 *            OvingBundle
+	 */
 	protected void setOvingBundle(Bundle aBundle) {
 		this.getIntent().putExtra(KEY_OVING, aBundle);
 		Log.i(KEY_LOGCAT, "Finishing setOvingBundle");
 		Log.i(KEY_LOGCAT, "  ");
 	}
 
+	/**
+	 * Saves the CalculatorBundle in the instance
+	 * 
+	 * @param a
+	 *            CalculatorBundle
+	 */
 	protected void setCalculatorBundle(Bundle abundle) {
 		this.getIntent().putExtra(KEY_CHOSENCALC, abundle);
 	}
 
+	/**
+	 * Gets the TheoryBundle from the instance
+	 * 
+	 * @return a TheoryBundle
+	 */
 	protected Bundle getTheoryBundle() {
 		return this.getIntent().getBundleExtra(KEY_PROS_TEORI);
 	}
 
+	/**
+	 * Gets the OvingBundle from the instance
+	 * 
+	 * @return a OvingBundle
+	 */
 	protected Bundle getOvingBundle() {
 		return this.getIntent().getBundleExtra(KEY_OVING);
 	}
 
+	/**
+	 * Gets the CalculatorBundle from the instance
+	 * 
+	 * @return a CalculatorBundle
+	 */
 	protected Bundle getCalculatorBundle() {
 		return this.getIntent().getBundleExtra(KEY_CHOSENCALC);
 	}
 
 	// setter and getter for priorityindex
+	/**
+	 * Stores the priorityIndex in the instance
+	 * 
+	 * @param index
+	 */
 	protected void setPriorityIndex(int index) {
 		this.getIntent().putExtra(KEY_PRIORITY_INDEX, index);
 		Log.i(KEY_LOGCAT, "Finishing setPriorityIndex");
 		Log.i(KEY_LOGCAT, "  ");
 	}
 
+	/**
+	 * Gets the PriorityIndex from the instance
+	 * 
+	 * @return PriorityIndex
+	 */
 	protected int getPriorityIndex() {
 		return this.getIntent().getIntExtra(KEY_PRIORITY_INDEX, -1);
 	}
 
 	// setter and getter for currentindex
+	/**
+	 * Gets the CurrentIndex from the instance
+	 * 
+	 * @return CurrentIndex
+	 */
 	protected int getCurrentIndex() {
 		return this.getIntent().getIntExtra(KEY_CURRENT_INDEX, -1);
 	}
 
+	/**
+	 * Stores the CurrentIndex in the instance
+	 * 
+	 * @param index
+	 */
 	protected void setCurrentIndex(int index) {
 		this.getIntent().putExtra(KEY_CURRENT_INDEX, index);
 		Log.i(KEY_LOGCAT, "Finishing setCurrentIndex");
 		Log.i(KEY_LOGCAT, "  ");
 	}
 
+	/**
+	 * Stores the number of items in the NavigationDrawer that has been loaded
+	 * 
+	 * @param number
+	 */
 	protected void setItemInDrawerLoaded(int number) {
 		this.getIntent().putExtra(KEY_DRAWERLOADEDNUMBER, number);
 	}
 
+	/**
+	 * Retrieves the number of items in the NavigationDrawer that has been
+	 * loaded
+	 * 
+	 * @return AmountLoaded
+	 */
 	protected int getItemInDrawerLoaded() {
 		return this.getIntent().getIntExtra(KEY_DRAWERLOADEDNUMBER, 0);
 	}

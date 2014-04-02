@@ -1,5 +1,10 @@
 package com.bbv.prototype1.TheoryAndLabAssignments;
-
+/**
+ * A class for storing the Content of the items that will be shown in the 
+ * NavigationDrawer
+ * @author Andre
+ *
+ */
 public class NavigationDrawerItemContent {
 
 	private String[] _list;

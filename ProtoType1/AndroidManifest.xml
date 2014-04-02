@@ -32,7 +32,9 @@
             android:name="com.bbv.prototype1.Ovinger"
             android:label="@string/title_tests" >
         </activity>
-        <activity android:name="com.bbv.prototype1.TheoryAndLabAssignments.ShowContent" >
+        <activity android:name="com.bbv.prototype1.TheoryAndLabAssignments.ShowContent" 
+             android:configChanges="orientation|screenSize"
+            >
             <intent-filter>
                 <action android:name="com.bbv.prototype1.SHOWCONTENT" />
 
