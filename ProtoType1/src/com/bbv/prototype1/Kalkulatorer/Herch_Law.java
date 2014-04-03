@@ -14,7 +14,7 @@ import com.bbv.prototype1.R;
 
 public class Herch_Law extends Basic_Calc {
 
-	final int layout = R.layout.calc_modpowerlaw;
+	final static int layout = R.layout.calc_modpowerlaw;
 
 	final static int[] textViewIDs = { R.id.tvMPLN, R.id.tvMPLK, R.id.tvMPLT0,
 			R.id.tvMPLEksY };
@@ -24,9 +24,8 @@ public class Herch_Law extends Basic_Calc {
 	public final static int T6_INDEX = 0, T3_INDEX = 1, N_INDEX = 4;
 
 	public Herch_Law(Context context) {
-		super(context, IDs, textViewIDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, textViewIDs, layout);
+
 	}
 
 	@Override
@@ -106,23 +105,6 @@ public class Herch_Law extends Basic_Calc {
 
 	public float calcK(float t600, float t0, float n) {
 		return (float) (0.511f * ((t600 - t0) / Math.pow(600 * 1.7033, n)));
-	}
-
-	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		textviews = new TextView[textViewIDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-		for (int i = 0; i < textViewIDs.length; i++)
-			textviews[i] = (TextView) findViewById(textViewIDs[i]);
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 }

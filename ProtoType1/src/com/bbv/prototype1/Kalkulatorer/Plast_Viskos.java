@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 public class Plast_Viskos extends Basic_Calc {
 
-	final int layout = R.layout.calc_viskositet_plastisk;
+	final static int layout = R.layout.calc_viskositet_plastisk;
 
 	final static int[] IDs = { R.id.etViskosPlas, R.id.etPlasViskTheta600,
 			R.id.etPlasviskTheta300 };
@@ -20,9 +20,8 @@ public class Plast_Viskos extends Basic_Calc {
 	public final static int PV_INDEX = 0, T6_INDEX = 1, T3_INDEX = 2;
 
 	public Plast_Viskos(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
+
 	}
 
 	@Override
@@ -55,20 +54,5 @@ public class Plast_Viskos extends Basic_Calc {
 		else
 			return "";
 	}
-
-	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
-	}
-
 	
 }

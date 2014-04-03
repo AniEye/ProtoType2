@@ -36,35 +36,60 @@ public abstract class Basic_Calc extends LinearLayout {
 	final String LogCat_TryCatch = "TryCatch";
 	final String LogCat_RegularMessage = "calc";
 
-	/**
-	 * The linearlayout needs a context to witch it can reference the main
-	 * context this is needed so it knows where to inflate it self
-	 * 
-	 * @param context
-	 */
-	public Basic_Calc(Context context, int[] IDs) {
+	final int WITH_TEXTVIEW_FIELDS = 0, WITHOUT_TEXTVIEW_FIELDS = 1;
+
+	
+	public Basic_Calc(Context context, int[] IDs, int layoutID) {
 		super(context);
 		cont = context;
-		Initialize();
-		CreateListeners();
 		this.IDs = IDs;
+		CreateListeners();
+		Initialize(layoutID, WITHOUT_TEXTVIEW_FIELDS);
+
 
 	}
 
-	public Basic_Calc(Context context, int[] editTextIDs, int[] textViewIDs) {
+	public Basic_Calc(Context context, int[] editTextIDs, int[] textViewIDs,
+			int layoutID) {
 		super(context);
 		cont = context;
-		Initialize();
-		CreateListeners();
 		this.IDs = editTextIDs;
 		this.textViewIDs = textViewIDs;
+		CreateListeners();
+		Initialize(layoutID, WITH_TEXTVIEW_FIELDS);
+
 	}
 
 	/**
-	 * This is a method that is used only for the purpose of keeping the
-	 * sub-classes organized
+	 * This method gets called whenever a calculator is instantiated.
+	 * 
+	 * @param layout
+	 * @param textFieldFlag
+	 *            - Use WITH_TEXTVIEW_FIELDS or WITHOUT_TEXTVIEW_FIELDS to
+	 *            specify if the calculator has textviews or not that need to be
+	 *            instantiated.
 	 */
-	protected abstract void Initialize();
+	protected void Initialize(int layout, int textFieldFlag) {
+		
+		_linLay = setAndGetLinearLayout(layout);
+
+		textFields = new EditText[IDs.length];
+		_textFieldsStatus = new int[IDs.length];
+
+		for (int i = 0; i < IDs.length; i++)
+			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
+
+		if (textFieldFlag == WITH_TEXTVIEW_FIELDS) {
+			textviews = new TextView[textViewIDs.length];
+			for (int i = 0; i < textViewIDs.length; i++)
+				textviews[i] = (TextView) _linLay.findViewById(textViewIDs[i]);
+		}
+
+		_clear = FindAndReturnButton(clearButtonID, cliLis);
+		_update = FindAndReturnButton(updateButtonID, cliLis);
+		
+		initializeMethod();
+	}
 
 	/**
 	 * This is a method that is used only for the purpose of keeping the
@@ -104,11 +129,12 @@ public abstract class Basic_Calc extends LinearLayout {
 
 	/**
 	 * This method is called whenever the update Button is pressed. 
-	 * First calls ResetFields, and then resets _textFieldStatus
 	 * 
 	 * Override and pass super() method to add features to the button.
 	 */
 	protected void updateButtonMethod() {
+		Log.i(LogCat_RegularMessage, "Update-button pressed in "
+				+ getClass().getSimpleName());
 		for (int i = 0; i < textFields.length; i++) {
 			FocusChange(i, false);
 		}
@@ -116,14 +142,24 @@ public abstract class Basic_Calc extends LinearLayout {
 	}
 
 	/**
-	 * This method is called whenever the clear Button is pressed. Override and
-	 * pass super() method to add features to the button
+	 * This method is called whenever the clear Button is pressed. First calls
+	 * ResetFields, and then resets _textFieldStatus
+	 * 
+	 * Override and pass super() method to add features to the button.
 	 */
 	protected void clearButtonMethod() {
+		Log.i(LogCat_RegularMessage, "Clear-button pressed in "
+				+ getClass().getSimpleName());
 		ResetFields(textFields);
 		_textFieldsStatus = new int[IDs.length];
 	}
 
+	/**
+	 * Override this method to pass extra features to a calculators initialize method.
+	 */
+	protected void initializeMethod(){
+		
+	}
 	/**
 	 * This method is used to inflate linearlayout that is used. This method
 	 * takes as a parameter the id of the linearlayout that the user want's to
@@ -294,14 +330,14 @@ public abstract class Basic_Calc extends LinearLayout {
 			if (Float.isInfinite(x[i])) {
 				Log.println(Log.ERROR, "calc", "Var. " + i
 						+ " caused dividing with 0 error in "
-						+ this.getClass().getName());
+						+ this.getClass().getSimpleName());
 				showToast("Verdier ble delt på null!");
 				return false;
 			} else if (Float.isNaN(x[i])) {
 				Log.println(Log.ERROR, "calc", "Var. " + i
 						+ " caused Log(-x) error in "
-						+ this.getClass().getName());
-				showToast("En Log utregnelse ble uekte!");
+						+ this.getClass().getSimpleName());
+				showToast("En Log utregnelse ble tatt av en negativ verdi!");
 				return false;
 			}
 		}
@@ -339,11 +375,6 @@ public abstract class Basic_Calc extends LinearLayout {
 
 		if (theSum(_textFieldsStatus) < _textFieldsStatus.length - 1) {
 			if (focusStatus == false && !_fieldsString.contentEquals("")) {
-
-				Log.println(Log.DEBUG, "calc", "Sum: "
-						+ theSum(_textFieldsStatus));
-				Log.println(Log.DEBUG, "calc", "Length of _textfieldStatus: "
-						+ (_textFieldsStatus.length - 1));
 				_textFieldsStatus[indexOfCurrentField] = 1;
 
 			}
@@ -400,7 +431,7 @@ public abstract class Basic_Calc extends LinearLayout {
 
 			if (x[i] == 0.0f) {
 				Log.println(Log.ERROR, "calc", "Division with 0 error! Var.: "
-						+ i + getClass().getName());
+						+ i + getClass().getSimpleName());
 				showToast("Du kan ikke bruke 0 verdier!");
 				return false;
 			}
@@ -424,7 +455,7 @@ public abstract class Basic_Calc extends LinearLayout {
 
 			if (x[i] < 0) {
 				Log.println(Log.ERROR, "calc", "Found negative value in "
-						+ getClass().getName());
+						+ getClass().getSimpleName());
 				showToast("Du kan ikke bruke negative verdier!");
 				return false;
 			}

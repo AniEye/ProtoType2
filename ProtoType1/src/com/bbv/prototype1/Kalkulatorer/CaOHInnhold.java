@@ -13,7 +13,7 @@ import com.bbv.prototype1.R;
 
 public class CaOHInnhold extends Basic_Calc {
 
-	final int layout = R.layout.calc_caoh_innhold;
+	final static int layout = R.layout.calc_caoh_innhold;
 
 	// Variables used for calculation
 	float Mp;
@@ -26,9 +26,7 @@ public class CaOHInnhold extends Basic_Calc {
 	public final static int Mp_INDEX = 0, CaOH_INDEX=1; //Mp_INDEX is used for calculating Mp, and CaOH_INDEX is used to calculate CaOH
 
 	public CaOHInnhold(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
 	}
 
 	@Override
@@ -57,20 +55,6 @@ public class CaOHInnhold extends Basic_Calc {
 		Log.println(Log.ERROR, "calc", "Something went very wrong in " + getClass().getName());
 		return "";
 
-	}
-
-	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 

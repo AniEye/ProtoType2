@@ -13,7 +13,7 @@ import com.bbv.prototype1.R;
 
 public class TotalHardhet extends Basic_Calc {
 
-	final int layout = R.layout.calc_total_hardhet;
+	final static int layout = R.layout.calc_total_hardhet;
 
 	// Variables used for calculation
 	float totHardCaCo3;
@@ -46,9 +46,8 @@ public class TotalHardhet extends Basic_Calc {
 											// calculated
 
 	public TotalHardhet(Context context) {
-		super(context, editTextIDs, textViewIDs);
-		CreateListeners();
-		Initialize();
+		super(context, editTextIDs, textViewIDs, layout);
+
 	}
 
 	@Override
@@ -102,23 +101,6 @@ public class TotalHardhet extends Basic_Calc {
 
 		return "";
 
-	}
-
-	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[editTextIDs.length];
-		textviews = new TextView[textViewIDs.length];
-		_textFieldsStatus = new int[editTextIDs.length];
-
-		for (int i = 0; i < editTextIDs.length; i++)
-			textFields[i] = FindAndReturnEditText(editTextIDs[i], focChan);
-		for (int i = 0; i < textViewIDs.length; i++)
-			textviews[i] = (TextView) findViewById(textViewIDs[i]);
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 

@@ -11,16 +11,14 @@ import android.widget.Toast;
 
 public class Flytegrense extends Basic_Calc {
 
-	final int layout = R.layout.calc_flytegrense;
+	final static int layout = R.layout.calc_flytegrense;
 
 	final static int[] IDs = { R.id.etFG, R.id.etFGTheta300, R.id.etFGTheta600 };
 
 	public final static int FG_INDEX = 0, T3_INDEX = 1, T6_INDEX = 2;
 
 	public Flytegrense(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
 	}
 
 	@Override
@@ -59,20 +57,6 @@ public class Flytegrense extends Basic_Calc {
 			return String.format("%.3f", theAnswer);
 		else
 			return "";
-	}
-
-	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 }

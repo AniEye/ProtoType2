@@ -13,7 +13,7 @@ import com.bbv.prototype1.R;
 
 public class OljeVann extends Basic_Calc {
 
-	final int layout = R.layout.calc_olje_vann;
+	final static int layout = R.layout.calc_olje_vann;
 
 	TextView tvO;
 	TextView tvW;
@@ -34,9 +34,8 @@ public class OljeVann extends Basic_Calc {
 							// should ever be used
 
 	public OljeVann(Context context) {
-		super(context,IDs);
-		CreateListeners();
-		Initialize();
+		super(context,IDs, layout);
+
 	}
 
 	@Override
@@ -81,21 +80,12 @@ public class OljeVann extends Basic_Calc {
 	}
 
 	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
+	protected void initializeMethod() {
+		// TODO Auto-generated method stub
+		super.initializeMethod();
 		tvO = (TextView) findViewById(R.id.tvOVO);
 		tvW = (TextView) findViewById(R.id.tvOVW);
 		tvOW = (TextView) findViewById(R.id.tvOVOW);
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 	public float getO() {

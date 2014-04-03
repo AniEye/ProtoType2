@@ -13,16 +13,14 @@ import android.widget.Toast;
 
 public class Til_Viskos extends Basic_Calc {
 
-	final int layout = R.layout.calc_viskositet_tilsynelatende;
+	static int layout = R.layout.calc_viskositet_tilsynelatende;
 
 	static int[] IDs = { R.id.etViskosTil, R.id.etTheta, R.id.etRPM };
 
 	public final static int THETA_INDEX = 0, RPM_INDEX = 1, TIL_VISK_INDEX = 2;
 
 	public Til_Viskos(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
 	}
 
 	@Override
@@ -57,7 +55,7 @@ public class Til_Viskos extends Basic_Calc {
 			theAnswer = (float) ((300.0 * theta) / rpm);
 			break;
 		}
-		
+
 		Log.println(Log.DEBUG, "calc", "Printing the answer");
 		if (checkForDivisionErrors(theAnswer) == false
 				|| checkForNullValues(theAnswer) == false)
@@ -66,20 +64,5 @@ public class Til_Viskos extends Basic_Calc {
 			return String.format("%.3f", theAnswer);
 
 	}
-
-	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
-	}
-
 
 }

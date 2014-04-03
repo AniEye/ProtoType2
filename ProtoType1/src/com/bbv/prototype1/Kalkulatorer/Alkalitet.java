@@ -17,7 +17,7 @@ import com.bbv.prototype1.Tables.Table_3_3;
 
 public class Alkalitet extends Basic_Calc {
 
-	final int layout = R.layout.calc_alkalitet;
+	final static int layout = R.layout.calc_alkalitet;
 
 	// Variables used for calculations
 	float Pf;
@@ -36,9 +36,7 @@ public class Alkalitet extends Basic_Calc {
 											// Key_INDEX should ever be used
 
 	public Alkalitet(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
 	}
 
 	@Override
@@ -231,20 +229,6 @@ public class Alkalitet extends Basic_Calc {
 			e.printStackTrace();
 		}
 		return id;
-	}
-
-	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 	@Override

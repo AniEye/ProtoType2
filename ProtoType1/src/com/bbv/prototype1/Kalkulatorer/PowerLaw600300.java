@@ -14,7 +14,7 @@ import com.bbv.prototype1.R;
 
 public class PowerLaw600300 extends Basic_Calc {
 
-	final int layout = R.layout.calc_powerlaw600300;
+	final static int layout = R.layout.calc_powerlaw600300;
 
 	final static int[] TextViewIDs = { R.id.tvPL600300N, R.id.tvPL600300NOTPA, R.id.tvPL600300PA };
 
@@ -23,9 +23,8 @@ public class PowerLaw600300 extends Basic_Calc {
 	public final static int T600_INDEX = 0, T300_INDEX = 1, N_INDEX = 2;
 
 	public PowerLaw600300(Context context) {
-		super(context, IDs, TextViewIDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, TextViewIDs, layout);
+
 	}
 
 	@Override
@@ -85,23 +84,6 @@ public class PowerLaw600300 extends Basic_Calc {
 
 	public float calcK(float T600, float n) {
 		return (float) (T600 / Math.pow(600*1.7033, n));
-	}
-
-	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-		textviews = new TextView[TextViewIDs.length];
-
-		for (int i = 0; i < IDs.length; i++){
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-			textviews[i] = (TextView) findViewById(TextViewIDs[i]);
-		}
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 }

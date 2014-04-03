@@ -14,7 +14,7 @@ import com.bbv.prototype1.Tables.Table_3_1;
 
 public class KloridInnholdIVannfasen extends Basic_Calc {
 
-	final int layout = R.layout.calc_klorid_innhold_i_vannfasen;
+	final static int layout = R.layout.calc_klorid_innhold_i_vannfasen;
 
 	// Variables used for calculation
 	float V_AgNO3;
@@ -44,9 +44,7 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 			CCl_index = 2;
 
 	public KloridInnholdIVannfasen(Context context) {
-		super(context, IDs, textviewIDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, textviewIDs, layout);
 	}
 
 	@Override
@@ -114,24 +112,6 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 
 		return "";
 
-	}
-
-	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		textviews = new TextView[textviewIDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++) 
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-		for (int i = 0; i < textviewIDs.length; i++) 
-			textviews[i] = (TextView) findViewById(textviewIDs[i]);
-		
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 	public float getV_AgNO3() {

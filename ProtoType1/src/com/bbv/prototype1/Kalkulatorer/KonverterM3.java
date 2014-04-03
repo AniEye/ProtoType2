@@ -15,7 +15,7 @@ import com.bbv.prototype1.R;
 
 public class KonverterM3 extends Basic_Calc {
 
-	final int layout = R.layout.calc_kvadratmeter;
+	final static int layout = R.layout.calc_kvadratmeter;
 
 	TextView tvKonvertert;
 
@@ -31,9 +31,8 @@ public class KonverterM3 extends Basic_Calc {
 	public final static int GRAM_INDEX = 0, ML_INDEX = 1, SLAMVOLUM_INDEX = 2;
 
 	public KonverterM3(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
+
 	}
 
 	@Override
@@ -79,20 +78,11 @@ public class KonverterM3 extends Basic_Calc {
 	}
 
 	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		tvKonvertert = (TextView) findViewById(R.id.tvKMsvar);
+	protected void initializeMethod() {
+		// TODO Auto-generated method stub
+		super.initializeMethod();
 		
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
+		tvKonvertert = (TextView) findViewById(R.id.tvKMsvar);
 	}
-
 
 }

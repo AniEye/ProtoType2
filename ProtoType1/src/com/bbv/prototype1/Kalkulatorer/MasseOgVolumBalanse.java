@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class MasseOgVolumBalanse extends Basic_Calc {
 
-	final int layout = R.layout.calc_masseogvolumbalanse;
+	 static int layout = R.layout.calc_masseogvolumbalanse;
 
 	public final static int Vv_INDEX = 0, V1_INDEX = 1, p2_INDEX = 2,
 			Pv_INDEX = 3, p1_INDEX = 4;
@@ -22,7 +22,7 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 			R.id.etMOVBPV, R.id.etMOVBP1 };
 
 	public MasseOgVolumBalanse(Context context) {
-		super(context, IDs);
+		super(context, IDs, layout);
 	}
 
 	@Override
@@ -81,19 +81,4 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 
 	}
 
-	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
-	}
-
-	
 }

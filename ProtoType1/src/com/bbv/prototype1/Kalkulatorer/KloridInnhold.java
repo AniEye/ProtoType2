@@ -14,7 +14,7 @@ import com.bbv.prototype1.Tables.Table_3_1;
 
 public class KloridInnhold extends Basic_Calc {
 
-	final int layout = R.layout.calc_klorid_innhold;
+	final static int layout = R.layout.calc_klorid_innhold;
 
 	TextView tvKloridML;
 	TextView tvKloridPPM;
@@ -41,9 +41,8 @@ public class KloridInnhold extends Basic_Calc {
 	public final static int AgNO3_index = 0, VFiltrat_index = 1, CCl_index = 2;
 
 	public KloridInnhold(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
+
 	}
 
 	@Override
@@ -112,23 +111,16 @@ public class KloridInnhold extends Basic_Calc {
 
 	}
 
+	
 	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
+	protected void initializeMethod() {
+		// TODO Auto-generated method stub
+		super.initializeMethod();
 		tvKloridML = (TextView) findViewById(R.id.tvKIKIMG);
 		tvKloridPPM = (TextView) findViewById(R.id.tvKIKIPPM);
 		tvNaClMG = (TextView) findViewById(R.id.tvKINaCLMG);
 		tvNaClPPM = (TextView) findViewById(R.id.tvKINaPPM);
 
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 	

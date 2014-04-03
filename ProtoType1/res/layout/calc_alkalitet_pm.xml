@@ -62,9 +62,7 @@
         android:id="@+id/etAlkaCa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
+        android:visibility="gone"/>
     
     <LinearLayout
         android:layout_width="match_parent"

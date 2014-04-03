@@ -14,7 +14,7 @@ import com.bbv.prototype1.Tables.Table_3_1;
 
 public class Spess_tetthet extends Basic_Calc {
 
-	final int layout = R.layout.calc_spesifikktetthet;
+	final static int layout = R.layout.calc_spesifikktetthet;
 
 	TextView tvPp;
 	TextView tvPf;
@@ -31,9 +31,8 @@ public class Spess_tetthet extends Basic_Calc {
 	public final static int Pp_INDEX = 0;
 
 	public Spess_tetthet(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
+
 	}
 
 	@Override
@@ -104,7 +103,8 @@ public class Spess_tetthet extends Basic_Calc {
 	 * If cl is out of bounds for the table, a toast will be displayed, and Vfs
 	 * and Pf will be set to 0
 	 * 
-	 * @param cl - Value of KloridInnhold
+	 * @param cl
+	 *            - Value of KloridInnhold
 	 * @return float array with Vsf in place 0, and Pf in place 1
 	 */
 	public float[] calcPfOrVsf(float cl) {
@@ -129,22 +129,14 @@ public class Spess_tetthet extends Basic_Calc {
 	}
 
 	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
+	protected void initializeMethod() {
+		// TODO Auto-generated method stub
+		super.initializeMethod();
 		tvPp = (TextView) findViewById(R.id.tvSpessTettPp);
 		tvPf = (TextView) findViewById(R.id.tvSpessTettPf);
 		tvVs = (TextView) findViewById(R.id.tvSpessTettVs);
 		tvVsf = (TextView) findViewById(R.id.tvSpessTettVsf);
 
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 }

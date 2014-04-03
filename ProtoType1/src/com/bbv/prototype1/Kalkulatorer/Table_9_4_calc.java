@@ -20,7 +20,7 @@ import com.bbv.prototype1.Tables.Table_9_4;
 
 public class Table_9_4_calc extends Basic_Calc {
 
-	final int layout = R.layout.calc_table9_4;
+	final static int layout = R.layout.calc_table9_4;
 
 	/**
 	 * Sets the number of vertical table items to show for the table
@@ -53,9 +53,7 @@ public class Table_9_4_calc extends Basic_Calc {
 	public final static int KEY_INDEX = 1;
 
 	public Table_9_4_calc(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
 	}
 
 	@Override
@@ -155,6 +153,10 @@ public class Table_9_4_calc extends Basic_Calc {
 	private void insertNewTableItem(int calculatedRow) {
 		resetTableItems();
 		Table_9_4 table = new Table_9_4(Cl);
+		
+		Log.i("calc", "Calculated row = " + calculatedRow);
+		Log.i("calc", "Calculated row - half = "
+				+ (calculatedRow - half));
 
 		for (int k = 1; k <= numberOfTableItemsToShow; k++) {
 
@@ -169,15 +171,14 @@ public class Table_9_4_calc extends Basic_Calc {
 				TextView tableItem = (TextView) findViewById(ID);
 
 				if (k < half && (calculatedRow - half + k) >= 0) {
-					Log.i("calc", "Calculated row = " + calculatedRow);
-					Log.i("calc", "Calculated row - half = "
-							+ (calculatedRow - half));
+
+					Log.i(LogCat_RegularMessage, "Inserting tableitem before calculated value at row: " + k );
 					tableItem.setText(table.getInitialRows()[(calculatedRow
 							- half + k)][i - 1]);
 					tableItem.setVisibility(VISIBLE);
 
 				} else if (k == half) {
-					Log.i(LogCat_RegularMessage, "Inserting calculated values");
+					Log.i(LogCat_RegularMessage, "Inserting calculated values at row: " + k);
 					switch (i) {
 					case 1:
 						tableItem.setText(String.format("%.0f", Cl));
@@ -195,7 +196,8 @@ public class Table_9_4_calc extends Basic_Calc {
 					}
 					tableItem.setVisibility(VISIBLE);
 
-				} else if (k > half && calculatedRow + (k - half - 1) < 41) {
+				} else if (k > half && calculatedRow + (k - half - 1) < 41) { //41 is the number of total rows in the table
+					Log.i(LogCat_RegularMessage, "Inserting tableitem after calculated value at row: " + k );
 					tableItem.setText(table.getInitialRows()[calculatedRow
 							+ (k - half - 1)][i - 1]);
 					tableItem.setVisibility(VISIBLE);
@@ -244,22 +246,16 @@ public class Table_9_4_calc extends Basic_Calc {
 		return id;
 	}
 
+	
 	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
+	protected void initializeMethod() {
+		// TODO Auto-generated method stub
+		super.initializeMethod();
+		
 		resetTableItems();
 
 		loadNumberOfTableItemsToShow();
 
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
 	/**
@@ -270,14 +266,14 @@ public class Table_9_4_calc extends Basic_Calc {
 		SharedPreferences getPrefs = PreferenceManager
 				.getDefaultSharedPreferences(getContext());
 		String values = getPrefs.getString("table9_4_list", "3");
-		Log.i(LogCat_RegularMessage, "String = " + values);
+		Log.i(LogCat_RegularMessage, "Returned value for amount of tableitems shown = " + values);
 		numberOfTableItemsToShow = Integer.parseInt(values);
 	}
 
 	@Override
 	protected void updateButtonMethod() {
 		// TODO Auto-generated method stub
-		resetTableItems();
+		//resetTableItems();
 		loadNumberOfTableItemsToShow();
 		super.updateButtonMethod();
 

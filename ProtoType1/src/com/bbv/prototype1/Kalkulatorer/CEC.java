@@ -14,7 +14,7 @@ import com.bbv.prototype1.R;
 
 public class CEC extends Basic_Calc {
 
-	final int layout = R.layout.calc_cec;
+	final static int layout = R.layout.calc_cec;
 
 	TextView tvbentPPM;
 	TextView tvbentKG;
@@ -26,28 +26,29 @@ public class CEC extends Basic_Calc {
 	float V_mbl;
 	float V_boreslam = 1;
 
-	final static int[] IDs = { R.id.etCECVmbl, // Textfield of V metylenblått-løsning
+	final static int[] IDs = { R.id.etCECVmbl, // Textfield of V
+												// metylenblått-løsning
 			R.id.etCECCEC, // Textfield of CEC - Will be disabled
 	};
 
 	/**
 	 * Only CEC_INDEX will get calculated
 	 */
-	public final static int V_mbl_INDEX = 0,
-			CEC_INDEX = 1; // Only used for error catching. Only CEC_INDEX
-							// should ever be used
+	public final static int V_mbl_INDEX = 0, CEC_INDEX = 1; // Only used for
+															// error catching.
+															// Only CEC_INDEX
+															// should ever be
+															// used
 
 	public CEC(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
 	}
 
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
 		V_mbl = fieldStatuses[0];
-		
+
 		switch (variableToCalculate) {
 
 		default:
@@ -56,7 +57,8 @@ public class CEC extends Basic_Calc {
 			break;
 		case CEC_INDEX:
 
-			if (checkForNullValues(V_mbl, V_boreslam) == false || checkForNegativeValues(V_mbl) == false)
+			if (checkForNullValues(V_mbl, V_boreslam) == false
+					|| checkForNegativeValues(V_mbl) == false)
 				return "";
 
 			CEC = V_mbl / V_boreslam;
@@ -67,11 +69,13 @@ public class CEC extends Basic_Calc {
 			if (checkForDivisionErrors(testFloats) == false)
 				return "";
 
-			String _BentPPM = String.format(THREE_DECIMALS, BentPPM) + " " + "[ppm]";
+			String _BentPPM = String.format(THREE_DECIMALS, BentPPM) + " "
+					+ "[ppm]";
 			String _BentKG = String.format(THREE_DECIMALS, BentKG);
 
 			tvbentPPM.setText(_BentPPM);
-			tvbentKG.setText(Html.fromHtml(_BentKG + " [kg/m<sup><small>3</small></sup>]"));
+			tvbentKG.setText(Html.fromHtml(_BentKG
+					+ " [kg/m<sup><small>3</small></sup>]"));
 
 			return String.format(THREE_DECIMALS, CEC);
 
@@ -81,25 +85,17 @@ public class CEC extends Basic_Calc {
 
 	}
 
+
 	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
+	protected void initializeMethod() {
+		// TODO Auto-generated method stub
+		super.initializeMethod();
 
 		tvbentKG = (TextView) findViewById(R.id.tvCECbentKG);
 		tvbentPPM = (TextView) findViewById(R.id.tvCECbentPPM);
 
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
 	}
 
-	
 	public float getCEC() {
 		return CEC;
 	}

@@ -14,7 +14,7 @@ import com.bbv.prototype1.R;
 
 public class AlkaPm extends Basic_Calc {
 
-	final int layout = R.layout.calc_alkalitet_pm;
+	final static int layout = R.layout.calc_alkalitet_pm;
 
 	TextView tvCa;
 
@@ -36,9 +36,7 @@ public class AlkaPm extends Basic_Calc {
 	// should ever be used
 
 	public AlkaPm(Context context) {
-		super(context, IDs);
-		CreateListeners();
-		Initialize();
+		super(context, IDs, layout);
 	}
 
 	@Override
@@ -81,23 +79,14 @@ public class AlkaPm extends Basic_Calc {
 		return "";
 
 	}
-
+	
 	@Override
-	protected void Initialize() {
-		_linLay = setAndGetLinearLayout(layout);
-
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
-
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
-
-		textFields[3].setVisibility(GONE);
-
+	protected void initializeMethod() {
+		// TODO Auto-generated method stub
+		super.initializeMethod();
+		
 		tvCa = (TextView) findViewById(R.id.tvAlkaCa);
-
-		_clear = FindAndReturnButton(clearButtonID, cliLis);
-		_update = FindAndReturnButton(updateButtonID, cliLis);
+		
 	}
 
 
