@@ -1,0 +1,5 @@
+tilsynelatende viskositet = µ 
+skjærspenningen = &#964; tau
+skjærhastigheten  = &#947; gamma
+Utslaget = &#952; theta
+grader(liten sirkel) = &#730;
