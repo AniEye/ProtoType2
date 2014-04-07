@@ -16,7 +16,6 @@ public class AlkaPm extends Basic_Calc {
 
 	final static int layout = R.layout.calc_alkalitet_pm;
 
-	TextView tvCa;
 
 	// Variables used for calculation
 	float Ca;
@@ -24,6 +23,8 @@ public class AlkaPm extends Basic_Calc {
 	float Fw;
 	float Pf;
 
+	final static int[] textViewIDs = {R.id.tvAlkaCa};
+	
 	final static int[] IDs = { R.id.etAlkaPm, // Textfield of Pm
 			R.id.etAlkaFw, // Textfield of Fw
 			R.id.etAlkaPf, // Textfield of Pf
@@ -36,7 +37,7 @@ public class AlkaPm extends Basic_Calc {
 	// should ever be used
 
 	public AlkaPm(Context context) {
-		super(context, IDs, layout);
+		super(context, IDs, textViewIDs, layout);
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class AlkaPm extends Basic_Calc {
 
 			String _Ca = String.format(THREE_DECIMALS, Ca);
 
-			tvCa.setText(Html.fromHtml(_Ca + " [kg/m<sup><small>3</small></sup>]"));
+			textviews[0].setText(Html.fromHtml(_Ca + " [kg/m<sup><small>3</small></sup>]"));
 
 			return _Ca;
 
@@ -80,14 +81,7 @@ public class AlkaPm extends Basic_Calc {
 
 	}
 	
-	@Override
-	protected void initializeMethod() {
-		// TODO Auto-generated method stub
-		super.initializeMethod();
-		
-		tvCa = (TextView) findViewById(R.id.tvAlkaCa);
-		
-	}
+
 
 
 	public float getCa() {

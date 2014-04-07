@@ -16,15 +16,14 @@ public class CEC extends Basic_Calc {
 
 	final static int layout = R.layout.calc_cec;
 
-	TextView tvbentPPM;
-	TextView tvbentKG;
-
 	// Variables used for calculation
 	float CEC;
 	float BentPPM;
 	float BentKG;
 	float V_mbl;
 	float V_boreslam = 1;
+
+	final static int[] textviewIDs = { R.id.tvCECbentKG, R.id.tvCECbentPPM };
 
 	final static int[] IDs = { R.id.etCECVmbl, // Textfield of V
 												// metylenblått-løsning
@@ -41,7 +40,7 @@ public class CEC extends Basic_Calc {
 															// used
 
 	public CEC(Context context) {
-		super(context, IDs, layout);
+		super(context, IDs, textviewIDs, layout);
 	}
 
 	@Override
@@ -73,8 +72,12 @@ public class CEC extends Basic_Calc {
 					+ "[ppm]";
 			String _BentKG = String.format(THREE_DECIMALS, BentKG);
 
-			tvbentPPM.setText(_BentPPM);
-			tvbentKG.setText(Html.fromHtml(_BentKG
+
+			TextView tvbentPPM;
+			TextView tvbentKG;
+
+			textviews[0].setText(_BentPPM);
+			textviews[1].setText(Html.fromHtml(_BentKG
 					+ " [kg/m<sup><small>3</small></sup>]"));
 
 			return String.format(THREE_DECIMALS, CEC);
@@ -82,17 +85,6 @@ public class CEC extends Basic_Calc {
 		}
 
 		return "";
-
-	}
-
-
-	@Override
-	protected void initializeMethod() {
-		// TODO Auto-generated method stub
-		super.initializeMethod();
-
-		tvbentKG = (TextView) findViewById(R.id.tvCECbentKG);
-		tvbentPPM = (TextView) findViewById(R.id.tvCECbentPPM);
 
 	}
 

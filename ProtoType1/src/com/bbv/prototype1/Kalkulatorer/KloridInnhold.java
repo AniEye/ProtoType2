@@ -16,10 +16,7 @@ public class KloridInnhold extends Basic_Calc {
 
 	final static int layout = R.layout.calc_klorid_innhold;
 
-	TextView tvKloridML;
-	TextView tvKloridPPM;
-	TextView tvNaClMG;
-	TextView tvNaClPPM;
+
 
 	// Variables used for calculation
 	float V_AgNO3;
@@ -33,6 +30,8 @@ public class KloridInnhold extends Basic_Calc {
 	float NaClMG;
 	float NaClPPM;
 
+	final static int[] textViewIDs = {R.id.tvKIKIMG,R.id.tvKIKIPPM,R.id.tvKINaCLMG,R.id.tvKINaPPM};
+	
 	final static int[] IDs = { R.id.etKIVAgNO3, // Textfield of AgNO3
 			R.id.etKIVF, // Textfield of filtrat
 			R.id.etKICCl // Textfield of CCl - Will be disabled for input
@@ -41,7 +40,7 @@ public class KloridInnhold extends Basic_Calc {
 	public final static int AgNO3_index = 0, VFiltrat_index = 1, CCl_index = 2;
 
 	public KloridInnhold(Context context) {
-		super(context, IDs, layout);
+		super(context, IDs,textViewIDs, layout);
 
 	}
 
@@ -98,28 +97,16 @@ public class KloridInnhold extends Basic_Calc {
 			String _NaClPPM = String.format(NO_DECIMALS, NaClPPM)
 					+ " " + getResources().getString(R.string.NaClppm);
 
-			tvKloridML.setText(_KloridMG);
-			tvKloridPPM.setText(_KloridPPM);
-			tvNaClMG.setText(_NaClMG);
-			tvNaClPPM.setText(_NaClPPM);
+			textviews[0].setText(_KloridMG);
+			textviews[1].setText(_KloridPPM);
+			textviews[2].setText(_NaClMG);
+			textviews[3].setText(_NaClPPM);
 
 			return String.format(NO_DECIMALS, CCl);
 
 		}
 
 		return "";
-
-	}
-
-	
-	@Override
-	protected void initializeMethod() {
-		// TODO Auto-generated method stub
-		super.initializeMethod();
-		tvKloridML = (TextView) findViewById(R.id.tvKIKIMG);
-		tvKloridPPM = (TextView) findViewById(R.id.tvKIKIPPM);
-		tvNaClMG = (TextView) findViewById(R.id.tvKINaCLMG);
-		tvNaClPPM = (TextView) findViewById(R.id.tvKINaPPM);
 
 	}
 

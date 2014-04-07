@@ -112,13 +112,6 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			adapter.add((Spannable) Html.fromHtml(text));
 		}
 
-		try {
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			Log.e("TryCatch", "Failed to cast and change text");
-		}
-
 		adapter.setDropDownViewResource(SpinnerItemLayout);
 
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {

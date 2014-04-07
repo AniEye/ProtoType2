@@ -1,13 +1,10 @@
 package com.bbv.prototype1.Kalkulatorer;
 
 import com.bbv.prototype1.R;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +16,7 @@ public abstract class Basic_Calc extends LinearLayout {
 
 	final int clearButtonID = R.id.bClear;
 	final int updateButtonID = R.id.bUpdate;
-	int[] IDs;
+	int[] editTextIDs;
 	int[] textViewIDs;
 	OnFocusChangeListener focChan;
 	OnClickListener cliLis;
@@ -28,7 +25,6 @@ public abstract class Basic_Calc extends LinearLayout {
 	Button _clear, _update;
 	EditText[] textFields;
 	TextView[] textviews;
-
 	Context cont;
 	LinearLayout _linLay;
 	final String THREE_DECIMALS = "%.3f";
@@ -38,22 +34,45 @@ public abstract class Basic_Calc extends LinearLayout {
 
 	final int WITH_TEXTVIEW_FIELDS = 0, WITHOUT_TEXTVIEW_FIELDS = 1;
 
-	
+	/**
+	 * Use this constructor to set up a new calculator. Pass the context, an
+	 * int-array of the editviews, and the layoutID of the XML-file.
+	 * 
+	 * @param context
+	 *            - The context where the calculator is appearing.
+	 * @param IDs
+	 *            - The IDs for the editviews used by the calculator.
+	 * @param layoutID
+	 *            - The ID for the layout used by the calculator.
+	 */
 	public Basic_Calc(Context context, int[] IDs, int layoutID) {
 		super(context);
 		cont = context;
-		this.IDs = IDs;
+		this.editTextIDs = IDs;
 		CreateListeners();
 		Initialize(layoutID, WITHOUT_TEXTVIEW_FIELDS);
 
-
 	}
 
+	/**
+	 * Use this constructor to set up a new calculator. Pass the context, an
+	 * int-array of the editview IDs, an int-array of the textview IDs, and the
+	 * layoutID of the XML-file.
+	 * 
+	 * @param context
+	 *            - The context where the calculator is appearing.
+	 * @param IDs
+	 *            - The IDs for the editviews used by the calculator.
+	 * @param layoutID
+	 *            - The ID for the layout used by the calculator.
+	 * @param textViewIDs
+	 *            - The IDs for the textviews used by the calculator.
+	 */
 	public Basic_Calc(Context context, int[] editTextIDs, int[] textViewIDs,
 			int layoutID) {
 		super(context);
 		cont = context;
-		this.IDs = editTextIDs;
+		this.editTextIDs = editTextIDs;
 		this.textViewIDs = textViewIDs;
 		CreateListeners();
 		Initialize(layoutID, WITH_TEXTVIEW_FIELDS);
@@ -61,23 +80,29 @@ public abstract class Basic_Calc extends LinearLayout {
 	}
 
 	/**
-	 * This method gets called whenever a calculator is instantiated.
+	 * This method gets called whenever a calculator is instantiated. Finds and
+	 * sets the layout of the calculator, and also sets up listeners for the
+	 * buttons.
+	 * 
+	 * Instantiates editText variables, and textviews if they are used, based on
+	 * passed flag.
 	 * 
 	 * @param layout
+	 *            - The ID of the layout used by the calculator
 	 * @param textFieldFlag
 	 *            - Use WITH_TEXTVIEW_FIELDS or WITHOUT_TEXTVIEW_FIELDS to
 	 *            specify if the calculator has textviews or not that need to be
 	 *            instantiated.
 	 */
 	protected void Initialize(int layout, int textFieldFlag) {
-		
+
 		_linLay = setAndGetLinearLayout(layout);
 
-		textFields = new EditText[IDs.length];
-		_textFieldsStatus = new int[IDs.length];
+		textFields = new EditText[editTextIDs.length];
+		_textFieldsStatus = new int[editTextIDs.length];
 
-		for (int i = 0; i < IDs.length; i++)
-			textFields[i] = FindAndReturnEditText(IDs[i], focChan);
+		for (int i = 0; i < editTextIDs.length; i++)
+			textFields[i] = FindAndReturnEditText(editTextIDs[i], focChan);
 
 		if (textFieldFlag == WITH_TEXTVIEW_FIELDS) {
 			textviews = new TextView[textViewIDs.length];
@@ -87,14 +112,15 @@ public abstract class Basic_Calc extends LinearLayout {
 
 		_clear = FindAndReturnButton(clearButtonID, cliLis);
 		_update = FindAndReturnButton(updateButtonID, cliLis);
-		
+
 		initializeMethod();
 	}
 
 	/**
-	 * This is a method that is used only for the purpose of keeping the
-	 * sub-classes organized. This class should contain all the listeners that
-	 * are used in the sub-classes.
+	 * This method creates the ClickListeners for the buttons, and also the
+	 * OnFocuschangelistener for the edittexts. When the clear button is
+	 * pressed, it calls the clearButtonMethod-method, and the updateButton
+	 * calls the updateButtonMethod-method.
 	 */
 	protected void CreateListeners() {
 
@@ -118,8 +144,8 @@ public abstract class Basic_Calc extends LinearLayout {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 
-				for (int i = 0; i < IDs.length; i++) {
-					if (v.getId() == IDs[i])
+				for (int i = 0; i < editTextIDs.length; i++) {
+					if (v.getId() == editTextIDs[i])
 						FocusChange(i, hasFocus);
 				}
 
@@ -128,7 +154,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	}
 
 	/**
-	 * This method is called whenever the update Button is pressed. 
+	 * This method is called whenever the update Button is pressed.
 	 * 
 	 * Override and pass super() method to add features to the button.
 	 */
@@ -151,15 +177,18 @@ public abstract class Basic_Calc extends LinearLayout {
 		Log.i(LogCat_RegularMessage, "Clear-button pressed in "
 				+ getClass().getSimpleName());
 		ResetFields(textFields);
-		_textFieldsStatus = new int[IDs.length];
+		ResetTextViews();
+		_textFieldsStatus = new int[editTextIDs.length];
 	}
 
 	/**
-	 * Override this method to pass extra features to a calculators initialize method.
+	 * Override this method to pass extra features to a calculators initialize
+	 * method.
 	 */
-	protected void initializeMethod(){
-		
+	protected void initializeMethod() {
+
 	}
+
 	/**
 	 * This method is used to inflate linearlayout that is used. This method
 	 * takes as a parameter the id of the linearlayout that the user want's to
@@ -295,10 +324,17 @@ public abstract class Basic_Calc extends LinearLayout {
 	 * 
 	 * @param textView
 	 *            - TextView array of textviews
+	 * 
+	 *            Method does nothing if textviews-variable is not initialized,
+	 *            as it catches any NullPointerExceptions.
 	 */
 	protected void ResetTextViews() {
-		for (int i = 0; i < textviews.length; i++)
-			textviews[i].setText("");
+		try {
+			for (int i = 0; i < textviews.length; i++)
+				textviews[i].setText("");
+		} catch (NullPointerException e) {
+			Log.i(LogCat_TryCatch, "No textviews to be reset");
+		}
 	}
 
 	/**

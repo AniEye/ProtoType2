@@ -17,7 +17,7 @@ public class KonverterM3 extends Basic_Calc {
 
 	final static int layout = R.layout.calc_kvadratmeter;
 
-	TextView tvKonvertert;
+	final static int[] textviewIDs = { R.id.tvKMsvar };
 
 	final static int[] IDs = { R.id.etKMgram, R.id.etKMml, R.id.etKMslamvolum };
 
@@ -31,58 +31,58 @@ public class KonverterM3 extends Basic_Calc {
 	public final static int GRAM_INDEX = 0, ML_INDEX = 1, SLAMVOLUM_INDEX = 2;
 
 	public KonverterM3(Context context) {
-		super(context, IDs, layout);
+		super(context, IDs, textviewIDs, layout);
 
 	}
 
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
-		
+
 		float gram = fieldStatuses[0];
 		float ml = fieldStatuses[1];
 		float slamvolum = fieldStatuses[2];
 
 		Spannable theAnswer = null;
 		String calcAnswer;
-		
+
 		switch (variableToCalculate) {
 		case GRAM_INDEX:
-			
-			if(checkForNegativeValues(ml, slamvolum) == false || checkForNullValues(ml, slamvolum) == false)
+
+			if (checkForNegativeValues(ml, slamvolum) == false
+					|| checkForNullValues(ml, slamvolum) == false)
 				return "";
-			
-			calcAnswer = String.format(NO_DECIMALS, (ml/slamvolum)*30*Math.pow(10, 3));
-			theAnswer = (Spannable) Html.fromHtml(calcAnswer + " L per 30 m<sup><small>3</small></sup>");
+
+			calcAnswer = String.format(NO_DECIMALS, (ml / slamvolum) * 30
+					* Math.pow(10, 3));
+			theAnswer = (Spannable) Html.fromHtml(calcAnswer
+					+ " L per 30 m<sup><small>3</small></sup>");
 			break;
 		case ML_INDEX:
-			
-			if(checkForNegativeValues(gram, slamvolum) == false || checkForNullValues(gram, slamvolum) == false)
+
+			if (checkForNegativeValues(gram, slamvolum) == false
+					|| checkForNullValues(gram, slamvolum) == false)
 				return "";
-			
-			calcAnswer = String.format(NO_DECIMALS, (gram/slamvolum)*30*Math.pow(10, 3));
-			theAnswer = (Spannable) Html.fromHtml(calcAnswer + " kg per 30 m<sup><small>3</small></sup>");
+
+			calcAnswer = String.format(NO_DECIMALS, (gram / slamvolum) * 30
+					* Math.pow(10, 3));
+			theAnswer = (Spannable) Html.fromHtml(calcAnswer
+					+ " kg per 30 m<sup><small>3</small></sup>");
 			break;
 		case SLAMVOLUM_INDEX:
-			showToast("Du kan bare legge inn enten gram eller ml, ikke begge!", Toast.LENGTH_LONG);
+			showToast("Du kan bare legge inn enten gram eller ml, ikke begge!",
+					Toast.LENGTH_LONG);
 			break;
-			
+
 		default:
-			Log.e("calc", "A wrong calculation index was used in " + getClass().getName());
+			Log.e("calc", "A wrong calculation index was used in "
+					+ getClass().getName());
 			theAnswer = (Spannable) Html.fromHtml("");
 			break;
 		}
-		
-		tvKonvertert.setText(theAnswer);
+
+		textviews[0].setText(theAnswer);
 		return "X";
 
-	}
-
-	@Override
-	protected void initializeMethod() {
-		// TODO Auto-generated method stub
-		super.initializeMethod();
-		
-		tvKonvertert = (TextView) findViewById(R.id.tvKMsvar);
 	}
 
 }

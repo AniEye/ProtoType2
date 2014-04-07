@@ -15,26 +15,26 @@ public class OljeVann extends Basic_Calc {
 
 	final static int layout = R.layout.calc_olje_vann;
 
-	TextView tvO;
-	TextView tvW;
-	TextView tvOW;
-
 	// Variables used for calculation
 	float Rolje;
 	float Rvann;
 	float O;
 	float W;
-	
+
+	final static int[] textviewIDs = { R.id.tvOVO, R.id.tvOVW, R.id.tvOVOW };
+
 	final static int[] IDs = { R.id.etOVRO, // Textfield of R olje
 			R.id.etOVRV, // Textfield of R vann
 			R.id.etOVHideThis, // Textfield - Will be disabled
 	};
 
-	public final static int KEY_INDEX = 2; // Only used for error catching. Only KEY_INDEX
-							// should ever be used
+	public final static int KEY_INDEX = 2; // Only used for error catching. Only
+											// KEY_INDEX
+
+	// should ever be used
 
 	public OljeVann(Context context) {
-		super(context,IDs, layout);
+		super(context, IDs,textviewIDs, layout);
 
 	}
 
@@ -52,24 +52,24 @@ public class OljeVann extends Basic_Calc {
 			break;
 		case KEY_INDEX:
 
-			if(checkForNegativeValues(fieldStatuses) == false)
+			if (checkForNegativeValues(fieldStatuses) == false)
 				return "";
-			
-			O = (Rolje / (Rolje+Rvann))*100;
-			W = (Rvann / (Rolje+Rvann))*100;
+
+			O = (Rolje / (Rolje + Rvann)) * 100;
+			W = (Rvann / (Rolje + Rvann)) * 100;
 
 			float[] testFloats = { O, W };
 			if (checkForDivisionErrors(testFloats) == false)
 				return "";
-			
+
 			String _O = String.format("%.0f", O);
 			String _W = String.format("%.0f", W);
 
-			String _OW = _O+"/"+_W;
+			String _OW = _O + "/" + _W;
 
-			tvO.setText(_O + "%");
-			tvW.setText(_W + "%");
-			tvOW.setText(_OW);
+			textviews[0].setText(_O + "%");
+			textviews[1].setText(_W + "%");
+			textviews[2].setText(_OW);
 
 			return _OW;
 
@@ -79,15 +79,6 @@ public class OljeVann extends Basic_Calc {
 
 	}
 
-	@Override
-	protected void initializeMethod() {
-		// TODO Auto-generated method stub
-		super.initializeMethod();
-		tvO = (TextView) findViewById(R.id.tvOVO);
-		tvW = (TextView) findViewById(R.id.tvOVW);
-		tvOW = (TextView) findViewById(R.id.tvOVOW);
-	}
-
 	public float getO() {
 		return O;
 	}
@@ -95,6 +86,5 @@ public class OljeVann extends Basic_Calc {
 	public float getW() {
 		return W;
 	}
-	
 
 }

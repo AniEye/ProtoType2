@@ -16,10 +16,8 @@ public class Spess_tetthet extends Basic_Calc {
 
 	final static int layout = R.layout.calc_spesifikktetthet;
 
-	TextView tvPp;
-	TextView tvPf;
-	TextView tvVs;
-	TextView tvVsf;
+	static int[] textViewIDs = { R.id.tvSpessTettPp, R.id.tvSpessTettPf,
+			R.id.tvSpessTettVs, R.id.tvSpessTettVsf };
 
 	final static int[] IDs = { R.id.etSpessTettPp, R.id.etSpessTettCL,
 			R.id.etSpessTettPm, R.id.etSpessTettPo, R.id.etSpessTettVv,
@@ -31,7 +29,7 @@ public class Spess_tetthet extends Basic_Calc {
 	public final static int Pp_INDEX = 0;
 
 	public Spess_tetthet(Context context) {
-		super(context, IDs, layout);
+		super(context, IDs, textViewIDs, layout);
 
 	}
 
@@ -66,9 +64,9 @@ public class Spess_tetthet extends Basic_Calc {
 			Log.println(Log.DEBUG, "calc", "Spesstetthet calculated Vs to be "
 					+ Vs);
 
-			tvPf.setText(String.format(THREE_DECIMALS, Pf));
-			tvVsf.setText(String.format(THREE_DECIMALS, Vsf) + " [volum%]");
-			tvVs.setText(String.format(THREE_DECIMALS, Vs) + " [volum%]");
+			textviews[1].setText(String.format(THREE_DECIMALS, Pf));
+			textviews[3].setText(String.format(THREE_DECIMALS, Vsf) + " [volum%]");
+			textviews[2].setText(String.format(THREE_DECIMALS, Vs) + " [volum%]");
 
 			theAnswer = ((100f * Pm) - (Pf * (Vv + Vsf) + Po * Vo))
 					/ (Vfs - Vs);
@@ -88,7 +86,7 @@ public class Spess_tetthet extends Basic_Calc {
 		}
 
 		if (theAnswer != 0) {
-			tvPp.setText(String.format(THREE_DECIMALS, theAnswer));
+			textviews[0].setText(String.format(THREE_DECIMALS, theAnswer));
 			return String.format(THREE_DECIMALS, theAnswer);
 		}
 
@@ -126,17 +124,6 @@ public class Spess_tetthet extends Basic_Calc {
 
 	public float calcVs(float vsf, float fw) {
 		return vsf * fw;
-	}
-
-	@Override
-	protected void initializeMethod() {
-		// TODO Auto-generated method stub
-		super.initializeMethod();
-		tvPp = (TextView) findViewById(R.id.tvSpessTettPp);
-		tvPf = (TextView) findViewById(R.id.tvSpessTettPf);
-		tvVs = (TextView) findViewById(R.id.tvSpessTettVs);
-		tvVsf = (TextView) findViewById(R.id.tvSpessTettVsf);
-
 	}
 
 }
