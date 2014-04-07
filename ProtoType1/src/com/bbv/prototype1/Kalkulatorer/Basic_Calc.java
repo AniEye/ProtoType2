@@ -466,13 +466,13 @@ public abstract class Basic_Calc extends LinearLayout {
 		for (int i = 0; i < x.length; i++) {
 
 			if (x[i] == 0.0f) {
-				Log.println(Log.ERROR, "calc", "Division with 0 error! Var.: "
-						+ i + getClass().getSimpleName());
+				Log.println(Log.ERROR, "calc", "There was a 0-value! Var.: "
+						+ i + "in class " + getClass().getSimpleName());
 				showToast("Du kan ikke bruke 0 verdier!");
 				return false;
 			}
 		}
-		Log.println(Log.DEBUG, "calc", "Found no null values in "
+		Log.println(Log.DEBUG, "calc", "Found no 0 values in "
 				+ getClass().getName());
 		return true;
 	}

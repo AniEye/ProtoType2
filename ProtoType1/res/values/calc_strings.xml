@@ -5,9 +5,9 @@
     <string name="OutOfBounds">Ute av rekkevidde for tabellen!</string>
     <string name="CalcButtonUpdate">Regn ut</string>
     <string name="CalcButtonClear">Tøm felt</string>
-    <string name="OH">OH<sup>-</sup>, [mg/l]</string>
-    <string name="CO23">CO<sup>2-<sub>3</sub></sup>, [mg/l]</string>
-    <string name="HCO3">HCO<sup>-<sub>3</sub></sup>, [mg/l]</string>
+    <string name="OH">OH<sup>-</sup>, \n[mg/l]</string>
+    <string name="CO23">CO<sup><small>2-</small><sub><sub><small>3</small></sub></sub></sup>, \n [mg/l]</string>
+    <string name="HCO3">HCO<sup><small>-</small><sub><sub><small>3</small></sub></sub></sup>,\n [mg/l]</string>
     <string name="Vv">V<sub><small>v</small></sub> = volum av tilsatt vektmateriale</string>
     <string name="V1">V<sub><small>1</small></sub> = volum av slam før tilsetting</string>
     <string name="P2">\u03C1<sub><small>2</small></sub> = Tetthet til slammet V<sub><small>2</small></sub></string>

@@ -42,6 +42,8 @@ import com.bbv.prototype1.Kalkulatorer.Table_3_1_calc;
 import com.bbv.prototype1.Kalkulatorer.Table_9_4_calc;
 import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
 import com.bbv.prototype1.Kalkulatorer.TotalHardhet;
+import com.bbv.prototype1.Tables.Table_3_1;
+import com.bbv.prototype1.Tables.Table_3_3;
 
 public class Kalkulator extends Activity implements OnItemSelectedListener,
 		OnItemClickListener {
