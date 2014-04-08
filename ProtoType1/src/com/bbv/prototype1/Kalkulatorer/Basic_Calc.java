@@ -454,8 +454,7 @@ public abstract class Basic_Calc extends LinearLayout {
 
 	/**
 	 * Use this method to check for values of 0 if the calculation does not
-	 * support it. Only one variable should be 0, and that is the variable that
-	 * is being calculated. Will display a toast and logcat message.
+	 * support it. Will display a toast and logcat message.
 	 * 
 	 * @param x
 	 *            - Values to check for 0 values

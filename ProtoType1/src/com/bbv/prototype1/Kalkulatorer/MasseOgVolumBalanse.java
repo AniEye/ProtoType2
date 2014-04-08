@@ -13,12 +13,12 @@ import android.widget.Toast;
 
 public class MasseOgVolumBalanse extends Basic_Calc {
 
-	 static int layout = R.layout.calc_masseogvolumbalanse;
+	static int layout = R.layout.calc_masseogvolumbalanse;
 
-	public final static int Vv_INDEX = 0, V1_INDEX = 1, p2_INDEX = 2,
+	final int Vv_INDEX = 0, V1_INDEX = 1, p2_INDEX = 2,
 			Pv_INDEX = 3, p1_INDEX = 4;
 
-	final static int[] IDs = { R.id.etMOVBVv, R.id.etMOVBV1, R.id.etMOVBP2,
+	static int[] IDs = { R.id.etMOVBVv, R.id.etMOVBV1, R.id.etMOVBP2,
 			R.id.etMOVBPV, R.id.etMOVBP1 };
 
 	public MasseOgVolumBalanse(Context context) {
@@ -28,20 +28,24 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		float vv = fieldStatuses[0], v1 = fieldStatuses[1], p2 = fieldStatuses[2], pv = fieldStatuses[3], p1 = fieldStatuses[4];
+		float vv = fieldStatuses[Vv_INDEX], 
+				v1 = fieldStatuses[V1_INDEX], 
+				p2 = fieldStatuses[p2_INDEX], 
+				pv = fieldStatuses[Pv_INDEX], 
+				p1 = fieldStatuses[p1_INDEX];
 
 		float theAnswer = 0;
 
 		switch (variableToCalculate) {
-
+ 
 		case Vv_INDEX:
 
 			if (checkForNullValues(v1, p2, pv, p1) == false)
 				return "";
 
-			Log.println(Log.DEBUG, "calc", "P1 = " + p1 + "\nP2 = " + p2);
+			Log.i("calc", "P1 = " + p1 + "\nP2 = " + p2);
 			theAnswer = v1 * ((p2 - p1) / (pv - p2));
-			Log.println(Log.DEBUG, "calc", "The answer = " + theAnswer);
+			Log.i("calc", "The answer = " + theAnswer);
 			break;
 		case V1_INDEX:
 

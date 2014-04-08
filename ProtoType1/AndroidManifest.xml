@@ -87,15 +87,7 @@
             android:name="com.bbv.prototype1.Kalkulator"
             android:label="Kalkulator" >
         </activity>
-        <activity
-            android:name="com.bbv.prototype1.Vis_Teori"
-            android:label="Teori" >
-            <intent-filter>
-                <action android:name="com.bbv.prototype1.VIS_TEORI" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".MainMenu"
             android:label="The Main Menu" >
