@@ -1,13 +1,301 @@
 <html>
 	<head>
 		<link href='../../../css.css' rel='stylesheet' type='text/css'>
+		<script type='text/javascript' src='../../../javascript.js'></script>
 	</head>
 	
 	<body>
 		<h1>2.2 Kontroll av filtertap og vannbaserte boreslam</h1>
 		
 		<p>
-			fyllt ut senere
+			For å kunne kontrollere formasjonstrykket har vi nesten alltid overtrykk i brønnen.
+			Trykket i brønnen (P<sub>brønn</sub>) må være større enn formasjonstrykket (P<sub>formasjon</sub>).
+			På grunn av dette overtrykket vil borevæsken bli presset mot formasjonen. Når
+			formasjonen er permeabel vil vi tape væske til formasjonen. Samtidig vil faststo
+			nnholdet i slammet legge seg igjen på hullveggen og danne en lterkake.
+			Filtertapet forårsaker derfor to adskilte typer problem:
 		</p>
+		
+		<ul>
+			<li>invasjon av filtrat i formasjonen</li>
+			<li>filterkake på hullveggen</li>
+		</ul>
+		
+		<p>
+			Filtratinvasjonen kan forårsake hullproblemer i skifer- og leir-formasjoner med
+			utrasning og svelling av hullveggen. En stor invasjon av ltrat kan også påvirke
+			resultatene ved logge- og formasjons-evaluering. Visse typer ltrat kan også
+			ødelegge produksjonssoner. Tap av væske til formasjonen vil være avhengig av:
+		</p>
+		
+		<ul>
+			<li>trykkforskjellen mellom brønn og formasjon.</li>
+			<li>formasjonens porøsitet og permeabilitet.</li>
+			<li>slammets evne til å danne en tett lterkake.</li>
+		</ul>
+		
+		<p>
+			Oppbygging av lterkake på hullveggen vil skje der hvor vi har tap av væske til
+			formasjonen. Tykkelsen på lterkaken vil avhenge av blant annet:
+		</p>
+		
+		<ul>
+			<li>mengde væske som forsvinner inn i formasjonen</li>
+			<li>mengde partikler i slammet</li>
+		</ul>
+		
+		<p>
+			Filterkakeproblemer kan under boreoperasjonen gi differensiell fastkjøring, høyt
+			dreiemoment, motstand ("drag"), og også forårsake tapt sirkulasjon og dårlig
+			sementjobb.
+		</p>
+		
+		<p>
+			Det primære mål ved filtertapskontroll vil være å minimalisere tykkelse og permeabilitet
+			på filterkaken, noe som igjen kontrollerer ltertapet.
+		</p>
+		
+		<h2 onclick="show('2.2.1')">2.2.1 Filtreringsmekanismer</h2>
+		
+		<div id='2.2.1'>
+			<p>
+				Under en boreoperasjon vil vi ha forskjellige filtreringsmekanismer alt etter om
+				vi sirkulerer boreslam eller ikke. Når boreslammet står i ro har vi statiske betingelser,
+				mens det er dynamiske forhold når boreslammet sirkulerer.
+			</p>
+			
+			<h3>Darcy's lov for filtertap</h3>
+			
+			<p>
+				Har vi en suspensjon slik som et boreslam og filtrerer det gjennom et porøst
+				medium kan vi fra Darcy's formel utlede et uttrykk for filtratvolumet som funksjon
+				av tiden:
+			</p>
+			
+			<h2>brok her(2.23)</h2>
+			
+			<ul id='noStyle'>
+				<li>V<sub>f</sub> = filtratvolum</li>
+				<li>t = tiden</li>
+				<li>k = mediets permeabilitet</li>
+				<li>A = filtreringsareal</li>
+				<li>P = differensialtrykk</li>
+				<li>h = filterkaketykkelsen</li>
+				<li>µ = filtratets viskositet</li>
+			</ul>
+			
+			<p>Når vi antar at:</p>
+			
+			<h2>brok her(2.24)</h2>
+			
+			<ul id='noStyle'>
+				<li>V<sub>k</sub> = filterkakevolum</li>
+				<li>x = fraksjon filtrat i slammet</li>
+			</ul>
+			
+			<p>
+				kan filterkaketykkelsen som også er en funksjon av tiden uttrykkes som volum
+				dividert på areal:
+			</p>
+			
+			<h2>brok her(2.25)</h2>
+			
+			<p>Settes likning 2.25 inn i Darcy's likning 2.23 får vi</p>
+			
+			<h2>brok her(2.26)</h2>
+			
+			<p>eller:</p>
+			
+			<h2>brok her(2.27)</h2>
+			
+			<p>Når x oppfattes som en konstant får vi ved integrasjon over tiden fra 0 til t:</p>
+			
+			<h2>brok her(2.28)</h2>
+			
+			<p>eller:</p>
+			
+			<h2>brok her(2.29)</h2>
+			
+			<p>Dette uttrykker mengden filtrat V<sup>f</sup> ved statiske betingelser over en viss tid t.</p>			
+		</div>
+		
+		<h2 onclick="show('2.2.2')">2.2.2 Statisk filtrering</h2>
+		
+		<div id='2.2.2'>
+			<p>
+				Denne tilstanden har vi når boreslammet er i ro. Filterkaken vil vokse over tid.
+				Kontroll av statisk filtrering er nødvendig for å kontrollere filterkaken som avsettes
+				på hullveggen. Vi er interessert i tykkelse, permeabilitet og fasthet/glatthet
+				til filterkaken. Filtratvolumet er kun en av indikatorene som kan brukes når
+				filteregenskapene til slammet skal vurderes. Permeabiliteten til filterkaken kan
+				uttrykkes ved følgende likning:
+			</p>
+			
+			<h2>brok her(2.30)</h2>
+			
+			<p>
+				Det primære kravet til ltertapskontroll er at slammet gir en tynn lterkake.
+				Når ltratvolumet også er lavt ser vi at kravet om lav permeabilitet er oppfylt.
+			</p>
+			
+			<p>
+				Filterkakens tykkelse øker med økende filtertap. Derfor kan filtertapsvolumet
+				være et mål på kaketykkelsen under statiske betingelser, men kaketykkelsen er
+				også proporsjonal med faststonnholdet i slammet. Går vi tilbake til utledningen
+				av Darcy's formel kan vi se hva som skjer med filtertapet ved forskjellige
+				betingelser.
+			</p>
+			
+			<h3>Filtertapets variasjon med tiden</h3>
+			
+			<p>Direkte fra utledningen ser vi at:</p>
+			
+			
+			
+			<ul>V<sub>f</sub> = c<span style='font-size:21;'>&radic;</span><span style="text-decoration:overline;">t</span> (2.31)</ul>
+			
+			<p>c = konstant</p>
+			
+			<p>Ved to forskjellige tider (andre parametre konstant) får vi følgende relasjon:</p>
+			
+			<h2>brok her(2.32)</h2>
+			
+			<ul id='noStyle'>
+				<li>V<sub>f1</sub> = filtertap etter tid t<sub>1</sub></li>
+				<li>V<sub>f2</sub> = filtertap etter tid t<sub>2</sub></li>
+			</ul>
+			
+			<h3>Filtertapets variasjon med trykket</h3>
+			
+			<p>Er ikke filterkaken sammentrykkbar vil filtertapet målt ved en gitt tid være:</p>
+			
+			<ul>V<sub>f</sub> = C &#183;<span style='font-size:21;'>&radic;</span><span style="text-decoration:overline;">P</span> (2.33) </ul>
+			
+			<p>
+				For de fleste slamtyper vil filterkaken være noe sammentrykkbar, dvs. at permeabiliteten
+				avtar med økende trykk. Dermed vil ikke filtertapet øke like fort
+				som likningen tilsier.
+			</p>
+			
+			<p>
+				For enkelte slam vil filtratets viskositet øke med økende trykk. Dette vil føre til
+				et redusert filtertap etter følgende likning:
+			</p>
+			
+			<h2>brok her(2.34)</h2>
+			
+			<ul id='noStyle'>
+				<li>µ<sub>1</sub> = viskositet ved P<sub>1</sub></li>
+				<li>µ<sub>2</sub> = viskositet ved P<sub>2</sub></li>
+			</ul>
+			
+			<p>Denne effekten er spesielt gjeldende for oljebasert slam.</p>
+			
+			<h3>Filtertapets variasjon med temperaturen</h3>
+			
+			<p>
+				En økning i temperatur kan gi økning i filtertap på grunn av at viskositeten på
+				filtratet avtar.
+			</p>
+			
+			<h2>brok her(2.35)</h2>
+			
+			<p>
+				Vannets viskositet er 1,0 cP ved 20 &#730;C mens den har falt til 0,4 cP ved 70 &#730;C.
+				Dette fører til at filtertapet vil øke med 58 % når temperaturen stiger fra 20 &#730;C
+				til 70 &#730;C.
+			</p>
+			
+			<p>
+				Elektrisk-kjemiske likevektstilstander forandrer seg med temperaturen. Leirpartiklenes
+				innordning (flokkulering, aggregering) i et slammet vil dermed påvirkes.
+				Slike effekter gir normalt en økning i filtertap med økende temperatur.
+			</p>
+			
+			<p>
+				Flere av tilsetningsstoffene i et slam vil brytes ned ved høye temperaturer og
+				dette vil også bidra til et økende filtertap.
+			</p>			
+		</div>
+		
+		<h2 onclick="show('2.2.3')">2.2.3 Dynamisk ltrering</h2>
+		
+		<div id='2.2.3'>
+			<p>
+				Under en boreoperasjon når slammet sirkuleres har vi med dynamisk filtrering
+				å gjøre. Filtertapet under dynamiske forhold er mye høyere enn under statiske
+				forhold. Det meste av filtratinvasjonen i en formasjon skjer under dynamiske
+				forhold.
+			</p>
+			
+			<p>
+				I en nylig avdekket formasjon vil filtertapet til formasjonen være stort. Partiklene
+				i slammet legger seg igjen på hullveggen og danner en filterkake. Filtertapet
+				avtar etter hvert som filterkakens tykkelse øker. Om boreslammet sirkuleres med
+				konstant hastighet vil det etter hvert oppstå en likevektstilstand hvor slammet
+				eroderer bort like mange partikler som det som avsettes når filtratet strømmer
+				gjennom kaken. Filtertapet til formasjonen vil da være konstant. Erosjonshastigheten
+				er avhengig av slammets:
+			</p>
+			
+			<ul>
+				<li>strømningshastighet</li>
+				<li>strømningsprol (laminær/turbulent)</li>
+				<li>viskositet</li>
+			</ul>
+			
+			<p>
+				En økning i slamhastighet vil gi økt erosjon. Dette gir en tynnere filterkake, og
+				dermed større filtertap. Ved laminær strømning vil en dobling av strømningshastigheten
+				gi en dobling av filtertapet. Ved turbulent strømning vil en dobling
+				av strømningshastigheten gi en redobling av filtertapet. Økning i viskositeten
+				vil også gi en økt erosjon av filterkaken. Tilsetting av kjemikalier for filtertapskontroll
+				som også gir en økning i slamviskositeten kan virke mot sin hensikt og
+				føre til at det dynamiske filtertapet øker.
+			</p>
+			
+			<p>
+				Generelt sett er det liten sammenheng mellom reduksjon av det statiske og det
+				dynamiske filtertapet. Det statiske filtertapet reduseres kontinuerlig med økende
+				tilsetning av filtertapsreduserende middel. For det dynamiske filtertapet virker
+				det som det er et optimumspunkt m.h.p. filtertapsreduksjon. Stoffer som CMC,
+				Lignitt, stivelse og olje vil redusere permeabiliteten i filterkaken, og dermed gi
+				en tynnere filterkake ved likevektstilstanden mellom erosjon og avsetning. Det
+				vil nødvendigvis ikke gi et lavere filtertap.
+			</p>
+		</div>
+		
+		<h2 onclick="show('2.2.4')">2.2.4 Måling av filtertap/filterkake</h2>
+		
+		<div id='2.2.4'>
+			<p>
+				Det benyttes to målemetoder i dag, begge opererer under statiske betingelser.
+				Disse målingene kan gi oss svar på filterkakens tykkelse, permeabilitet, fasthet
+				og glatthet. I tillegg får vi også et mål på filtertap. Disse parametrene er så
+				grunnlaget for å optimalisere slammets filteregenskaper.
+			</p>
+			
+			<h3>API-filterpresse:</h3>
+			
+			<p>
+				Med dette instrumentet måles filtertapet i løpet av 30 minutter. Det dobbelte av
+				filtratvolumet etter 7,5 minutter (2&#183;V<sub>7,5min</sub>) vil ofte være tilnærmet det samme
+				som filtratvolumet etter 30 minutter. Temperaturen er lik overatetemperaturen
+				(romtemperatur) og instrumentet har et operasjonstrykk på 100 psi. Diameteren
+				på filterpapiret er 7,62 cm. Filtertapet etter 30 minutter rapporteres som API
+				filtertap i ml.
+			</p>
+			
+			<h3>HT-HP filterpresse:</h3>
+			
+			<p>
+				Dette er en filterpresse som opererer ved både høyt trykk og høy temperatur.
+				Temperaturen reguleres til ønsket temperatur, for eksempel 300 &#730;F. Trykket under
+				målingen er 600 psi over og 100 psi under filterpapiret som har en diameter
+				på 5,4 cm. Vi måler også her filtertapet over et tidsrom på 30 minutter. Filtertapet
+				rapporteres som to ganger målt volum etter 30 minutter på grunn av at
+				filteret har halve arealet i forhold til API-filterpresse. P og T er variabler.
+			</p>		
+		</div>
 	</body>
 </html>

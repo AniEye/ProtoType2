@@ -1,13 +1,199 @@
 <html>
 	<head>
 		<link href='../../../css.css' rel='stylesheet' type='text/css'>
+		<script type='text/javascript' src='../../../javascript.js'></script>
 	</head>
 	
 	<body>
 		<h1>3.1 Fysiske tester</h1>
 		
 		<p>
-			fyllt ut senere
+			Til de viktigste fysiske testene hører tetthetsmålinger, viskositet og gelestyrke,
+			filtertap, sandinnhold, væske og partikkelinnhold.
 		</p>
+		
+		<h2 onclick="show('3.1.1')">3.1.1 Tetthet</h2>
+		
+		<div id='3.1.1'>
+			<p>
+				Testen utføres ved å bruke slamvekt. En bruker enten vanlig slamvekt (se figur
+				3.1(a)) eller Halliburtons slamvekt hvor vesken settes under trykk, for dermed
+				å unngå feilmålinger på grunn av luftbobler og eventuell gass i slammet.
+			</p>
+			
+			<p>
+				Vektene plasseres på et plant underlag under målingene, og vekta gjøres skikkelig
+				ren før og etter slammet tømmes i prøvebeholderen.
+			</p>
+			
+			<p>
+				Slamvektene bør kalibreres med jevne mellomrom. Både Halliburtons og vanlige
+				slamvekter har skalaer som ikke viser rett verdi over hele måleskalaen og bør
+				derfor kalibreres i det vektområdet som er aktuelt å bruke.
+			</p>
+			
+			<img src="Figur 3.1.PNG" >
+		
+		</div>
+		
+		<h2 onclick="show('3.1.2')">3.1.2 Viskositet og gelestyrke</h2>
+		
+		<div id='3.1.2'>
+			<p>
+				Til viskositetsmålinger benyttes enten et traktviskosimeter ("Marsh funnel") eller
+				et Fann viskosimeter. Viskositet og gelestyrke er temperaturavhengig, derfor er
+				det viktig at temperaturen på slammet måles og/eller at målingene utføres etter
+				angitt temperatur. Viskositet er nærmere forklart i kapittel 2.
+			</p>
+			
+			<h3>Marsh funnel</h3>
+			
+			<p>
+				Dette er et enkelt instrument som brukes til å utføre rutinemålinger av slammets
+				viskositet på rigg (se figur 3.1(b)).
+			</p>
+			
+			<p>
+				Resultatet er basert på en enkelt måling og gir kun indikasjon på om viskositeten
+				holder seg konstant eller forandres. En kan ikke ut i fra disse målingene si noe
+				om årsaken til eventuelle forandringer.
+			</p>
+			
+			<h3>Prosedyre:</h3>
+			
+			<p>
+				Dekk dysen på trakten med en finger, hell boreslammet gjennom sikten på
+				trakten og fyll helt opp til underkanten av sikten. Fjern fingeren fort og mål
+				tiden det tar for boreslammet å fylle målekoppen til 1 quart (946 ml) merket.
+			</p>
+			
+			<p>
+				Rapporter resultatet til nærmeste sekund som traktviskositeten. Boreslammets
+				temperatur må også rapporteres.
+			</p>
+			
+			<p>
+				Instrumentet kalibreres med vann ved ca. 20 &#730;C og skal da gi en traktviskositet
+				på 26 sek/quart.
+			</p>
+			
+			<h3>Fann viskosimeter (Fann VG 35)</h3>
+			
+			<p>
+				Instrumentet gir skjærspenningen ved ulike skjærhastigheter (se figur 2.1(b)).
+				Det er kalibrert slik at når Bingham-modellen legges til grunn kan tilsynelatende
+				viskositet, plastisk viskositet og flytegrense bli beregnet ut ifra målinger ved 600
+				og 300 rpm.
+			</p>
+			
+			<h3>Tilsynelatende viskositet (TV):</h3>
+			
+			<p>
+				Forholdet mellom skjærspenning og skjærhastighet er tilsynelatende viskositet.
+				Tilsynelatende viskositet forteller oss noe om slammets totale viskositet.
+			</p>
+			
+			<h2>brok her(3.1)</h2>
+			
+			<ul>TV = tilsynelatende viskositet [cP]</ul>
+			
+			<p>
+				Vanligvis beregnes tilsynelatende viskositet ut i fra målinger foretatt ved 600
+				rpm. Da blir
+			</p>
+			
+			<h2>brok her(3.2)</h2>
+			
+			<h3>Plastisk viskositet (PV):</h3>
+			
+			<p>Den delen av ytemotstanden som er forårsaket av mekanisk friksjon</p>
+			
+			<ul>
+				<li>mellom partiklene i slammet</li>
+				<li>mellom partiklene og væskefasen</li>
+				<li>mellom væskeelementene innbyrdes.</li>
+			</ul>
+			
+			<p>
+				Plastisk viskositet avhenger av konsentrasjon, størrelse og partiklenes kongurasjon
+				i slammet.
+			</p>
+			
+			<ul>PV = &#952;<sub>600</sub> - &#952;<sub>300</sub>, [cP] (3.3)</ul>
+			
+			<h3>Flytegrense (FG):</h3>
+			
+			<p>
+				Den delen av flytemotstanden som oppstår på grunn av tiltrekningskrefter mellom
+				partikler som følge av elektriske ladninger (elektrostatiske krefter).
+			</p>
+			
+			<ul>FG = &#952;<sub>300</sub> - PV = 2 &#183; &#952;<sub>300</sub> - &#952;<sub>600</sub>, [lbs/100 ft<sup>2</sup>] (3.4)</ul>
+			
+			<h3>Gelestyrke:</h3>
+			
+			<p>
+				Uttrykker slammets evne til å stivne ved henstand. Gelestyrke henger sammen
+				med tiltrekningskrefter mellom partiklene i slammet når slammet er i ro.
+			</p>
+			
+			<p>
+				Gelestyrken måles ved å la viskosimeteret gå på høy hastighet (600 rpm) i 10
+				sekunder. La slammet stå i 10 sekunder. Mål maksimalt utslag ved 3 rpm.
+			</p>
+			
+			<p>
+				Rør slammet igjen i 10 sekunder ved 600 rpm. La det stå i ro i 10 minutter. Mål
+				maksimalt utslag ved 3 rpm.	
+			</p>
+			
+			<p>
+				Gelestyrken rapporteres som maksimalt utslag etter 10 sekunder stillstand /
+				maksimalt utslag etter 10 minutter. Enheten er lbs/100ft<sup>2</sup>.
+			</p>		
+		</div>
+		
+		<h2 onclick="show('3.1.3')">3.1.3 Filtertap</h2>
+		
+		<div id='3.1.3'>
+			<p>
+				En slik måling kan gi oss et mål for filtertap og filterkakens beskaffenhet. Gode
+				statiske filtreringsegenskaper vil normalt også gi gode dynamiske filtreringsegenskaper.
+				Kontroll av filtertap er nærmere beskrevet i avsnitt 2.2.
+			</p>
+			
+			<h3>API filterpresse:</h3>
+			
+			<p>
+				Dette instrumentet måler API-filtertapet til slammet ved romtemperatur. Monter
+				instrumentet slik som Figur 3.2 viser og fyll beholderen ca. 3/4 full. Sett
+				en målesylinder under filtratutløpet. Sett på et trykk lik 100 psi og slammet
+				filtreres gjennom et sirkulært filterpapir med en diameter på 7,62 cm. Mengden
+				filtrat som kommer ut i løpet av 30 minutt (2&#183; V<sub>7,5min</sub>) er API-filtertapet. Tykkelse
+				og konsistens på filterkaken vurderes etter at alt løst slam på filterpapiret
+				er fjernet under rennende vann.
+			</p>
+		
+			<img src="Figur 3.2.PNG" >
+			
+			<h3>HT-HP filterpresse:</h3>
+			
+			<p>
+				Dette er en filterpresse som kan operere ved både høyt trykk og høy temperatur.
+				Trykket under målingen er normalt 600 psi over og 100 psi under filterpapiret
+				som har en diameter på 5,4 cm. Temperaturen reguleres til ønsket temperatur,
+				normalt ca. 10 &#730;C over bunnhullstemperaturen. Vi måler også her filtertapet over
+				et tidsrom på 30 min. Filtertapet oppgis som 2 ganger målt volum (2&#183;V<sub>30min</sub>)
+				da arealet på filterpapiret er halvparten av arealet i API-filterpressen.	
+			</p>
+			
+			<p>Følg bruksanvisningen nøye når denne filterpressen benyttes.</p>
+		</div>
+		
+		<h2 onclick="show('3.1.4')">3.1.4 Sandinnhold</h2>
+		
+		<div id='3.1.4'>
+		
+		</div>
 	</body>
 </html>

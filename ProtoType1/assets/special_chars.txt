@@ -3,3 +3,7 @@ skjærspenningen = &#964; tau
 skjærhastigheten  = &#947; gamma
 Utslaget = &#952; theta
 grader(liten sirkel) = &#730;
+multiplying(dot) = &#183;
+alpha = &#945;
+beta = &#946;
+rigthwards arrow = &#8594;

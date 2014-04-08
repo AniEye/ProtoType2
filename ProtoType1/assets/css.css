@@ -1,28 +1,35 @@
 h1{
-	color:red;
+	color:black;
+	text-align:center;
 }
 
 h2{
-	color:red;	
+	color:black;	
 	margin:0px;
 	margin-bottom:1px;
 	width:100%;
+	
 	padding:5px;
-	background-color:#7CB9E8;
+	background-color: rgba(100, 100, 100, 0.1);
+
 }
 
 h3{
-	color:red;
+	color:black;
+	margin-left:5px;
+	margin-bottom:3px;
 }
 
 p{
 	align:justify;
-	color:white;
+	margin:5px;
+	color:black;
 }
 
 body{
-	background-color:black;
-	text-align:center;
+	background-color:white;
+	margin:0px;
+	margin-bottom:15px;
 }
 
 img{
@@ -30,8 +37,15 @@ img{
 	max-width:100%;
 }
 
+ul{
+	color:black;
+}
+#noStyle{
+	list-style-type: none;
+}
+
 li{
-	color:white;
+	color:black;
 }
 div{
 	display:none;
