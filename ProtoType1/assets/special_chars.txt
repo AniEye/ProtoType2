@@ -7,3 +7,5 @@ multiplying(dot) = &#183;
 alpha = &#945;
 beta = &#946;
 rigthwards arrow = &#8594;
+Arrow both ways = &#183;
+tilde = &#126;

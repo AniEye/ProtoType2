@@ -1,13 +1,495 @@
 <html>
 	<head>
 		<link href='../../../css.css' rel='stylesheet' type='text/css'>
+		<script type='text/javascript' src='../../../javascript.js'></script>
 	</head>
 	
 	<body>
 		<h1>3.2 Kjemisk analyse av vannbasert boreslam</h1>
 		
 		<p>
-			fyllt ut senere
+			I denne delen skal vi se litt nærmere på noen viktige kjemiske analysemetoder
+			for å undersøke et vannbasert boreslam. Testene foretas på slammet eller på
+			slamfiltratet.
 		</p>
+		
+		<h2 onclick="show('3.2.1')">3.2.1 pH</h2>
+		
+		<div id='3.2.1'>
+			<p>Vann er en svak elektrolytt og er løst i følge likningen:</p>
+			
+			<ul>H<sub>2</sub>0 + H<sub>2</sub>0 &#8646; H<sub>3</sub>0<sup>+</sup> + OH<sup>-</sup> </ul>
+			
+			<p>
+				I rent vann og i alle vannlige løsninger vil denne likevekten eksistere, og må
+				tilfredstille følgende vilkår:
+			</p>
+			
+			<h2>brok her(3.2.1 vann)</h2>
+			
+			<p>
+				I alle fortynnede løsninger kan konsentrasjonen av H<sub>2</sub>O ([H<sub>2</sub>O] ) antas å være
+				konstant og kombinert med konstanten K fås vannets løselighetsprodukt (K<sub>w</sub>).
+				Ved 25 &#730;C er K<sub>w</sub> = 10-14
+			</p>
+			
+			<p>I rent vann vil derfor:</p>
+			
+			<ul>[H<sub>3</sub>O<sup>+</sup>] = [OH<sup>-</sup>] = 1 &#183; 10<sup>-7</sup></ul>
+			
+			<p>
+				Denne lille konsentrasjonen kan sammenliknes med vannkonsentrasjonen på 55,4
+				mol/l (55.4 mol H<sub>2</sub>O gir en liter vann). Dette betyr at det i gjennomsnitt er ett
+				H<sub>3</sub>O<sup>+</sup> ion (og ett OH<sup>-</sup> ion) for hver 554 000 000 H<sub>2</sub>O molekyler.
+			</p>
+			
+			<p>pH-skalaen skal uttrykke konsentrasjonen av H<sub>3</sub>O<sup>+</sup>. Etter denisjon:</p>
+			
+			<ul>pH = -log [H<sub>3</sub>O<sup>+</sup>]</ul>
+			
+			<p>
+				Mange kjemiske stoffer som er tilsatt i et vannbasert boreslamsystem er direkte
+				avhengig av pH. En optimal pH-verdi vil blant annet gi en mer effektiv bruk
+				av tilsetningsstoffer som polymerer og tynnere, samtidig som den motvirker
+				korrosjon.
+			</p>
+			
+			<p>
+				Bestemmelsen av pH skjer enten med et pH-papir eller med pH-elektrode. Når
+				det ikke kreves stor nøyaktighet på pH bestemmelsen er pH-papiret det enkleste
+				å bruke. Når en bruker pH-elektroden må en påse at den med jevne mellomrom
+				blir kalibrert mot to standardbuffere, for eksempel mot en med pH = 7,0, og en
+				annen med pH = 10,0.
+			</p>
+		</div>
+		
+		<h2 onclick="show('3.2.2')">3.2.2 Kloridinnhold</h2>
+		
+		<div id='3.2.2'>
+			<p>
+				Innhold av kloridioner bestemmes ved hjelp av titrering med en 0,0282 M sølvnitratløsning
+				(4,7910 g sølvnitrat pr. liter løsning) hvor kromationer (CrO<sub>4</sub><sup>2-</sup>)
+				brukes som indikator for å bestemme ekvivalenspunktet (Mohr's metode).
+			</p>
+			
+			<h3>Reaksjon før ekvivalenspunkt:</h3>
+			
+			<ul>Ag<sup>+</sup> + Cl<sup>-</sup> &#8594; AgCl (s)</ul>
+			
+			<h3>Reaksjon ved ekvivalenspunkt:</h3>
+			
+			<p>
+				Nå er alt klorid oppbrukt og sølvioner reagerer med kromationer og danner
+				rødbrunt Ag<sub>2</sub>CrO<sub>4</sub>-bunnfall.
+			</p>
+			
+			<ul>2Ag<sup>+</sup> + CrO<sub>4</sub><sup>2-</sup> &#8594; Ag<sub>2</sub>CrO<sub>4</sub> (s)</ul>
+			
+			<h3>Mulige feilkilder:</h3>
+			
+			<p>
+				pH må justeres til ca. 8,3. Hvis pH er for lav, dannes det dikromationer som
+				ikke reagerer med sølvioner:
+			</p>
+			
+			<ul>2CrO<sub>4</sub><sup>2-</sup> + 2H<sup>+</sup> &#8594; Cr<sub>2</sub>O<sub>7</sub><sup>2-</sup> + H<sub>2</sub>O</ul>
+			
+			<p>
+				Er pH verdien av filtratet for høy reagerer sølvionene ikke med klorid men danner
+				sølvoksyd, et svart bunnfall:
+			</p>
+			
+			<ul>Ag<sup>+</sup> + OH<sup>-</sup> &#8594; AgOH</ul>
+			
+			<ul>AgOH + AgOH &#8594; Ag<sub>2</sub>O(s) + H<sub>2</sub>O</ul>
+			
+			<p>
+				Løseligheten av sølvkromat øker med høyere temperaturer og dermed minsker
+				sensitiviteten av kromationer som indikator for bestemmelsen av ekvivalenspunktet
+				tilsvarende. Tilfredsstillende resultater fås når man arbeider ved romtemperatur.
+			</p>
+			
+			<h3>Prosedyre:</h3>
+			
+			<ol>
+				<li>Bruk pipette og pipettér ut nøyaktig 1,00 ml filtrat (eventuelt et annet
+					nøyaktig volum) i en Erlenmeyerkolbe.</li>
+				<li>Tilsett 2-3 dråper fenolftalein.</li>
+				<li>Er løsningen rosa, tilsett fortynnet svovelsyre eller salpetersyre (0,01 M)
+					inntil fargen forsvinner.</li>
+				<li>Fortynn med 25-l50 ml destillert vann og tilsett 5-10 dråper kaliumkromatløsning 
+					(5 g K<sub>2</sub>CrO<sub>4</sub> i 100 ml destillert vann).</li>
+				<li>Titrer med 0,0282 M AgNO<sub>3</sub>-løsning. Rør hele tiden mens titreringen foregår. 
+					Titreringen er avsluttet når fargen skifter fra gul-hvit til oransje-rød
+					og den røde fargen holder seg i ca. 30 sekunder.</li>
+			</ol>
+			
+			<p>
+				<b>Beregninger:</b>
+				Av reaksjonslikningen ser vi at det forbrukes 1 mol Cl<sup>-</sup> for
+				hvert mol Ag<sup>+</sup> tilsatt, inntil alt kloridet er brukt opp.
+			</p>
+			
+			<p>Klorid-innholdet i filtratet kan da beregnes fra følgende likning:</p>
+			
+			<h2>brok her(3.7)</h2>
+			
+			<ul class="noStyle">
+				<li>C<sub>Cl<sup>-</sup></sub> = Konsentrasjon av kloridioner i filtratet, [mg/l]</li>
+				<li>AgNO<sub>3</sub> = Konsentrasjon av Sølvnitratløsningen, [mol/l]</li>
+				<li>M<sub>Cl<sup>-</sup></sub> = Atomvekt til klorid, [g/mol]<li>
+				<li>V<sub>AgNO<sub>3</sub></sub> = Volum sølvnitratløsning som forbrukes under titreringen, [ml]<li>
+				<li>V<sub>filtrat</sub> = Volum filtrat utpipettért, [ml]	</li>		
+			</ul>
+		</div>
+		
+		<h2 onclick="show('3.2.3')">3.2.3 Hardhet i filtrat</h2>
+		
+		<div id='3.2.3'>
+			<p>
+				Hardheten av vann og boreslam skyldes hovedsakelig tilstedeværelse av kalsium
+				(Ca<sup>2+</sup>) og magnesium (Mg<sup>2+</sup>) ioner. Begge ioner bestemmer vi ved en kompleksometrisk
+				titrering med EDTA (Ethylene Diamine Tetra Acetic acid). EDTAmolekylet
+				omslutter kationene. Slike komplekse forbindelser kalles for "chelater"
+				(fra gresk xhlh, krepseklo).
+			</p>
+			
+			<p>
+				For å bestemme ekvivalenspunketet i en slik kompleksometrisk titrering brukes,
+				helt analogt til syre-base titreringen, metallspesikke indikatorer, for eksempel
+				Eriokromsort T, Calmagite, Murexid, katechinfiolett, CalverII og andre. Disse
+				indikatorene danner også chelatkomplekser med metallionene, og har en annen
+				farge enn de frie indikatorene.
+			</p>
+			
+			<p>
+				Fargeomslaget ved ekvivalenspunktet skjer på grunn av at metall-indikator komplekset
+				blir spaltet (fordi metall-EDTA komplekset er mer stabilt enn metallindikator
+				komplekset) og fargen av fri indikator dominerer. (Ca og Mg EDTA
+				kompleksene er fargeløse). På grunn av at EDTA er tungtløselig i vann brukes
+				i praksis dihydratet av natriumsaltet som vi skriver som Na<sub>2</sub>H<sub>2</sub>Y x 2H<sub>2</sub>O.
+			</p>
+			
+			<p>Det er imidlertid to ting som er viktig å legge merke til:</p>
+			
+			<ol>
+				<li>
+					<p>Etter likningen:</p>
+					
+					<ul>Me<sup>2+</sup> + [H<sub>2</sub>Y]<sup>2-</sup> &#8594; [MeY]<sup>2-</sup> + 2H<sup>+</sup> (3.8)</ul>
+					
+					<ul>Me<sup>2+</sup> = 2-verdig metallion [H<sub>2</sub>Y]<sup>2-</sup> = EDTA dihydrat</ul>
+					
+					<p>
+						dannes det ved EDTA-titreringen frie protoner. Under gunstige forhold
+						er det derfor mulig å bestemme protonkonsentrasjon isteden for å gjennomføre 
+						en kompleksometrisk titrering. I de fleste tilfeller vil imidlertid en
+						høy protonkonsentrasjon forskyve likevekten mot venstre og stabiliteten
+						av komplekset vil avta. Derfor må i de tilfeller hvor metallionkompleksets
+						stabilitet er sensitiv mot H<sup>+</sup> ioner arbeides i en buffret løsning.
+					</p>
+				</li>
+				
+				<li>
+					EDTA og andre kompleksdannere (kompleksoner) reagerer med nærmest
+					alle metallioner og er derfor som reagens ikke spesifikk. Man må ta hensyn
+					til dette når forskjellige kationer finnes samtidig i løsningen.
+				</li>
+			</ol>
+			
+			<h3>Total hardhet i filtrat:</h3>
+			
+			<p>Den totale hardhet i filtratet antas å bestå av magnesium og kalsium ioner.</p>
+			
+			<h3>Prosedyre:</h3>
+			
+			<ol>
+				<li>Bruk pipette og pipettér ut nøyaktig 1,00 ml filtrat (eventuelt et annet
+					nøyaktig volum) i en Erlenmeyerkolbe.</li>
+				<li>Fortynn til ca. 50 ml med destillert vann.</li>
+				<li>Tilsett 2 ml buffer-løsning for å holde pH konstant ("Versenate Hardness").</li>
+				<li>Tilsett 2-6 dråper av indikator ("Calmagite"). Dersom kalsium og/eller
+					magnesiumioner er tilstede får vi en "vinrød" farge.</li>
+				<li>Titrer med en 0,01 M EDTA løsning inntil alle metallioner er bundet til
+					EDTA og vi får fargeomslag til blått.</li>
+			</ol>
+			
+			<h3>Beregning:</h3>
+			
+			<p>
+				Av reaksjonslikningen ser vi at det forbrukes et mol 2-verdige metall ioner for
+				hvert mol EDTA tilsatt. Den totale hardhet (både Ca<sup>2+</sup> og Mg<sup>2+</sup>) uttrykkes
+				vanligvis i mg/l CaCO<sub>3</sub>. Beregning av total hardhet foretas på samme måte
+				som beregningen av kloridinnhold i filtratet (likning 3.7).
+			</p>
+			
+			<h3>Kalsium hardhet i filtrat:</h3>
+			
+			<p>
+				Ofte er det viktig å vite hvor mye av Ca<sup>2+</sup> og Mg<sup>2+</sup> som bidrar til den totale
+				hardheten. Metoden for å bestemme dette går ut på å felle ut magnesiumionene
+				som magnesiumhydroksyd og bestemme Ca<sup>2+</sup> direkte med EDTA metoden.
+			</p>
+			
+			<p>Reaksjon for utfelling av magnesiumioner:</p>
+			
+			<ul>Mg<sup>2+</sup> + 2OH<sup>-</sup> &#8594; Mg(OH)<sub>2</sub> (s)</ul>
+			
+			<h3>Prosedyre:</h3>
+			
+			<ol>
+				<li>Bruk pipette og pipettér ut nøyaktig 1,00 ml filtrat (eventuelt et annet
+					nøyaktig volum) i en Erlenmeyerkolbe.</li>
+				<li>Fortynn til omtrent 50 ml med destillert vann</li>
+				<li>Tilsett ca. 1 ml 8 M NaOH slik at pH er omtrent 12-13. Da vil magnesiumionene
+					felles ut som hydroksyd.</li>
+				<li>Tilsett noen korn med kalsiumindikator ("Calver II") slik at løsningen blir
+					lilla når kalsiumioner er tilstede.</li>
+				<li>Titrer med 0,01 M EDTA inntil vi får omslag til blått.</li>
+			</ol>
+			
+			<h3>Beregninger:</h3>
+			
+			<p>
+				I dette tilfellet forbrukes et mol Ca<sup>2+</sup> ioner for hvert mol EDTA tilsatt. Kalsiumhardheten
+				uttrykkes vanligvis i mg/l Ca<sup>2+</sup>. Beregning av kalsiumhardhet
+				foretas på samme måte som beregningen av total hardhet (og kloridinnhold) i
+				filtratet (likning 3.7).</br>
+				Mengde magnesium i filtratet kan beregnes fra forskjellen i EDTA titrert i total
+				hardhet og i kalsiumhardhet. Magnesiumhardheten uttrykkes vanligvis i mg/l
+				Mg2+.
+			</p>
+		</div>
+		
+		<h2 onclick="show('3.2.4')">3.2.4 Kationutbyttingskapasitet ("Metylenblått test")</h2>
+		
+		<div id='3.2.4'>
+			<p>
+				Kationutbyttingskapasitet eller metylenblått kapasitet gir et rask estimat av
+				hvor mye montmorillonitt eller annet leire som er tilstede i boreslammet. Testen
+				måler mengden av et organisk kation (metylenblått; et fargestoff) som absorberes
+				av leiren i slammet. Mengden absorbert fargestoff er en funksjon av kapasiteten
+				til å bytte ut kationer. Siden leirmineralet montmorillonitt har en mye
+				større utbyttingsevne ovenfor kationer enn andre leirmineraler kan testen også
+				betraktes som et "mål" for mengden montmorillonitt i slammet.
+			</p>
+			
+			<h3>Prosedyre:</h3>
+			
+			<ol>
+				<li>Bruk pipette og pipettér ut nøyaktig 1,00 ml slam (eventuelt et annet
+					nøyaktig volum) i en erlenmeyerkolbe.<li>
+				<li>Sett til 30 ml 3 % H<sub>2</sub>O<sub>2</sub> og 0,5 ml 2,5 M H<sub>2</sub>SO<sub>4</sub>.</li>
+				<li>Kok innholdet forsiktig i 10 minutter. (Påse at prøven ikke koker tørr.)</li>
+				<li>Fortynn prøven til ca. 40 ml med destillert vann.</br>
+					H<sub>2</sub>O<sub>2</sub> oksyderer/fjerner organiske materialer som eventuelt er tilstede (polymerer,
+					tynnere etc.).</li>
+				<li>Tilsett metylenblått løsningen (3,2 g metylenblått i 1 liter) i kvanta på 0,5
+					ml, sett en kork på kolben og rist i 30 sekunder.</li>
+				<li>Overfør en dråpe fra Erlenmeyerkolben til et filterpapir, som vist i figur 3.4.</li>
+				<li>Fortsett med tilsetting av metylenblått løsning/risting inntil det dannes en
+					blågrønn ring på filterpapiret rundt de fargede leirpartiklene.</li>
+				<li>Når den blågrønne ringen dannes, rist kolben i ytterligere to minutter.</li>
+				<li>Tilsett en ny dråpe på filterpapiret. Dannes det ikke en ny blågrønn ring
+					må tilsettingen av metylenblått fortsette. Er det fortsatt en blågrønn ring,
+					etter to minutters risting, har vi nådd sluttpunktet for titreringen, det vil
+					si det absorberes nå ikke mer metylenblått.</li>
+			</ol>
+			
+			<img src="Figur 3.4.PNG" >
+			
+			<h3>Beregning:</h3>
+			
+			<p>"Cation Exchange Capasity" (CEC) beregnes etter følgende formel:</p>
+			
+			<h2>brok her(3.9)</h2>
+			
+			<p>
+				Et estimat av leirinnholdet (uttrykt som bentonitt) i slammet fås fra følgende
+				formel:
+			</p>
+			
+			<ul>bentonitt,[ppm] = 5 &#183; CEC (3.10)</ul>
+			
+			<ul>bentonitt,[kg/m<sup>3</sup>] = 14,25 &#183; CEC (3.11)</ul>
+		</div>
+		
+		<h2 onclick="show('3.2.5')">3.2.5 Slammets og filtratets alkalitet</h2>
+		
+		<div id='3.2.5'>
+			<p>
+				Ordet alkalitet har forskjellige meninger avhengig i hvilken sammenheng man
+				bruker det. I kjemisk dagligtale brukes alkalitet gjerne som et synonym for væskens
+				basisitet, som forteller hvor mange hydroksylioner (OH<sup>-</sup>) som er tilstede
+				(NB: pOH = 14 - pH). Her ønsker vi å bruke ordet alkalitet i en litt annen mening,
+				nemlig løsningens evne til å nøytralisere syre. Denne evnen behøver ikke å
+				stå i direkte sammenheng med løsningens pH-verdi. Bare tenk på bufferløsninger
+				som kan forbruke betydelige mengder syre eller base mens pH-verdien praktisk
+				talt er uforandret.
+			</p>
+			
+			<h3>Slammets alkalitet</h3>
+			
+			<h3>P<sub>m</sub> alkalitet:</h3>
+			
+			<ol>
+				<li>Bruk pipette og pipettér ut nøyaktig 1,00 ml slam (eventuelt et annet
+					nøyaktig volum) i en Erlenmeyerkolbe.</li>
+				<li>Tilsett omtrent 25 ml destillert vann.</li>
+				<li>Tilsett noen dråper fenolpftalein.</li>
+				<li>Dersom slammet blir rødt, tilsettes sakte den 0,01 M sterke svovelsyren
+					inntil den rosa farge av løsningen forsvinner helt. Hvis filtratet ikke skifter
+					farge til rødt, rapporteres P<sub>m</sub> som 0.</li>
+			</ol>
+			
+			<p>
+				P<sub>m</sub> alkalitet rapporteres som ml 0,01 M H<sub>2</sub>SO<sub>4</sub> forbrukt pr ml slam.
+				P<sub>m</sub> verdien brukes for å bestemme fast Ca(OH)<sub>2</sub> ("lime") innholdet i boreslammet.
+				For å gjøre dette brukes P<sub>m</sub>, som i tillegg til P<sub>f</sub> (se filtratets alkalitet i
+				avsnitt 3.2.5) inneholder også bidrag av fast Ca(OH)<sub>2</sub>. Tar vi utgangspunkt i
+				1,00 ml slam, så har vi F<sub>w</sub> ml vann i slammet (F<sub>w</sub> er volumfrasjon vann i boreslammet).
+				Mengden fast Ca(OH)<sub>2</sub> i kg/m<sup>3</sup> kan beregnes av følgende formel:
+			</p>
+			
+			<ul>Ca (OH)<sub>2</sub> [kg/m<sup>3</sup>] = 0,742(P<sub>m</sub> - F<sub>w</sub> &#183; P<sub>f</sub> ) (3.12)</ul>
+			
+			<h3>Filtratets alkalitet</h3>
+			
+			<p>
+				Filtratets alkalitet bestemmes som antall ml av en 0,01 M H<sub>2</sub>SO<sub>4</sub> løsning som
+				forbrukes for å få 1 ml av filtrat til en bestemt pH-verdi. I praksis skiller man
+				mellom P<sub>f</sub> og M<sub>f</sub> verdier. I første tilfelle brukes omslagspunkt til fenolftalein
+				som ønsket pH-sluttverdi i titreringen.
+			</p>
+			
+			<h3>P<sub>f</sub> alkalitet:</h3>
+			
+			<ol>
+				<li>Bruk pipette og pipettér ut nøyaktig 1,00 ml filtrat (eventuelt et annet
+					nøyaktig volum) i en Erlenmeyerkolbe.</li>
+				<li>Tilsett omtrent 25 ml destillert vann.</li>
+				<li>Tilsett 2-3 dråper fenolftalein.</li>
+				<li>Dersom filtratet blir rødt, tilsettes sakte den 0,01 M sterke svovelsyren
+					inntil rødfargen av løsningen akkurat forsvinner. Hvis filtratet ikke skifter
+					farge til rødt, rapporteres P<sub>f</sub> som 0.</li>
+				<li>Dersom en ønsker også å bestemme M<sub>f</sub> alkalitet, kan dette gjøres ved å
+					fortsette med samme løsning.</li>
+			</ol>
+			
+			<p>
+				Når filtratet ikke tillater at man kan se fargeforandringen av indikatoren (f.eks.
+				filtratet er mørkebrunt) bruker man istedenfor fenolftalein et pH-meter. Man
+				titrerer da med svovelsyren til pH er på 8,3, som er omslagspunktet til fenolftalein.
+			</p>
+			
+			<p>
+				Fenolftaleinalkaliteten (P<sub>f</sub>) rapporteres som antall ml 0,01 M H<sub>2</sub>SO<sub>4</sub> forbrukt
+				per ml filtrat.
+			</p>
+			
+			<h3>M<sub>f</sub> alkalitet:</h3>
+			
+			<p>
+				Metylorangealkaliteten (M<sub>f</sub>) av filtratet bestemmes på liknende måte som fenolftaleinalkaliteten,
+				men med metylorange i stedet for fenolftalein som indikator.
+				Endepunktet i titreringen sees når indikatoren skifter farge fra klar gult til
+				orange.
+			</p>
+			
+			<p>
+				Når man ikke kan se fargeforandringen brukes et pH-meter. Man titrerer da til
+				pH-verdi lik 4,3, som er omslagspunktet til metylorange.
+			</p>
+			
+			<p>M<sub>f</sub> alkalitet rapporteres som ml 0,01 M H<sub>2</sub>SO<sub>4</sub> forbrukt pr ml filtrat.</p>
+			
+			<h3>Beregning av filtratets alkalitet</h3>
+			
+			<p>
+				Ionene som hovedsakelig er ansvarlig for filtratalkaliteten er hydroksyl (OH<sup>-</sup>),
+				karbonat (CO<sub>3</sub><sup>2-</sup>) og hydrogen-eller bikarbonationer (HCO<sub>3</sub><sup>-</sup>). Vi har fem mulige
+				kombinasjoner for hvordan disse tre ioneslagene kan være tilstede i en løsning:
+			</p>
+			
+			<ol>
+				<li>hydroksylioner alene</li></br>
+				<li>karbonationer alene<li></br>
+				<li>bikarbonationer alene</li></br>
+				<li>hydroksylioner og karbonationer sammen</li></br>
+				<li>bikarbonat og karbonationer sammen</li></br>
+			</ol>
+			
+			<p>
+				Fenolftaleinens omslagspunkt faller omtrent sammen med ekvivalenspunktet når
+				karbonationer titreres med en sterk syre (her svovelsyre):
+			</p>
+			
+			<ul>CO<sub>3</sub><sup>2-</sup> + H<sup>+</sup> &#8594; HCO<sub>3</sub><sup>-</sup> </ul>
+			
+			<p>
+				Metylorange har et omslagspunkt ved pH omtrent 4,3 som svarer til ekvivalenspunktet
+				når bikarbonat titreres med syre til karbonsyre (= CO<sub>2</sub> + H<sub>2</sub>O).
+			</p>
+			
+			<p>
+				Mengden av bikarbonat og karbonat bestemmes så av antall ekvivalenter H<sub>2</sub>SO<sub>4</sub>
+				som går med i titreringen; det vil si ved bikarbonat er det et ekvivalent, mens
+				ved titreringen av karbonationer med svovelsyre forbrukes to ekvivalenter syre.
+			</p>
+			
+			<ol>
+				<li>
+					Når vi har kun hydroksylioner til stede, vil vi ved ekvivalenspunktet gjøre
+					et så stort sprang i pH at både fenolftalein og metylorange vil momentant
+					vise omslag når hydrogenionkonsentrasjonen er større enn den for hydroksyl.
+					Situasjonen er identisk når en sterk base titreres med en sterk syre.
+					Med andre ord, når vi har bare hydroksylioner tilstede er M<sub>f</sub> = P<sub>f</sub> .
+				</li>
+				<li>
+					Har vi bare karbonationer tilstede, så forbruker vi i første omgang P<sub>f</sub> ml
+					for å komme til omslagspunkt til fenolftalein. I denne titreringen er P<sub>f</sub> verdien
+					proporsjonal med mengden karbonationer. Bestemmes så M<sub>f</sub> verdien,
+					titrerer vi først P<sub>f</sub> ml til omslagspunkt av fenolptalein; karbonationer har
+					nå gått over til bikarbonationer. Disse blir da titrert videre til karbonsyre.
+					Vi bruker igjen P<sub>f</sub> ml for at alt bikarbonat skal gå over til karbonsyre, vi
+					har med andre ord: P<sub>f</sub> + P<sub>f</sub> = M<sub>f</sub> :
+				</li>
+				<li>
+					Har vi bare bikarbonationer tilstede så er vi allerede på den "sure siden"
+					av fenolftalein indikatoren slik at P<sub>f</sub> = 0. Det er da M<sub>f</sub> som angir hvor
+					mye HCO<sub>3-</sub> vi har tilstede.</li>
+				<li>
+					Når vi har OH<sup>-</sup> og CO<sub>3</sub><sup>2-</sup> sammen i filtratet, så inngår i P<sub>f</sub> verdien mengden
+					OH<sup>-</sup> pluss mengden CO<sub>3</sub><sup>2-</sup> ioner, det vil si
+					
+					<ul>P<sub>f</sub> &#126; [OH<sup>-</sup>] + [CO<sub>3</sub><sup>2-</sup>]</ul>
+					
+					I metylorangealkaliteten inngår mengden OH<sup>-</sup> ioner samt den dobbelte
+					mengden karbonationer. Vi har altså
+					
+					<ul>M<sub>f</sub> &#126; [OH<sup>-</sup>] + 2 [CO<sub>3</sub><sup>2-</sup>]</ul>
+				</li>
+				<li>
+					Når vi har en blanding av HCO<sub>3</sub><sup>-</sup> og CO<sub>3</sub><sup>2-</sup> tilstede, så gir fenolftaleinalkaliteten
+					mengde syre som trengs for å overføre karbonat til bikarbonat.
+					Ved M<sub>f</sub> titrerer vi først 2 P<sub>f</sub> ml for å overføre CO<sub>3</sub><sup>2-</sup> via 
+					HCO<sub>3</sub><sup>-</sup> til H<sub>2</sub>CO<sub>3</sub>
+					(karbonsyre), men bruker i tillegg x ml syre for å overføre bikarbonat
+					som allerede i begynnelsen var tilstede som karbonsyre. Vi har dermed at:
+					x+2P<sub>f</sub> = M<sub>f</sub> slik at mengden HCO<sub>3</sub><sup>-</sup> tilstede i en 
+					HCO<sub>3</sub><sup>-</sup>/CO<sub>3</sub><sup>2-</sup> blanding
+					er proporsjonal med M<sub>f</sub> - 2P<sub>f</sub> (legg også merke til at ved en slik blanding
+					gjelder at M<sub>f</sub> > 2P<sub>f</sub> ).
+				</li>
+			</ol>
+			
+			<p>
+				Med resultatene fra pkt. 1-5 kan vi sette opp Tabell 3.3 med konsentrasjoner
+				av de forskjellige ioneslag i mg/l. Faktorene i tabellen kommer fra omregningen
+				fra ml syreekvivalenter til mg av dette ioneslag pr. liter filtrat.
+			</p>
+			
+			<img src="Tabell 3.3.PNG" >
+		</div>
 	</body>
 </html>

@@ -1,13 +1,110 @@
 <html>
 	<head>
 		<link href='../../css.css' rel='stylesheet' type='text/css'>
+		<script type='text/javascript' src='../../javascript.js'></script>
 	</head>
 	
 	<body>
 		<h1>3. Testing av vannbasert boreslam</h1>
 
 		<p>
-			Velkommen til den tredje øvelsen
+			På laboratoriet har vi et ferdig mikset vannbasert boreslam. Vi skal utføre noen
+			av de mest vanlige fysiske og kjemiske analysene på dette slammet. Analysene
+			er beskrevet i kapittel 3. For mer detaljert beskrivelse, se API bulletin RP
+			13B og/eller bruksanvisninger for testutstyr. Gjennomfør testene som beskrevet
+			nedenfor. Rapporten skal inneholde alle målte verdier, beregninger (vis utregninger)
+			og svar på spørsmål.
 		</p>
+		
+		<h2 onclick="show('7.1')">7.1 Fysiske tester:</h2>
+		
+		<div id='7.1'>
+			<p>
+				Vi skal gjennomføre de angitte fysiske testene som er beskrevet i kapittel 3.
+				Resultatene føres inn i tabell 7.1.
+			</p>
+			
+			<ol>
+				<li>Bestem tettheten til boreslammet ved å bruke en slamvekt.</li>
+				<li>Mål traktviskositeten.</li>
+				<li>Bruk viskosometer til å finne tilsynelatende viskositet, plastisk viskositet,
+					flytegrense og gelestyrke til slammet.</li>
+				<li>Bruk API filterpressen og finn filtertapet til boreslammet.</li>
+				<li>Bestem sandinnholdet i boreslammet.</li>
+				<li>Bruk retorten og finn vanninnhold og partikkelinnhold. Partikkelinnholdet
+					må korrigeres for eventuelt innhold av oppløst salt.</li>
+				<li>Beregn spesifikk tetthet til suspendert materiale. Hvor mye av dette er
+					barytt og hvor mye er andre partikler?</li>
+			</ol>
+		</div>
+		
+		<h2 onclick="show('7.2')">7.2 Kjemiske tester:</h2>
+		
+		<div id='7.2'>
+			<p>
+				Vi skal gjennomføre de mest vanlige kjemiske testene som foretas på et vannbasert
+				boreslam, slik som pH, alkalitet, kloridinnhold, hardhet, CEC. Prosedyrene
+				er beskrevet i avsnitt 3.2. Ved alle titreringer skal det gjennomføres to paralleller.
+				Resultater og utregninger føres inn i tabell 7.2
+			</p>
+			
+			<p>
+				<b>pH:</b></br>
+				Bestem pH både på slammet og ltratet. Benytt pH-meter.
+			</p>
+			
+			<p>Kommenter resultatene.</p>
+			
+			<p>
+				<b>Kloridinnhold:</b></br>
+				Utfør titrering for bestemmelse av kloridmengden i filtratet ved bruk av Mohrs
+				metode. Fra titreringsresultatene, beregn kloridkonsentrasjon og NaCl konsentrasjon
+				i mg/l og i ppm (mg/kg). Løselighetsproduktene til AgCl og til Ag<sub>2</sub>CrO<sub>4</sub>
+				er lik:
+			</p>
+			
+			<ul>[Ag<sup>+</sup>] &#183; [Cl<sup>-</sup>] = 1,8 &#183; 10<sup>-10</sup>M<sup>2</sup></ul>
+			
+			<ul>[Ag<sup>+</sup>]<sup>2</sup> &#183; [CrO<sub>4</sub><sup>2-</sup> = 2,4 &#183; 10<sup>-12</sup>M<sup>3</sup></ul>
+			
+			<p>Løs likevektslikningene og vis at AgCl felles ut først.</p>
+			
+			<p>
+				<b>Hardhet i filtrat:</b></br>
+				Utfør analysene for bestemmelse av total hardhet og kalsiumhardhet. Beregn
+				total hardhet som mg CaCO<sub>3</sub> pr liter filtrat. Beregn mengden Ca<sup>2+</sup> og mengden
+				Mg<sup>2+</sup> i mg pr. liter som utgjør den totale hardhet.
+			</p>
+			
+			<p>
+				<b>Kationutbyttingskapasitet:</b></br>
+				Utfør analysen som beskrevet og beregn "Cation Exchange Capacity". Om vi
+				antar at all leire i boreslammet er bentonitt, hva blir bentonittkonsentrasjonen
+				i enhetene g/350 ml og kg/m<sup>3</sup>?
+			</p>
+			
+			<p>
+				<b>Filtratets og slammets alkalitet:</b></br>
+				Utfør analysene som beskrevet tidligere (se avsnitt 3.2.5) og finn P<sub>f</sub> , M<sub>f</sub> og P<sub>m</sub>.
+				Hva slags ioneslag bidrar til vår alkalitet i filtratet? Beregn ionekonsentrasjonene
+				i mg/l. Beregn mengde fast Ca(OH)<sub>2</sub> i slammet (F<sub>w</sub> bestemmes i de fysiske
+				testene). Hvis P<sub>f</sub> = M<sub>f</sub> , er det da bikarbonat i prøven? Hydroksylioner og
+				bikarbonationer kan ikke være til stede i større mengder samtidig på grunn av
+				en kjemisk reaksjon. Hvilken (skriv reaksjonslikningen)?
+			</p>
+		</div>
+		
+		<h2 onclick="show('7.3')">7.3 Vurdering av slammets egenskaper</h2>
+		
+		<div id='7.3'>
+			<p>
+				Vurder boreslammets egenskaper ut fra de fysiske testene, Tabell 7.1 og de
+				kjemiske testene, Tabell 7.2. Hva slags tilstand er bentonittpartiklene i, og hva
+				kan vi gjøre for å forbedre boreslammets egenskaper?
+			</p>
+			
+			<img src="Tabell 7.1.PNG" >
+			<img src="Tabell 7.2.PNG" >
+		</div>
 	</body>
 </html>
