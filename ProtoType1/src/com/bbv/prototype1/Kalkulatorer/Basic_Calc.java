@@ -61,7 +61,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 * 
 	 * @param context
 	 *            - The context where the calculator is appearing.
-	 * @param IDs
+	 * @param TextFieldIDs
 	 *            - The IDs for the editviews used by the calculator.
 	 * @param layoutID
 	 *            - The ID for the layout used by the calculator.

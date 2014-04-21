@@ -62,8 +62,7 @@ public class Alkalitet extends Basic_Calc {
 				return "";
 			}
 
-			if (checkForNegativeValues(Pf, Mf) == false
-					|| checkForNullValues(Pf, Mf) == false)
+			if (checkForNegativeValues(Pf, Mf) == false)
 				return "";
 
 			OH = table.getOH();

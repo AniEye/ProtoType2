@@ -18,20 +18,22 @@ public class PowerLaw600300 extends Basic_Calc {
 
 	final static int[] TextViewIDs = { R.id.tvPL600300N, R.id.tvPL600300NOTPA, R.id.tvPL600300PA };
 
-	final static int[] IDs = { R.id.etPL600300T600, R.id.etPL600300T300, R.id.etPL600300N };
+	final static int[] TextFieldIDs = { R.id.etPL600300T600, R.id.etPL600300T300, R.id.etPL600300N };
 
 	public final static int T600_INDEX = 0, T300_INDEX = 1, N_INDEX = 2;
+	public final static int _N_INDEX = 0, _K_INDEX = 1, _K_PA_INDEX = 2;
+
 
 	public PowerLaw600300(Context context) {
-		super(context, IDs, TextViewIDs, layout);
+		super(context, TextFieldIDs, TextViewIDs, layout);
 
 	}
 
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		float T600 = fieldStatuses[0];
-		float T300 = fieldStatuses[1];
+		float T600 = fieldStatuses[T600_INDEX];
+		float T300 = fieldStatuses[T300_INDEX];
 		float N;
 		float K;
 
@@ -66,9 +68,9 @@ public class PowerLaw600300 extends Basic_Calc {
 			String _K = String.format(THREE_DECIMALS, K);
 			String _KPA = String.format(THREE_DECIMALS, K * 0.511f);
 			
-			textviews[0].setText(_N);
-			textviews[1].setText(Html.fromHtml(_K + " [lbs/100 ft<sup><small>2</small></sup>/s]"));
-			textviews[2].setText(_KPA + " [Pa]");
+			textviews[_N_INDEX].setText(_N);
+			textviews[_K_INDEX].setText(Html.fromHtml(_K + " [lbs/100 ft<sup><small>2</small></sup>/s]"));
+			textviews[_K_PA_INDEX].setText(_KPA + " [Pa]");
 
 			return String.format(THREE_DECIMALS, N);
 
