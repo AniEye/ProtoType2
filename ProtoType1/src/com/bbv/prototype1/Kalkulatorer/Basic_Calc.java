@@ -45,7 +45,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 * @param layoutID
 	 *            - The ID for the layout used by the calculator.
 	 */
-	public Basic_Calc(Context context, int[] IDs, int layoutID) {
+	protected Basic_Calc(Context context, int[] IDs, int layoutID) {
 		super(context);
 		cont = context;
 		this.editTextIDs = IDs;
@@ -68,7 +68,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 * @param textViewIDs
 	 *            - The IDs for the textviews used by the calculator.
 	 */
-	public Basic_Calc(Context context, int[] editTextIDs, int[] textViewIDs,
+	protected Basic_Calc(Context context, int[] editTextIDs, int[] textViewIDs,
 			int layoutID) {
 		super(context);
 		cont = context;
@@ -94,7 +94,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 *            specify if the calculator has textviews or not that need to be
 	 *            instantiated.
 	 */
-	protected void Initialize(int layout, int textFieldFlag) {
+	private void Initialize(int layout, int textFieldFlag) {
 
 		_linLay = setAndGetLinearLayout(layout);
 
@@ -122,7 +122,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 * pressed, it calls the clearButtonMethod-method, and the updateButton
 	 * calls the updateButtonMethod-method.
 	 */
-	protected void CreateListeners() {
+	private void CreateListeners() {
 
 		cliLis = new OnClickListener() {
 
@@ -198,7 +198,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 *            - The ID of the layout to inflate
 	 * @return the inflated linearLayout
 	 */
-	protected LinearLayout setAndGetLinearLayout(int layoutID) {
+	private LinearLayout setAndGetLinearLayout(int layoutID) {
 		_linLay = (LinearLayout) LayoutInflater.from(cont).inflate(layoutID,
 				this);
 		return _linLay;
@@ -216,7 +216,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 *            editext.
 	 * @return the initialized EditText
 	 */
-	protected EditText FindAndReturnEditText(int id,
+	private EditText FindAndReturnEditText(int id,
 			OnFocusChangeListener aListener) {
 
 		EditText aField = (EditText) _linLay.findViewById(id);
@@ -237,7 +237,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 *            button
 	 * @return the initialized Button
 	 */
-	protected Button FindAndReturnButton(int id, OnClickListener aListener) {
+	private Button FindAndReturnButton(int id, OnClickListener aListener) {
 		Button aButton = (Button) _linLay.findViewById(id);
 		aButton.setOnClickListener(aListener);
 		return aButton;
@@ -250,7 +250,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 * @param _theEditTextFields
 	 *            (EditText-Array)
 	 */
-	protected void Enabeling(EditText... _theEditTextFields) {
+	private void Enabeling(EditText... _theEditTextFields) {
 		for (int i = 0; i < _theEditTextFields.length; i++) {
 			if (!_theEditTextFields[i].isEnabled()) {
 				_theEditTextFields[i].setEnabled(true);
@@ -265,7 +265,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 * done only when all but one field has been entered. This can be modified
 	 * to be done differently.
 	 */
-	protected void updateRelevantResult() {
+	private void updateRelevantResult() {
 		for (int i = 0; i < _textFieldsStatus.length; i++) {
 			if (_textFieldsStatus[i] == 0) {
 
@@ -277,7 +277,7 @@ public abstract class Basic_Calc extends LinearLayout {
 		}
 	}
 
-	protected float[] getFloatVariables(EditText... fieldStatuses) {
+	private float[] getFloatVariables(EditText... fieldStatuses) {
 		float[] returnFloatList = new float[fieldStatuses.length];
 		for (int i = 0; i < fieldStatuses.length; i++) {
 			try {
@@ -301,7 +301,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 *            - Float-array of variables
 	 * @return Should return a String which will set the text of the textfield
 	 */
-	public abstract String calculation(int editTextIndex,
+	protected abstract String calculation(int editTextIndex,
 			float... fieldStatuses);
 
 	/**
@@ -311,7 +311,7 @@ public abstract class Basic_Calc extends LinearLayout {
 	 *            - Integer array
 	 * @return the sum of all integers in an integer-array
 	 */
-	protected int theSum(int... fieldStatuses) {
+	private int theSum(int... fieldStatuses) {
 		int sumOfEditedFields = 0;
 		for (int i = 0; i < fieldStatuses.length; i++) {
 			sumOfEditedFields += fieldStatuses[i];
