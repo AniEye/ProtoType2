@@ -40,7 +40,8 @@
         <Button
             android:id="@+id/bSQLDatabase"
             style="@style/CustomButton"
-            android:text="Database" />
+            android:text="Database" 
+            android:visibility="gone"/>
     </LinearLayout>
 
 </LinearLayout>
