@@ -2,16 +2,7 @@ package com.bbv.prototype1.TheoryAndLabAssignments;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import com.bbv.prototype1.R;
-import com.bbv.prototype1.R.array;
-import com.bbv.prototype1.R.drawable;
-import com.bbv.prototype1.R.id;
-import com.bbv.prototype1.R.layout;
-import com.bbv.prototype1.R.menu;
-import com.bbv.prototype1.R.string;
-
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -21,7 +12,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class ShowContent extends ShowContentBase {
 
@@ -68,56 +58,39 @@ public class ShowContent extends ShowContentBase {
 						.commit();
 			}
 		} else {
-			Log.i(KEY_LOGCAT,
-					"Start doing what is needed when savedInstace != null");
-			if (getCurrentIndex() == _DrawerMenuListIndex.Theory.ordinal()) {
-				_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
-
-				_nWVB.setArguments(getTheoryBundle());
-				decodeDataDocument();
-
-				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
-						.commit();
-			} else if (getCurrentIndex() == _DrawerMenuListIndex.Exercise
-					.ordinal()) {
-				_filePath = getFilePathFromOvingBundle(getOvingBundle());
-
-				_nWVB.setArguments(getOvingBundle());
-				decodeDataDocument();
-
-				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
-						.commit();
-			} else if (getCurrentIndex() == _DrawerMenuListIndex.Calculator
-					.ordinal()) {
-				_nSCalc = new ShowCalculator();
-				_nSCalc.setArguments(getCalculatorBundle());
-				setTitle("Kalkulator");
-			}
-			retriveDrawer();
+//			Log.i(KEY_LOGCAT,
+//					"Start doing what is needed when savedInstace != null");
+//			if (getCurrentIndex() == _DrawerMenuListIndex.Theory.ordinal()) {
+//				_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
+//
+//				_nWVB.setArguments(getTheoryBundle());
+//				decodeDataDocument();
+//
+//				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
+//						.commit();
+//			} else if (getCurrentIndex() == _DrawerMenuListIndex.Exercise
+//					.ordinal()) {
+//				_filePath = getFilePathFromOvingBundle(getOvingBundle());
+//
+//				_nWVB.setArguments(getOvingBundle());
+//				decodeDataDocument();
+//
+//				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
+//						.commit();
+//			} else if (getCurrentIndex() == _DrawerMenuListIndex.Calculator
+//					.ordinal()) {
+//				_nSCalc = new ShowCalculator();
+//				_nSCalc.setArguments(getCalculatorBundle());
+//				setTitle("Kalkulator");
+//			}
 
 		}
 
 		Log.i(KEY_LOGCAT, "replacing the fragment with fragment manager");
-		// _listView.setItemChecked(getCurrentIndex(), true);
 
 		_drawerLayout.closeDrawer(_listView);
 	}
 
-	/**
-	 * Restores the previous drawer from the stored drawer in the intance
-	 */
-	private void retriveDrawer() {
-		newDrawerContentList();
-		for (int i = 0; i < _DrawerMenyList.length; i++) {
-			if (this.getIntent().getStringArrayExtra(_DrawerMenyList[i]) != null) {
-				_NavigatorItemContentList.get(i).setStringList(
-						this.getIntent()
-								.getStringArrayExtra(_DrawerMenyList[i]));
-			}
-		}
-		setNavigationDrawerContent(_NavigatorItemContentList);
-
-	}
 
 	/**
 	 * the on click listener for the buttons next and previous this will simply
@@ -260,7 +233,6 @@ public class ShowContent extends ShowContentBase {
 				if (getCurrentIndex() == getPriorityIndex()) {
 					setItemInDrawerLoaded(0);
 					setNavigationDrawerContent(_NavigatorItemContentList);
-					saveDrawerContent();
 				}
 
 			}
@@ -275,22 +247,9 @@ public class ShowContent extends ShowContentBase {
 	}
 
 	/**
-	 * this will save the current drawer in the instance
-	 */
-	private void saveDrawerContent() {
-		for (int i = 0; i < _NavigatorItemContentList.size(); i++) {
-			if (_NavigatorItemContentList.get(i).getStringList() != null) {
-				this.getIntent().putExtra(_DrawerMenyList[i],
-						_NavigatorItemContentList.get(i).getStringList());
-			}
-		}
-	}
-
-	/**
 	 * Create the references and initialize the drawerlistener
 	 */
 	private void Initialize() {
-		// _activity_title = getTitle();
 		setActivityTitle("Meny");
 		_drawerLayout = (DrawerLayout) findViewById(R.id.dlVis_Teori);
 		_listView = (ListView) findViewById(R.id.lvVis_Teori);
@@ -346,7 +305,6 @@ public class ShowContent extends ShowContentBase {
 	protected void setTheoryBundle(Bundle aBundle) {
 		this.getIntent().putExtra(KEY_PROS_TEORI, aBundle);
 		Log.i(KEY_LOGCAT, "Finishing setTheoryBundle");
-		Log.i(KEY_LOGCAT, "  ");
 	}
 
 	/**
@@ -358,7 +316,6 @@ public class ShowContent extends ShowContentBase {
 	protected void setOvingBundle(Bundle aBundle) {
 		this.getIntent().putExtra(KEY_OVING, aBundle);
 		Log.i(KEY_LOGCAT, "Finishing setOvingBundle");
-		Log.i(KEY_LOGCAT, "  ");
 	}
 
 	/**
@@ -407,7 +364,6 @@ public class ShowContent extends ShowContentBase {
 	protected void setPriorityIndex(int index) {
 		this.getIntent().putExtra(KEY_PRIORITY_INDEX, index);
 		Log.i(KEY_LOGCAT, "Finishing setPriorityIndex");
-		Log.i(KEY_LOGCAT, "  ");
 	}
 
 	/**

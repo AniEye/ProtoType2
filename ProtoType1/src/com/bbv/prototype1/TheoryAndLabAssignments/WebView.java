@@ -1,8 +1,6 @@
 package com.bbv.prototype1.TheoryAndLabAssignments;
 
 import com.bbv.prototype1.R;
-import com.bbv.prototype1.R.layout;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,7 +34,6 @@ public class WebView extends WebViewBase {
 		loadFile("file:///android_asset/" + _filePath + "_.html");
 
 		Log.i(KEY_LOGCAT, "Finishing Reload");
-		Log.i(KEY_LOGCAT, "  ");
 	}
 
 }

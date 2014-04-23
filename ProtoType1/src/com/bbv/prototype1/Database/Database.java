@@ -4,9 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
@@ -51,7 +48,6 @@ public class Database {
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			// TODO Auto-generated method stub
 			db.execSQL("CREATE TABLE " + DATABASE_TABLE_TEORI + " ("
 					+ KEY_CHAPTER + " TEXT NOT NULL, " + KEY_CHAPTERPART1
 					+ " TEXT, " + KEY_CHAPTERPART2 + " TEXT);");
@@ -105,7 +101,6 @@ public class Database {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			// TODO Auto-generated method stub
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_TEORI);
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_OVINGER);
 			onCreate(db);
@@ -192,35 +187,6 @@ public class Database {
 	 */
 	public void close() {
 		ourHelper.close();
-	}
-
-	/**
-	 * will return all the content from the theory table only used in SQLView
-	 * for developing purposes for checking all the rows in the theory table.
-	 * 
-	 * @return
-	 */
-	public DatabaseContent[] getTheoryData() {
-		String[] columns = new String[] { KEY_CHAPTER, KEY_CHAPTERPART1,
-				KEY_CHAPTERPART2 };
-		Cursor c = ourDatabase.query(DATABASE_TABLE_TEORI, columns, null, null,
-				null, null, null);
-
-		DatabaseContent[] content = new DatabaseContent[c.getCount()];
-		int iChapter = c.getColumnIndex(KEY_CHAPTER);
-		int iChapterPart1 = c.getColumnIndex(KEY_CHAPTERPART1);
-		int iChapterPart2 = c.getColumnIndex(KEY_CHAPTERPART2);
-
-		int currentRow = 0;
-		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-			content[currentRow] = new DatabaseContent();
-			content[currentRow].setChapter(c.getString(iChapter));
-			content[currentRow].setChapterPart1(c.getString(iChapterPart1));
-			content[currentRow].setChapterPart2(c.getString(iChapterPart2));
-			currentRow++;
-
-		}
-		return content;
 	}
 
 	/**

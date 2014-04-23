@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.bbv.prototype1.R;
-import com.bbv.prototype1.R.id;
-import com.bbv.prototype1.R.layout;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -31,7 +28,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 	private NavigationDrawerItemContent _tempItemContent = null;
 	private ArrayList<TableLayout> _TableList = new ArrayList<TableLayout>();
 
-	private static final String KEY_LOGCAT = "NavigationDrawerAdapter";// if
+	//private static final String KEY_LOGCAT = "NavigationDrawerAdapter";// if
 																		// needed
 
 	/**
@@ -188,7 +185,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 
 	// ***************listeners**************************
 	/**
-	 * This on click listener is used by all the reference items
+	 * This onClick listener is used by all the reference items
 	 */
 	@Override
 	public void onClick(View v) {

@@ -2,9 +2,7 @@ package com.bbv.prototype1;
 
 import com.bbv.prototype1.R;
 import com.bbv.prototype1.Database.Database;
-import com.bbv.prototype1.Database.DatabaseContent;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,7 +16,7 @@ import android.widget.TextView;
 public class SQLPros_Teori extends Activity implements OnClickListener,
 		OnItemSelectedListener {
 
-	Button _view, _dbrecreate;
+	Button _dbrecreate;
 	Spinner _sChapter, _sChapterPart1, _sChapterPart2;
 	ArrayAdapter<CharSequence> _AAChapter, _AAChapterPart1, _AAChapterPart2;
 
@@ -28,7 +26,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 	String _ContentIndexChapter = null, _ContentIndexChapterPart1 = null,
 			_ContentIndexChapterPart2 = null;
 
-	DatabaseContent[] DBContent;
 	int _FileNameSpinnerCurrentIndex = 0;
 
 	/**
@@ -47,15 +44,12 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 	 * some of them a listener
 	 */
 	private void Initialize() {
-		// TODO Auto-generated method stub
-		_view = (Button) findViewById(R.id.bSQLPoTViewDatabase);
 		_dbrecreate = (Button) findViewById(R.id.bSQLPoTRecreate);
 
 		_sChapter = (Spinner) findViewById(R.id.sSQLChapter);
 		_sChapterPart1 = (Spinner) findViewById(R.id.sSQLChapterPart1);
 		_sChapterPart2 = (Spinner) findViewById(R.id.sSQLChapterPart2);
 
-		_view.setOnClickListener(this);
 		_dbrecreate.setOnClickListener(this);
 
 		_sChapter.setOnItemSelectedListener(this);
@@ -116,11 +110,6 @@ public class SQLPros_Teori extends Activity implements OnClickListener,
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-
-		case R.id.bSQLPoTViewDatabase:
-			Intent i = new Intent("com.bbv.prototype1.SQLVIEW");
-			startActivity(i);
-			break;
 		case R.id.bSQLPoTRecreate:
 			Database DBrec = new Database(SQLPros_Teori.this);
 			DBrec.open();
