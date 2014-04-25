@@ -15,3 +15,11 @@
 <Øvinger>
 Ovinger/4. Modifikasjon av boreslam
 </Øvinger>
+
+<Kalkulatorer>
+Flytegrense
+KonverterM3/Konverter til m3
+Plast_Viskos/Plastisk viskositet
+Spess_tetthet/Spesifikk tetthet
+Til_Viskos/Tilsynelatende viskositet
+</Kalkulatorer>

@@ -27,6 +27,8 @@ Ovinger/1. Leire og vektmaterialer
 </Øvinger>
 
 <Kalkulatorer>
-Alkalitet
-CaOHInnhold/CaOH Innhold
+Flytegrense
+Plast_Viskos/Plastisk viskositet
+Spess_tetthet/Spesifikk tetthet
+Til_Viskos/Tilsynelatende viskositet
 </Kalkulatorer>

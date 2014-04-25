@@ -22,4 +22,13 @@ pros_og_teori_text/2. Reologi og filtertap/2.2 Kontroll av filtertap og vannbase
 </Teori>
 
 <Kalkulatorer>
+Alkalitet
+CaOHInnhold/CaOH innhold-er dette riktig
+Flytegrense
+KloridInnhold/Klorid innhold
+Plast_Viskos/Plastisk viskositet
+Spess_tetthet/Spesifikk tetthet
+Table_3_1_calc/Tabell 3.1
+Til_Viskos/Tilsynelatende viskositet
+TotalHardhet/Total hardhet
 </Kalkulatorer>
