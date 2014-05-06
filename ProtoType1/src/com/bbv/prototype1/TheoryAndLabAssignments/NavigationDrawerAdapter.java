@@ -149,8 +149,16 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 							}
 
 						} else {
-							_Activity.showToast("No references");
+							if(thePosition==ShowContentBase._DrawerMenuListIndex.Calculator.ordinal()){
+								_Activity.showToast("Ingen kalkulator(er) her");
+							}else if(thePosition==ShowContentBase._DrawerMenuListIndex.Exercise.ordinal()){
+								_Activity.showToast("Ingen øving(er) her");
+							}
+							else if(thePosition==ShowContentBase._DrawerMenuListIndex.Theory.ordinal()){
+								_Activity.showToast("Ingen teori del(er) her");
+							}
 						}
+						
 						for (int i = 0; i < _ContentArray.size(); i++) {
 							if (i != thePosition) {
 								_TableList.get(i).setVisibility(

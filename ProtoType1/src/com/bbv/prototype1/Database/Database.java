@@ -248,10 +248,9 @@ public class Database {
 			if (groupedBy.contentEquals(KEY_CHAPTERPART1))// if what we're
 															// looking for was
 															// chapterpart1
-				content[0] = "Choose partition";// the first index
+				content[0] = "Velg kapittel";// the first index
 			else if (groupedBy.contentEquals(KEY_CHAPTERPART2))
-				content[0] = "Choose partition";
-
+				content[0] = "Velg delkapittel";
 		}
 		int iChapter = c.getColumnIndex(groupedBy);// get the index of the
 													// column of the column you
