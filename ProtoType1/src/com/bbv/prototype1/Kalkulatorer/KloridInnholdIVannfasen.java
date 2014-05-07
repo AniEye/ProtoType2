@@ -69,6 +69,15 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 			break;
 		case CCl_index:
 
+			if (checkForNegativeValues(V_AgNO3, Fv) == false || checkForNullValues(V_AgNO3, Fv) == false)
+				return "";
+			
+			if (Fv > 1 || Fv < 0)
+			{
+				showToast("Fw kan bare være mellom 0 og 1!");
+				return "";
+			}
+			
 			CCl = ((AgNO3 * V_AgNO3 * MCl * 1000) / Fv);
 
 			Log.println(Log.DEBUG, "calc", "Value of CCl: " + CCl);
@@ -77,7 +86,7 @@ public class KloridInnholdIVannfasen extends Basic_Calc {
 			if (table.getPf() != -1)
 				Pf = table.getPf();
 			else {
-				showToast("Somehow there was an error with tables in KlorInnhold");
+				showToast("Volum AgNO3 gir en klorid innhold som ligger utfor tabell 3.1, vennligst bruk en lavere verdi");
 				return "";
 			}
 
