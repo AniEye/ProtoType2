@@ -27,7 +27,11 @@ public abstract class Basic_Calc extends LinearLayout {
 	TextView[] textviews;
 	Context cont;
 	LinearLayout _linLay;
+	final String FIVE_DECIMALS = "%.5f";
+	final String FOUR_DECIMALS = "%.4f";
 	final String THREE_DECIMALS = "%.3f";
+	final String TWO_DECIMALS = "%.2f";
+	final String ONE_DECIMAL = "%.1f";
 	final String NO_DECIMALS = "%.0f";
 	final String LogCat_TryCatch = "TryCatch";
 	final String LogCat_RegularMessage = "calc";

@@ -27,9 +27,9 @@ public class Plast_Viskos extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		float PV = fieldStatuses[0];
-		float T6 = fieldStatuses[1];
-		float T3 = fieldStatuses[2];
+		float PV = fieldStatuses[PV_INDEX];
+		float T6 = fieldStatuses[T6_INDEX];
+		float T3 = fieldStatuses[T3_INDEX];
 
 		float theAnswer = 0;
 		switch (variableToCalculate) {
@@ -50,7 +50,7 @@ public class Plast_Viskos extends Basic_Calc {
 			break;
 		}
 		if(checkForDivisionErrors(theAnswer) == true)
-			return String.format("%.3f", theAnswer);
+			return String.format(ONE_DECIMAL, theAnswer);
 		else
 			return "";
 	}

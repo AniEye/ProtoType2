@@ -54,7 +54,7 @@ public class Flytegrense extends Basic_Calc {
 			return "";
 
 		if (checkForNullValues(theAnswer) == true)
-			return String.format("%.3f", theAnswer);
+			return String.format(ONE_DECIMAL, theAnswer);
 		else
 			return "";
 	}

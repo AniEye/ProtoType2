@@ -198,26 +198,27 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			calc = new AlkaPm(lLayout.getContext());
 			break;
 		case 12:
-			calc = new Alkalitet(lLayout.getContext());
-			break;
-		case 13:
-			calc = new OljeVann(lLayout.getContext());
-			break;
-		case 14:
-			calc = new CaOHInnhold(lLayout.getContext());
-			break;
-		case 15:
-			calc = new KloridInnholdIVannfasen(lLayout.getContext());
-			break;
-		case 16:
-			calc = new Table_9_4_calc(lLayout.getContext());
-			break;
-		case 17:
-			calc = new KonverterM3(lLayout.getContext());
-			break;
-		case 18:
 			calc = new Table_3_1_calc(lLayout.getContext());
 			break;
+		case 13:
+			calc = new Alkalitet(lLayout.getContext());
+			break;
+		case 14:
+			calc = new OljeVann(lLayout.getContext());
+			break;
+		case 15:
+			calc = new CaOHInnhold(lLayout.getContext());
+			break;
+		case 16:
+			calc = new KloridInnholdIVannfasen(lLayout.getContext());
+			break;
+		case 17:
+			calc = new Table_9_4_calc(lLayout.getContext());
+			break;
+		case 18:
+			calc = new KonverterM3(lLayout.getContext());
+			break;
+		
 		}
 
 		try {
