@@ -181,13 +181,13 @@ public class Table_9_4_calc extends Basic_Calc {
 					Log.i(LogCat_RegularMessage, "Inserting calculated values at row: " + k);
 					switch (i) {
 					case 1:
-						tableItem.setText(String.format("%.0f", Cl));
+						tableItem.setText(String.format(NO_DECIMALS, Cl));
 						break;
 					case 2:
-						tableItem.setText(String.format("%.3f", Corf));
+						tableItem.setText(String.format(FIVE_DECIMALS, Corf));
 						break;
 					case 3:
-						tableItem.setText(String.format("%.2f", CaCl2));
+						tableItem.setText(String.format(TWO_DECIMALS, CaCl2));
 						break;
 					default:
 						Log.e(LogCat_RegularMessage,
