@@ -81,7 +81,9 @@ public class PowerLaw600300 extends Basic_Calc {
 	}
 
 	public float calcN(float T600, float T300) {
-		return (float) (Math.log10(T600 / T300) / Math.log10(600*1.7033/ 300*1.7033));
+
+		
+		return (float) ((Math.log10(T600 / T300)) / (Math.log10((600*1.7033)/ (300*1.7033))));
 	}
 
 	public float calcK(float T600, float n) {

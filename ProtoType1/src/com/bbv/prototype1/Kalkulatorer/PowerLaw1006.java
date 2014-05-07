@@ -30,8 +30,8 @@ public class PowerLaw1006 extends Basic_Calc {
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
 
-		float T100 = fieldStatuses[0];
-		float T6 = fieldStatuses[1];
+		float T100 = fieldStatuses[T100_INDEX];
+		float T6 = fieldStatuses[T6_INDEX];
 		float N;
 		float K;
 
@@ -79,7 +79,7 @@ public class PowerLaw1006 extends Basic_Calc {
 	}
 
 	public float calcN(float T100, float T6) {
-		return (float) (Math.log10(T100 / T6) / Math.log10(100*1.7033/ 6*1.7033));
+		return (float) (Math.log10(T100 / T6) / Math.log10((100*1.7033)/ (6*1.7033)));
 	}
 
 	public float calcK(float T6, float n) {
