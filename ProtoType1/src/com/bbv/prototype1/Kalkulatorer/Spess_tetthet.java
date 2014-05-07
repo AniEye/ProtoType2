@@ -20,8 +20,7 @@ public class Spess_tetthet extends Basic_Calc {
 			R.id.tvSpessTettVs, R.id.tvSpessTettVsf };
 
 	final static int[] IDs = { R.id.etSpessTettPp, R.id.etSpessTettCL,
-			R.id.etSpessTettPm, R.id.etSpessTettPo, R.id.etSpessTettVv,
-			R.id.etSpessTettVo, R.id.etSpessTettFw, R.id.etSpessTettVfs };
+			R.id.etSpessTettPm, R.id.etSpessTettVv, R.id.etSpessTettVfs };
 
 	/**
 	 * Pp_INDEX is the only variable to be calculated in this calculator
@@ -38,13 +37,10 @@ public class Spess_tetthet extends Basic_Calc {
 
 		float Cl = fieldStatuses[1];
 		float Pm = fieldStatuses[2];
-		float Po = fieldStatuses[3];
-		float Vv = fieldStatuses[4];
-		float Vo = fieldStatuses[5];
-		float Fw = fieldStatuses[6];
-		float Vfs = fieldStatuses[7];
+		float Vv = fieldStatuses[3];
+		float Vfs = fieldStatuses[4];
 
-		float Pf = 0, Vs = 0, Vsf = 0;
+		float Pf = 0, Vs = 0, Vsf = 0, Fw = 0;
 
 		float theAnswer = 0;
 
@@ -52,6 +48,12 @@ public class Spess_tetthet extends Basic_Calc {
 
 			float[] PfAndVsf = calcPfOrVsf(Cl);
 
+			if (checkForNegativeValues(Cl, Pm, Vv, Vfs) == false
+					|| checkForNullValues(Cl, Pm, Vv, Vfs) == false)
+				return "";
+
+			Fw = Vv/100;
+			
 			Pf = PfAndVsf[1];
 			Log.println(Log.DEBUG, "calc", "Spesstetthet calculated Pf to be "
 					+ Pf);
@@ -65,11 +67,12 @@ public class Spess_tetthet extends Basic_Calc {
 					+ Vs);
 
 			textviews[1].setText(String.format(THREE_DECIMALS, Pf));
-			textviews[3].setText(String.format(THREE_DECIMALS, Vsf) + " [volum%]");
-			textviews[2].setText(String.format(THREE_DECIMALS, Vs) + " [volum%]");
+			textviews[3].setText(String.format(THREE_DECIMALS, Vsf)
+					+ " [volum%]");
+			textviews[2].setText(String.format(THREE_DECIMALS, Vs)
+					+ " [volum%]");
 
-			theAnswer = ((100f * Pm) - (Pf * (Vv + Vsf) + Po * Vo))
-					/ (Vfs - Vs);
+			theAnswer = ((100f * Pm) - (Pf * (Vv + Vsf))) / (Vfs - Vs);
 
 			if (checkForDivisionErrors(theAnswer) == false)
 				return "";
