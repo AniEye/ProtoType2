@@ -17,7 +17,7 @@ public class Til_Viskos extends Basic_Calc {
 
 	static int[] IDs = { R.id.etViskosTil, R.id.etTheta, R.id.etRPM };
 
-	public final static int THETA_INDEX = 0, RPM_INDEX = 1, TIL_VISK_INDEX = 2;
+	public final static int  TIL_VISK_INDEX = 0, THETA_INDEX = 1, RPM_INDEX = 2 ;
 
 	public Til_Viskos(Context context) {
 		super(context, IDs, layout);
@@ -25,9 +25,9 @@ public class Til_Viskos extends Basic_Calc {
 
 	@Override
 	public String calculation(int variableToCalculate, float... fieldStatuses) {
-		float theta = fieldStatuses[0];
-		float rpm = fieldStatuses[1];
-		float TV = fieldStatuses[2];
+		float theta = fieldStatuses[THETA_INDEX];
+		float rpm = fieldStatuses[RPM_INDEX];
+		float TV = fieldStatuses[TIL_VISK_INDEX];
 
 		float theAnswer = 0;
 		switch (variableToCalculate) {

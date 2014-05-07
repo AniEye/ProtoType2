@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spannable;
 import android.util.Log;
@@ -20,8 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
-
 import com.bbv.prototype1.Kalkulatorer.AlkaPm;
 import com.bbv.prototype1.Kalkulatorer.Alkalitet;
 import com.bbv.prototype1.Kalkulatorer.Basic_Calc;
@@ -42,8 +39,6 @@ import com.bbv.prototype1.Kalkulatorer.Table_3_1_calc;
 import com.bbv.prototype1.Kalkulatorer.Table_9_4_calc;
 import com.bbv.prototype1.Kalkulatorer.Til_Viskos;
 import com.bbv.prototype1.Kalkulatorer.TotalHardhet;
-import com.bbv.prototype1.Tables.Table_3_1;
-import com.bbv.prototype1.Tables.Table_3_3;
 
 public class Kalkulator extends Activity implements OnItemSelectedListener,
 		OnItemClickListener {
