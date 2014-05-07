@@ -10,20 +10,7 @@
         android:paddingBottom="20sp"
         android:src="@drawable/til_viskos_icon" />
 
-    <TextView
-        android:id="@+id/tvViskosTil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tilsynelatende viskositet(TV)" />
-
-    <EditText
-        android:id="@+id/etViskosTil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="[cP]"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
+ 
 
     <TextView
         android:id="@+id/textView2"
@@ -56,6 +43,21 @@
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" >
     </EditText>
+    
+       <TextView
+        android:id="@+id/tvViskosTil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tilsynelatende viskositet(TV)" />
+
+    <EditText
+        android:id="@+id/etViskosTil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[cP]"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -10,20 +10,7 @@
         android:paddingBottom="20sp"
         android:src="@drawable/flytegrense_icon" />
 
-    <TextView
-        android:id="@+id/tvViskosTil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Flytegrense (FG)" />
 
-    <EditText
-        android:id="@+id/etFG"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="[Pa]"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
 
     <TextView
         android:id="@+id/textView2"
@@ -54,6 +41,21 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/theta600"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+   
+       <TextView
+        android:id="@+id/tvViskosTil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flytegrense (FG)" />
+
+    <EditText
+        android:id="@+id/etFG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[Pa]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 

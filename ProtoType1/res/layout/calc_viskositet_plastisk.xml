@@ -11,26 +11,11 @@
         android:src="@drawable/plastisk_viskos_icon" />
 
     <TextView
-        android:id="@+id/tvViskosTil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Plastisk viskositet(PV)" />
-
-    <EditText
-        android:id="@+id/etViskosPlas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="[cP]"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/theta600" 
-        android:lineSpacingExtra="4dp"/>
+        android:lineSpacingExtra="4dp"
+        android:text="@string/theta600" />
 
     <EditText
         android:id="@+id/etPlasViskTheta600"
@@ -45,15 +30,30 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/theta300" 
-        android:lineSpacingExtra="4dp"/>
+        android:lineSpacingExtra="4dp"
+        android:text="@string/theta300" />
 
-   <EditText
+    <EditText
         android:id="@+id/etPlasviskTheta300"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/theta300"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/ButtonTextColor" />
+
+    <TextView
+        android:id="@+id/tvViskosTil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plastisk viskositet(PV)" />
+
+    <EditText
+        android:id="@+id/etViskosPlas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="[cP]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -73,7 +73,7 @@
             android:id="@+id/bClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/CalcButtonClear"  />
+            android:text="@string/CalcButtonClear" />
     </LinearLayout>
 
 </LinearLayout>
