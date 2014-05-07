@@ -66,6 +66,9 @@ public class KloridInnhold extends Basic_Calc {
 			break;
 		case CCl_index:
 
+			if (checkForNegativeValues(V_AgNO3, V_filtrat) == false || checkForNullValues(V_AgNO3, V_filtrat) == false)
+				return "";
+			
 			CCl = ((AgNO3 * V_AgNO3 * MCl * 1000) / V_filtrat);
 
 			Table_3_1 table = new Table_3_1(CCl);
@@ -73,7 +76,7 @@ public class KloridInnhold extends Basic_Calc {
 			if (table.getPf() != -1)
 				Pf = table.getPf();
 			else {
-				showToast("Somehow there was an error with tables in KlorInnhold");
+				showToast("Volum AgNO3 gir en klorid innhold som ligger utfor tabell 3.1, vennligst bruk en lavere verdi");
 				return "";
 			}
 
