@@ -28,12 +28,14 @@ public class TotalHardhet extends Basic_Calc {
 	float M_Ca2 = 40.78f;
 	float M_Mg2 = 24.3050f;
 
-	final static int[] textViewIDs = { R.id.tvTotHardCaCo, // textview of Total hardhet
+	final static int[] textViewIDs = { R.id.tvTotHardCaCo, // textview of Total
+															// hardhet
 			R.id.tvTotHardCa2, // textview of Kalsium hardhet
 			R.id.tvTotHardMg2 // textview of Magnesium hardhet
 	};
 
-	final static int[] editTextIDs = { R.id.etTotHardVEDTACaCO3, // Textfield of V EDTA
+	final static int[] editTextIDs = { R.id.etTotHardVEDTACaCO3, // Textfield of
+																	// V EDTA
 			R.id.etTotHardVCa2, // Textfield of V filtrat
 			R.id.etTotHardVF, // Textfield of Volum filtrat
 			R.id.etTotHardHideThis, // Textfield - Will be disabled
@@ -77,8 +79,8 @@ public class TotalHardhet extends Basic_Calc {
 				return "";
 
 			V_EDTA = V_EDTA_CaCO3 - V_EDTA_Ca2;
-			totHardCaCo3 = (EDTA * V_EDTA * M_CaCO3 * 1000) / V_filtrat;
-			totHardCa2 = (EDTA * V_EDTA * M_Ca2 * 1000) / V_filtrat;
+			totHardCaCo3 = (EDTA * V_EDTA_CaCO3 * M_CaCO3 * 1000) / V_filtrat;
+			totHardCa2 = (EDTA * V_EDTA_Ca2 * M_Ca2 * 1000) / V_filtrat;
 
 			if (V_EDTA < 0)
 				totHardMg2 = 0;
@@ -102,7 +104,6 @@ public class TotalHardhet extends Basic_Calc {
 		return "";
 
 	}
-
 
 	/**
 	 * 
