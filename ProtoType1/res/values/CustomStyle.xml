@@ -8,10 +8,21 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/selector_main_buttons</item>
         <item name="android:textAppearance">@style/CustomText</item>
+        <item name="android:textColor">@color/ButtonTextColor</item>
+    </style>
+
+    <style name="ShowButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">50sp</item>
+        <item name="android:paddingRight">50sp</item>
+        <item name="android:text">@string/show_content</item>
+        <item name="android:background">@drawable/selector_main_buttons</item>
+        <item name="android:textAppearance">@style/CustomText</item>
+        <item name="android:textColor">@color/ButtonTextColor</item>
     </style>
 
     <style name="CustomTableItem">
-        
         <item name="android:background">@drawable/table_item_with_border</item>
         <item name="android:padding">2dp</item>
         <item name="android:layout_width">0dp</item>
@@ -31,12 +42,12 @@
         <item name="android:textAppearance">@style/CustomText</item>
     </style>
 
-    <style name="CustomText" parent="@android:style/TextAppearance">
+    <style name="CustomText">
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/ButtonTextColor</item>
     </style>
 
-    <style name="ViewWithSpinners" parent="@style/AppTheme">
+    <style name="ViewWithSpinners">
         <item name="android:background">@color/BackgroundColor</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -48,16 +59,16 @@
         <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
     </style>
 
-    <color name="BackgroundColor">#0F0F0F</color>
-    <color name="ButtonAndSpinnerBackgroundColor">#808080</color>
-    <color name="ButtonAndSpinnerBackgroundColor_Pressed">#B7B7B7</color>
-    <color name="ButtonTextColor">#F8F8FF</color>
-    <color name="TableBackgroundColor">#FFFFFF</color>
-    <color name="TableBorderColor">#000000</color>
+    <color name="BackgroundColor">#0F0F0F</color> <!-- #0F0F0F is light black -->
+    <color name="ButtonAndSpinnerBackgroundColor">#808080</color>  <!-- #808080 is gray -->
+    <color name="ButtonAndSpinnerBackgroundColor_Pressed">#B7B7B7</color> <!-- #B7B7B7 is lighter shade of gray -->
+    <color name="ButtonTextColor">#F8F8FF</color> <!-- #F8F8FF is slightly dark white -->
+    <color name="TableBackgroundColor">#FFFFFF</color> <!-- #FFFFFF is white -->
+    <color name="TableBorderColor">#000000</color> <!-- #000000 is pure black -->
 
     <!--
     For colors that go well: http://www.w3schools.com/tags/ref_color_tryit.asp?color=Grey
-    Change ....ast?color=*** with a background color to test
+    Change ....ast?color=*** with a background color to test
     -->
 
 </resources>

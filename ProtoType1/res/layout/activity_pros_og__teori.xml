@@ -26,10 +26,6 @@
 
     <Button
         android:id="@+id/bVidere_ProsTeori"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="50sp"
-        android:paddingRight="50sp"
-        android:text="Vis" />
+        style="@style/ShowButton"/>
 
 </LinearLayout>

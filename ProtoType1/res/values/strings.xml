@@ -13,6 +13,7 @@
     <string name="title_tests">Øvinger</string>
     <string name="drawer_open">hi opening</string>
     <string name="drawer_close">Godbye clsing</string>
+    <string name="show_content">Vis</string>
 
     <string-array name="table9_4_items">
         <item>1 celle</item>
