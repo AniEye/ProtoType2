@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import com.bbv.prototype1.R;
+
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.res.AssetManager;
@@ -13,6 +16,8 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -139,7 +144,7 @@ public abstract class ShowContentBase extends Activity implements
 	 * @param incommingBundle
 	 * @return string
 	 */
-	protected String getFilePathFromTeoriBundle(Bundle incommingBundle) {
+	protected String getFilePathFromTheoryBundle(Bundle incommingBundle) {
 		String filepath = "Pros_og_Teori/";
 		Log.i(KEY_LOGCAT, "Running getFilePathFromTeoriBundle");
 
@@ -174,7 +179,7 @@ public abstract class ShowContentBase extends Activity implements
 	 * @param aBundle
 	 * @return
 	 */
-	protected String getFilePathFromOvingBundle(Bundle aBundle) {
+	protected String getFilePathFromLabBundle(Bundle aBundle) {
 		return "Ovinger/" + aBundle.getString(ShowContentBase.KEY_OVING) + "/";
 	}
 
@@ -327,5 +332,137 @@ public abstract class ShowContentBase extends Activity implements
 			_bPrevious.setVisibility(android.view.View.INVISIBLE);
 		}
 	}
+    //***********
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 
+	/* Called whenever we call invalidateOptionsMenu() */
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	// setter and getter for the theory and oving bundles
+	/**
+	 * Saves the TheoryBundle in the instance
+	 * 
+	 * @param a
+	 *            TheoryBundle
+	 */
+	protected void setTheoryBundle(Bundle aBundle) {
+		this.getIntent().putExtra(KEY_PROS_TEORI, aBundle);
+		Log.i(KEY_LOGCAT, "Finishing setTheoryBundle");
+	}
+
+	/**
+	 * Saves the OvingBundle in the instance
+	 * 
+	 * @param a
+	 *            OvingBundle
+	 */
+	protected void setLabBundle(Bundle aBundle) {
+		this.getIntent().putExtra(KEY_OVING, aBundle);
+		Log.i(KEY_LOGCAT, "Finishing setOvingBundle");
+	}
+
+	/**
+	 * Saves the CalculatorBundle in the instance
+	 * 
+	 * @param a
+	 *            CalculatorBundle
+	 */
+	protected void setCalculatorBundle(Bundle abundle) {
+		this.getIntent().putExtra(KEY_CHOSENCALC, abundle);
+	}
+
+	/**
+	 * Gets the TheoryBundle from the instance
+	 * 
+	 * @return a TheoryBundle
+	 */
+	protected Bundle getTheoryBundle() {
+		return this.getIntent().getBundleExtra(KEY_PROS_TEORI);
+	}
+
+	/**
+	 * Gets the OvingBundle from the instance
+	 * 
+	 * @return a OvingBundle
+	 */
+	protected Bundle getLabBundle() {
+		return this.getIntent().getBundleExtra(KEY_OVING);
+	}
+
+	/**
+	 * Gets the CalculatorBundle from the instance
+	 * 
+	 * @return a CalculatorBundle
+	 */
+	protected Bundle getCalculatorBundle() {
+		return this.getIntent().getBundleExtra(KEY_CHOSENCALC);
+	}
+
+	// setter and getter for priorityindex
+	/**
+	 * Stores the priorityIndex in the instance
+	 * 
+	 * @param index
+	 */
+	protected void setPriorityIndex(int index) {
+		this.getIntent().putExtra(KEY_PRIORITY_INDEX, index);
+		Log.i(KEY_LOGCAT, "Finishing setPriorityIndex");
+	}
+
+	/**
+	 * Gets the PriorityIndex from the instance
+	 * 
+	 * @return PriorityIndex
+	 */
+	protected int getPriorityIndex() {
+		return this.getIntent().getIntExtra(KEY_PRIORITY_INDEX, -1);
+	}
+
+	// setter and getter for currentindex
+	/**
+	 * Gets the CurrentIndex from the instance
+	 * 
+	 * @return CurrentIndex
+	 */
+	protected int getCurrentIndex() {
+		return this.getIntent().getIntExtra(KEY_CURRENT_INDEX, -1);
+	}
+
+	/**
+	 * Stores the CurrentIndex in the instance
+	 * 
+	 * @param index
+	 */
+	protected void setCurrentIndex(int index) {
+		this.getIntent().putExtra(KEY_CURRENT_INDEX, index);
+		Log.i(KEY_LOGCAT, "Finishing setCurrentIndex");
+		Log.i(KEY_LOGCAT, "  ");
+	}
+
+	/**
+	 * Stores the number of items in the NavigationDrawer that has been loaded
+	 * 
+	 * @param number
+	 */
+	protected void setItemInDrawerLoaded(int number) {
+		this.getIntent().putExtra(KEY_DRAWERLOADEDNUMBER, number);
+	}
+
+	/**
+	 * Retrieves the number of items in the NavigationDrawer that has been
+	 * loaded
+	 * 
+	 * @return AmountLoaded
+	 */
+	protected int getItemInDrawerLoaded() {
+		return this.getIntent().getIntExtra(KEY_DRAWERLOADEDNUMBER, 0);
+	}
 }

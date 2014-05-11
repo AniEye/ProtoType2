@@ -66,7 +66,7 @@ public abstract class WebViewBase extends Fragment {
 	 * @param incommingBundle
 	 * @return string
 	 */
-	protected String getFilePathFromTeoriBundle(Bundle incommingBundle) {
+	protected String getFilePathFromTheoryBundle(Bundle incommingBundle) {
 		String filepath = "Pros_og_Teori/";
 		Log.i(KEY_LOGCAT, "Running getFilePathFromTeoriBundle");
 
@@ -104,7 +104,7 @@ public abstract class WebViewBase extends Fragment {
 	 * @param aBundle
 	 * @return
 	 */
-	protected String getFilePathFromOvingBundle(Bundle aBundle) {
+	protected String getFilePathFromLabBundle(Bundle aBundle) {
 		if (aBundle.getString(ShowContentBase.KEY_OVING) != null) {
 			return "Ovinger/" + aBundle.getString(ShowContentBase.KEY_OVING)
 					+ "/";

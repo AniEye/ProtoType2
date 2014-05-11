@@ -26,10 +26,10 @@ public class WebView extends WebViewBase {
 	@Override
 	public void Reload(Bundle aBundle) {
 		//only difference between this one and theory, check this out later
-		if(getFilePathFromOvingBundle(aBundle)!=null){
-			_filePath = getFilePathFromOvingBundle(aBundle);
-		}else if (getFilePathFromTeoriBundle(aBundle)!=null){
-			_filePath = getFilePathFromTeoriBundle(aBundle);
+		if(getFilePathFromLabBundle(aBundle)!=null){
+			_filePath = getFilePathFromLabBundle(aBundle);
+		}else if (getFilePathFromTheoryBundle(aBundle)!=null){
+			_filePath = getFilePathFromTheoryBundle(aBundle);
 		}		
 		loadFile("file:///android_asset/" + _filePath + "_.html");
 

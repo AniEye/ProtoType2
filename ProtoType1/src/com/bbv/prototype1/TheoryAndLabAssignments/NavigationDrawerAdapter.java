@@ -225,7 +225,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 				_Activity._nWVB.Reload(_Activity.getTheoryBundle());
 
 				_Activity._filePath = _Activity
-						.getFilePathFromTeoriBundle(_Activity.getTheoryBundle());
+						.getFilePathFromTheoryBundle(_Activity.getTheoryBundle());
 				_Activity.decodeDataDocument();
 
 				_Activity._fragManag.beginTransaction()
@@ -245,16 +245,16 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 			Bundle newBundle = new Bundle();
 			newBundle.putString(ShowContentBase.KEY_OVING, splitted[1].trim());
 
-			_Activity.setOvingBundle(newBundle);
+			_Activity.setLabBundle(newBundle);
 			_Activity
 					.setCurrentIndex(ShowContentBase._DrawerMenuListIndex.Exercise
 							.ordinal());
 
 			try {
-				_Activity._nWVB.Reload(_Activity.getOvingBundle());
+				_Activity._nWVB.Reload(_Activity.getLabBundle());
 
 				_Activity._filePath = _Activity
-						.getFilePathFromOvingBundle(_Activity.getOvingBundle());
+						.getFilePathFromLabBundle(_Activity.getLabBundle());
 				_Activity.decodeDataDocument();
 
 				_Activity._fragManag.beginTransaction()
