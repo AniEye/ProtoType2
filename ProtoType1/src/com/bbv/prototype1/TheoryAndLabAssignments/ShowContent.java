@@ -243,7 +243,6 @@ public class ShowContent extends ShowContentBase {
 					"Didn't open or find _.txt, wrong database reference");
 		}
 		Log.i(KEY_LOGCAT, "Finishing decodeDataDocument");
-		Log.i(KEY_LOGCAT, "  ");
 	}
 
 	/**
