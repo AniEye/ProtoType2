@@ -11,6 +11,20 @@
         <item name="android:textColor">@color/ButtonTextColor</item>
     </style>
 
+    <style name="UpdateButton">
+        <item name="android:id">@+id/bUpdate</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/CalcButtonUpdate</item>
+    </style>
+
+    <style name="ClearButton">
+        <item name="android:id">@+id/bClear</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/CalcButtonClear</item>
+    </style>
+
     <style name="ShowButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -59,16 +73,23 @@
         <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
     </style>
 
-    <color name="BackgroundColor">#0F0F0F</color> <!-- #0F0F0F is light black -->
-    <color name="ButtonAndSpinnerBackgroundColor">#808080</color>  <!-- #808080 is gray -->
-    <color name="ButtonAndSpinnerBackgroundColor_Pressed">#B7B7B7</color> <!-- #B7B7B7 is lighter shade of gray -->
-    <color name="ButtonTextColor">#F8F8FF</color> <!-- #F8F8FF is slightly dark white -->
-    <color name="TableBackgroundColor">#FFFFFF</color> <!-- #FFFFFF is white -->
-    <color name="TableBorderColor">#000000</color> <!-- #000000 is pure black -->
+    <color name="BackgroundColor">#0F0F0F</color>
+    <!-- #0F0F0F is light black -->
+    <color name="ButtonAndSpinnerBackgroundColor">#808080</color>
+    <!-- #808080 is gray -->
+    <color name="ButtonAndSpinnerBackgroundColor_Pressed">#B7B7B7</color>
+    <!-- #B7B7B7 is lighter shade of gray -->
+    <color name="ButtonTextColor">#F8F8FF</color>
+    <!-- #F8F8FF is slightly dark white -->
+    <color name="TableBackgroundColor">#FFFFFF</color>
+    <!-- #FFFFFF is white -->
+    <color name="TableBorderColor">#000000</color>
+    <!-- #000000 is pure black -->
+
 
     <!--
     For colors that go well: http://www.w3schools.com/tags/ref_color_tryit.asp?color=Grey
-    Change ....ast?color=*** with a background color to test
+    Change ....ast?color=*** with a background color to test
     -->
 
 </resources>

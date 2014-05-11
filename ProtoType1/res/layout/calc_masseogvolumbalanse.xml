@@ -100,17 +100,10 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/bUpdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/CalcButtonUpdate" />
+        <Button style="@style/UpdateButton" />
 
-        <Button
-            android:id="@+id/bClear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/CalcButtonClear" />
+        <Button style="@style/ClearButton" />
+        
     </LinearLayout>
 
 </LinearLayout>
