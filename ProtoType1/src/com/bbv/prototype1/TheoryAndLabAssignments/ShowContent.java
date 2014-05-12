@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -33,64 +31,30 @@ public class ShowContent extends ShowContentBase {
 	 */
 	private void StartFirstDocument(Bundle savedInstanceState) {
 		_nWVB = new WebView();
-		if (savedInstanceState == null) {
-			Log.i(KEY_LOGCAT,
-					"Start doing what is needed when savedInstace = null");
 
-			if (getTheoryBundle() != null) {// if coming from Pros_og_Teori.java
-				setPriorityIndex(_DrawerMenuListIndex.Theory.ordinal());
-				setCurrentIndex(_DrawerMenuListIndex.Theory.ordinal());
-				_filePath = getFilePathFromTheoryBundle(getTheoryBundle());
+		if (getTheoryBundle() != null) {// if coming from Pros_og_Teori.java
+			setPriorityIndex(_DrawerMenuListIndex.Theory.ordinal());
+			setCurrentIndex(_DrawerMenuListIndex.Theory.ordinal());
+			_filePath = getFilePathFromTheoryBundle(getTheoryBundle());
 
-				_nWVB.setArguments(getTheoryBundle());
-				decodeDataDocument();
-				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
-						.commit();
+			_nWVB.setArguments(getTheoryBundle());
+			decodeDataDocument();
+			_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
+					.commit();
 
-			} else if (getLabBundle() != null) {// if coming from Ovinger.java
-				setPriorityIndex(_DrawerMenuListIndex.Exercise.ordinal());
-				setCurrentIndex(_DrawerMenuListIndex.Exercise.ordinal());
-				_filePath = getFilePathFromLabBundle(getLabBundle());
-				_nWVB.setArguments(getLabBundle());
-				decodeDataDocument();
+		} else if (getLabBundle() != null) {// if coming from Ovinger.java
+			setPriorityIndex(_DrawerMenuListIndex.Exercise.ordinal());
+			setCurrentIndex(_DrawerMenuListIndex.Exercise.ordinal());
+			_filePath = getFilePathFromLabBundle(getLabBundle());
+			_nWVB.setArguments(getLabBundle());
+			decodeDataDocument();
 
-				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
-						.commit();
-			}
-		} else {
-//			Log.i(KEY_LOGCAT,
-//					"Start doing what is needed when savedInstace != null");
-//			if (getCurrentIndex() == _DrawerMenuListIndex.Theory.ordinal()) {
-//				_filePath = getFilePathFromTeoriBundle(getTheoryBundle());
-//
-//				_nWVB.setArguments(getTheoryBundle());
-//				decodeDataDocument();
-//
-//				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
-//						.commit();
-//			} else if (getCurrentIndex() == _DrawerMenuListIndex.Exercise
-//					.ordinal()) {
-//				_filePath = getFilePathFromOvingBundle(getOvingBundle());
-//
-//				_nWVB.setArguments(getOvingBundle());
-//				decodeDataDocument();
-//
-//				_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
-//						.commit();
-//			} else if (getCurrentIndex() == _DrawerMenuListIndex.Calculator
-//					.ordinal()) {
-//				_nSCalc = new ShowCalculator();
-//				_nSCalc.setArguments(getCalculatorBundle());
-//				setTitle("Kalkulator");
-//			}
-
+			_fragManag.beginTransaction().replace(R.id.flViskos, _nWVB)
+					.commit();
 		}
-
-		Log.i(KEY_LOGCAT, "replacing the fragment with fragment manager");
 
 		_drawerLayout.closeDrawer(_listView);
 	}
-
 
 	/**
 	 * the on click listener for the buttons next and previous this will simply
@@ -214,7 +178,7 @@ public class ShowContent extends ShowContentBase {
 							}
 						}
 					}
-					// if(!str.isEmpty()){
+					
 					if (_bTitle || _bNextOrLast) {
 						_StringBuffer.append(str);
 					} else if (_bList) {
@@ -280,137 +244,4 @@ public class ShowContent extends ShowContentBase {
 		_fragManag = getFragmentManager();
 
 	}
-
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		MenuInflater inflater = getMenuInflater();
-//		inflater.inflate(R.menu.main, menu);
-//		return super.onCreateOptionsMenu(menu);
-//	}
-//
-//	/* Called whenever we call invalidateOptionsMenu() */
-//	@Override
-//	public boolean onPrepareOptionsMenu(Menu menu) {
-//		return super.onPrepareOptionsMenu(menu);
-//	}
-//
-//	// setter and getter for the theory and oving bundles
-//	/**
-//	 * Saves the TheoryBundle in the instance
-//	 * 
-//	 * @param a
-//	 *            TheoryBundle
-//	 */
-//	protected void setTheoryBundle(Bundle aBundle) {
-//		this.getIntent().putExtra(KEY_PROS_TEORI, aBundle);
-//		Log.i(KEY_LOGCAT, "Finishing setTheoryBundle");
-//	}
-//
-//	/**
-//	 * Saves the OvingBundle in the instance
-//	 * 
-//	 * @param a
-//	 *            OvingBundle
-//	 */
-//	protected void setLabBundle(Bundle aBundle) {
-//		this.getIntent().putExtra(KEY_OVING, aBundle);
-//		Log.i(KEY_LOGCAT, "Finishing setOvingBundle");
-//	}
-//
-//	/**
-//	 * Saves the CalculatorBundle in the instance
-//	 * 
-//	 * @param a
-//	 *            CalculatorBundle
-//	 */
-//	protected void setCalculatorBundle(Bundle abundle) {
-//		this.getIntent().putExtra(KEY_CHOSENCALC, abundle);
-//	}
-//
-//	/**
-//	 * Gets the TheoryBundle from the instance
-//	 * 
-//	 * @return a TheoryBundle
-//	 */
-//	protected Bundle getTheoryBundle() {
-//		return this.getIntent().getBundleExtra(KEY_PROS_TEORI);
-//	}
-//
-//	/**
-//	 * Gets the OvingBundle from the instance
-//	 * 
-//	 * @return a OvingBundle
-//	 */
-//	protected Bundle getLabBundle() {
-//		return this.getIntent().getBundleExtra(KEY_OVING);
-//	}
-//
-//	/**
-//	 * Gets the CalculatorBundle from the instance
-//	 * 
-//	 * @return a CalculatorBundle
-//	 */
-//	protected Bundle getCalculatorBundle() {
-//		return this.getIntent().getBundleExtra(KEY_CHOSENCALC);
-//	}
-//
-//	// setter and getter for priorityindex
-//	/**
-//	 * Stores the priorityIndex in the instance
-//	 * 
-//	 * @param index
-//	 */
-//	protected void setPriorityIndex(int index) {
-//		this.getIntent().putExtra(KEY_PRIORITY_INDEX, index);
-//		Log.i(KEY_LOGCAT, "Finishing setPriorityIndex");
-//	}
-//
-//	/**
-//	 * Gets the PriorityIndex from the instance
-//	 * 
-//	 * @return PriorityIndex
-//	 */
-//	protected int getPriorityIndex() {
-//		return this.getIntent().getIntExtra(KEY_PRIORITY_INDEX, -1);
-//	}
-//
-//	// setter and getter for currentindex
-//	/**
-//	 * Gets the CurrentIndex from the instance
-//	 * 
-//	 * @return CurrentIndex
-//	 */
-//	protected int getCurrentIndex() {
-//		return this.getIntent().getIntExtra(KEY_CURRENT_INDEX, -1);
-//	}
-//
-//	/**
-//	 * Stores the CurrentIndex in the instance
-//	 * 
-//	 * @param index
-//	 */
-//	protected void setCurrentIndex(int index) {
-//		this.getIntent().putExtra(KEY_CURRENT_INDEX, index);
-//		Log.i(KEY_LOGCAT, "Finishing setCurrentIndex");
-//		Log.i(KEY_LOGCAT, "  ");
-//	}
-//
-//	/**
-//	 * Stores the number of items in the NavigationDrawer that has been loaded
-//	 * 
-//	 * @param number
-//	 */
-//	protected void setItemInDrawerLoaded(int number) {
-//		this.getIntent().putExtra(KEY_DRAWERLOADEDNUMBER, number);
-//	}
-//
-//	/**
-//	 * Retrieves the number of items in the NavigationDrawer that has been
-//	 * loaded
-//	 * 
-//	 * @return AmountLoaded
-//	 */
-//	protected int getItemInDrawerLoaded() {
-//		return this.getIntent().getIntExtra(KEY_DRAWERLOADEDNUMBER, 0);
-//	}
 }
