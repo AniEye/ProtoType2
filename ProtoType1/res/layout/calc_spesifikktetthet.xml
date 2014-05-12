@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="[Pm]"
+        android:hint="@string/PmNotation"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" />
 
@@ -65,24 +65,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="[Volum%]"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColorHint="@color/ButtonTextColor" >
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/Vfs" 
-        android:lineSpacingExtra="4dp"/>
-
-    <EditText
-        android:id="@+id/etSpessTettVfs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="[volum%]"
         android:inputType="numberSigned|numberDecimal"
         android:textColorHint="@color/ButtonTextColor" >
     </EditText>

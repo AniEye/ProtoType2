@@ -14,6 +14,7 @@
     <string name="P2">\u03C1<sub><small>2</small></sub> = Tetthet til slammet V<sub><small>2</small></sub></string>
     <string name="P1">\u03C1<sub><small>1</small></sub> = Tetthet til slammet V<sub><small>1</small></sub></string>
     <string name="Pv">\u03C1<sub><small>v</small></sub> = Tetthet til V<sub><small>v</small></sub></string>
+    <string name="PmNotation">[\u03C1m]</string>
     <string name="KlorinnholdCl">Kloridinnhold, Cl<sup>-</sup></string>
     <string name="CaCl2">CaCl<sub><small>2</small></sub> [vekt%]</string>
     <string name="ClMgL">Cl<sup><small>-</small></sup> [mg/l]</string>
