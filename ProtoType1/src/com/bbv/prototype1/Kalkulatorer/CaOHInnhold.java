@@ -50,7 +50,7 @@ public class CaOHInnhold extends Basic_Calc {
 				return "";
 
 			CaOH2 = Mp * 1.3f;
-			return String.format(THREE_DECIMALS, CaOH2);
+			return String.format(THREE_DECIMALS, CaOH2) + " " + "[lbs/bbl]";
 		}
 		Log.println(Log.ERROR, "calc", "Something went very wrong in " + getClass().getName());
 		return "";

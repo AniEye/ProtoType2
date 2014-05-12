@@ -68,9 +68,9 @@ public class CEC extends Basic_Calc {
 			if (checkForDivisionErrors(testFloats) == false)
 				return "";
 
-			String _BentPPM = String.format(THREE_DECIMALS, BentPPM) + " "
-					+ "[ppm]";
-			String _BentKG = String.format(THREE_DECIMALS, BentKG);
+			String _BentPPM = String.format(ONE_DECIMAL, BentPPM) + " "
+					+ "[lbs/bbl]";
+			String _BentKG = String.format(ONE_DECIMAL, BentKG);
 
 
 			TextView tvbentPPM;
@@ -80,7 +80,7 @@ public class CEC extends Basic_Calc {
 			textviews[1].setText(Html.fromHtml(_BentKG
 					+ " [kg/m<sup><small>3</small></sup>]"));
 
-			return String.format(THREE_DECIMALS, CEC);
+			return String.format(ONE_DECIMAL, CEC);
 
 		}
 

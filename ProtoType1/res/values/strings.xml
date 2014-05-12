@@ -56,15 +56,15 @@
         <item>Spesifikk tetthet for vannbasert boreslam</item>
         <item>Kloridinnhold</item>
         <item>Total hardhet</item>
-        <item>Caution Exchange Capasity</item>
-        <item>Ca (OH)&lt;sub>&lt;small>2&lt;/small>&lt;/sub></item>
+        <item>Cation Exchange Capasity</item>
+        <item>Alkalitet - Ca(OH)&lt;sub>&lt;small>2&lt;/small>&lt;/sub></item>
         <item>Tabell 3.1</item>
         <item>Alkalitet (Tabell 3.3)</item>
         <item>Olje/vann forhold</item>
-        <item>Ca (OH)&lt;sup>&lt;small>-&lt;/small>&lt;/sup> Innhold</item>
+        <item>Alkalitet - Magcobar metoden</item> <!-- Ca(OH)- Innhold -->
         <item>Kloridinnhold i vannfasen</item>
         <item>CaCl&lt;sub>&lt;small>2&lt;/small>&lt;/sub> i vannfasen (Tabell 9.4)</item>
-        <item>Konverter til m&lt;sup>&lt;small>3&lt;/small>&lt;/sup></item>
+        <item>Tilsetning pr 30 m&lt;sup>&lt;small>3&lt;/small>&lt;/sup> boreslam</item>
     </string-array>
 
     <string name="title_activity_viskositet__tilsynelatende">Viskositet_Tilsynelatende</string>

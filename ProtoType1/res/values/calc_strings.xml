@@ -34,7 +34,7 @@
     <string name="AgNO3Clean">AgNO<sub>3</sub></string>
     <string name="Fv">F<sub>w</sub> - fraksjonen av vann i det oljebaserte slammet</string>
     <string name="Vfiltrat">V<sub>filtrat</sub> - Volum filtrat utpipettèrt</string>
-    <string name="KlCL">Klorid Innhold </string>
+    <string name="KlCL">Kloridinnhold </string>
     <string name="ClmgL">[mg/l]</string>
     <string name="NaClmgL">[mg/l]</string>
     <string name="Clppm">[ppm]</string>
