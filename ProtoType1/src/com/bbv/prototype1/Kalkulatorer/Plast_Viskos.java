@@ -32,11 +32,14 @@ public class Plast_Viskos extends Basic_Calc {
 		float T3 = fieldStatuses[T3_INDEX];
 
 		float theAnswer = 0;
+		boolean wasThatPV = false;
+		
 		switch (variableToCalculate) {
 		case PV_INDEX:
 			if (checkForNullValues(T6, T3) == false)
 				return "";
 			theAnswer = T6 - T3;
+			wasThatPV = true;
 			break;
 		case T6_INDEX:
 			if (checkForNullValues(PV, T3) == false)
@@ -49,10 +52,14 @@ public class Plast_Viskos extends Basic_Calc {
 			theAnswer = T6 - PV;
 			break;
 		}
-		if(checkForDivisionErrors(theAnswer) == true)
-			return String.format(ONE_DECIMAL, theAnswer);
-		else
+		if(checkForDivisionErrors(theAnswer) == false)
 			return "";
+		else {
+			if(wasThatPV)
+				return String.format(ONE_DECIMAL, theAnswer) + " [cP]";				
+			else 
+				return String.format(ONE_DECIMAL, theAnswer);
+		}
 	}
 	
 }
