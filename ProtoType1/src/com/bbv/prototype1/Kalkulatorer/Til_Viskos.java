@@ -30,6 +30,8 @@ public class Til_Viskos extends Basic_Calc {
 		float TV = fieldStatuses[TIL_VISK_INDEX];
 
 		float theAnswer = 0;
+		boolean wasThatTV = false;
+		
 		switch (variableToCalculate) {
 		case THETA_INDEX:// theta
 
@@ -53,6 +55,7 @@ public class Til_Viskos extends Basic_Calc {
 				return "";
 
 			theAnswer = (float) ((300.0 * theta) / rpm);
+			wasThatTV = true;
 			break;
 		}
 
@@ -60,8 +63,13 @@ public class Til_Viskos extends Basic_Calc {
 		if (checkForDivisionErrors(theAnswer) == false
 				|| checkForNullValues(theAnswer) == false)
 			return "";
-		else
-			return String.format(ONE_DECIMAL, theAnswer);
+		else {
+			if(wasThatTV)
+				return String.format(ONE_DECIMAL, theAnswer) + " [cP]";				
+			else 
+				return String.format(ONE_DECIMAL, theAnswer);
+
+		}
 
 	}
 
