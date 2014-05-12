@@ -80,7 +80,7 @@ public class Herch_Law extends Basic_Calc {
 			textviews[1].setText(Html.fromHtml(_K
 					+ " [Pa * s<sup><small>n</small></sup>]"));
 			textviews[2].setText(_T0);
-			textviews[3].setText(_ty);
+			textviews[3].setText(_ty + " [Pa]");
 
 			return String.format(THREE_DECIMALS, N);
 
