@@ -2,6 +2,7 @@ package com.bbv.prototype1.Kalkulatorer;
 
 import com.bbv.prototype1.R;
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.*;
 import android.widget.Button;
@@ -29,13 +30,14 @@ public class Flytegrense extends Basic_Calc {
 		float T6 = fieldStatuses[2];
 
 		float theAnswer = 0;
+		boolean wasThatFG = false;
 		switch (variableToCalculate) {
 		case FG_INDEX:
 
 			if (checkForNullValues(T6, T3) == false)
 				return "";
 
-
+			wasThatFG = true;
 			theAnswer = (2 * T3) - T6;
 			break;
 		case T3_INDEX:
@@ -53,10 +55,15 @@ public class Flytegrense extends Basic_Calc {
 		if (checkForDivisionErrors(theAnswer) == false)
 			return "";
 
-		if (checkForNullValues(theAnswer) == true)
-			return String.format(ONE_DECIMAL, theAnswer);
-		else
+		if (checkForNullValues(theAnswer) == false)
 			return "";
+		else{
+			if (wasThatFG)
+			return (String.format(ONE_DECIMAL, theAnswer) + " [lbs/100 ft^2]");
+			else
+				return String.format(ONE_DECIMAL, theAnswer);
+				
+		}
 	}
 
 }

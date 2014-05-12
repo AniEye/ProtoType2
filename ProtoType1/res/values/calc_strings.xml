@@ -6,6 +6,7 @@
     <string name="CalcButtonUpdate">Regn ut</string>
     <string name="CalcButtonClear">Tøm felt</string>
     <string name="OH">OH<sup>-</sup>, \n[mg/l]</string>
+    <string name="FGNotation">[lbs/100 ft<sup><small>2</small></sup>]</string>
     <string name="CO23">CO<sup><small>2-</small><sub><sub><small>3</small></sub></sub></sup>, \n [mg/l]</string>
     <string name="HCO3">HCO<sup><small>-</small><sub><sub><small>3</small></sub></sub></sup>,\n [mg/l]</string>
     <string name="Vv">V<sub><small>v</small></sub> = volum av tilsatt vektmateriale</string>
