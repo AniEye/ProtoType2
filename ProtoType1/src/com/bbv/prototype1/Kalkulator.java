@@ -65,7 +65,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 					"Error with SharedPreferences in kalkulator!");
 		}
 
-		setContentView(R.layout.activity_calculator);
+		setContentView(R.layout.activity_calculator_scrapped);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		initialize();
 	}

@@ -85,7 +85,6 @@
         <activity
             android:name="com.bbv.prototype1.Kalkulator"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
             android:label="Kalkulator" >
         </activity>
         <activity
