@@ -65,7 +65,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 					"Error with SharedPreferences in kalkulator!");
 		}
 
-		setContentView(R.layout.activity_calculator_scrapped);
+		setContentView(R.layout.activity_calculator);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		initialize();
 	}
@@ -111,7 +111,7 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 
 		adapter.setDropDownViewResource(SpinnerItemLayout);
 
-		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+//		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 			valg_vertical = (Spinner) findViewById(R.id.sKalkVertical);
 
 			// Adds the custom look for the spinner
@@ -123,19 +123,19 @@ public class Kalkulator extends Activity implements OnItemSelectedListener,
 			valg_vertical.setOnItemSelectedListener(this);
 			valg_vertical.setSelection(lastChoice); // Chooses which item the
 													// spinner starts at
-		} else {
-			valg_horizontal = (ListView) findViewById(R.id.listKalkHorizontal);
-
-			// Adds the custom look for the spinner
-			valg_horizontal.setAdapter(adapter);
-			// Adds the custom look for the spinner
-
-			lLayout = (LinearLayout) findViewById(R.id.lInSVKalkHorizontal);
-			valg_horizontal.setOnItemClickListener(this);
-			valg_horizontal.performItemClick(
-					findViewById(R.id.lInSVKalkHorizontal), lastChoice,
-					lastChoice); // Chooses which item the list starts at
-		}
+//		} else {
+//			valg_horizontal = (ListView) findViewById(R.id.listKalkHorizontal);
+//
+//			// Adds the custom look for the spinner
+//			valg_horizontal.setAdapter(adapter);
+//			// Adds the custom look for the spinner
+//
+//			lLayout = (LinearLayout) findViewById(R.id.lInSVKalkHorizontal);
+//			valg_horizontal.setOnItemClickListener(this);
+//			valg_horizontal.performItemClick(
+//					findViewById(R.id.lInSVKalkHorizontal), lastChoice,
+//					lastChoice); // Chooses which item the list starts at
+//		}
 	}
 
 	@Override

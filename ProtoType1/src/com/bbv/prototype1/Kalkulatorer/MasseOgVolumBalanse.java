@@ -35,6 +35,7 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 				p1 = fieldStatuses[p1_INDEX];
 
 		float theAnswer = 0;
+		boolean wasThatVv = false;
 
 		switch (variableToCalculate) {
  
@@ -46,6 +47,7 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 			Log.i("calc", "P1 = " + p1 + "\nP2 = " + p2);
 			theAnswer = v1 * ((p2 - p1) / (pv - p2));
 			Log.i("calc", "The answer = " + theAnswer);
+			wasThatVv = true;
 			break;
 		case V1_INDEX:
 
@@ -81,7 +83,10 @@ public class MasseOgVolumBalanse extends Basic_Calc {
 			return "";
 
 		Log.println(Log.INFO, "calc", "Returning " + theAnswer);
-		return String.format("%.3f", theAnswer);
+		if (wasThatVv)
+			return String.format(TWO_DECIMALS, theAnswer) +  " [ml]";
+		else
+			return String.format(TWO_DECIMALS, theAnswer);
 
 	}
 

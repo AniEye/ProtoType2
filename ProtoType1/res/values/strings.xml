@@ -46,7 +46,7 @@
 
     <!-- To get HTML markup read, the opening "<" must be replaced with "&lt;" -->
     <string-array name="calculator">
-        <item>Masse- og Volumbalanse</item>
+        <item>Masse- og volumbalanse</item>
         <item>Tilsynelatende viskositet (TV)</item>
         <item>Plastisk viskositet (PV)</item>
         <item>Flytegrense (FG)</item>
