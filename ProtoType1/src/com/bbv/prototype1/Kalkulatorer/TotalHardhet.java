@@ -25,7 +25,7 @@ public class TotalHardhet extends Basic_Calc {
 	float V_filtrat;
 	float EDTA = 0.01f;
 	float M_CaCO3 = 100.0869f;
-	float M_Ca2 = 40.78f;
+	float M_Ca2 = 40.078f;
 	float M_Mg2 = 24.3050f;
 
 	final static int[] textViewIDs = { R.id.tvTotHardCaCo, // textview of Total
@@ -90,14 +90,14 @@ public class TotalHardhet extends Basic_Calc {
 			if (checkForDivisionErrors(totHardCa2, totHardCaCo3, totHardMg2) == false)
 				return "";
 
-			textviews[0].setText(String.format(THREE_DECIMALS, totHardCaCo3)
+			textviews[0].setText(String.format(ONE_DECIMAL, totHardCaCo3)
 					+ " " + "[mg/l]");
-			textviews[1].setText(String.format(THREE_DECIMALS, totHardCa2)
+			textviews[1].setText(String.format(ONE_DECIMAL, totHardCa2)
 					+ " " + "[mg/l]");
-			textviews[2].setText(String.format(THREE_DECIMALS, totHardMg2)
+			textviews[2].setText(String.format(ONE_DECIMAL, totHardMg2)
 					+ " " + "[mg/l]");
 
-			return String.format(THREE_DECIMALS, totHardCaCo3);
+			return String.format(ONE_DECIMAL, totHardCaCo3);
 
 		}
 
