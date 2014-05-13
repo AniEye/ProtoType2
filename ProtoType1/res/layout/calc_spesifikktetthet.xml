@@ -75,14 +75,14 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:paddingTop="10dp"
-        android:weightSum="2" >
+        android:weightSum="3 " >
 
         <TextView
             android:id="@+id/tvm3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
+            android:layout_weight="2"
+            android:gravity="left"
             android:text="@string/Pp"
             android:textSize="16dp" />
         
@@ -110,14 +110,14 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:paddingTop="10dp"
-        android:weightSum="2" >
+        android:weightSum="3" >
 
         <TextView
             android:id="@+id/tvm3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
+            android:layout_weight="2"
+            android:gravity="left"
             android:text="@string/Pf"
             android:textSize="16dp" />
         
@@ -145,14 +145,14 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:paddingTop="10dp"
-        android:weightSum="2" >
+        android:weightSum="3" >
 
         <TextView
             android:id="@+id/tvm3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
+            android:layout_weight="2"
+            android:gravity="left"
             android:text="@string/Vs"
             android:paddingBottom="5dp"
             android:textSize="16dp" />
@@ -180,14 +180,14 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:paddingTop="10dp"
-        android:weightSum="2" >
+        android:weightSum="3" >
 
         <TextView
             android:id="@+id/tvm6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
+            android:layout_weight="2"
+            android:gravity="left"
             android:text="@string/Vsf"
             android:textSize="16dp" 
             android:lineSpacingExtra="4dp"/>

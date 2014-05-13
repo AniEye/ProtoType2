@@ -72,30 +72,5 @@ public class KloridInnholdIVannfasenTest extends AndroidTestCase {
 		
 	}
 
-	public void testGetClPPM() {
-		float V_AgNO3 = 20;
-		Fv = 10;
-		CCl = (AgNO3 * V_AgNO3 * 35.45f * 1000)/Fv;
-		Table_3_1 table = new Table_3_1(CCl);
-		float testValue = CCl / table.getPf();
-		assertEquals(testValue, calc.getClPPM());
-	}
-
-	public void testGetNaClMG() {
-		float V_AgNO3 = 20;
-		Fv = 10;
-		float NaClMG = (AgNO3 * V_AgNO3 * 58.44f * 1000)/Fv;
-		assertEquals(NaClMG, calc.getNaClMG());
-	}
-
-	public void testGetNaClPPM() {
-		float V_AgNO3 = 20;
-		Fv = 10;
-		float NaClMG = (AgNO3 * V_AgNO3 * 58.44f * 1000)/Fv;
-		CCl = (AgNO3 * V_AgNO3 * MCl * 1000)/Fv;
-		Table_3_1 table = new Table_3_1(CCl);
-		float testValue = NaClMG / table.getPf();
-		assertEquals(testValue, calc.getNaClPPM());
-	}
 
 }
