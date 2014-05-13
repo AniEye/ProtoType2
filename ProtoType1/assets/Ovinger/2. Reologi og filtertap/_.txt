@@ -17,10 +17,11 @@ Ovinger/2. Reologi og filtertap
 </Øvinger>
 
 <Kalkulatorer>
-Flytegrense
-Plast_Viskos/Plastisk viskositet
-PowerLaw1006/Eksponent modellen 100 og 6
-PowerLaw600300/Eksponent modellen 600 og 300
-Til_Viskos/Tilsynelatende viskositet
+Til_Viskos/Tilsynelatende viskositet (TV)
+Plast_Viskos/Plastisk viskositet (PV)
+Flytegrense/Flytegrense (FG)
+PowerLaw600300/Eksponent modellen (Power law) 600 og 300
+PowerLaw1006/Eksponent modellen (Power law) 100 og 6
+Herch_Law/Herschel Bulkley modellen 
 </Kalkulatorer>
 

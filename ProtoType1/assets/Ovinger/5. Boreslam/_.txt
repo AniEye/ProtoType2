@@ -17,4 +17,11 @@ Ovinger/5. Boreslam
 </Øvinger>
 
 <Kalkulatorer>
+Til_Viskos/Tilsynelatende viskositet (TV)
+Plast_Viskos/Plastisk viskositet (PV)
+Flytegrense/Flytegrense (FG)
+AlkaPm/Alkalitet – Magcobar metoden 
+KloridInnholdIVannfasen/Kloridinnhold i vannfasen 
+Table_9_4_calc/CaCl&lt;sub>&lt;small>2&lt;/small>&lt;/sub> i vannfasen (Tabell 9.4) 
+OljeVann/Olje/vann forhold
 </Kalkulatorer>

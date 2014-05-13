@@ -76,4 +76,10 @@
         <item>Working</item>
     </string-array>
 
+    <string-array name="DrawerMenuList">
+        <item>Hovedmeny</item>
+        <item>Teori</item>
+        <item>Øvinger</item>
+        <item>Kalkulatorer</item>
+    </string-array>
 </resources>

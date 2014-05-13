@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.bbv.prototype1.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
@@ -28,8 +30,8 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 	private NavigationDrawerItemContent _tempItemContent = null;
 	private ArrayList<TableLayout> _TableList = new ArrayList<TableLayout>();
 
-	//private static final String KEY_LOGCAT = "NavigationDrawerAdapter";// if
-																		// needed
+	// private static final String KEY_LOGCAT = "NavigationDrawerAdapter";// if
+	// needed
 
 	/**
 	 * The constructor takes in parameters for referencing the main activity and
@@ -112,7 +114,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 
 		} else
 			_holder = (ViewHolder) _view.getTag();
-		
+
 		if (_Activity.getItemInDrawerLoaded() < _ContentArray.size()) {
 			/***** Get each Model object from Arraylist ********/
 			_tempItemContent = null;
@@ -149,16 +151,18 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 							}
 
 						} else {
-							if(thePosition==ShowContentBase._DrawerMenuListIndex.Calculator.ordinal()){
+							if (thePosition == ShowContentBase._DrawerMenuListIndex.Calculator
+									.ordinal()) {
 								_Activity.showToast("Ingen kalkulator(er) her");
-							}else if(thePosition==ShowContentBase._DrawerMenuListIndex.Exercise.ordinal()){
+							} else if (thePosition == ShowContentBase._DrawerMenuListIndex.Exercise
+									.ordinal()) {
 								_Activity.showToast("Ingen øving(er) her");
-							}
-							else if(thePosition==ShowContentBase._DrawerMenuListIndex.Theory.ordinal()){
+							} else if (thePosition == ShowContentBase._DrawerMenuListIndex.Theory
+									.ordinal()) {
 								_Activity.showToast("Ingen teori del(er) her");
 							}
 						}
-						
+
 						for (int i = 0; i < _ContentArray.size(); i++) {
 							if (i != thePosition) {
 								_TableList.get(i).setVisibility(
@@ -178,7 +182,19 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 								.split("/");
 
 						textView.setTag(_tempItemContent.getStringList()[i]);
-						textView.setText(splitting[splitting.length - 1]);
+						if (splitting[0].contentEquals("CaOHInnhold")) {
+							textView.setText(Html
+									.fromHtml("Alkalitet Ca(OH)<sub><small>2</small></sub>"));
+						} else if (splitting[0].contentEquals("KonverterM3")) {
+							textView.setText(Html
+									.fromHtml("Tilsetning pr 30 m<sup><small>3</small></sup> boreslam"));
+						} else if (splitting[0].contentEquals("Table_9_4_calc")) {
+							textView.setText(Html
+									.fromHtml("CaCl<sub><small>2</small></sub> i vannfasen (Tabell 9.4)"));
+						} else {
+							textView.setText(Html
+									.fromHtml(splitting[splitting.length - 1]));
+						}
 						textView.setOnClickListener(this);
 						_holder._Table.addView(textView);
 					}
@@ -225,7 +241,8 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 				_Activity._nWVB.Reload(_Activity.getTheoryBundle());
 
 				_Activity._filePath = _Activity
-						.getFilePathFromTheoryBundle(_Activity.getTheoryBundle());
+						.getFilePathFromTheoryBundle(_Activity
+								.getTheoryBundle());
 				_Activity.decodeDataDocument();
 
 				_Activity._fragManag.beginTransaction()
@@ -284,7 +301,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 
 			_Activity._nSCalc = new ShowCalculator();
 			_Activity._nSCalc.setArguments(_Activity.getCalculatorBundle());
-			
+
 			_Activity._fragManag.beginTransaction()
 					.replace(R.id.flViskos, _Activity._nSCalc).commit();
 

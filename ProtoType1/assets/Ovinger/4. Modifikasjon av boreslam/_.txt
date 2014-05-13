@@ -17,9 +17,12 @@ Ovinger/4. Modifikasjon av boreslam
 </Øvinger>
 
 <Kalkulatorer>
-Flytegrense
-KonverterM3/Konverter til m3
-Plast_Viskos/Plastisk viskositet
-Spess_tetthet/Spesifikk tetthet
-Til_Viskos/Tilsynelatende viskositet
+Til_Viskos/Tilsynelatende viskositet (TV)
+Plast_Viskos/Plastisk viskositet (PV)
+Flytegrense/Flytegrense (FG)
+KloridInnhold/Kloridinnhold
+TotalHardhet/Total hardhet
+Alkalitet/Alkalitet (Tabell 3.3) 
+CEC/Cation Exchange Capacity 
+KonverterM3/Tilsetning pr 30 m<sup><small>3</small></sup> boreslam 
 </Kalkulatorer>
