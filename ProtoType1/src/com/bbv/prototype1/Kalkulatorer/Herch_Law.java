@@ -72,7 +72,7 @@ public class Herch_Law extends Basic_Calc {
 			Log.println(Log.INFO, "calc", "Setting textviews in Modpowerlaw!");
 
 			String _N = String.format(THREE_DECIMALS, N);
-			String _T0 = String.format(THREE_DECIMALS, T0);
+			String _T0 = String.format(ONE_DECIMAL, T0);
 			String _ty = String.format(THREE_DECIMALS, ty);
 			String _K = String.format(THREE_DECIMALS, K);
 

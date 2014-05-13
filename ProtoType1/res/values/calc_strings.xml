@@ -46,7 +46,7 @@
     <string name="AlkaPf">P<sub>f</sub> - ml 0.01 M H<sub><small>2</small></sub>SO<sub><small>4</small></sub> \nforbrukt pr ml filtrat</string>
     <string name="Rolje">R<sub>olje</sub> - Volum olje fra retorte</string>
     <string name="Rvann">R<sub>vann</sub> - Volum vann fra retorte</string>
-    <string name="Mp">M<sub>p</sub> = antall ml 0.05 \nH<sub><small>2</small></sub>SO<sub><small>4</small></sub> forbrukt pr. ml slam</string>
+    <string name="Mp">M<sub>p</sub> = antall ml 0.05 M \nH<sub><small>2</small></sub>SO<sub><small>4</small></sub> forbrukt pr. ml slam</string>
     <string name="CaOHValue">[Ca (OH)<sub><small>2</small></sub>]</string>
     <string name="TotHardVEDTACaCO3">V<sub>EDTA CaCO<sub><small>3</small></sub></sub></string>
     <string name="TotHardVEDTACa2">V<sub>EDTA Ca<sup><small>2+</small></sup></sub></string>
