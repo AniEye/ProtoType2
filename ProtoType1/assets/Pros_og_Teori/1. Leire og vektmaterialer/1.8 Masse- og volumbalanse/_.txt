@@ -13,5 +13,9 @@
 </title>
 
 <Teori>
-pros_og_teori_text/1. Leire og vektmaterialer/1.8 Masse- og volumbalanse
+Pros_og_Teori/1. Leire og vektmaterialer/1.8 Masse- og volumbalanse
 </Teori>
+
+<Øvinger>
+Ovinger/1. Leire og vektmaterialer
+</Øvinger>

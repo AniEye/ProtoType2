@@ -13,9 +13,9 @@
 </title>
 
 <Teori>
-Pros_og_Teori/5. Boreslam
-Pros_og_Teori/5. Boreslam/
-Pros_og_Teori/5. Boreslam/
+Pros_og_Teori/3. Testing av vannbasert boreslam
+Pros_og_Teori/3. Testing av vannbasert boreslam/3.1 Fysiske tester
+Pros_og_Teori/3. Testing av vannbasert boreslam/3.2 Kjemisk analyse av vannbasert boreslam
 </Teori>
 
 <Øvinger>

@@ -12,6 +12,13 @@
 2. Reologi og filtertap
 </title>
 
+<Teori>
+Pros_og_Teori/2. Reologi og filtertap
+Pros_og_Teori/2. Reologi og filtertap/2.1 Reologi
+Pros_og_Teori/2. Reologi og filtertap/2.2 Kontroll av filtertap og vannbaserte boreslam
+Pros_og_Teori/2. Reologi og filtertap/2.3 Viskositet og filtertapskontrollerende stoff
+</Teori>
+
 <Øvinger>
 Ovinger/2. Reologi og filtertap
 </Øvinger>

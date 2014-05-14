@@ -13,5 +13,10 @@
 </title>
 
 <Teori>
-pros_og_teori_text/3. Testing av vannbasert boreslam/3.1 Fysiske tester
+Pros_og_Teori/3. Testing av vannbasert boreslam/3.1 Fysiske tester
 </Teori>
+
+<Øvinger>
+Ovinger/3. Testing av vannbasert boreslam
+Ovinger/4. Modifikasjon av boreslam
+</Øvinger>

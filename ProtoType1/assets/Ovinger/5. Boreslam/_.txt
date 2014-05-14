@@ -12,6 +12,14 @@
 5. Boreslam
 </title>
 
+<Teori>
+Pros_og_Teori/4. Boreslam
+Pros_og_Teori/4. Boreslam/4.1 Vannbaserte boreslam
+Pros_og_Teori/4. Boreslam/4.2 Oljebaserte boreslam
+Pros_og_Teori/4. Boreslam/4.3 Valg av slamsystem
+Pros_og_Teori/4. Boreslam/4.4 Piller og plugger
+</Teori>
+
 <Øvinger>
 Ovinger/5. Boreslam
 </Øvinger>
@@ -23,5 +31,5 @@ Flytegrense/Flytegrense (FG)
 AlkaPm/Alkalitet – Magcobar metoden 
 KloridInnholdIVannfasen/Kloridinnhold i vannfasen 
 Table_9_4_calc/***unikt tilfelle***, finner texten i en if settning i NavigationDrawerAdapter.java
-OljeVann/Olje/vann forhold
+OljeVann/***unikt tilfelle***, finner texten i en if settning i NavigationDrawerAdapter.java
 </Kalkulatorer>

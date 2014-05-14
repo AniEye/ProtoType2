@@ -13,5 +13,9 @@
 </title>
 
 <Teori>
-pros_og_teori_text/4. Boreslam/4.4 Piller og plugger
+Pros_og_Teori/4. Boreslam/4.4 Piller og plugger
 </Teori>
+
+<Øvinger>
+Ovinger/5. Boreslam
+</Øvinger>

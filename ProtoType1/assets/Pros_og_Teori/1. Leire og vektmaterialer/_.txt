@@ -13,5 +13,9 @@
 </title>
 
 <Teori>
-pros_og_teori_text/1. Leire og vektmaterialer
+Pros_og_Teori/1. Leire og vektmaterialer
 </Teori>
+
+<Øvinger>
+Ovinger/1. Leire og vektmaterialer
+</Øvinger>

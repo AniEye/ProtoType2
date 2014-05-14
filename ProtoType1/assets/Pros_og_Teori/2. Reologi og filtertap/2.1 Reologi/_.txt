@@ -13,5 +13,9 @@
 </title>
 
 <Teori>
-pros_og_teori_text/2. Reologi og filtertap/2.1 Reologi
+Pros_og_Teori/2. Reologi og filtertap/2.1 Reologi
 </Teori>
+
+<Øvinger>
+Ovinger/2. Reologi og filtertap
+</Øvinger>
