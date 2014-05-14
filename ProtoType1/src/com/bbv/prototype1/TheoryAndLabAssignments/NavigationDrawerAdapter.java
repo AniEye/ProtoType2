@@ -191,6 +191,9 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 						} else if (splitting[0].contentEquals("Table_9_4_calc")) {
 							textView.setText(Html
 									.fromHtml("CaCl<sub><small>2</small></sub> i vannfasen (Tabell 9.4)"));
+						} else if (splitting[0].contentEquals("OljeVann")) {
+							textView.setText(Html
+									.fromHtml("Olje/vann forhold"));
 						} else {
 							textView.setText(Html
 									.fromHtml(splitting[splitting.length - 1]));
