@@ -8,7 +8,6 @@
         android:id="@+id/sOvinger"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/ovinger"
         android:gravity="center"
         android:prompt="@string/ovingPromt" />
 

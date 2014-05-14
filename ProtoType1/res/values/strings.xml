@@ -35,14 +35,7 @@
         <item>13</item>
         <item>15</item>
     </string-array>
-    <string-array name="ovinger">
-        <item>Velg Øving</item>
-        <item>Øving 1: Leire og vektmaterialer</item>
-        <item>Øving 2: Reologi og filtertap</item>
-        <item>Øving 3: Testing av vannbasert boreslam</item>
-        <item>Øving 4: Modifikasjon av boreslam</item>
-        <item>Øving 5: Boreslam</item>
-    </string-array>
+
 
     <!-- To get HTML markup read, the opening "<" must be replaced with "&lt;" -->
     <string-array name="calculator">
