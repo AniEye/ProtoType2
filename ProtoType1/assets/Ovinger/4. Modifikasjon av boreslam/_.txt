@@ -12,6 +12,12 @@
 4. Modifikasjon av boreslam
 </title>
 
+<Teori>
+Pros_og_Teori/5. Boreslam
+Pros_og_Teori/5. Boreslam/
+Pros_og_Teori/5. Boreslam/
+</Teori>
+
 <Øvinger>
 Ovinger/4. Modifikasjon av boreslam
 </Øvinger>
@@ -24,5 +30,5 @@ KloridInnhold/Kloridinnhold
 TotalHardhet/Total hardhet
 Alkalitet/Alkalitet (Tabell 3.3) 
 CEC/Cation Exchange Capacity 
-KonverterM3/Tilsetning pr 30 m<sup><small>3</small></sup> boreslam 
+KonverterM3/***unikt tilfelle***, finner texten i en if settning i NavigationDrawerAdapter.java
 </Kalkulatorer>

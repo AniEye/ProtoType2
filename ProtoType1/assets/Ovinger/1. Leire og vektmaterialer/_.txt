@@ -17,9 +17,16 @@
 
 
 <Teori>
-pros_og_teori_text/1. Leire og vektmaterialer/1.1 Introduksjon
-pros_og_teori_text/1. Leire og vektmaterialer
-pros_og_teori_text/2. Reologi og filtertap/2.2 Kontroll av filtertap og vannbaserte boreslam
+
+Pros_og_Teori/1. Leire og vektmaterialer
+Pros_og_Teori/1. Leire og vektmaterialer/1.1 Introduksjon
+Pros_og_Teori/1. Leire og vektmaterialer/1.2 Oppbygging av leirpartikler
+Pros_og_Teori/1. Leire og vektmaterialer/1.3 Strukturer til leirmineraler
+Pros_og_Teori/1. Leire og vektmaterialer/1.4 Leirmineraler
+Pros_og_Teori/1. Leire og vektmaterialer/1.5 Leire og boreslam
+Pros_og_Teori/1. Leire og vektmaterialer/1.6 Bentonitt
+Pros_og_Teori/1. Leire og vektmaterialer/1.7 Vektmaterialer
+Pros_og_Teori/1. Leire og vektmaterialer/1.8 Masse- og volumbalanse
 </Teori>
 
 <Øvinger>

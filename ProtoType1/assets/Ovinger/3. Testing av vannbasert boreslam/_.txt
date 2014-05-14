@@ -29,7 +29,7 @@ KloridInnhold/Kloridinnhold
 Table_3_1_calc/Tabell 3.1
 TotalHardhet/Total hardhet
 CEC/Cation Exchange Capacity 
-CaOHInnhold/Alkalitet Ca(OH)<sub><small>2</small></sub> 
+CaOHInnhold/***unikt tilfelle***, finner texten i en if settning i NavigationDrawerAdapter.java 
 Alkalitet/Alkalitet (Tabell 3.3) 
 Spess_tetthet/Spesifikk tetthet for vannbasert boreslam
 </Kalkulatorer>

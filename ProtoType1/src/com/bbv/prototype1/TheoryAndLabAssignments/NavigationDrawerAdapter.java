@@ -217,7 +217,7 @@ public class NavigationDrawerAdapter extends BaseAdapter implements
 		String textReference = (String) v.getTag();
 		String[] splitted = textReference.split("/");
 		_Activity.displayNextLast(true);
-		if (splitted[0].contentEquals("pros_og_teori_text")
+		if (splitted[0].contentEquals("Pros_og_Teori")
 				&& splitted.length > 1) {
 
 			Bundle newBundle = new Bundle();
