@@ -17,5 +17,5 @@ Ovinger/1. Leire og vektmaterialer
 </Øvinger>
 
 <Teori>
-pros_og_teori_text/1. Leire og vektmaterialer/1.2 Oppbygging av leirpartikler
+Pros_og_Teori/1. Leire og vektmaterialer/1.2 Oppbygging av leirpartikler
 </Teori>
