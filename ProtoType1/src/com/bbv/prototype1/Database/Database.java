@@ -14,7 +14,6 @@ import android.util.Log;
 
 public class Database {
 
-	// public static final String KEY_ROWID = "_id";
 	public static final String KEY_CHAPTER = "chapter";
 	public static final String KEY_CHAPTERPART1 = "chapter_part1";
 	public static final String KEY_CHAPTERPART2 = "chapter_part2";
@@ -25,7 +24,7 @@ public class Database {
 	private static final String DATABASE_TABLE_TEORI = "TeoriTable";
 	private static final String DATABASE_TABLE_OVINGER = "OvingTable";
 
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 3;
 
 	private DBHelper ourHelper;
 	private final Context ourContext;

@@ -7,7 +7,6 @@
         android:id="@+id/sKapittel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/kapittler"
         android:gravity="center"
         android:prompt="@string/kapittelPrompt" />
 

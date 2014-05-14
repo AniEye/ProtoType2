@@ -213,7 +213,7 @@ public class ShowContent extends ShowContentBase {
 	 * Create the references and initialize the drawerlistener
 	 */
 	private void Initialize() {
-		setActivityTitle("Meny");
+		setActivityTitle("Bore- og Brønnvæsker");
 		_drawerLayout = (DrawerLayout) findViewById(R.id.dlVis_Teori);
 		_listView = (ListView) findViewById(R.id.lvVis_Teori);
 		_bNext = (Button) findViewById(R.id.bNext);
