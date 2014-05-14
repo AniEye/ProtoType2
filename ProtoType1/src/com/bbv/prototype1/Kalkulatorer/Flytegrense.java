@@ -2,13 +2,6 @@ package com.bbv.prototype1.Kalkulatorer;
 
 import com.bbv.prototype1.R;
 import android.content.Context;
-import android.text.Html;
-import android.util.Log;
-import android.view.*;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 public class Flytegrense extends Basic_Calc {
 

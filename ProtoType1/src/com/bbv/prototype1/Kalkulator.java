@@ -3,7 +3,6 @@ package com.bbv.prototype1;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;

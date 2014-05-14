@@ -225,11 +225,13 @@ public class ShowContent extends ShowContentBase {
 		_actionDrawerToggle = new ActionBarDrawerToggle(this, _drawerLayout,
 				R.drawable.ic_drawer, R.string.drawer_open,
 				R.string.drawer_close) {
+			@Override
 			public void onDrawerClosed(View v) {
 				getActionBar().setTitle(_title);
 				invalidateOptionsMenu();
 			}
 
+			@Override
 			public void onDrawerOpened(View v) {
 				getActionBar().setTitle(_activity_title);
 				invalidateOptionsMenu();

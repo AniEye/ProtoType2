@@ -22,6 +22,7 @@ public class TotalHardhetTest extends AndroidTestCase {
 	float M_Ca2 = 40.78f;
 	float M_Mg2 = 24.3050f;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		calc = new TotalHardhet(getContext());

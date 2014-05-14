@@ -195,6 +195,7 @@ public abstract class ShowContentBase extends Activity implements
 	 * 
 	 * @param CharSequence
 	 */
+	@Override
 	public void setTitle(CharSequence title) {
 		_title = title;
 		getActionBar().setTitle(_title);

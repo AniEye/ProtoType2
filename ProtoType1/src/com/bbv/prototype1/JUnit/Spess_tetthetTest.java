@@ -13,6 +13,7 @@ public class Spess_tetthetTest extends AndroidTestCase {
 
 	float[] variablesForPp = { 0, 5088f, 0.245f, 5f, 2f, 2f, 2f, 2f };
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		test = new Spess_tetthet(getContext());

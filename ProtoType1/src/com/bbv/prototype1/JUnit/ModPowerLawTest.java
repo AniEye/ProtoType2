@@ -8,6 +8,7 @@ public class ModPowerLawTest extends AndroidTestCase {
 	Herch_Law test;
 	float epsilon = 0.0001f; //Sets the standard for how much the float values can diviate.
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		test = new Herch_Law(getContext());

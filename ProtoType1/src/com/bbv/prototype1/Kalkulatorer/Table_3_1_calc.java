@@ -5,13 +5,7 @@ import java.lang.reflect.Field;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bbv.prototype1.R;
 import com.bbv.prototype1.Tables.Table_3_1;
 

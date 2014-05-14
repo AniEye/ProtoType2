@@ -3,13 +3,13 @@ package com.bbv.prototype1.JUnit;
 import android.test.AndroidTestCase;
 
 import com.bbv.prototype1.Kalkulatorer.AlkaPm;
-import com.bbv.prototype1.Kalkulatorer.CEC;
 
 public class AlkaPmTest extends AndroidTestCase {
 	
 	AlkaPm calc;
 	float ca;
 		
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 	}

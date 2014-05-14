@@ -3,16 +3,11 @@ package com.bbv.prototype1.Kalkulatorer;
 import java.lang.reflect.Field;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bbv.prototype1.R;
-import com.bbv.prototype1.R.color;
 import com.bbv.prototype1.Tables.Table_3_3;
 
 public class Alkalitet extends Basic_Calc {
@@ -86,6 +81,7 @@ public class Alkalitet extends Basic_Calc {
 	 * original table. Also set the text color back to black, and the background
 	 * to a difined color in the resources.
 	 */
+	@SuppressWarnings("deprecation")
 	private void resetTableItems() {
 
 		Table_3_3 table = new Table_3_3(0, 0);
@@ -122,8 +118,8 @@ public class Alkalitet extends Basic_Calc {
 	 * @param calculatedRow
 	 *            - the row to light up
 	 */
+	@SuppressWarnings("deprecation")
 	private void lightUpRow(int calculatedRow) {
-		// TODO Auto-generated method stub
 
 		resetTableItems();
 
@@ -152,11 +148,14 @@ public class Alkalitet extends Basic_Calc {
 	/**
 	 * This method is used to show the result for the relevant table item. The
 	 * row and column is used to locate the table item, as it is dependent on
-	 * the original table if the text should change or stay 0. 
+	 * the original table if the text should change or stay 0.
 	 * 
-	 * @param tableItem - the table item to change
-	 * @param row - the row of the table item
-	 * @param column - the column of the table item
+	 * @param tableItem
+	 *            - the table item to change
+	 * @param row
+	 *            - the row of the table item
+	 * @param column
+	 *            - the column of the table item
 	 */
 	private void showResults(TextView tableItem, int row, int column) {
 
@@ -203,6 +202,7 @@ public class Alkalitet extends Basic_Calc {
 	 *            - The string ID to find
 	 * @return integer ID
 	 */
+	@SuppressWarnings("rawtypes")
 	private int returnIDFromString(String String_ID) {
 		Class clazz = R.id.class;
 		Field f = null;
@@ -212,17 +212,14 @@ public class Alkalitet extends Basic_Calc {
 			id = f.getInt(null); // pass in null, since field is a static
 									// field.
 		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
 			Log.println(Log.ERROR, "TryCatch",
 					"Error when returning textview ID");
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			Log.println(Log.ERROR, "TryCatch",
 					"Error when returning textview ID");
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			Log.println(Log.ERROR, "TryCatch",
 					"Error when returning textview ID");
 			e.printStackTrace();
@@ -232,7 +229,6 @@ public class Alkalitet extends Basic_Calc {
 
 	@Override
 	protected void clearButtonMethod() {
-		// TODO Auto-generated method stub
 		resetTableItems();
 		super.clearButtonMethod();
 	}

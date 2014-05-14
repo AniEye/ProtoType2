@@ -2,7 +2,6 @@ package com.bbv.prototype1.JUnit;
 
 import android.test.AndroidTestCase;
 
-import com.bbv.prototype1.Kalkulatorer.PowerLaw1006;
 import com.bbv.prototype1.Kalkulatorer.PowerLaw600300;
 
 public class PowerLaw600300Test extends AndroidTestCase {
@@ -13,6 +12,7 @@ public class PowerLaw600300Test extends AndroidTestCase {
 	float[] variables1 = { 100, 50, 0, 0, 0 };
 	float[] variables2 = { 100, 50, 0.245f, 0 };
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		test = new PowerLaw600300(getContext());

@@ -1,7 +1,5 @@
 package com.bbv.prototype1.Tables;
 
-import com.bbv.prototype1.R.string;
-
 import android.util.Log;
 
 public class Table_3_1 {

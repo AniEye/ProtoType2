@@ -11,6 +11,7 @@ public class Table_3_3Test extends AndroidTestCase {
 	float Mf;
 	float delta = 0.0001f;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 

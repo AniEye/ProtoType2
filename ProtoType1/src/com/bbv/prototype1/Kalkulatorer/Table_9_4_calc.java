@@ -7,15 +7,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bbv.prototype1.R;
-import com.bbv.prototype1.Tables.Table_3_1;
 import com.bbv.prototype1.Tables.Table_9_4;
 
 public class Table_9_4_calc extends Basic_Calc {

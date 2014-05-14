@@ -4,11 +4,6 @@ import android.content.Context;
 import android.text.Html;
 import android.text.Spannable;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bbv.prototype1.R;

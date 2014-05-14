@@ -12,6 +12,7 @@ public class PowerLaw1006Test extends AndroidTestCase {
 	float[] variables1 = { 100, 50, 0, 0, 0 };
 	float[] variables2 = { 100, 50, 0.245f, 0 };
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		test = new PowerLaw1006(getContext());

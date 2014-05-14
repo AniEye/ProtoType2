@@ -1,8 +1,6 @@
 package com.bbv.prototype1.Menus;
 
 import com.bbv.prototype1.R;
-import com.bbv.prototype1.R.xml;
-
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 

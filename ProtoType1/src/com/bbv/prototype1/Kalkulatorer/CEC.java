@@ -3,13 +3,7 @@ package com.bbv.prototype1.Kalkulatorer;
 import android.content.Context;
 import android.text.Html;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bbv.prototype1.R;
 
 public class CEC extends Basic_Calc {
@@ -71,10 +65,6 @@ public class CEC extends Basic_Calc {
 			String _BentPPM = String.format(ONE_DECIMAL, BentPPM) + " "
 					+ "[lbs/bbl]";
 			String _BentKG = String.format(ONE_DECIMAL, BentKG);
-
-
-			TextView tvbentPPM;
-			TextView tvbentKG;
 
 			textviews[0].setText(_BentPPM);
 			textviews[1].setText(Html.fromHtml(_BentKG

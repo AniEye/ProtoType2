@@ -3,13 +3,6 @@ package com.bbv.prototype1.Kalkulatorer;
 import com.bbv.prototype1.R;
 import android.content.Context;
 import android.util.Log;
-import android.view.*;
-import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 public class MasseOgVolumBalanse extends Basic_Calc {
 

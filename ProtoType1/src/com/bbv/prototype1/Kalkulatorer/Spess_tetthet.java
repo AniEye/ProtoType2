@@ -1,14 +1,7 @@
 package com.bbv.prototype1.Kalkulatorer;
 
-import junit.framework.Assert;
 import android.content.Context;
-import android.text.Html;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bbv.prototype1.R;
 import com.bbv.prototype1.Tables.Table_3_1;
 

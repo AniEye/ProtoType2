@@ -3,9 +3,7 @@ package com.bbv.prototype1.JUnit;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import com.bbv.prototype1.Kalkulatorer.CEC;
 import com.bbv.prototype1.Kalkulatorer.CaOHInnhold;
-import com.bbv.prototype1.Kalkulatorer.OljeVann;
 
 public class CaOHInnholdTest extends AndroidTestCase {
 
@@ -14,6 +12,7 @@ public class CaOHInnholdTest extends AndroidTestCase {
 	float CaOH;
 	float testValue;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		calc = new CaOHInnhold(getContext());

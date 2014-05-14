@@ -1,6 +1,5 @@
 package com.bbv.prototype1.JUnit;
 
-import com.bbv.prototype1.Kalkulatorer.KloridInnhold;
 import com.bbv.prototype1.Kalkulatorer.KloridInnholdIVannfasen;
 import com.bbv.prototype1.Tables.Table_3_1;
 
@@ -16,6 +15,7 @@ public class KloridInnholdIVannfasenTest extends AndroidTestCase {
 	float MCl = 35.45f;
 	float MNaCl = 58.44f;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		calc = new KloridInnholdIVannfasen(getContext());

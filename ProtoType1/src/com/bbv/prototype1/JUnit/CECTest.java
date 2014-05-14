@@ -11,6 +11,7 @@ public class CECTest extends AndroidTestCase {
 	float V_boreslam = 1;
 	float cec;
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
