@@ -23,7 +23,7 @@ public class PowerLaw600300Test extends AndroidTestCase {
 		 * Returns false if float is NaN or infinite! Returns true if okay
 		 */
 		// Testing n to successfully calculate
-		float N = (float) ((Math.log10(80/40) / (Math.log10(600*1.7033 / 300*1.7033))));
+		float N = (float) ((Math.log10(80/40) / (Math.log10((600*1.7033) / (300*1.7033)))));
 		assertEquals(N, test.calcN(80, 40), epsilon);
 		// Testing K to successfully calculate
 		float K = (float) (200 / Math.pow(600*1.7033, 4));

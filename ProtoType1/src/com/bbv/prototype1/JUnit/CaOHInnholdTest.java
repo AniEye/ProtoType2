@@ -26,7 +26,7 @@ public class CaOHInnholdTest extends AndroidTestCase {
 		assertEquals(String.format("%.3f", testValue), calc.calculation(CaOHInnhold.Mp_INDEX, Mp, CaOH));
 		Mp = 1;
 		testValue = Mp * 1.3f;
-		assertEquals(String.format("%.3f", testValue), calc.calculation(CaOHInnhold.CaOH_INDEX, Mp, CaOH));
+		assertEquals(String.format("%.3f", testValue) + " [lbs/bbl]", calc.calculation(CaOHInnhold.CaOH_INDEX, Mp, CaOH));
 		
 		//Testing that calculator returns nothing if negative or zero values are used
 		//Check logcat for toast display

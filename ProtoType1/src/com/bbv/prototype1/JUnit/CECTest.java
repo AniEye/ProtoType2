@@ -25,7 +25,7 @@ public class CECTest extends AndroidTestCase {
 		//Testing that calculator returns correct string
 		calc = new CEC(getContext());
 		cec = V_mbl/V_boreslam;
-		String _CEC = String.format("%.3f", cec);
+		String _CEC = String.format("%.1f", cec);
 		assertEquals(_CEC, calc.calculation(CEC.CEC_INDEX, V_mbl));
 		
 		//Testing that calc returns blank when dividing with 0

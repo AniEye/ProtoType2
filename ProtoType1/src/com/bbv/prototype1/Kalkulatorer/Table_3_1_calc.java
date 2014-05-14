@@ -67,6 +67,7 @@ public class Table_3_1_calc extends Basic_Calc {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	private void resetTableItems() {
 
 		Table_3_1 table = new Table_3_1(0);
@@ -101,6 +102,7 @@ public class Table_3_1_calc extends Basic_Calc {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	private void lightUpRow(int calculatedRow) {
 		// TODO Auto-generated method stub
 

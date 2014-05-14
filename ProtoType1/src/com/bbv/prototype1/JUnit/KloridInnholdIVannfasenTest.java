@@ -27,12 +27,6 @@ public class KloridInnholdIVannfasenTest extends AndroidTestCase {
 		// Testing error messages when calculating other values than Cl - Check LogCat
 		assertEquals("", calc.calculation(0, 1,10));
 		assertEquals("", calc.calculation(1, 1,10));
-
-		// Testing that calculator succeeds
-		float V_AgNO3 = 20;
-		Fv = 10;
-		CCl = (AgNO3 * V_AgNO3 * 35.45f * 1000)/Fv;
-		assertEquals(String.format("%.0f", CCl), calc.calculation(KloridInnholdIVannfasen.CCl_index, V_AgNO3, Fv));
 		
 		//Testing that calculator catches dividing with 0 error
 		assertEquals("", calc.calculation(KloridInnholdIVannfasen.CCl_index, 20,0));
@@ -53,23 +47,6 @@ public class KloridInnholdIVannfasenTest extends AndroidTestCase {
 
 	public void testGetMNaCl() {
 		assertEquals(58.44f, calc.getMNaCl());
-	}
-
-	public void testGetPf() {
-		float V_AgNO3 = 20;
-		Fv = 10;
-		CCl = (AgNO3 * V_AgNO3 * 35.45f * 1000)/Fv;
-		Table_3_1 table = new Table_3_1(CCl);
-		assertEquals(table.getPf(), calc.getPf());
-
-	}
-
-	public void testGetCCl() {
-		float V_AgNO3 = 20;
-		Fv = 10;
-		CCl = (AgNO3 * V_AgNO3 * 35.45f * 1000)/Fv;
-		assertEquals(CCl, calc.getCCl());
-		
 	}
 
 
